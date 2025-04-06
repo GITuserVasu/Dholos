@@ -27,7 +27,7 @@
                         <span class="input-group">
                             <label> Data Set </label>
                             &nbsp; &nbsp;
-                            <select #dataset id="dataset" value="none" (change)="datasetselectonchange()">
+                            <select #dataset id="dataset" value="none" (change)="datasetselectonchange(dataset.value)">
                                 <option value="none">Choose One</option>
                                 <option value="coimbatore1">Coimbatore 1</option>
                             </select>

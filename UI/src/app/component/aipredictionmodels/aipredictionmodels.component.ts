@@ -423,21 +423,21 @@ export class AIpredictionmodelsComponent implements OnInit {
       } */
       /* if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
-      }
-    }) */
+      } */
+    }) 
 
 
-  }
+  } 
   
 
-  datasetselectonchange() {
-    //this.datasetvalue  = value;
-    this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
-  }
+  datasetselectonchange(value:string) {
+    this.datasetvalue  = value;
+    //this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
+  } // end dataset select
 
   cultivarselectonchange(value:string) {
     this.cultivarvalue  = value;
-  }
+  } // end cultivar select
 
   locationselectonchange(value:string) {
     this.locationvalue  = value;
@@ -450,7 +450,8 @@ export class AIpredictionmodelsComponent implements OnInit {
         }
       this.createNewMap();
        
-  }
+  } // end location selection
+
   locradiobuttonchange(event: any) {
    
     this.locradiobuttonchangevalue = event.target.value
@@ -468,7 +469,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       this.mymap.setTarget(null);
       }
       this.createNewMap();   
-  }
+  } // end location radio button
 
   modelradiobuttonchange(event: any) {
     
@@ -480,7 +481,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       this.useNN = false;
       this.useRandomForest = true;
     } 
-  }
+  } //end model radio button
 
 
   clearMap(event:any){
@@ -491,10 +492,8 @@ export class AIpredictionmodelsComponent implements OnInit {
     } // end clearMap
 
   undolastpoint(event:any) {
-
-      this.mydraw.removeLastPoint();
-    
-    }  
+      this.mydraw.removeLastPoint();   
+    }  // end undolastpoint
 
 }
 
