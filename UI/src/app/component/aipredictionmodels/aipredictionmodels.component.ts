@@ -387,7 +387,8 @@ export class AIpredictionmodelsComponent implements OnInit {
     // this.useNN
     // this.useRandomForest
     /* if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
-    // End Validation
+    // End Validation */
+    
     
     /* this.username = this.info.name;
     this.username = this.username.replaceAll(" ","");
