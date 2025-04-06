@@ -412,9 +412,9 @@ export class AIpredictionmodelsComponent implements OnInit {
 
     alert(this.username);
 
-    ////this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
-      ////console.log("myresres");
-      ////console.log('res');
+    this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
+      console.log("myresres");
+      console.log('res');
       //this.preddata = res.data
       /* if (res.statusCode == 200) {
         console.log(" Prednow Success");
@@ -425,7 +425,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       /* if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
       } */
-    ////}) 
+    }) 
 
 
   } 
