@@ -84,7 +84,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   
 
 
-  //constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
+  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
 
 
   ngOnInit(): void {
