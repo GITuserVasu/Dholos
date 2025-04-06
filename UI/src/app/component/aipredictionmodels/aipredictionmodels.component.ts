@@ -390,9 +390,9 @@ export class AIpredictionmodelsComponent implements OnInit {
     // End Validation */
     
     
-    /* this.username = this.info.name;
+    this.username = this.info.name;
     this.username = this.username.replaceAll(" ","");
- */
+
     // Call the predict python code
     const predjson ={
       "dataset" : this.datasetvalue ,
