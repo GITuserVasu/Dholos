@@ -6,11 +6,11 @@ import json
 from django.http import HttpResponse, JsonResponse
 
 # Import necessary libraries
-import pandas as pd
+""" import pandas as pd
 import numpy as np
 import seaborn as sns  # visualisation
 import matplotlib.pyplot as plt  # visualisation
-
+ """
 """ import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
 from tf.keras.models import Sequential """
@@ -20,6 +20,9 @@ from tf.keras.models import Sequential """
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 # from rest_framework.parsers import JSONParser
+from django.http import JsonResponse
+import subprocess
+import boto3
 
 # sns.set_theme(color_codes=True)
 
