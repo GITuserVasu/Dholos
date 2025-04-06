@@ -57,6 +57,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   myarea:any;
   locationvalue:any = "none";
   clear_map :any = 0 ;
+  //value:string ="";
   
   //geometry = feature.getGeometry();
 
@@ -427,9 +428,11 @@ export class AIpredictionmodelsComponent implements OnInit {
 
 
   }
+  
 
-  datasetselectonchange(value:string) {
-    this.datasetvalue  = value;
+  datasetselectonchange() {
+    //this.datasetvalue  = value;
+    this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value;
   }
 
   cultivarselectonchange(value:string) {
