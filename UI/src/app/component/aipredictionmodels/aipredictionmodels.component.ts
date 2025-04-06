@@ -374,16 +374,16 @@ export class AIpredictionmodelsComponent implements OnInit {
   onSubmit() {
     alert("Prediction will be available sooooooon, maybe :-)");
     //Validation
-    /* if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
-    if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
-    if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} */
+    ////if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
+    ////if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
+    ////if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} 
     // this.usemap
     // this.locationvalue
     // this.string_coords
     var pltgdate = document.getElementById("pdate") as HTMLInputElement;
     var pdate = pltgdate.value ;
     if(pdate == "") {alert("Please enter Planting Date"); location.reload();}
-    if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} */
+    if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} 
     // this.useNN
     // this.useRandomForest
     /* if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
