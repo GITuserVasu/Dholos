@@ -24,11 +24,11 @@ from django.views.decorators.csrf import csrf_exempt
 # sns.set_theme(color_codes=True)
 
 
-""" @csrf_exempt
+@csrf_exempt
 def prednow(predjson):
     # print("In prednow")
     # reportfile = open_reporting_session("","")
-    return JsonResponse({"statusCode": 200, "name": "test"}) """
+    return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
 """ @csrf_exempt
