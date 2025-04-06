@@ -432,7 +432,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   datasetselectonchange() {
     //this.datasetvalue  = value;
-    this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value;
+    this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
   }
 
   cultivarselectonchange(value:string) {
