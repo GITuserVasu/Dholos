@@ -393,7 +393,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     this.username = this.username.replaceAll(" ","");
  */
     // Call the predict python code
-/*     const predjson ={
+    const predjson ={
       "dataset" : this.datasetvalue ,
       "useblockname": this.useblockname,
       "usemap": this.usemap,
@@ -407,7 +407,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "username" : this.username
     } 
 
-    alert(this.username); */
+    alert(this.username);
 
     /* this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
       console.log("myresres");
