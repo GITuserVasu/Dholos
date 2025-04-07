@@ -6,10 +6,10 @@ import json
 from django.http import HttpResponse, JsonResponse
 
 # Import necessary libraries
-import pandas as pd
+""" import pandas as pd
 import numpy as np
 import seaborn as sns  # visualisation
-import matplotlib.pyplot as plt  # visualisation
+import matplotlib.pyplot as plt  # visualisation """
 
 """ import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
@@ -30,11 +30,12 @@ import boto3
 @csrf_exempt
 def prednow(predjson):
     # print("In prednow")
-    # reportfile = open_reporting_session("","")
+    reportfile = open_reporting_session("","")
+    close_reporting_session(reportfile)
     return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
-""" @csrf_exempt
+@csrf_exempt
 def open_reporting_session(pathname, filename):
     import datetime
 
@@ -59,11 +60,11 @@ def open_reporting_session(pathname, filename):
     reportfile.write("\n")
     reportfile.write("___________________________________________________")
     reportfile.write("\n")
-    return reportfile """
+    return reportfile
 
 
 # Close report file for writing
-""" @csrf_exempt
+@csrf_exempt
 def close_reporting_session(reportfile):
     import datetime
 
@@ -72,7 +73,7 @@ def close_reporting_session(reportfile):
     reportfile.write("_________________________________________" + "\n")
     reportfile.close()
     print("Report File Closed")
-    return """
+    return
 
 
 # Read the cleansed data from a pkl file
