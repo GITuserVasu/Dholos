@@ -8,12 +8,12 @@ from django.http import HttpResponse, JsonResponse
 # Import necessary libraries
 import pandas as pd
 import numpy as np
-import seaborn as sns  # visualisation
+#import seaborn as sns  # visualisation
 #import matplotlib.pyplot as plt  # visualisation 
 
-""" import tensorflow as tf
+import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
-from tf.keras.models import Sequential """
+from tf.keras.models import Sequential
 # import importlib.util
 # spec = importlib.util.spec_from_file_location("parseFiles", "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\parseFiles.py")
 # rmvspaces = importlib.util.module_from_spec(spec)
