@@ -30,9 +30,10 @@ import boto3
 @csrf_exempt
 def prednow(predjson):
     # print("In prednow")
-    #reportfile = open_reporting_session("","")
+    reportfile = open_reporting_session("","")
     read_pkldata("","")
-    #close_reporting_session(reportfile)
+    read_csvdata("","")
+    close_reporting_session(reportfile)
     return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
@@ -102,13 +103,14 @@ def read_pkldata(pathname, filename):
 # The yield date (or harvest date) is obtained from the simulation summary data for a planting date close to user
 # specified planting date (for that location and crop variety).
 ## TO DO: Extension - CSV file has multiple datapoints
-""" @csrf_exempt
+@csrf_exempt
 def read_csvdata(pathname, filename):
     if pathname == "help" or filename == "help":
         print("pathname is the path where the csv file is located")
         print("filename is the name of the csv file")
     if pathname == "" and filename == "":
-        pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
+        #pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
+        pathname = "/home/bitnami/ML/data/coimbatore-apr25/"
         filename = "predict-row.csv"
     if filename == "":
         print("Please enter valid filename")
@@ -118,7 +120,7 @@ def read_csvdata(pathname, filename):
     # predictX = predictdf[3:]
     # print(predictdf.head())
     # predictdf = pd.read_csv('C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\predict-row.csv')
-    return predictdf """
+    return predictdf
 
 
 """ @csrf_exempt
