@@ -11,9 +11,9 @@ import numpy as np
 #import seaborn as sns  # visualisation
 #import matplotlib.pyplot as plt  # visualisation 
 
-import tensorflow as tf
+""" import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
-from tf.keras.models import Sequential
+from tf.keras.models import Sequential """
 # import importlib.util
 # spec = importlib.util.spec_from_file_location("parseFiles", "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\parseFiles.py")
 # rmvspaces = importlib.util.module_from_spec(spec)
@@ -30,8 +30,9 @@ import boto3
 @csrf_exempt
 def prednow(predjson):
     # print("In prednow")
-    reportfile = open_reporting_session("","")
-    close_reporting_session(reportfile)
+    #reportfile = open_reporting_session("","")
+    read_pkldata("","")
+    #close_reporting_session(reportfile)
     return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
@@ -83,6 +84,7 @@ def read_pkldata(pathname, filename):
         print("pathname is the path where the pkl file is located")
         print("filename is the name of the pkl file")
     if pathname == "" and filename == "":
+        #pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
         pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
         filename = "ml_data.pkl"
     if filename == "":
@@ -90,7 +92,7 @@ def read_pkldata(pathname, filename):
     if pathname == "":
         print("Please enter valid pathname")
     ML1_df = pd.read_pickle(pathname + filename)
-    # print(ML1_df.head())
+    print(ML1_df.head())
     # ML1_df = pd.read_pickle('C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\ml_data.pkl')
     return ML1_df
 
