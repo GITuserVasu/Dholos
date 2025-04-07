@@ -85,7 +85,7 @@ def read_pkldata(pathname, filename):
         print("filename is the name of the pkl file")
     if pathname == "" and filename == "":
         #pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
-        pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
+        pathname = "/home/bitnami/ML/data/coimbatore-apr25/"
         filename = "ml_data.pkl"
     if filename == "":
         print("Please enter valid filename")
