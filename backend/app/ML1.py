@@ -8,6 +8,7 @@ from django.http import HttpResponse, JsonResponse
 # Import necessary libraries
 import pandas as pd
 import numpy as np
+import pickle
 #import seaborn as sns  # visualisation
 #import matplotlib.pyplot as plt  # visualisation 
 
@@ -314,3 +315,23 @@ def train_random_forest(x_train, y_train):
     forest_model.fit(x_train, y_train)
 
     return forest_model
+
+@csrf_exempt
+def save_model(model, name):
+    # Name the model
+    filename = name
+    pickle.dump(model, open(filename,'wb'))
+
+    # OR using joblib
+    #joblib.dump(model, filename)
+    
+    return 0
+
+@csrf_exempt
+def get_model(pathname, filename):
+    model = pickle.load(open(filename,'rb'))
+
+    # OR using joblib
+    #model = joblib.load(filename)
+    
+    return 0
