@@ -7,10 +7,10 @@ from django.http import HttpResponse, JsonResponse
 
 # Import necessary libraries
 import pandas as pd
-"""import numpy as np
+import numpy as np
 import seaborn as sns  # visualisation
 import matplotlib.pyplot as plt  # visualisation
- """
+
 """ import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
 from tf.keras.models import Sequential """
