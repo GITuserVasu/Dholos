@@ -45,7 +45,7 @@ def open_reporting_session(pathname, filename):
     rightnow = rightnow.replace(":", "-")
     if pathname == "" and filename == "":
         # pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
-        pathname = "/home/bitnami/ML/reports"
+        pathname = "/home/bitnami/ML/reports/"
         filename = str(rightnow) + ".txt"
     if filename == "":
         print("Please enter valid filename")
@@ -77,7 +77,7 @@ def close_reporting_session(reportfile):
 
 
 # Read the cleansed data from a pkl file
-""" @csrf_exempt
+@csrf_exempt
 def read_pkldata(pathname, filename):
     if pathname == "help" or filename == "help":
         print("pathname is the path where the pkl file is located")
@@ -92,7 +92,7 @@ def read_pkldata(pathname, filename):
     ML1_df = pd.read_pickle(pathname + filename)
     # print(ML1_df.head())
     # ML1_df = pd.read_pickle('C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\ml_data.pkl')
-    return ML1_df """
+    return ML1_df
 
 
 # Read the csv for a single datapoint containing location, crop variety, planting date as well as weather parameters
