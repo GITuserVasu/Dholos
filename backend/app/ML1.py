@@ -27,14 +27,26 @@ import boto3
 
 # sns.set_theme(color_codes=True)
 
+# Imports from sklearn for models
+# import warnings
+import warnings
+warnings.filtyerwarnings("ignore")
+
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.ensemble import RandomForestRegressor
+
 
 @csrf_exempt
 def prednow(predjson):
     # print("In prednow")
-    reportfile = open_reporting_session("","")
-    read_pkldata("","")
-    read_csvdata("","")
-    close_reporting_session(reportfile)
+    #reportfile = open_reporting_session("","")
+    ML1_df= read_pkldata("","")
+    predictdf = read_csvdata("","")
+    SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
+    df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
+    x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
+    forest_model = train_random_forest(x_train, y_train)
+    #close_reporting_session(reportfile)
     return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
@@ -212,7 +224,7 @@ def setup_data_for_model_training(
     # shuffle the dataframe in place
     df = df.sample(frac=1).reset_index(drop=True)
 
-    return df
+    return df, dataX, dataY
 
 
 @csrf_exempt
@@ -334,4 +346,4 @@ def get_model(pathname, filename):
     # OR using joblib
     #model = joblib.load(filename)
     
-    return 0
+    return model
