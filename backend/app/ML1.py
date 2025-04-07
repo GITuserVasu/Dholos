@@ -123,7 +123,7 @@ def read_csvdata(pathname, filename):
     return predictdf
 
 
-""" @csrf_exempt
+@csrf_exempt
 def get_subset_df(df, col_name, col_value):
     # To get all rows for a particular cultivar
     if col_name == "Cultivar":
@@ -137,9 +137,9 @@ def get_subset_df(df, col_name, col_value):
 
     # Default
     return df
- """
 
-""" @csrf_exempt
+
+@csrf_exempt
 def listcolumnnames(name, start_cols, end_cols):
     new_cols = []
     # Number of columns to add
@@ -154,20 +154,20 @@ def listcolumnnames(name, start_cols, end_cols):
     # Add columns in sequence
     for i in range(start_cols, end_cols + 1):
         new_cols.append(f"{name}{i}")
-    return new_cols """
+    return new_cols
 
 
-""" @csrf_exempt
+@csrf_exempt
 def create_empty_param_cols():
     SRADlist = listcolumnnames("SRAD")
     Tmaxlist = listcolumnnames("Tmax")
     Tminlist = listcolumnnames("Tmin")
     Rainlist = listcolumnnames("Rain")
 
-    return SRADlist, Tmaxlist, Tminlist, Rainlist """
+    return SRADlist, Tmaxlist, Tminlist, Rainlist
 
 
-""" @csrf_exempt
+@csrf_exempt
 def setup_data_for_model_training_extended(SRADlist, Tmaxlist, Tminlist, Rainlist):
 
     initlist = [
@@ -185,10 +185,10 @@ def setup_data_for_model_training_extended(SRADlist, Tmaxlist, Tminlist, Rainlis
     initlist.extend(Tminlist)
     initlist.extend(Rainlist)
 
-    return initlist """
+    return initlist
 
 
-""" @csrf_exempt
+@csrf_exempt
 def setup_data_for_model_training(
     df, SRADlist, Tmaxlist, Tminlist, Rainlist, var_to_predict
 ):
@@ -211,10 +211,10 @@ def setup_data_for_model_training(
     # shuffle the dataframe in place
     df = df.sample(frac=1).reset_index(drop=True)
 
-    return df """
+    return df
 
 
-""" @csrf_exempt
+@csrf_exempt
 def split_data(dataX, dataY):
 
     from sklearn.model_selection import train_test_split, cross_val_score
@@ -236,7 +236,7 @@ def split_data(dataX, dataY):
 
     # print(x_train, x_val, x_test)
 
-    return x_train, y_train, x_test, y_test, x_val, y_val """
+    return x_train, y_train, x_test, y_test, x_val, y_val
 
 
 """ @csrf_exempt
@@ -261,7 +261,7 @@ def train_CNN_model(x_train, y_train, x_val, y_val):
     return (model, hist) """
 
 
-""" @csrf_exempt
+@csrf_exempt
 def predict_value(model_name, model, predictX):
     if model_name == "Random Forest":
         print("Random Forest Model Used")
@@ -269,14 +269,14 @@ def predict_value(model_name, model, predictX):
         print("Simple CNN Model Used")
 
     y_predict = model.predict(predictX)
-    return y_predict """
+    return y_predict
 
 
-""" @csrf_exempt
+@csrf_exempt
 def test_model(model, x_test):
     y_predict = model.predict(x_test)
     return y_predict
- """
+
 
 """ @csrf_exempt
 def graph_val_and_train_error(hist):
@@ -289,7 +289,7 @@ def graph_val_and_train_error(hist):
     return """
 
 
-""" @csrf_exempt
+@csrf_exempt
 def calc_R_squared(y_test, y_predict):
     from sklearn import metrics
     from sklearn.metrics import mean_squared_error, mean_absolute_error
@@ -303,9 +303,9 @@ def calc_R_squared(y_test, y_predict):
     print("Mean Square Error:", mse)
     print("Root Mean Square Error:", r2)
     print("R Squared:", rsquared)
- """
 
-""" @csrf_exempt
+
+@csrf_exempt
 def train_random_forest(x_train, y_train):
     # Random Forest
     from sklearn.ensemble import RandomForestRegressor
@@ -313,4 +313,4 @@ def train_random_forest(x_train, y_train):
     forest_model = RandomForestRegressor(random_state=1)
     forest_model.fit(x_train, y_train)
 
-    return forest_model """
+    return forest_model
