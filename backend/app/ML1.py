@@ -32,8 +32,8 @@ import boto3
 import warnings
 warnings.filterwarnings("ignore")
 
-""" from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.ensemble import RandomForestRegressor """
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.ensemble import RandomForestRegressor
 
 
 @csrf_exempt
