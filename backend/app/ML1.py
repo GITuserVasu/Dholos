@@ -172,10 +172,10 @@ def listcolumnnames(name, start_cols, end_cols):
 
 @csrf_exempt
 def create_empty_param_cols():
-    SRADlist = listcolumnnames("SRAD")
-    Tmaxlist = listcolumnnames("Tmax")
-    Tminlist = listcolumnnames("Tmin")
-    Rainlist = listcolumnnames("Rain")
+    SRADlist = listcolumnnames("SRAD",0,0)
+    Tmaxlist = listcolumnnames("Tmax",0,0)
+    Tminlist = listcolumnnames("Tmin",0,0)
+    Rainlist = listcolumnnames("Rain",0,0)
 
     return SRADlist, Tmaxlist, Tminlist, Rainlist
 
