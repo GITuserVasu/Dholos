@@ -39,10 +39,10 @@ export class LogininfoService {
     return this.http.post(environment.apiUrl+"emailActivate", data).pipe(catchError(this.handleError));
   }
   empStatusUpdate(id:any,data:any){
-    if(data === null) {
+/*     if(data === null) {
       return ;
     }
-    else {
+    else { */
     return this.http.put(environment.apiUrl+"empStatusUpdate/"+id, data).pipe(catchError(this.handleError));
     }
   }
