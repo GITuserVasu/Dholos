@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
         var data = {
           "status":res.status == 'Approve'?"Active":"Inactive"
         }
-          alert(data)
           this.loginService.empStatusUpdate(res.id,data).subscribe((res:any) => {
             if(res.errorCode == 200){
               this.toaster.showSuccess("Success", "Successfully Activated Thank you");
