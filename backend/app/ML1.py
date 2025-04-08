@@ -30,7 +30,7 @@ import boto3
 # Imports from sklearn for models
 # import warnings
 import warnings
-warnings.filtyerwarnings("ignore")
+warnings.filterwarnings("ignore")
 
 """ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestRegressor """
