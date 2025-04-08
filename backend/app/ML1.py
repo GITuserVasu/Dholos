@@ -7,7 +7,7 @@ from django.http import HttpResponse, JsonResponse
 
 # Import necessary libraries
 import pandas as pd
-#import numpy as np
+import numpy as np
 import pickle
 #import seaborn as sns  # visualisation
 #import matplotlib.pyplot as plt  # visualisation 
