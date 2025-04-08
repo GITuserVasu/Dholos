@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       if(res){
         console.log("res",res.id)
         console.log("res status", res.status)
-        if (res.status === null){
+        if (res.status == null || res.status == "" || res.id == null || res.id == ""){
 
         }
         else{
