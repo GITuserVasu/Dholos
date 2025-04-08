@@ -43,7 +43,7 @@ def prednow(predjson):
     ML1_df= read_pkldata("","")
     predictdf = read_csvdata("","")
     SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
-    #df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
+    df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
     #x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
     #forest_model = train_random_forest(x_train, y_train)
     #close_reporting_session(reportfile)
