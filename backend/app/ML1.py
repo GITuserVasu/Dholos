@@ -129,8 +129,7 @@ def read_csvdata(pathname, filename):
         print("Please enter valid filename")
     if pathname == "":
         print("Please enter valid pathname")
-    ##predictdf = pd.read_csv(pathname + filename)
-    predictdf = 1
+    predictdf = pd.read_csv(pathname + filename, dtype="str")
     # predictX = predictdf[3:]
     # print(predictdf.head())
     # predictdf = pd.read_csv('C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\predict-row.csv')
