@@ -106,7 +106,7 @@ def read_pkldata(pathname, filename):
     if pathname == "":
         print("Please enter valid pathname")
     ML1_df = pd.read_pickle(pathname + filename)
-    print(ML1_df.head())
+    #print(ML1_df.head())
     # ML1_df = pd.read_pickle('C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\ml_data.pkl')
     return ML1_df
 
