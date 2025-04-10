@@ -32,9 +32,9 @@ import boto3
 import warnings
 warnings.filterwarnings("ignore")
 
-""" from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestRegressor
- """
+
 
 @csrf_exempt
 def prednow(predjson):
@@ -42,10 +42,15 @@ def prednow(predjson):
     #reportfile = open_reporting_session("","")
     ML1_df= read_pkldata("","")
     predictdf = read_csvdata("","")
+    print(predictdf)
     SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
     df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
-    #x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
+    x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
     #forest_model = train_random_forest(x_train, y_train)
+    #y_predict = test_model(forest_model, x_test)
+    #rsquared = calc_R_squared(y_test, y_predict)
+    #y_predict = predict_value("Random Forest", forest_model, predictdf)
+    #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
     #close_reporting_session(reportfile)
     return JsonResponse({"statusCode": 200, "name": "test"})
 
@@ -130,7 +135,7 @@ def read_csvdata(pathname, filename):
     if pathname == "":
         print("Please enter valid pathname")
     predictdf = pd.read_csv(pathname + filename, dtype="str")
-    
+
     # predictX = predictdf[3:]
     # print(predictdf.head())
     # predictdf = pd.read_csv('C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\predict-row.csv')
@@ -317,6 +322,8 @@ def calc_R_squared(y_test, y_predict):
     print("Mean Square Error:", mse)
     print("Root Mean Square Error:", r2)
     print("R Squared:", rsquared)
+
+    return rsquared
 
 
 @csrf_exempt
