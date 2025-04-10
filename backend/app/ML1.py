@@ -52,7 +52,7 @@ def prednow(predjson):
     print("Random Forest  RSquared.......")
     print(rsquared)
     #y_predict = predict_value("Random Forest", forest_model, predictdf)
-    #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
+    save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
     #close_reporting_session(reportfile)
     return JsonResponse({"statusCode": 200, "name": "test"})
 
