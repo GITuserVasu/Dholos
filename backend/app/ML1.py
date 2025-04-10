@@ -40,18 +40,21 @@ from sklearn.ensemble import RandomForestRegressor
 def prednow(predjson):
     # print("In prednow")
     #reportfile = open_reporting_session("","")
-    ML1_df= read_pkldata("","")
+    #ML1_df= read_pkldata("","")
     predictdf = read_csvdata("","")
     print(predictdf)
-    SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
-    df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
-    x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
+    #SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
+    #df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
+    #x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
     #forest_model = train_random_forest(x_train, y_train)
     #y_predict = test_model(forest_model, x_test)
     #rsquared = calc_R_squared(y_test, y_predict)
-    print("Random Forest  RSquared.......")
+    print(" Get Random Forest Model")
+    forest_model = get_model("/home/bitnami/ML/data/coimbatore-apr25/models/finalized_model.sav")
+    print("Got it")
     #print(rsquared)
-    #y_predict = predict_value("Random Forest", forest_model, predictdf)
+    y_predict = predict_value("Random Forest", forest_model, predictdf)
+    print(y_predict)
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
     #close_reporting_session(reportfile)
     return JsonResponse({"statusCode": 200, "name": "test"})
@@ -350,7 +353,7 @@ def save_model(model, name):
     return 0
 
 @csrf_exempt
-def get_model(pathname, filename):
+def get_model(filename):
     model = pickle.load(open(filename,'rb'))
 
     # OR using joblib
