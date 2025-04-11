@@ -43,7 +43,7 @@ def prednow(predjson):
     #ML1_df= read_pkldata("","")
     predictdf = read_csvdata("","")
     print(predictdf)
-    #SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
+    SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
     #df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
     #x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
     #forest_model = train_random_forest(x_train, y_train)
@@ -53,7 +53,8 @@ def prednow(predjson):
     forest_model = get_model("/home/bitnami/ML/data/coimbatore-apr25/models/finalized_model.sav")
     print("Got it")
     #print(rsquared)
-    y_predict = predict_value("Random Forest", forest_model, predictdf)
+    predictX = setup_data_for_prediction(predictdf, SRADlist, Tmaxlist, Tminlist, Rainlist)
+    y_predict = predict_value("Random Forest", forest_model, predictX)
     print(y_predict)
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
     #close_reporting_session(reportfile)
@@ -236,6 +237,25 @@ def setup_data_for_model_training(
     df = df.sample(frac=1).reset_index(drop=True)
 
     return df, dataX, dataY
+
+@csrf_exempt
+def setup_data_for_prediction(
+    df, SRADlist, Tmaxlist, Tminlist, Rainlist):
+    initlist = [
+        "location",
+        "PlantingDate",
+        "cultivar",
+        "NitrogenApplied(kg/ha)",
+    ]
+    initlist.extend(SRADlist)
+    initlist.extend(Tmaxlist)
+    initlist.extend(Tminlist)
+    initlist.extend(Rainlist)
+
+    predictX = df[initlist]
+    #print(dataX.shape)
+
+    return predictX
 
 
 @csrf_exempt
