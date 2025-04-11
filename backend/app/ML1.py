@@ -54,7 +54,7 @@ def prednow(predjson):
     print("Got it")
     #print(rsquared)
     predictX = setup_data_for_prediction(predictdf, SRADlist, Tmaxlist, Tminlist, Rainlist)
-    print(predictX.dtype)
+    print(predictX)
     #y_predict = predict_value("Random Forest", forest_model, predictX)
     #print(y_predict)
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
