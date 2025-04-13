@@ -57,7 +57,7 @@ def prednow(predjson):
     print(predictX)
     #predict_array = predictX.to_numpy()
     #print(predict_array)
-    ##y_predict = forest_model.predict(predictX)
+    y_predict = forest_model.predict(predictX)
     #y_predict = predict_value("Random Forest", forest_model, predictX)
     #print(y_predict)
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
