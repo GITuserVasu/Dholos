@@ -38,7 +38,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 @csrf_exempt
 def prednow(predjson):
-    # print("In prednow")
+    print("In prednow")
     #reportfile = open_reporting_session("","")
     #ML1_df= read_pkldata("","")
     predictdf = read_csvdata("","")
@@ -53,8 +53,8 @@ def prednow(predjson):
     forest_model = get_model("/home/bitnami/ML/data/coimbatore-apr25/models/finalized_model.sav")
     print("Got it")
     #print(rsquared)
-    predictX = setup_data_for_prediction(predictdf, SRADlist, Tmaxlist, Tminlist, Rainlist)
-    print(predictX)
+    """ predictX = setup_data_for_prediction(predictdf, SRADlist, Tmaxlist, Tminlist, Rainlist)
+    print(predictX) """
     #predict_array = predictX.to_numpy()
     #print(predict_array)
     ##y_predict = forest_model.predict(predictX)
