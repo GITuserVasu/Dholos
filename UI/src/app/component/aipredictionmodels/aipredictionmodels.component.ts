@@ -416,15 +416,15 @@ export class AIpredictionmodelsComponent implements OnInit {
       console.log("myresres");
       console.log('res');
       //this.preddata = res.data
-      /* if (res.statusCode == 200) {
+      if (res.statusCode == 200) {
         console.log(" Prednow Success");
         console.log(res.name);
       } else {
         alert('Error in submission');
-      } */
-      /* if (res.statusCode == 200) {  
+      }
+      if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
-      } */
+      }
     }) 
 
 
