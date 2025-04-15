@@ -57,6 +57,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   myarea:any;
   locationvalue:any = "none";
   clear_map :any = 0 ;
+  //value:string ="";
   
   //geometry = feature.getGeometry();
 
@@ -83,7 +84,8 @@ export class AIpredictionmodelsComponent implements OnInit {
   
 
 
-  //constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
+//  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
+  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private router: Router) { };
 
 
   ngOnInit(): void {
@@ -372,28 +374,29 @@ export class AIpredictionmodelsComponent implements OnInit {
   // } 
 
   onSubmit() {
-    alert("Prediction will be available sooooooon, maybe :-)");
+    alert("Prediction will be available sooooooon  :-)");
     //Validation
-    /* if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
+    if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
     if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
-    if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} */
+    if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} 
     // this.usemap
     // this.locationvalue
     // this.string_coords
-    /* var pltgdate = document.getElementById("pdate") as HTMLInputElement;
+    var pltgdate = document.getElementById("pdate") as HTMLInputElement;
     var pdate = pltgdate.value ;
     if(pdate == "") {alert("Please enter Planting Date"); location.reload();}
-    if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} */
+    if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} 
     // this.useNN
     // this.useRandomForest
-    /* if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();} */
-    // End Validation
+    if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
+    // End Validation 
     
-    /* this.username = this.info.name;
+    
+    this.username = this.info.name;
     this.username = this.username.replaceAll(" ","");
- */
+
     // Call the predict python code
-/*     const predjson ={
+    const predjson ={
       "dataset" : this.datasetvalue ,
       "useblockname": this.useblockname,
       "usemap": this.usemap,
@@ -407,11 +410,11 @@ export class AIpredictionmodelsComponent implements OnInit {
       "username" : this.username
     } 
 
-    alert(this.username); */
+    // alert(this.username);
 
-    /* this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
+    this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
       console.log("myresres");
-      console.log('res'); */
+      console.log('res');
       //this.preddata = res.data
       /* if (res.statusCode == 200) {
         console.log(" Prednow Success");
@@ -421,19 +424,21 @@ export class AIpredictionmodelsComponent implements OnInit {
       } */
       /* if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
-      }
-    }) */
+      } */
+    }) 
 
 
-  }
+  } 
+  
 
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;
-  }
+    //this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
+  } // end dataset select
 
   cultivarselectonchange(value:string) {
     this.cultivarvalue  = value;
-  }
+  } // end cultivar select
 
   locationselectonchange(value:string) {
     this.locationvalue  = value;
@@ -446,7 +451,8 @@ export class AIpredictionmodelsComponent implements OnInit {
         }
       this.createNewMap();
        
-  }
+  } // end location selection
+
   locradiobuttonchange(event: any) {
    
     this.locradiobuttonchangevalue = event.target.value
@@ -464,7 +470,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       this.mymap.setTarget(null);
       }
       this.createNewMap();   
-  }
+  } // end location radio button
 
   modelradiobuttonchange(event: any) {
     
@@ -476,7 +482,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       this.useNN = false;
       this.useRandomForest = true;
     } 
-  }
+  } //end model radio button
 
 
   clearMap(event:any){
@@ -487,10 +493,8 @@ export class AIpredictionmodelsComponent implements OnInit {
     } // end clearMap
 
   undolastpoint(event:any) {
-
-      this.mydraw.removeLastPoint();
-    
-    }  
+      this.mydraw.removeLastPoint();   
+    }  // end undolastpoint
 
 }
 

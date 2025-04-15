@@ -64,10 +64,10 @@ export class OcrscreenComponent implements OnInit {
   flag: boolean = false;
   isPdfUploaded: boolean = false;
   Create_new: boolean = false;
-  Create_existing: boolean = false;
+  Create_existing: boolean = true;
   Create_default: boolean = false;
   Create_folder_new: boolean = false;
-  Create_folder_existing: boolean = false;
+  Create_folder_existing: boolean = true;
   Create_folder_default: boolean = false;
   Create_search_new: boolean = false;
   Create_search_existing: boolean = false;
@@ -95,7 +95,7 @@ export class OcrscreenComponent implements OnInit {
   product_choice: any = "PRSEASON";
   coordinates: any;
   string_coords: any;
-  useExistingFarm: boolean =  false;
+  useExistingFarm: boolean =  true;
   createNewFarm: boolean =  false;
   Xfile_as_string:any = "";
   Xfile :any;

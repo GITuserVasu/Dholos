@@ -16,11 +16,11 @@ import boto3
 # Create your views here.
 
 #########
-""" @csrf_exempt
+@csrf_exempt
 def prednow(predjson):
     print("In prednow")
     #reportfile = open_reporting_session("","")
-    return JsonResponse({"statusCode": 200, "name": "test"}) """
+    return JsonResponse({"statusCode": 200, "name": "test"})
 #####
 
 

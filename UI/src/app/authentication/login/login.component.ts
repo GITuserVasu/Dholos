@@ -39,7 +39,12 @@ export class LoginComponent implements OnInit {
     this.password = 'password';
     this.activateRouter.params.subscribe((res:any) => {
       if(res){
-        console.log("res",res.id)
+        //console.log("res",res.id)
+        //console.log("res status", res.status)
+        if (res.status == null || res.status == "" || res.id == null || res.id == ""){
+
+        }
+        else{
         var data = {
           "status":res.status == 'Approve'?"Active":"Inactive"
         }
@@ -50,6 +55,7 @@ export class LoginComponent implements OnInit {
             }
             
           })
+        } // end of else
       }
       
     })

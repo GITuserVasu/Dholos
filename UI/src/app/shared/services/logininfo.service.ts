@@ -40,6 +40,7 @@ export class LogininfoService {
   }
   empStatusUpdate(id:any,data:any){
     return this.http.put(environment.apiUrl+"empStatusUpdate/"+id, data).pipe(catchError(this.handleError));
+    
   }
   handleError(error: HttpErrorResponse) {
     let msg = '';

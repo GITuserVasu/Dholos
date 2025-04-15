@@ -8,8 +8,9 @@ from django.http import HttpResponse, JsonResponse
 # Import necessary libraries
 import pandas as pd
 import numpy as np
-import seaborn as sns  # visualisation
-import matplotlib.pyplot as plt  # visualisation
+import pickle
+#import seaborn as sns  # visualisation
+#import matplotlib.pyplot as plt  # visualisation 
 
 """ import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
@@ -20,18 +21,51 @@ from tf.keras.models import Sequential """
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 # from rest_framework.parsers import JSONParser
+from django.http import JsonResponse
+import subprocess
+import boto3
 
 # sns.set_theme(color_codes=True)
 
+# Imports from sklearn for models
+# import warnings
+import warnings
+warnings.filterwarnings("ignore")
 
-""" @csrf_exempt
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.ensemble import RandomForestRegressor
+
+
+@csrf_exempt
 def prednow(predjson):
-    # print("In prednow")
-    # reportfile = open_reporting_session("","")
-    return JsonResponse({"statusCode": 200, "name": "test"}) """
+    print("In prednow")
+    #reportfile = open_reporting_session("","")
+    #ML1_df= read_pkldata("","")
+    ##predictdf = read_csvdata("","")
+    ##print(predictdf)
+    """ SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols() """
+    #df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
+    #x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
+    #forest_model = train_random_forest(x_train, y_train)
+    #y_predict = test_model(forest_model, x_test)
+    #rsquared = calc_R_squared(y_test, y_predict)
+    print(" Get Random Forest Model")
+    ##forest_model = get_model("/home/bitnami/ML/data/coimbatore-apr25/models/finalized_model.sav")
+    print("Got it")
+    #print(rsquared)
+    """ predictX = setup_data_for_prediction(predictdf, SRADlist, Tmaxlist, Tminlist, Rainlist)
+    print(predictX) """
+    #predict_array = predictX.to_numpy()
+    #print(predict_array)
+    ##y_predict = forest_model.predict(predictX)
+    #y_predict = predict_value("Random Forest", forest_model, predictX)
+    #print(y_predict)
+    #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
+    #close_reporting_session(reportfile)
+    return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
-""" @csrf_exempt
+@csrf_exempt
 def open_reporting_session(pathname, filename):
     import datetime
 
@@ -41,7 +75,7 @@ def open_reporting_session(pathname, filename):
     rightnow = rightnow.replace(":", "-")
     if pathname == "" and filename == "":
         # pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
-        pathname = "/home/bitnami/ML/reports"
+        pathname = "/home/bitnami/ML/reports/"
         filename = str(rightnow) + ".txt"
     if filename == "":
         print("Please enter valid filename")
@@ -56,11 +90,11 @@ def open_reporting_session(pathname, filename):
     reportfile.write("\n")
     reportfile.write("___________________________________________________")
     reportfile.write("\n")
-    return reportfile """
+    return reportfile
 
 
 # Close report file for writing
-""" @csrf_exempt
+@csrf_exempt
 def close_reporting_session(reportfile):
     import datetime
 
@@ -69,26 +103,27 @@ def close_reporting_session(reportfile):
     reportfile.write("_________________________________________" + "\n")
     reportfile.close()
     print("Report File Closed")
-    return """
+    return
 
 
 # Read the cleansed data from a pkl file
-""" @csrf_exempt
+@csrf_exempt
 def read_pkldata(pathname, filename):
     if pathname == "help" or filename == "help":
         print("pathname is the path where the pkl file is located")
         print("filename is the name of the pkl file")
     if pathname == "" and filename == "":
-        pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
+        #pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
+        pathname = "/home/bitnami/ML/data/coimbatore-apr25/"
         filename = "ml_data.pkl"
     if filename == "":
         print("Please enter valid filename")
     if pathname == "":
         print("Please enter valid pathname")
     ML1_df = pd.read_pickle(pathname + filename)
-    # print(ML1_df.head())
+    #print(ML1_df.head())
     # ML1_df = pd.read_pickle('C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\ml_data.pkl')
-    return ML1_df """
+    return ML1_df
 
 
 # Read the csv for a single datapoint containing location, crop variety, planting date as well as weather parameters
@@ -96,26 +131,28 @@ def read_pkldata(pathname, filename):
 # The yield date (or harvest date) is obtained from the simulation summary data for a planting date close to user
 # specified planting date (for that location and crop variety).
 ## TO DO: Extension - CSV file has multiple datapoints
-""" @csrf_exempt
+@csrf_exempt
 def read_csvdata(pathname, filename):
     if pathname == "help" or filename == "help":
         print("pathname is the path where the csv file is located")
         print("filename is the name of the csv file")
     if pathname == "" and filename == "":
-        pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
+        #pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
+        pathname = "/home/bitnami/ML/data/coimbatore-apr25/"
         filename = "predict-row.csv"
     if filename == "":
         print("Please enter valid filename")
     if pathname == "":
         print("Please enter valid pathname")
-    predictdf = pd.read_csv(pathname + filename)
+    predictdf = pd.read_csv(pathname + filename, dtype="str")
+
     # predictX = predictdf[3:]
     # print(predictdf.head())
     # predictdf = pd.read_csv('C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\predict-row.csv')
-    return predictdf """
+    return predictdf
 
 
-""" @csrf_exempt
+@csrf_exempt
 def get_subset_df(df, col_name, col_value):
     # To get all rows for a particular cultivar
     if col_name == "Cultivar":
@@ -129,9 +166,9 @@ def get_subset_df(df, col_name, col_value):
 
     # Default
     return df
- """
 
-""" @csrf_exempt
+
+@csrf_exempt
 def listcolumnnames(name, start_cols, end_cols):
     new_cols = []
     # Number of columns to add
@@ -146,20 +183,20 @@ def listcolumnnames(name, start_cols, end_cols):
     # Add columns in sequence
     for i in range(start_cols, end_cols + 1):
         new_cols.append(f"{name}{i}")
-    return new_cols """
+    return new_cols
 
 
-""" @csrf_exempt
+@csrf_exempt
 def create_empty_param_cols():
-    SRADlist = listcolumnnames("SRAD")
-    Tmaxlist = listcolumnnames("Tmax")
-    Tminlist = listcolumnnames("Tmin")
-    Rainlist = listcolumnnames("Rain")
+    SRADlist = listcolumnnames("SRAD",0,0)
+    Tmaxlist = listcolumnnames("Tmax",0,0)
+    Tminlist = listcolumnnames("Tmin",0,0)
+    Rainlist = listcolumnnames("Rain",0,0)
 
-    return SRADlist, Tmaxlist, Tminlist, Rainlist """
+    return SRADlist, Tmaxlist, Tminlist, Rainlist
 
 
-""" @csrf_exempt
+@csrf_exempt
 def setup_data_for_model_training_extended(SRADlist, Tmaxlist, Tminlist, Rainlist):
 
     initlist = [
@@ -177,10 +214,10 @@ def setup_data_for_model_training_extended(SRADlist, Tmaxlist, Tminlist, Rainlis
     initlist.extend(Tminlist)
     initlist.extend(Rainlist)
 
-    return initlist """
+    return initlist
 
 
-""" @csrf_exempt
+@csrf_exempt
 def setup_data_for_model_training(
     df, SRADlist, Tmaxlist, Tminlist, Rainlist, var_to_predict
 ):
@@ -203,10 +240,29 @@ def setup_data_for_model_training(
     # shuffle the dataframe in place
     df = df.sample(frac=1).reset_index(drop=True)
 
-    return df """
+    return df, dataX, dataY
+
+@csrf_exempt
+def setup_data_for_prediction(
+    df, SRADlist, Tmaxlist, Tminlist, Rainlist):
+    initlist = [
+        "location",
+        "PlantingDate",
+        "cultivar",
+        "NitrogenApplied(kg/ha)",
+    ]
+    initlist.extend(SRADlist)
+    initlist.extend(Tmaxlist)
+    initlist.extend(Tminlist)
+    initlist.extend(Rainlist)
+
+    predictX = df[initlist]
+    #print(dataX.shape)
+
+    return predictX
 
 
-""" @csrf_exempt
+@csrf_exempt
 def split_data(dataX, dataY):
 
     from sklearn.model_selection import train_test_split, cross_val_score
@@ -228,7 +284,7 @@ def split_data(dataX, dataY):
 
     # print(x_train, x_val, x_test)
 
-    return x_train, y_train, x_test, y_test, x_val, y_val """
+    return x_train, y_train, x_test, y_test, x_val, y_val
 
 
 """ @csrf_exempt
@@ -253,7 +309,7 @@ def train_CNN_model(x_train, y_train, x_val, y_val):
     return (model, hist) """
 
 
-""" @csrf_exempt
+@csrf_exempt
 def predict_value(model_name, model, predictX):
     if model_name == "Random Forest":
         print("Random Forest Model Used")
@@ -261,14 +317,14 @@ def predict_value(model_name, model, predictX):
         print("Simple CNN Model Used")
 
     y_predict = model.predict(predictX)
-    return y_predict """
+    return y_predict
 
 
-""" @csrf_exempt
+@csrf_exempt
 def test_model(model, x_test):
     y_predict = model.predict(x_test)
     return y_predict
- """
+
 
 """ @csrf_exempt
 def graph_val_and_train_error(hist):
@@ -281,7 +337,7 @@ def graph_val_and_train_error(hist):
     return """
 
 
-""" @csrf_exempt
+@csrf_exempt
 def calc_R_squared(y_test, y_predict):
     from sklearn import metrics
     from sklearn.metrics import mean_squared_error, mean_absolute_error
@@ -295,9 +351,11 @@ def calc_R_squared(y_test, y_predict):
     print("Mean Square Error:", mse)
     print("Root Mean Square Error:", r2)
     print("R Squared:", rsquared)
- """
 
-""" @csrf_exempt
+    return rsquared
+
+
+@csrf_exempt
 def train_random_forest(x_train, y_train):
     # Random Forest
     from sklearn.ensemble import RandomForestRegressor
@@ -305,4 +363,24 @@ def train_random_forest(x_train, y_train):
     forest_model = RandomForestRegressor(random_state=1)
     forest_model.fit(x_train, y_train)
 
-    return forest_model """
+    return forest_model
+
+@csrf_exempt
+def save_model(model, name):
+    # Name the model
+    filename = name
+    pickle.dump(model, open(filename,'wb'))
+
+    # OR using joblib
+    #joblib.dump(model, filename)
+    
+    return 0
+
+@csrf_exempt
+def get_model(filename):
+    model = pickle.load(open(filename,'rb'))
+
+    # OR using joblib
+    #model = joblib.load(filename)
+    
+    return model

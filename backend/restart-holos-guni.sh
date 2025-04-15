@@ -1,5 +1,5 @@
 #! /usr/bin/bash
-cd /home/bitnami/DEVholos2/backend
+cd /home/bitnami/Dholos/backend
 #echo $(pwd) >> /home/bitnami/restart-holos.log 
 #var=`ps -aux | grep -v grep | grep -c guni` 
 #echo $var
