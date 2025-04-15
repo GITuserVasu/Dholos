@@ -374,11 +374,11 @@ export class AIpredictionmodelsComponent implements OnInit {
   // } 
 
   onSubmit() {
-    alert("Prediction will be available sooooooon, maybe :-)");
+    alert("Prediction will be available sooooooon  :-)");
     //Validation
-    ////if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
-    ////if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
-    ////if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} 
+    if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
+    if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
+    if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} 
     // this.usemap
     // this.locationvalue
     // this.string_coords
@@ -388,8 +388,8 @@ export class AIpredictionmodelsComponent implements OnInit {
     if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} 
     // this.useNN
     // this.useRandomForest
-    /* if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
-    // End Validation */
+    if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
+    // End Validation 
     
     
     this.username = this.info.name;
@@ -410,9 +410,9 @@ export class AIpredictionmodelsComponent implements OnInit {
       "username" : this.username
     } 
 
-    alert(this.username);
+    // alert(this.username);
 
-    ////this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
+    this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
       console.log("myresres");
       console.log('res');
       //this.preddata = res.data
@@ -425,7 +425,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       /* if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
       } */
-    ////}) 
+    }) 
 
 
   } 
