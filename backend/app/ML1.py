@@ -68,8 +68,8 @@ def prednow(predjson):
     print(y_predict)
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
     #close_reporting_session(reportfile) """
-    data = json.loads(predjson)
-    print(data["username"])
+    jsondata = JSONParser().parse(exptJson)
+    print(jsondata["username"])
     return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
