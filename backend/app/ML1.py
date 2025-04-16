@@ -15,6 +15,8 @@ import pickle
 #import matplotlib.pyplot as plt  # visualisation 
 import sklearn
 print(sklearn.__version__)
+import scipy
+print(scipy.__version__)
 
 """ import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
