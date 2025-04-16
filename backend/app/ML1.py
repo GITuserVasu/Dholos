@@ -26,7 +26,7 @@ from tf.keras.models import Sequential """
 # rmvspaces = importlib.util.module_from_spec(spec)
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-# from rest_framework.parsers import JSONParser
+from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 import subprocess
 import boto3
