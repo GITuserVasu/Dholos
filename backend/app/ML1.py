@@ -7,10 +7,14 @@ from django.http import HttpResponse, JsonResponse
 
 # Import necessary libraries
 import pandas as pd
+print(pd.__version__)
 import numpy as np
+print(np.__version__)
 import pickle
 #import seaborn as sns  # visualisation
 #import matplotlib.pyplot as plt  # visualisation 
+import sklearn
+print(sklearn.__version__)
 
 """ import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
