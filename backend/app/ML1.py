@@ -59,7 +59,7 @@ def prednow(predjson):
     #print(predict_array)
     #y_predict = forest_model.predict(predictX)
     #y_predict = predict_value("Random Forest", forest_model, predictX)
-    print(y_predict)
+    #print(y_predict)
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
     #close_reporting_session(reportfile)
     return JsonResponse({"statusCode": 200, "name": "test"})
