@@ -69,16 +69,26 @@ def prednow(predjson):
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
     #close_reporting_session(reportfile) """
     jsondata = JSONParser().parse(predjson)
-    print(jsondata["username"])
+    username = jsondata["username"]
+    dataset = jsondata["dataset"]
+    useblockname = jsondata["useblockname"]
+    usemap = jsondata["usemap"]
+    blockname = jsondata["blockname"]
+    stringcoords = jsondata["stringcoords"]
+    plantingdate = jsondata["plantingdate"]
+    useNN = jsondata["useNN"]
+    useRandomForest = jsondata["useruseRandomForestame"]
+    cultivar = jsondata["cultivar"]
+    orgid = jsondata["orgid"]
     # save current dir
-    savedir = os.getcwd()
+    ##savedir = os.getcwd()
     # Change dir
-
+    ##os.chdir(dir)
     # Execute a command and capture the output
-    result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
+    result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py','blockname','plantingdate','cultivar'], capture_output=True, text=True)
     print(result.stdout)
     # change back to orig dir
-
+    ##os.chdir(savedir)
     return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
