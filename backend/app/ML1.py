@@ -85,7 +85,7 @@ def prednow(predjson):
     # Change dir
     ##os.chdir(dir)
     # Execute a command and capture the output
-    result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py', plantingdate], capture_output=True, text=True)
+    result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
     print(result.stdout)
     # change back to orig dir
     ##os.chdir(savedir)
