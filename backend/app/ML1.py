@@ -70,6 +70,15 @@ def prednow(predjson):
     #close_reporting_session(reportfile) """
     jsondata = JSONParser().parse(predjson)
     print(jsondata["username"])
+    # save current dir
+    savedir = os.getcwd()
+    # Change dir
+
+    # Execute a command and capture the output
+    result = subprocess.run(['ls', '-l'], capture_output=True, text=True)
+    print(result.stdout)
+    # change back to orig dir
+
     return JsonResponse({"statusCode": 200, "name": "test"})
 
 # Open report file for writing
