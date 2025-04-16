@@ -77,7 +77,7 @@ def prednow(predjson):
     stringcoords = jsondata["stringcoords"]
     plantingdate = jsondata["plantingdate"]
     useNN = jsondata["useNN"]
-    useRandomForest = jsondata["useruseRandomForestame"]
+    useRandomForest = jsondata["useRandomForest"]
     cultivar = jsondata["cultivar"]
     orgid = jsondata["orgid"]
     # save current dir
