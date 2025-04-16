@@ -75,7 +75,7 @@ def prednow(predjson):
     # Change dir
 
     # Execute a command and capture the output
-    result = subprocess.run(['ls', '-l'], capture_output=True, text=True)
+    result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
     print(result.stdout)
     # change back to orig dir
 
