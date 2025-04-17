@@ -213,26 +213,29 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="card mini-stats-wid">
             <div class="card-body">
                 <div class="d-flex">
                     <div class="flex-grow-1">
                         <input type="button" class="btn btn-primary float-end" value="Predict" (click)="onSubmit()">
                         <!-- [disabled]="fileUpload.invalid"> -->
+                        <div class="mt-4 col-lg-6 float-end>
+                            <a data-toggle="modal" data-target="#resultModal"  class="text-muted"> Check Result</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="card mini-stats-wid">
             <div class="card-body">
                 <div class="d-flex">
                     <div class="flex-grow-1">
                         <!-- <input type="button" class="btn btn-primary float-end" value="checkResult" (click)="checkResult()"> -->
-                        <div class="mt-4 col-lg-6 text-center">
-                            <a data-toggle="modal" data-target="#resultModal"  class="text-muted"><i class="mdi mdi-lock me-1"></i> Check Result</a>
+                        <div class="mt-4 col-lg-6 float-end>
+                            <a data-toggle="modal" data-target="#resultModal"  class="text-muted"> Check Result</a>
                         </div>
                     </div>
                 </div>
