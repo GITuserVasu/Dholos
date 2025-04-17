@@ -429,6 +429,8 @@ export class AIpredictionmodelsComponent implements OnInit {
         console.log("Prediction Routine Call was successful")
         this.resultReady = true;
         this.prediction_value = res.prediction ;
+        console.log(res.prediction)
+        console.log(this.prediction_value)
       }
     }) 
 
