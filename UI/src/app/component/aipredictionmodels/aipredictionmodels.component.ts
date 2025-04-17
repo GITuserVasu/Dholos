@@ -81,6 +81,9 @@ export class AIpredictionmodelsComponent implements OnInit {
   info: any;
   modelradiobutton: any;
 
+  resultReady: boolean = false;
+  prediction_value:any = 0;
+
   
 
 
@@ -424,6 +427,8 @@ export class AIpredictionmodelsComponent implements OnInit {
       }
       if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
+        this.resultReady = true;
+        this.prediction_value = res.prediction ;
       }
     }) 
 
@@ -495,6 +500,11 @@ export class AIpredictionmodelsComponent implements OnInit {
   undolastpoint(event:any) {
       this.mydraw.removeLastPoint();   
     }  // end undolastpoint
+
+  checkResult() {
+    /*   var popup = document.getElementById("yieldPopup");
+      popup.classList.toggle("show"); */
+    }  
 
 }
 
