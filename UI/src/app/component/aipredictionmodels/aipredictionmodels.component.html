@@ -219,7 +219,7 @@
                 <div class="d-flex">
                     <div class="flex-grow-1">
                         <input type="button" class="btn btn-primary float-end" value="Predict" (click)="onSubmit()">
-                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#resultModal">Open Modal</button>
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#resultModal">Check Result</button>
                         <!-- [disabled]="fileUpload.invalid"> -->
                     </div>
                 </div>
@@ -242,7 +242,7 @@
     </div> --> 
 </div>
 <!-- Modal -->
-<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" >
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog"  >
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -252,8 +252,7 @@
             </button> -->
         </div>
         <div class="modal-body">
-            test
-             {{prediction_value}}
+            Predicted Yield &nbsp; = &nbsp; &nbsp; {{prediction_value}}
         <br>
         </div>
         <div class="modal-footer">

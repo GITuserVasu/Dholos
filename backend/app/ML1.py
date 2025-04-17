@@ -87,9 +87,10 @@ def prednow(predjson):
     # Execute a command and capture the output
     result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
     #print(result.stdout)
+    abc = result.stdout
     # change back to orig dir
     ##os.chdir(savedir)
-    return JsonResponse({"statusCode": 200, "name": "test", "prediction":result.stdout})
+    return JsonResponse({"statusCode": 200, "name": "test", "prediction":abc})
 
 # Open report file for writing
 @csrf_exempt
