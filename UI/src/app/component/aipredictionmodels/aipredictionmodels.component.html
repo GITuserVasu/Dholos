@@ -219,7 +219,7 @@
                 <div class="d-flex">
                     <div class="flex-grow-1">
                         <input type="button" class="btn btn-primary float-end" value="Predict" (click)="onSubmit()">
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#resultModal">Open Modal</button>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#resultModal">Open Modal</button>
                         <!-- [disabled]="fileUpload.invalid"> -->
                     </div>
                 </div>
@@ -242,12 +242,12 @@
     </div> --> 
 </div>
 <!-- Modal -->
-<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" >
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Prediction Result</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" >
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
