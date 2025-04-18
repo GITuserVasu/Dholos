@@ -44,7 +44,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 @csrf_exempt
 def prednow(predjson):
-    #print("In prednow")
+    print("In prednow")
     """ #reportfile = open_reporting_session("","")
     #ML1_df= read_pkldata("","")
     predictdf = read_csvdata("","")
