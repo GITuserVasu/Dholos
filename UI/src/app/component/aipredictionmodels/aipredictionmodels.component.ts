@@ -431,7 +431,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         this.resultReady = true;
         this.prediction_value = res.prediction ;
         this.prediction_value = this.prediction_value.replaceAll(" ", "");
-        this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 1);
+        this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 2);
         console.log(res.prediction)
         console.log(this.prediction_value)
       }
