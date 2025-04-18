@@ -377,7 +377,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   // } 
 
   onSubmit() {
-    alert("Prediction will be available sooooooon  :-)");
+    //alert("Prediction will be available sooooooon  :-)");
     //Validation
     if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
     if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
