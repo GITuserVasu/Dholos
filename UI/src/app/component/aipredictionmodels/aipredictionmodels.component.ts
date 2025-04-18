@@ -427,7 +427,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       }
       if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
-        alert(res.prediction)
+        //alert(res.prediction)
         this.resultReady = true;
         this.prediction_value = res.prediction ;
         console.log(res.prediction)
