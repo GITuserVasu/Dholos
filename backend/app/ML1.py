@@ -45,9 +45,9 @@ from sklearn.ensemble import RandomForestRegressor
 @csrf_exempt
 def prednow(predjson):
     #print("In prednow")
-    """ #reportfile = open_reporting_session("","") 
-    #ML1_df= read_pkldata("","")
-    predictdf = read_csvdata("","")
+    """ #reportfile = open_reporting_session("","") """
+    ML1_df= read_pkldata("","")
+    """predictdf = read_csvdata("","")
     print(predictdf)
     SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
     #df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
@@ -85,7 +85,7 @@ def prednow(predjson):
     # Change dir
     ##os.chdir(dir)
     # Execute a command and capture the output
-    result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
+    result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py',blockname], capture_output=True, text=True)
     ##print(result.stdout)
     abc = result.stdout
     #abc = y_predict
