@@ -117,10 +117,12 @@ def prednow(predjson):
 def get_predictweatherdata(ML1_df, stringcoords):
     location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong"]]
     location_lat_long = location_lat_long.drop_duplicates()
+    print(location_lat_long)
+
     location_lat_long_list = ML1_df['SubBlockID'].unique().tolist()
     
-    for locn in location_lat_long:
-        location_lat_long['Distance'] = gethaversinedistance(ML1_df['CenterLat'], ML1_df['CenterLong'], stringcoords)
+    for index, row in location_lat_long:
+        location_lat_long['Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
 
     nearest_row = location_lat_long.loc[location_lat_long['Distance'].idxmin()]
     nearest_locn = nearest_row['SubBlockID']
@@ -138,8 +140,8 @@ def gethaversinedistance(lat1, lon1, stringcoords):
     # Earth's radius in kilometers
     R = 6371
 
-    lat2 = (stringcoords.split())[0]
-    lon2 = (stringcoords.split())[1]
+    lat2 = float((stringcoords.split())[0])
+    lon2 = float((stringcoords.split())[1])
 
     # Convert latitude and longitude from degrees to radians
     lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])

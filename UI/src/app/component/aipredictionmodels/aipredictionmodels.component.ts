@@ -402,6 +402,8 @@ export class AIpredictionmodelsComponent implements OnInit {
         this.userlon = (this.locationvalue.split(" "))[4]
         this.string_coords = this.userlat+" "+this.userlon
         this.blockname = this.locationvalue.split(" ")[0]
+        alert(this.userlat)
+        alert(this.userlon)
 
       }
       else if(this.usemap == true){
