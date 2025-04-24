@@ -18,6 +18,8 @@ print(sklearn.__version__)
 import scipy
 print(scipy.__version__)
 
+from math import radians, sin, cos, sqrt, atan2
+
 """ import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
 from tf.keras.models import Sequential """
@@ -80,19 +82,74 @@ def prednow(predjson):
     useRandomForest = jsondata["useRandomForest"]
     cultivar = jsondata["cultivar"]
     orgid = jsondata["orgid"]
+
+    predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'plantingdate':plantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivar, 'orgid':orgid}
+    predictdf = pd.DataFrame(predict_data)
+
+    print(predictdf)
+
+    weatherdf = get_predictweatherdata(ML1_df, stringcoords)
+
+    predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
+
+    predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/predict-row.csv")
+
     # save current dir
     ##savedir = os.getcwd()
     # Change dir
     ##os.chdir(dir)
     # Execute a command and capture the output
-    result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py',blockname], capture_output=True, text=True)
+    if dataset == 'Coimbatore':
+        result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py',blockname], capture_output=True, text=True)
     ##print(result.stdout)
-    abc = result.stdout
+        abc = result.stdout
+    else:
+        abc = 0
     #abc = y_predict
     print(abc)
     # change back to orig dir
     ##os.chdir(savedir)
     return JsonResponse({"statusCode": 200, "name": "test", "prediction":abc})
+
+@csrf_exempt
+def get_predictweatherdata(ML1_df, stringcoords):
+    location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong"]]
+    location_lat_long = location_lat_long.drop_duplicates()
+    location_lat_long_list = ML1_df['SubBlockID'].unique().tolist()
+    
+    for locn in location_lat_long:
+        location_lat_long['Distance'] = gethaversinedistance(ML1_df['CenterLat'], ML1_df['CenterLong'], stringcoords)
+
+    nearest_row = location_lat_long.loc[location_lat_long['Distance'].idxmin()]
+    nearest_locn = nearest_row['SubBlockID']
+    
+    weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models" + nearest_locn
+    weatherfile = "mergedweather.csv"
+
+    weatherdf = read_csvdata(weatherdir, weatherfile)
+
+    return weatherdf
+
+
+@csrf_exempt
+def gethaversinedistance(lat1, lon1, stringcoords):
+    # Earth's radius in kilometers
+    R = 6371
+
+    lat2 = stringcoords.split[0]
+    lon2 = stringcoords.split[1]
+
+    # Convert latitude and longitude from degrees to radians
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+    
+    # Haversine formula
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    return R * c
 
 # Open report file for writing
 @csrf_exempt

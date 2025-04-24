@@ -57,6 +57,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   myarea:any;
   locationvalue:any = "none";
   clear_map :any = 0 ;
+  blockname:any = "" ;
   //value:string ="";
   
   //geometry = feature.getGeometry();
@@ -393,6 +394,26 @@ export class AIpredictionmodelsComponent implements OnInit {
     // this.useRandomForest
     if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
     // End Validation 
+
+    if(this.datasetvalue == 'Coimbatore'){
+      if(this.useblockname == true){
+        this.userlat = this.locationvalue.split[2]
+        this.userlon = this.locationvalue.split[4]
+        this.string_coords = this.userlat+" "+this.userlon
+        this.blockname = this.locationvalue.split[0]
+
+      }
+      else if(this.usemap == true){
+        // coords = getpolygoncentercoords()
+        //this.userlat = coords[1]
+        //this.userlon = coords[0]
+        //this.string_coords = this.userlat+" "+this.userlon
+
+      }
+
+      
+    }
+    
     
     
     this.username = this.info.name;
@@ -403,7 +424,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "dataset" : this.datasetvalue ,
       "useblockname": this.useblockname,
       "usemap": this.usemap,
-      "blockname": this.locationvalue,
+      "blockname": this.blockname,
       "stringcoords": this.string_coords,
       "plantingdate": pdate,
       "useNN": this.useNN,
