@@ -109,9 +109,9 @@ def prednow(predjson):
     # Change dir
     ##os.chdir(dir)
     # Execute a command and capture the output
-    if dataset == 'Coimbatore':
+    if dataset == 'coimbatore':
         result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
-    ##print(result.stdout)
+        ##print(result.stdout)
         abc = result.stdout
     else:
         abc = 0
