@@ -139,7 +139,10 @@ def get_predictweatherdata(ML1_df, stringcoords):
 def gethaversinedistance(lat1, lon1, stringcoords):
     # Earth's radius in kilometers
     R = 6371
-
+    
+    lat1 = float(lat1)
+    lon1 = float(lon1)
+    
     lat2 = float((stringcoords.split())[0])
     lon2 = float((stringcoords.split())[1])
 
