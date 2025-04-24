@@ -395,7 +395,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
     // End Validation 
 
-    if(this.datasetvalue == 'Coimbatore'){
+    if(this.datasetvalue == 'coimbatore'){
       if(this.useblockname == true){
         alert(this.locationvalue)
         this.userlat = (this.locationvalue.split(" "))[2]
