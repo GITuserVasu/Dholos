@@ -92,7 +92,7 @@ def prednow(predjson):
     print(dayofyear)
     year = date_obj.year
     print(year)
-    nuplantingdate = year+dayofyear
+    nuplantingdate = str(year)+str(dayofyear)
 
     # Get Cultivar numeric id
     cultivardf = ML1_df[["Cultivar", "cultivar"]]
