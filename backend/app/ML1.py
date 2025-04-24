@@ -80,17 +80,25 @@ def prednow(predjson):
     plantingdate = jsondata["plantingdate"]
     useNN = jsondata["useNN"]
     useRandomForest = jsondata["useRandomForest"]
-    cultivar = jsondata["cultivar"]
+    Cultivar = jsondata["cultivar"]
     orgid = jsondata["orgid"]
 
+    weatherdf, location = get_predictweatherdata(ML1_df, stringcoords)
+
+    # Get Cultivar numeric id
+    cultivardf = ML1_df[["Cultivar", "cultivar"]]
+    cultivardf = cultivardf.drop_duplicates()
+    print(cultivardf)
+    cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
+
     predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
-                    'stringcoords':stringcoords, 'plantingdate':plantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
-                    'cultivar': cultivar, 'orgid':orgid}
+                    'stringcoords':stringcoords, 'PlantingDate':plantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':152, 'location':location}
     predictdf = pd.DataFrame([predict_data])
 
     print(predictdf)
 
-    weatherdf = get_predictweatherdata(ML1_df, stringcoords)
+    
 
     predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
 
@@ -115,7 +123,7 @@ def prednow(predjson):
 
 @csrf_exempt
 def get_predictweatherdata(ML1_df, stringcoords):
-    location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong"]]
+    location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong", "location"]]
     location_lat_long = location_lat_long.drop_duplicates()
     print(location_lat_long)
 
@@ -127,12 +135,14 @@ def get_predictweatherdata(ML1_df, stringcoords):
     nearest_row = location_lat_long.loc[location_lat_long['Distance'].idxmin()]
     nearest_locn = nearest_row['SubBlockID']
     
+    location = nearest_row['location']
+    
     weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
     weatherfile = "mergedweather.csv"
 
     weatherdf = read_csvdata(weatherdir, weatherfile)
 
-    return weatherdf
+    return weatherdf, location
 
 
 @csrf_exempt

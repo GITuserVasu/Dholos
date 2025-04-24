@@ -83,7 +83,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   modelradiobutton: any;
 
   resultReady: boolean = false;
-  prediction_value:any = 0;
+  prediction_value:any ;
 
   
 
@@ -453,9 +453,9 @@ export class AIpredictionmodelsComponent implements OnInit {
         console.log("Prediction Routine Call was successful")
         //alert(res.prediction)
         this.resultReady = true;
-        var prediction = res.prediction ;
+        this.prediction_value = res.prediction ;
         alert(res.prediction)
-        this.prediction_value = prediction.replaceAll(" ", "");
+        this.prediction_value = this.prediction_value.replaceAll(" ", "");
         this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 2);
         console.log(res.prediction)
         console.log(this.prediction_value)
