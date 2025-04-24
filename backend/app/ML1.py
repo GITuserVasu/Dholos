@@ -4,6 +4,7 @@ import os
 import requests
 import json
 from django.http import HttpResponse, JsonResponse
+from datetime import datetime
 
 # Import necessary libraries
 import pandas as pd
@@ -85,7 +86,13 @@ def prednow(predjson):
 
     weatherdf, location = get_predictweatherdata(ML1_df, stringcoords)
 
-    print(plantingdate)
+    #print(plantingdate)
+    date_obj = datetime.strptime(plantingdate, '%Y-%m-%d')
+    dayofyear = date_obj.strftime('%j')
+    print(dayofyear)
+    year = date_obj.year
+    print(year)
+    nuplantingdate = year+dayofyear
 
     # Get Cultivar numeric id
     cultivardf = ML1_df[["Cultivar", "cultivar"]]
@@ -96,7 +103,7 @@ def prednow(predjson):
     print(cultivarid)
 
     predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
-                    'stringcoords':stringcoords, 'PlantingDate':plantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':152, 'location':location}
     predictdf = pd.DataFrame([predict_data])
 
