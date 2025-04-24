@@ -86,9 +86,9 @@ def prednow(predjson):
     predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'plantingdate':plantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivar, 'orgid':orgid}
-    predictdf = pd.DataFrame(predict_data)
+    predictdf = pd.DataFrame([predict_data])
 
-    print([predictdf])
+    print(predictdf)
 
     weatherdf = get_predictweatherdata(ML1_df, stringcoords)
 
