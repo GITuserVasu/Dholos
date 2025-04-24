@@ -85,6 +85,8 @@ def prednow(predjson):
 
     weatherdf, location = get_predictweatherdata(ML1_df, stringcoords)
 
+    print(plantingdate)
+
     # Get Cultivar numeric id
     cultivardf = ML1_df[["Cultivar", "cultivar"]]
     cultivardf = cultivardf.drop_duplicates()
