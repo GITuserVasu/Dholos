@@ -397,8 +397,8 @@ export class AIpredictionmodelsComponent implements OnInit {
 
     if(this.datasetvalue == 'Coimbatore'){
       if(this.useblockname == true){
-        this.userlat = this.locationvalue.split[2]
-        this.userlon = this.locationvalue.split[4]
+        this.userlat = (this.locationvalue.split(" "))[2]
+        this.userlon = (this.locationvalue.split(" "))[4]
         this.string_coords = this.userlat+" "+this.userlon
         this.blockname = this.locationvalue.split[0]
 

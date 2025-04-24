@@ -138,8 +138,8 @@ def gethaversinedistance(lat1, lon1, stringcoords):
     # Earth's radius in kilometers
     R = 6371
 
-    lat2 = stringcoords.split[0]
-    lon2 = stringcoords.split[1]
+    lat2 = (stringcoords.split())[0]
+    lon2 = (stringcoords.split())[1]
 
     # Convert latitude and longitude from degrees to radians
     lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
