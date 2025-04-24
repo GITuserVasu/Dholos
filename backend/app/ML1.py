@@ -88,7 +88,7 @@ def prednow(predjson):
                     'cultivar': cultivar, 'orgid':orgid}
     predictdf = pd.DataFrame(predict_data)
 
-    print(predictdf)
+    print([predictdf])
 
     weatherdf = get_predictweatherdata(ML1_df, stringcoords)
 
