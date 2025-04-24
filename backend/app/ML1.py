@@ -89,7 +89,9 @@ def prednow(predjson):
     cultivardf = ML1_df[["Cultivar", "cultivar"]]
     cultivardf = cultivardf.drop_duplicates()
     print(cultivardf)
-    cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
+    #cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
+    cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
+    print(cultivarid)
 
     predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':plantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
