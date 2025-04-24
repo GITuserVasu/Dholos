@@ -397,10 +397,11 @@ export class AIpredictionmodelsComponent implements OnInit {
 
     if(this.datasetvalue == 'Coimbatore'){
       if(this.useblockname == true){
+        alert(this.locationvalue)
         this.userlat = (this.locationvalue.split(" "))[2]
         this.userlon = (this.locationvalue.split(" "))[4]
         this.string_coords = this.userlat+" "+this.userlon
-        this.blockname = this.locationvalue.split[0]
+        this.blockname = this.locationvalue.split(" ")[0]
 
       }
       else if(this.usemap == true){
@@ -465,15 +466,17 @@ export class AIpredictionmodelsComponent implements OnInit {
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;
     //this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
+    alert(this.datasetvalue);
   } // end dataset select
 
   cultivarselectonchange(value:string) {
     this.cultivarvalue  = value;
+    alert(this.cultivarvalue);
   } // end cultivar select
 
   locationselectonchange(value:string) {
     this.locationvalue  = value;
-    //alert(this.locationvalue);
+    alert(this.locationvalue);
     if (this.mymap){
       this.mymap.setTarget(null);
       }
