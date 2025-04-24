@@ -127,7 +127,7 @@ def get_predictweatherdata(ML1_df, stringcoords):
     nearest_row = location_lat_long.loc[location_lat_long['Distance'].idxmin()]
     nearest_locn = nearest_row['SubBlockID']
     
-    weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models" + nearest_locn
+    weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
     weatherfile = "mergedweather.csv"
 
     weatherdf = read_csvdata(weatherdir, weatherfile)
@@ -142,7 +142,7 @@ def gethaversinedistance(lat1, lon1, stringcoords):
     
     lat1 = float(lat1)
     lon1 = float(lon1)
-    
+
     lat2 = float((stringcoords.split())[0])
     lon2 = float((stringcoords.split())[1])
 
