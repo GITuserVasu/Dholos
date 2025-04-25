@@ -407,7 +407,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
       }
       else if(this.usemap == true){
-        this.userlat, this.userlon = this.getLatLngCenter(latLngInDegr:any)
+        this.userlat, this.userlon = this.getLatLngCenter(this.string_coords)
         //this.userlat = coords[1]
         //this.userlon = coords[0]
         this.string_coords = this.userlat+" "+this.userlon
