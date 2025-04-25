@@ -378,7 +378,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   // } 
 
   onSubmit() {
-    //alert("Prediction will be available sooooooon  :-)");
+    alert("Wait for a few seconds...and then click on 'Check Result'  :-)");
     //Validation
     if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
     if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
@@ -453,7 +453,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       }
       if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
-        //alert(res.prediction)
+        alert("Prediction is now ready...Please click on 'Check Result' ")
         this.resultReady = true;
         this.prediction_value = res.prediction ;
         //alert(res.prediction)
