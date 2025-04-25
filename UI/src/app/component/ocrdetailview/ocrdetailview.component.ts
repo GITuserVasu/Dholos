@@ -100,17 +100,19 @@ export class OcrdetailviewComponent implements OnInit {
   heatmapn2: any = [];
   heatmapwater: any = [];
   heatmapyield: any = [];
+  mapsarray: any = [];
   co2_trend: any;
   n2_trend: any;
   water_trend: any;
   yield_trend: any;
-  yield_overlay: any;
+  //yield_overlay: any;
   usa_mapimage: any;
   india_mapimage: any;
   j : any = 0;
   k : any = 0;
   m : any = 0;
   p : any = 0;
+  q : any = 0;
 
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
@@ -243,8 +245,10 @@ export class OcrdetailviewComponent implements OnInit {
                     this.yield_trend = this.bases3loc + d ;
                    }
                    if (d.includes("html")){
-                    if(d.includes("yield_overlay")){
-                      this.yield_overlay = this.bases3loc + d ;
+                    if(d.includes("map")){
+                      this.mapsarray[this.q] = this.bases3loc + d ;
+                      this.q = this.q +1;
+
                    }
                   }
                 }
