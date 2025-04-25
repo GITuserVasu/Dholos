@@ -549,7 +549,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       var sumX = 0;
       var sumY = 0;
       var sumZ = 0;
-  
+      console.log(latLngInDegr.length);
       for (var i=0; i<latLngInDegr.length-1; i++) {
           console.log(latLngInDegr[i][LATIDX])
           console.log(latLngInDegr[i][LNGIDX])
