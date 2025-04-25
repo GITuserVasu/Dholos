@@ -194,7 +194,7 @@
             <img src={{yield_trend}} alt="Yield Trend" style="width:400px;height:400px;">
            
             <div *ngFor="let plot of heatmapyield" >
-              <img src={{plot}} alt="Heat Map" style="width:400px;height:400px;"> 
+              {{plot}} &nbsp; <img src={{plot}} alt="Heat Map" style="width:400px;height:400px;"> 
             </div>
 
             <!-- <img src={{heatmapyield[0]}} alt="Delta Pine heatmap" style="width:400px;height:400px;">
