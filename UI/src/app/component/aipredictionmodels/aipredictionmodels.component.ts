@@ -550,7 +550,9 @@ export class AIpredictionmodelsComponent implements OnInit {
       var sumY = 0;
       var sumZ = 0;
   
-      for (var i=0; i<latLngInDegr.length; i++) {
+      for (var i=0; i<latLngInDegr.length-1; i++) {
+          console.log(latLngInDegr[i][LATIDX])
+          console.log(latLngInDegr[i][LNGIDX])
           var lat = this.degr2rad(latLngInDegr[i][LATIDX]);
           var lng = this.degr2rad(latLngInDegr[i][LNGIDX]);
           // sum of cartesian coordinates
