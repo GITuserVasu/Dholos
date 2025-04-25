@@ -454,7 +454,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         //alert(res.prediction)
         this.resultReady = true;
         this.prediction_value = res.prediction ;
-        alert(res.prediction)
+        //alert(res.prediction)
         this.prediction_value = this.prediction_value.replaceAll(" ", "");
         this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 2);
         console.log(res.prediction)
@@ -469,17 +469,17 @@ export class AIpredictionmodelsComponent implements OnInit {
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;
     //this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
-    alert(this.datasetvalue);
+    //alert(this.datasetvalue);
   } // end dataset select
 
   cultivarselectonchange(value:string) {
     this.cultivarvalue  = value;
-    alert(this.cultivarvalue);
+    //alert(this.cultivarvalue);
   } // end cultivar select
 
   locationselectonchange(value:string) {
     this.locationvalue  = value;
-    alert(this.locationvalue);
+    //alert(this.locationvalue);
     if (this.mymap){
       this.mymap.setTarget(null);
       }
