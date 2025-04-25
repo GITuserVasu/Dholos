@@ -101,6 +101,7 @@ export class OcrdetailviewComponent implements OnInit {
   heatmapwater: any = [];
   heatmapyield: any = [];
   mapsarray: any = [];
+  mapnamesarray: any = [];
   co2_trend: any;
   n2_trend: any;
   water_trend: any;
@@ -247,6 +248,7 @@ export class OcrdetailviewComponent implements OnInit {
                    if (d.includes("html")){
                     if(d.includes("map")){
                       this.mapsarray[this.q] = this.bases3loc + d ;
+                      this.mapnamesarray[this.q] = e
                       this.q = this.q +1;
 
                    }

@@ -194,7 +194,7 @@
             <img src={{yield_trend}} alt="Yield Trend" style="width:400px;height:400px;">
            
             <div *ngFor="let plot of heatmapyield" >
-              {{plot}} &nbsp; <img src={{plot}} alt="Heat Map" style="width:400px;height:400px;"> 
+              <img src={{plot}} alt="Heat Map" style="width:400px;height:400px;"> 
             </div>
 
             <!-- <img src={{heatmapyield[0]}} alt="Delta Pine heatmap" style="width:400px;height:400px;">
@@ -298,8 +298,8 @@
           </div>
           <div class="tab-pane" id="tabs-maplayers-14" role="tabpanel">
             <!-- <a href={{yield_overlay}} alt="Yield Overlay" target="_blank" style="display: inline-block; width: 50px; height: 50px; background-image: url({{heatmapyield[0]}});"></a> -->
-            <div *ngFor="let map of mapsarray" >
-              <a href={{map}} alt="Yield Overlay" target="_blank"> <img src={{usa_mapimage}} alt="thumbnail-test" style="width:75px;height:75px;"><br/>Yield Overlay</a>
+            <div *ngFor="let map of mapsarray; let i = index">
+            {{mapnamesarray[{{i}}]}}  <a href={{map}} alt="Yield Overlay" target="_blank"> <img src={{usa_mapimage}} alt="thumbnail-test" style="width:75px;height:75px;"><br/>Yield Overlay</a>
             </div>
           </div>
 
