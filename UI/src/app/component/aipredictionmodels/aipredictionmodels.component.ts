@@ -397,13 +397,13 @@ export class AIpredictionmodelsComponent implements OnInit {
 
     if(this.datasetvalue == 'coimbatore'){
       if(this.useblockname == true){
-        alert(this.locationvalue)
+        //alert(this.locationvalue)
         this.userlat = (this.locationvalue.split(" "))[2]
         this.userlon = (this.locationvalue.split(" "))[4]
         this.string_coords = this.userlat+" "+this.userlon
         this.blockname = this.locationvalue.split(" ")[0]
-        alert(this.userlat)
-        alert(this.userlon)
+        //alert(this.userlat)
+        //alert(this.userlon)
 
       }
       else if(this.usemap == true){
