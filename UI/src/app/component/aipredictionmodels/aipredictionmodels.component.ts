@@ -543,6 +543,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     degr2rad(degr: number) { return degr * Math.PI / 180; }
 
     getLatLngCenter(latLngInDegr:any) {
+      console.log(latLngInDegr);
       var LATIDX = 1;
       var LNGIDX = 0;
       var sumX = 0;
