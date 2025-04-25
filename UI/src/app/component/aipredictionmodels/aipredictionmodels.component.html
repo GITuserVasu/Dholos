@@ -30,10 +30,16 @@
                             <select #dataset id="dataset" value="none" (change)="datasetselectonchange(dataset.value)">
                                 <option value="none">Choose One</option>
                                 <option value="coimbatore">Coimbatore</option>
+                                <option value="thanjavur">Thanjavur</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
-                            <div *ngIf="dataset.value == 'coimbatore1'">
-                                This dataset consists of data from Coimbatore, TamilNadu. The crop is rice (multiple
+                            <div *ngIf="dataset.value == 'coimbatore'">
+                                This dataset consists of data from Coimbatore District, TamilNadu. The crop is rice (multiple
+                                varieties)
+                                &nbsp; &nbsp;
+                            </div>
+                            <div *ngIf="dataset.value == 'thanjavur'">
+                                This dataset consists of data from Thanjavur District, TamilNadu. The crop is rice (multiple
                                 varieties)
                                 &nbsp; &nbsp;
                             </div>
@@ -87,7 +93,7 @@
                             <!-- <label> Location </label>
                             &nbsp; &nbsp; -->
                             <div class="col-md-4">
-                                <!-- <div *ngIf="useblockname == true"> -->
+                                <div *ngIf="datasetvalue == 'coimbatore'"> 
                                 <select #location id="location" value="none"
                                     (change)="locationselectonchange(location.value)">
                                     <option value="none">Choose One</option>
@@ -98,8 +104,16 @@
                                     <option value="Sulur LAT 10.974205787107941 LONG 77.1508322348948">Sulur</option>
                                     <option value="TiruppurNorth LAT 11.003458218101585 LONG 77.43400503230717">Tiruppur North</option>
                                     <option value="TiruppurSouth LAT 11.10732392729669 LONG 77.35859213846898">Tiruppur South</option>
-
                                 </select>
+                                </div>
+                                <div *ngIf="datasetvalue == 'thanjavur'"> 
+                                    <select #location id="location" value="none"
+                                        (change)="locationselectonchange(location.value)">
+                                        <option value="none">Choose One</option>
+                                        <option value="budalur LAT 11.208683721948772 LONG 77.06830325002399">Budalur</option>
+                                        <option value="thanjavur LAT 11.111926486220208 LONG 76.90414872599392">Thanjavur</option>
+                                    </select>
+                                </div>
                             </div>
                                
                     <div class="col-md-8">
