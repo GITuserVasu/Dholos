@@ -407,7 +407,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
       }
       else if(this.usemap == true){
-        this.userlat, this.userlon = this.getLatLngCenter(this.string_coords)
+        this.userlat, this.userlon = this.getLatLngCenter(this.coordinates)
         //this.userlat = coords[1]
         //this.userlon = coords[0]
         this.string_coords = this.userlat+" "+this.userlon
@@ -543,8 +543,8 @@ export class AIpredictionmodelsComponent implements OnInit {
     degr2rad(degr: number) { return degr * Math.PI / 180; }
 
     getLatLngCenter(latLngInDegr:any) {
-      var LATIDX = 0;
-      var LNGIDX = 1;
+      var LATIDX = 1;
+      var LNGIDX = 0;
       var sumX = 0;
       var sumY = 0;
       var sumZ = 0;
