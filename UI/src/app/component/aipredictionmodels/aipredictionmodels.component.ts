@@ -407,9 +407,11 @@ export class AIpredictionmodelsComponent implements OnInit {
 
       }
       else if(this.usemap == true){
-        this.userlat, this.userlon = this.getLatLngCenter(this.coordinates)
+        [this.userlat, this.userlon] = this.getLatLngCenter(this.coordinates)
         //this.userlat = coords[1]
         //this.userlon = coords[0]
+        console.log("USERLAT");
+        console.log(this.userlat)
         this.string_coords = this.userlat+" "+this.userlon
 
       }
@@ -551,8 +553,8 @@ export class AIpredictionmodelsComponent implements OnInit {
       var sumZ = 0;
       console.log(latLngInDegr[0].length);
       for (var i=0; i<latLngInDegr[0].length-1; i++) {
-          console.log(latLngInDegr[0][i][LATIDX])
-          console.log(latLngInDegr[0][i][LNGIDX])
+          /* console.log(latLngInDegr[0][i][LATIDX])
+          console.log(latLngInDegr[0][i][LNGIDX]) */
           var lat = this.degr2rad(latLngInDegr[0][i][LATIDX]);
           var lng = this.degr2rad(latLngInDegr[0][i][LNGIDX]);
           // sum of cartesian coordinates
