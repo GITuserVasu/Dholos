@@ -193,11 +193,15 @@
            
             <img src={{yield_trend}} alt="Yield Trend" style="width:400px;height:400px;">
            
-            <img src={{heatmapyield[0]}} alt="Delta Pine heatmap" style="width:400px;height:400px;">
+            <div *ngFor="let plot of heatmapyield" >
+              <img src={{plot}} alt="Heat Map" style="width:400px;height:400px;"> 
+            </div>
+
+            <!-- <img src={{heatmapyield[0]}} alt="Delta Pine heatmap" style="width:400px;height:400px;">
             <img src={{heatmapyield[1]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;">
             <img src={{heatmapyield[2]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;">
             <img src={{heatmapyield[3]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;">
-            <img src={{heatmapyield[4]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;"> 
+            <img src={{heatmapyield[4]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;">  -->
             <!-- <img src="/assets/temp/42-test1/results/cultivar_yield_box_plot.png" alt="Yield-Cultivar box and whiskers plot" style="width:600px;height:300px;"> -->
             <!--<img src="/assets/temp/TanjoreRiceRecommendationsProject/2024_yield_for_ADT36_heatmap.png" alt="Yield-Cultivar box and whiskers plot" style="width:600px;height:300px;">
             <img src="/assets/temp/TanjoreRiceRecommendationsProject/2024_yield_for_ADT45_heatmap.png" alt="Yield-Cultivar box and whiskers plot" style="width:600px;height:300px;">
