@@ -59,6 +59,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   clear_map :any = 0 ;
   blockname:any = "" ;
   //value:string ="";
+  mapextent: any;
   
   //geometry = feature.getGeometry();
 
@@ -146,7 +147,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     maxlat = 12
     const a = fromLonLat([minlon,minlat],'EPSG:3857')
     const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
-    var mapextent = [a[0],a[1],b[0],b[1]];
+    this.mapextent = [a[0],a[1],b[0],b[1]];
     }
     if(this.datasetvalue == 'thanjavur'){
       minlon = 78
@@ -155,7 +156,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       maxlat = 11
       const a = fromLonLat([minlon,minlat],'EPSG:3857')
       const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
-      var mapextent = [a[0],a[1],b[0],b[1]];
+      this.mapextent = [a[0],a[1],b[0],b[1]];
       }
 
     
@@ -197,7 +198,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         //center: [8677393.50021071, 1072418.425384313],
         center: [lon, lat],
         zoom: 9,
-        extent: mapextent,
+        extent: this.mapextent,
       }),
     });
     if(this.usemap == true)  {
