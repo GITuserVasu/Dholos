@@ -232,11 +232,12 @@
             <div class="card-body">
                 <div class="d-flex">
                     <div class="flex-grow-1">
-                        <div *ngIf="resultReady == false">
+                        <!-- <div *ngIf="resultReady == false"> -->
                         <input type="button" class="btn btn-primary float-end" value="Predict" (click)="onSubmit()">
-                        </div>
+                        <!-- </div> -->
                         <div *ngIf="resultReady == true">
                         <button type="button" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#resultModal">Check Result</button>
+                        &nbsp;&nbsp;
                         </div>
                         <!-- [disabled]="fileUpload.invalid"> -->
                     </div>
