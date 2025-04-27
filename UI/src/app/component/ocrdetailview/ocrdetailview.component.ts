@@ -248,7 +248,7 @@ export class OcrdetailviewComponent implements OnInit {
                    if (d.includes("html")){
                     if(d.includes("map")){
                       this.mapsarray[this.q] = this.bases3loc + d ;
-                      this.mapnamesarray[this.q] = e.split("-")[2]+" "+(e.split("-")[3]).substring(0,5)
+                      this.mapnamesarray[this.q] = e.split("_")[2]+" "+(e.split("_")[3]).substring(0,5)
                       this.q = this.q +1;
 
                    }
