@@ -440,6 +440,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     } 
 
     // alert(this.username);
+    this.resultReady = false;
 
     this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
       console.log("myresres");
@@ -538,6 +539,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   checkResult() {
     /*   var popup = document.getElementById("yieldPopup");
       popup.classList.toggle("show"); */
+      this.resultReady = false;
     }  
 
     rad2degr(rad: number) { return rad * 180 / Math.PI; }
