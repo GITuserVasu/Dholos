@@ -139,10 +139,19 @@ export class AIpredictionmodelsComponent implements OnInit {
     lon = this.lonlatarray[0];
     lat = this.lonlatarray[1]; 
 
-    minlon = 76.5
-    maxlon = 77.5
-    minlat = 10.80
-    maxlat = 11.10
+    if(this.datasetvalue == 'coimbatore'){
+    minlon = 76
+    maxlon = 78
+    minlat = 10
+    maxlat = 12
+    }
+    if(this.datasetvalue == 'thanjavur'){
+      minlon = 78
+      maxlon = 80
+      minlat = 10
+      maxlat = 11
+      }
+
     const a = fromLonLat([minlon,minlat],'EPSG:3857')
     const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
     var mapextent = [a[0],a[1],b[0],b[1]];
@@ -395,7 +404,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
     // End Validation 
 
-    if(this.datasetvalue == 'coimbatore'){
+    //if(this.datasetvalue == 'coimbatore'){
       if(this.useblockname == true){
         //alert(this.locationvalue)
         this.userlat = (this.locationvalue.split(" "))[2]
@@ -417,7 +426,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       }
 
       
-    }
+   // }
     
     
     
@@ -539,7 +548,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   checkResult() {
     /*   var popup = document.getElementById("yieldPopup");
       popup.classList.toggle("show"); */
-      this.resultReady = false;
+      // this.resultReady = false;
     }  
 
     rad2degr(rad: number) { return rad * 180 / Math.PI; }
