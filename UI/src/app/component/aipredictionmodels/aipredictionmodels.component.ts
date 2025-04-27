@@ -501,10 +501,10 @@ export class AIpredictionmodelsComponent implements OnInit {
     if (this.mymap){
       this.mymap.setTarget(null);
       }
-      if(this.vector != null){
+    if(this.vector != null){
         this.vector.getSource()?.clear();
         }
-      this.createNewMap();
+    this.createNewMap();
        
   } // end location selection
 
