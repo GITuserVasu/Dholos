@@ -129,8 +129,8 @@ export class AIpredictionmodelsComponent implements OnInit {
       place = [lat, lon]
    } else {
       var latlonarr = latlonstr.split(" ");
-      lat = latlonarr[1]
-      lon = latlonarr[3]
+      lat = latlonarr[2]
+      lon = latlonarr[4]
       place = [lon, lat]
    }
 
