@@ -29,11 +29,17 @@
                             &nbsp; &nbsp;
                             <select #dataset id="dataset" value="none" (change)="datasetselectonchange(dataset.value)">
                                 <option value="none">Choose One</option>
-                                <option value="coimbatore1">Coimbatore 1</option>
+                                <option value="coimbatore">Coimbatore</option>
+                                <option value="thanjavur">Thanjavur</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
-                            <div *ngIf="dataset.value == 'coimbatore1'">
-                                This dataset consists of data from Coimbatore, TamilNadu. The crop is rice (multiple
+                            <div *ngIf="dataset.value == 'coimbatore'">
+                                This dataset consists of data from Coimbatore District, TamilNadu. The crop is rice (multiple
+                                varieties)
+                                &nbsp; &nbsp;
+                            </div>
+                            <div *ngIf="dataset.value == 'thanjavur'">
+                                This dataset consists of data from Thanjavur District, TamilNadu. The crop is rice (multiple
                                 varieties)
                                 &nbsp; &nbsp;
                             </div>
@@ -55,7 +61,7 @@
                         <div class="col-md-6">
                             <input class="form-check-input" type="radio" name="locRadio" id="locRadio1"
                                 value="useblockname" formControlName="blockname"
-                                (change)="locradiobuttonchange($event)" checked>
+                                (change)="locradiobuttonchange($event)" >
                             &NonBreakingSpace;&NonBreakingSpace;
                             <label class="form-check-label" for="locRadio1">
                                 Use District Block Name
@@ -87,19 +93,27 @@
                             <!-- <label> Location </label>
                             &nbsp; &nbsp; -->
                             <div class="col-md-4">
-                                <!-- <div *ngIf="useblockname == true"> -->
+                                <div *ngIf="datasetvalue == 'coimbatore'"> 
                                 <select #location id="location" value="none"
                                     (change)="locationselectonchange(location.value)">
                                     <option value="none">Choose One</option>
-                                    <option value="LAT 11.208683721948772 LONG 77.06830325002399">Annur</option>
-                                    <option value="LAT 11.111926486220208 LONG 76.90414872599392">Coimbatore North</option>
-                                    <option value="LAT 10.965417823400522 LONG 76.90131850359182">Coimbatore South</option>
-                                    <option value="LAT 10.97324609145801 LONG 77.28054276583296">Palladam</option>
-                                    <option value="LAT 10.974205787107941 LONG 77.1508322348948">Sulur</option>
-                                    <option value="LAT 11.003458218101585 LONG 77.43400503230717">Tiruppur North</option>
-                                    <option value="LAT 11.10732392729669 LONG 77.35859213846898">Tiruppur South</option>
-
+                                    <option value="Annur LAT 11.208683721948772 LONG 77.06830325002399">Annur</option>
+                                    <option value="CoimbatoreNorth LAT 11.111926486220208 LONG 76.90414872599392">Coimbatore North</option>
+                                    <option value="CoimbatoreSouth LAT 10.965417823400522 LONG 76.90131850359182">Coimbatore South</option>
+                                    <option value="Palladam LAT 10.97324609145801 LONG 77.28054276583296">Palladam</option>
+                                    <option value="Sulur LAT 10.974205787107941 LONG 77.1508322348948">Sulur</option>
+                                    <option value="TiruppurNorth LAT 11.003458218101585 LONG 77.43400503230717">Tiruppur North</option>
+                                    <option value="TiruppurSouth LAT 11.10732392729669 LONG 77.35859213846898">Tiruppur South</option>
                                 </select>
+                                </div>
+                                <div *ngIf="datasetvalue == 'thanjavur'"> 
+                                    <select #location id="location" value="none"
+                                        (change)="locationselectonchange(location.value)">
+                                        <option value="none">Choose One</option>
+                                        <option value="budalur LAT 10.78177658687713 LONG 78.94168368107934">Budalur</option>
+                                        <option value="thanjavur LAT 10.745497932699427 LONG 79.11916595973786">Thanjavur</option>
+                                    </select>
+                                </div>
                             </div>
                                
                     <div class="col-md-8">
@@ -178,22 +192,22 @@
                     <div class="flex-grow-1">
 
                         <div class="col-md-6">
-                            <input class="form-check-input" type="radio" name="NNRadio" id="NNRadio1"
+                            <!-- <input class="form-check-input" type="radio" name="NNRadio" id="NNRadio1"
                                 value="NeuralNetwork" formControlName="neuralnetwork"
                                 (change)="modelradiobuttonchange($event)" checked>
                             &NonBreakingSpace;&NonBreakingSpace;
                             <label class="form-check-label" for="NNRadio1">
                                 Neural Network
-                            </label>
+                            </label> -->
                             <!-- </div>
                             <div class="col-md-6"> -->
-                            &NonBreakingSpace;&NonBreakingSpace;
+                            <!-- &NonBreakingSpace;&NonBreakingSpace; -->
                             <input class="form-check-input" type="radio" name="NNRadio" id="NNRadio2"
                                 value="RandomForest" formControlName="randomforest"
-                                (change)="modelradiobuttonchange($event)">
+                                (change)="modelradiobuttonchange($event)" checked>
                             &NonBreakingSpace;&NonBreakingSpace;
                             <label class="form-check-label" for="NNRadio2">
-                                Random Forest
+                                Holos Custom ML model
                             </label>
                         </div>
                         <!-- <span class="input-group">
@@ -218,11 +232,51 @@
             <div class="card-body">
                 <div class="d-flex">
                     <div class="flex-grow-1">
-                        <input type="button" class="btn btn-primary float-end" value="Predict" (click)="onSubmit()">
+                        <!-- <div *ngIf="resultReady == false"> -->
+                        <input type="button" class="btn btn-primary" value="Predict" (click)="onSubmit()">
+                        <!-- </div> -->
+                        <!-- <div *ngIf="resultReady == true"> -->
+                        <button type="button" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#resultModal">Check Result</button>
+                        <!-- </div> -->
                         <!-- [disabled]="fileUpload.invalid"> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- <div class="col-md-12">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <!-- <input type="button" class="btn btn-primary float-end" value="checkResult" (click)="checkResult()"> -->
+                        <!-- <div class="mt-4 col-lg-6 float-end"> 
+                            <a data-toggle="modal" data-target="#resultModal"  class="text-muted"> Check Result</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --> 
+</div>
+<!-- Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog"  >
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Prediction Result</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" >
+                <span aria-hidden="true">&times;</span>
+            </button> -->
+        </div>
+        <div class="modal-body">
+            Predicted Yield &nbsp; = &nbsp; &nbsp; {{prediction_value}} &nbsp; kg/ha
+        <br>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Done</button> -->
+        </div>
+    </div>
+</div>
 </div>

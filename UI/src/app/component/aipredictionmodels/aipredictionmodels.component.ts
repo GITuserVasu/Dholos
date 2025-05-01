@@ -57,7 +57,9 @@ export class AIpredictionmodelsComponent implements OnInit {
   myarea:any;
   locationvalue:any = "none";
   clear_map :any = 0 ;
+  blockname:any = "" ;
   //value:string ="";
+  mapextent: any;
   
   //geometry = feature.getGeometry();
 
@@ -80,6 +82,9 @@ export class AIpredictionmodelsComponent implements OnInit {
   username: any;
   info: any;
   modelradiobutton: any;
+
+  resultReady: boolean = false;
+  prediction_value:any ;
 
   
 
@@ -124,8 +129,8 @@ export class AIpredictionmodelsComponent implements OnInit {
       place = [lat, lon]
    } else {
       var latlonarr = latlonstr.split(" ");
-      lat = latlonarr[1]
-      lon = latlonarr[3]
+      lat = latlonarr[2]
+      lon = latlonarr[4]
       place = [lon, lat]
    }
 
@@ -135,13 +140,27 @@ export class AIpredictionmodelsComponent implements OnInit {
     lon = this.lonlatarray[0];
     lat = this.lonlatarray[1]; 
 
-    minlon = 76.5
-    maxlon = 77.5
-    minlat = 10.80
-    maxlat = 11.10
+    if(this.datasetvalue == 'coimbatore'){
+    minlon = 76
+    maxlon = 78
+    minlat = 10
+    maxlat = 12
     const a = fromLonLat([minlon,minlat],'EPSG:3857')
     const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
-    var mapextent = [a[0],a[1],b[0],b[1]];
+    this.mapextent = [a[0],a[1],b[0],b[1]];
+    }
+    if(this.datasetvalue == 'thanjavur'){
+      minlon = 78
+      maxlon = 80
+      minlat = 10
+      maxlat = 11
+      const a = fromLonLat([minlon,minlat],'EPSG:3857')
+      const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
+      this.mapextent = [a[0],a[1],b[0],b[1]];
+      }
+
+    
+    
     //alert (mapextent);
     //console.log(mapextent)
 
@@ -179,7 +198,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         //center: [8677393.50021071, 1072418.425384313],
         center: [lon, lat],
         zoom: 9,
-        extent: mapextent,
+        extent: this.mapextent,
       }),
     });
     if(this.usemap == true)  {
@@ -374,7 +393,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   // } 
 
   onSubmit() {
-    alert("Prediction will be available sooooooon  :-)");
+    alert("Wait for a few seconds...and then click on 'Check Result'  :-)");
     //Validation
     if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
     if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
@@ -390,6 +409,31 @@ export class AIpredictionmodelsComponent implements OnInit {
     // this.useRandomForest
     if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
     // End Validation 
+
+    //if(this.datasetvalue == 'coimbatore'){
+      if(this.useblockname == true){
+        //alert(this.locationvalue)
+        this.userlat = (this.locationvalue.split(" "))[2]
+        this.userlon = (this.locationvalue.split(" "))[4]
+        this.string_coords = this.userlat+" "+this.userlon
+        this.blockname = this.locationvalue.split(" ")[0]
+        //alert(this.userlat)
+        //alert(this.userlon)
+
+      }
+      else if(this.usemap == true){
+        [this.userlat, this.userlon] = this.getLatLngCenter(this.coordinates)
+        //this.userlat = coords[1]
+        //this.userlon = coords[0]
+        console.log("USERLAT");
+        console.log(this.userlat)
+        this.string_coords = this.userlat+" "+this.userlon
+
+      }
+
+      
+   // }
+    
     
     
     this.username = this.info.name;
@@ -400,7 +444,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "dataset" : this.datasetvalue ,
       "useblockname": this.useblockname,
       "usemap": this.usemap,
-      "blockname": this.locationvalue,
+      "blockname": this.blockname,
       "stringcoords": this.string_coords,
       "plantingdate": pdate,
       "useNN": this.useNN,
@@ -411,20 +455,29 @@ export class AIpredictionmodelsComponent implements OnInit {
     } 
 
     // alert(this.username);
+    this.resultReady = false;
 
     this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
       console.log("myresres");
       console.log('res');
       //this.preddata = res.data
-      /* if (res.statusCode == 200) {
+      if (res.statusCode == 200) {
         console.log(" Prednow Success");
         console.log(res.name);
       } else {
         alert('Error in submission');
-      } */
-      /* if (res.statusCode == 200) {  
+      }
+      if (res.statusCode == 200) {  
         console.log("Prediction Routine Call was successful")
-      } */
+        alert("Prediction is now ready...Please click on 'Check Result' ")
+        this.resultReady = true;
+        this.prediction_value = res.prediction ;
+        //alert(res.prediction)
+        this.prediction_value = this.prediction_value.replaceAll(" ", "");
+        this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 2);
+        console.log(res.prediction)
+        console.log(this.prediction_value)
+      }
     }) 
 
 
@@ -434,10 +487,12 @@ export class AIpredictionmodelsComponent implements OnInit {
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;
     //this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
+    //alert(this.datasetvalue);
   } // end dataset select
 
   cultivarselectonchange(value:string) {
     this.cultivarvalue  = value;
+    //alert(this.cultivarvalue);
   } // end cultivar select
 
   locationselectonchange(value:string) {
@@ -446,10 +501,10 @@ export class AIpredictionmodelsComponent implements OnInit {
     if (this.mymap){
       this.mymap.setTarget(null);
       }
-      if(this.vector != null){
+    if(this.vector != null){
         this.vector.getSource()?.clear();
         }
-      this.createNewMap();
+    this.createNewMap();
        
   } // end location selection
 
@@ -495,6 +550,47 @@ export class AIpredictionmodelsComponent implements OnInit {
   undolastpoint(event:any) {
       this.mydraw.removeLastPoint();   
     }  // end undolastpoint
+
+  checkResult() {
+    /*   var popup = document.getElementById("yieldPopup");
+      popup.classList.toggle("show"); */
+      // this.resultReady = false;
+    }  
+
+    rad2degr(rad: number) { return rad * 180 / Math.PI; }
+
+    degr2rad(degr: number) { return degr * Math.PI / 180; }
+
+    getLatLngCenter(latLngInDegr:any) {
+      console.log(latLngInDegr);
+      var LATIDX = 1;
+      var LNGIDX = 0;
+      var sumX = 0;
+      var sumY = 0;
+      var sumZ = 0;
+      console.log(latLngInDegr[0].length);
+      for (var i=0; i<latLngInDegr[0].length-1; i++) {
+          /* console.log(latLngInDegr[0][i][LATIDX])
+          console.log(latLngInDegr[0][i][LNGIDX]) */
+          var lat = this.degr2rad(latLngInDegr[0][i][LATIDX]);
+          var lng = this.degr2rad(latLngInDegr[0][i][LNGIDX]);
+          // sum of cartesian coordinates
+          sumX += Math.cos(lat) * Math.cos(lng);
+          sumY += Math.cos(lat) * Math.sin(lng);
+          sumZ += Math.sin(lat);
+      }
+  
+      var avgX = sumX / latLngInDegr.length;
+      var avgY = sumY / latLngInDegr.length;
+      var avgZ = sumZ / latLngInDegr.length;
+  
+      // convert average x, y, z coordinate to latitude and longtitude
+      var lng = Math.atan2(avgY, avgX);
+      var hyp = Math.sqrt(avgX * avgX + avgY * avgY);
+      var lat = Math.atan2(avgZ, hyp);
+  
+      return ([this.rad2degr(lat), this.rad2degr(lng)]);
+  }
 
 }
 

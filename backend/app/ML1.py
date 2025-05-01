@@ -4,13 +4,22 @@ import os
 import requests
 import json
 from django.http import HttpResponse, JsonResponse
+from datetime import datetime
 
 # Import necessary libraries
 import pandas as pd
+print(pd.__version__)
 import numpy as np
+print(np.__version__)
 import pickle
 #import seaborn as sns  # visualisation
 #import matplotlib.pyplot as plt  # visualisation 
+import sklearn
+print(sklearn.__version__)
+import scipy
+print(scipy.__version__)
+
+from math import radians, sin, cos, sqrt, atan2
 
 """ import tensorflow as tf
 from tf.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
@@ -20,7 +29,7 @@ from tf.keras.models import Sequential """
 # rmvspaces = importlib.util.module_from_spec(spec)
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-# from rest_framework.parsers import JSONParser
+from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 import subprocess
 import boto3
@@ -38,31 +47,135 @@ from sklearn.ensemble import RandomForestRegressor
 
 @csrf_exempt
 def prednow(predjson):
-    print("In prednow")
-    #reportfile = open_reporting_session("","")
-    #ML1_df= read_pkldata("","")
-    ##predictdf = read_csvdata("","")
-    ##print(predictdf)
-    """ SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols() """
+    #print("In prednow")
+    """ #reportfile = open_reporting_session("","") """
+    ML1_df= read_pkldata("","")
+    """predictdf = read_csvdata("","")
+    print(predictdf)
+    SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
     #df,dataX,dataY = setup_data_for_model_training(ML1_df, SRADlist, Tmaxlist, Tminlist, Rainlist, "UnadjustedYield(kg/ha))")
     #x_train, y_train, x_test, y_test, x_val, y_val = split_data(dataX, dataY)
     #forest_model = train_random_forest(x_train, y_train)
     #y_predict = test_model(forest_model, x_test)
     #rsquared = calc_R_squared(y_test, y_predict)
     print(" Get Random Forest Model")
-    ##forest_model = get_model("/home/bitnami/ML/data/coimbatore-apr25/models/finalized_model.sav")
+    forest_model = get_model("/home/bitnami/ML/data/coimbatore-apr25/models/finalized_model.sav")
     print("Got it")
     #print(rsquared)
-    """ predictX = setup_data_for_prediction(predictdf, SRADlist, Tmaxlist, Tminlist, Rainlist)
-    print(predictX) """
+    predictX = setup_data_for_prediction(predictdf, SRADlist, Tmaxlist, Tminlist, Rainlist)
+    print(predictX)
     #predict_array = predictX.to_numpy()
     #print(predict_array)
-    ##y_predict = forest_model.predict(predictX)
+    y_predict = forest_model.predict(predictX)
     #y_predict = predict_value("Random Forest", forest_model, predictX)
-    #print(y_predict)
+    print(y_predict)
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
-    #close_reporting_session(reportfile)
-    return JsonResponse({"statusCode": 200, "name": "test"})
+    #close_reporting_session(reportfile) """
+    jsondata = JSONParser().parse(predjson)
+    username = jsondata["username"]
+    dataset = jsondata["dataset"]
+    useblockname = jsondata["useblockname"]
+    usemap = jsondata["usemap"]
+    blockname = jsondata["blockname"]
+    stringcoords = jsondata["stringcoords"]
+    plantingdate = jsondata["plantingdate"]
+    useNN = jsondata["useNN"]
+    useRandomForest = jsondata["useRandomForest"]
+    Cultivar = jsondata["cultivar"]
+    orgid = jsondata["orgid"]
+
+    weatherdf, location = get_predictweatherdata(ML1_df, stringcoords)
+
+    #print(plantingdate)
+    date_obj = datetime.strptime(plantingdate, '%Y-%m-%d')
+    dayofyear = date_obj.strftime('%j')
+    print(dayofyear)
+    year = date_obj.year
+    print(year)
+    nuplantingdate = str(year)+str(dayofyear)
+
+    # Get Cultivar numeric id
+    cultivardf = ML1_df[["Cultivar", "cultivar"]]
+    cultivardf = cultivardf.drop_duplicates()
+    print(cultivardf)
+    #cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
+    cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
+    print(cultivarid)
+
+    predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':152, 'location':location}
+    predictdf = pd.DataFrame([predict_data])
+
+    print(predictdf)
+
+    
+
+    predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
+
+    predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/predict-row.csv")
+
+    # save current dir
+    ##savedir = os.getcwd()
+    # Change dir
+    ##os.chdir(dir)
+    # Execute a command and capture the output
+    if dataset == 'coimbatore':
+        result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
+        ##print(result.stdout)
+        abc = result.stdout
+    else:
+        abc = 0
+    #abc = y_predict
+    print(abc)
+    # change back to orig dir
+    ##os.chdir(savedir)
+    return JsonResponse({"statusCode": 200, "name": "test", "prediction":abc})
+
+@csrf_exempt
+def get_predictweatherdata(ML1_df, stringcoords):
+    location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong", "location"]]
+    location_lat_long = location_lat_long.drop_duplicates()
+    print(location_lat_long)
+
+    location_lat_long_list = ML1_df['SubBlockID'].unique().tolist()
+    
+    for index, row in location_lat_long.iterrows():
+        location_lat_long['Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
+
+    nearest_row = location_lat_long.loc[location_lat_long['Distance'].idxmin()]
+    nearest_locn = nearest_row['SubBlockID']
+    
+    location = nearest_row['location']
+    
+    weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
+    weatherfile = "mergedweather.csv"
+
+    weatherdf = read_csvdata(weatherdir, weatherfile)
+
+    return weatherdf, location
+
+
+@csrf_exempt
+def gethaversinedistance(lat1, lon1, stringcoords):
+    # Earth's radius in kilometers
+    R = 6371
+    
+    lat1 = float(lat1)
+    lon1 = float(lon1)
+
+    lat2 = float((stringcoords.split())[0])
+    lon2 = float((stringcoords.split())[1])
+
+    # Convert latitude and longitude from degrees to radians
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
+    
+    # Haversine formula
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    return R * c
 
 # Open report file for writing
 @csrf_exempt

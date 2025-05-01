@@ -193,11 +193,15 @@
            
             <img src={{yield_trend}} alt="Yield Trend" style="width:400px;height:400px;">
            
-            <img src={{heatmapyield[0]}} alt="Delta Pine heatmap" style="width:400px;height:400px;">
+            <div *ngFor="let plot of heatmapyield" >
+              <img src={{plot}} alt="Heat Map" style="width:400px;height:400px;"> 
+            </div>
+
+            <!-- <img src={{heatmapyield[0]}} alt="Delta Pine heatmap" style="width:400px;height:400px;">
             <img src={{heatmapyield[1]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;">
             <img src={{heatmapyield[2]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;">
             <img src={{heatmapyield[3]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;">
-            <img src={{heatmapyield[4]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;"> 
+            <img src={{heatmapyield[4]}} alt="SVPR4 Heatmap" style="width:400px;height:400px;">  -->
             <!-- <img src="/assets/temp/42-test1/results/cultivar_yield_box_plot.png" alt="Yield-Cultivar box and whiskers plot" style="width:600px;height:300px;"> -->
             <!--<img src="/assets/temp/TanjoreRiceRecommendationsProject/2024_yield_for_ADT36_heatmap.png" alt="Yield-Cultivar box and whiskers plot" style="width:600px;height:300px;">
             <img src="/assets/temp/TanjoreRiceRecommendationsProject/2024_yield_for_ADT45_heatmap.png" alt="Yield-Cultivar box and whiskers plot" style="width:600px;height:300px;">
@@ -294,7 +298,13 @@
           </div>
           <div class="tab-pane" id="tabs-maplayers-14" role="tabpanel">
             <!-- <a href={{yield_overlay}} alt="Yield Overlay" target="_blank" style="display: inline-block; width: 50px; height: 50px; background-image: url({{heatmapyield[0]}});"></a> -->
-            <a href={{yield_overlay}} alt="Yield Overlay" target="_blank"> <img src={{usa_mapimage}} alt="thumbnail-test" style="width:75px;height:75px;"><br/>Yield Overlay</a>
+            <div *ngFor="let map of mapsarray; let i = index">
+            <!-- <p>{{mapnamesarray[i]}}</p>   -->
+            <!-- <a href={{map}} alt="Yield Overlay" target="_blank"> <img src={{usa_mapimage}} alt="thumbnail-test" style="width:75px;height:75px;"><br/>Yield Overlay</a> -->
+            <!-- <a href={{map}} alt="Yield Overlay" target="_blank"> <p>{{mapnamesarray[i]}}</p></a> -->
+            <a href={{map}} alt="Yield Overlay" target="_blank">{{mapnamesarray[i]}}</a>
+            <br/> <br/>
+            </div>
           </div>
 
         </div>
