@@ -7,5 +7,25 @@ import { Component } from '@angular/core';
   styleUrl: './soil-water-control.component.css'
 })
 export class SoilWaterControlComponent {
+  predictradiobuttonchangevalue: any;
+  input_choice: string;
+
+  predictradiobuttonchange(event: any) {
+    
+    this.predictradiobuttonchangevalue = event.target.value
+    this.input_choice = "Single";
+    if (event.target.value == "Single") {
+      this.input_choice = "Single";
+    } else if (event.target.value == "Multiple") {
+      this.input_choice = "Multiple";
+    } 
+  }
+
+
+
+
+
+
+
 
 }
