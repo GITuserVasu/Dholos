@@ -213,8 +213,44 @@
 
 }
 </div>
+<br>
+<div>
+    @if(input_choice == 'multiple'){
+        <div class="row">
+            <!-- <form [formGroup]="UploadX" enctype="multipart/form-data"> -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mini-stats-wid border-0">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-muted fw-medium">Upload Input CSV file</p>
+                                        <div class="col-md-6">
+                                            <form [formGroup]="fileUpload" enctype="multipart/form-data">
+                                                <br>
+                                                <div class="form-group col-md">
+                                                    <input type="file" id="upload-doc" class="form-control"
+                                                        (change)="uploadFile($event)"
+                                                        [accept]="['.CSV','.csv']">
+                                                </div>
+                                            </form>
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </form> -->
+        </div>
 
+    
+
+    }
+</div>
+
+<br>
 <div class="row">
     <hr>
      <div class="col-md-12 ">
