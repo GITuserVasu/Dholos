@@ -70,6 +70,55 @@
                                 <option value="red">Red</option>
                                 <option value="none">None</option>
                             </select>
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            <label> Slope</label>&nbsp; &nbsp;
+                            <select #slope id="slope" value="none" (change)="slopeselectonchange(slope.value)">
+                                <option value="none">Choose One</option>
+                                <option value="less than 1">less than 1</option>
+                                <option value=" 1 - 3 ">1 - 3</option>
+                                <option value=" 3 - 5 ">3 - 5</option>
+                                <option value=" 5 - 10 ">5 - 10</option>
+                                <option value=" 10 - 15 ">10 - 15</option>
+                                <option value=" 15 - 25 ">15 - 25</option>
+                                <option value=" 25 - 33 ">25 - 33</option>
+                                <option value=" > 33">> 33</option>
+                            </select>
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            <label> Depth</label>&nbsp; &nbsp;
+                            <select #depth id="depth" value="none" (change)="depthselectonchange(depth.value)">
+                                <option value="none">Choose One</option>
+                                <option value="less than 25">Less than 25</option>
+                                <option value=" > 50 "> > 50 </option>
+                            </select>
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            <label> Surface Texture</label>&nbsp; &nbsp;
+                            <select #surf_text id="surf_text" value="none" (change)="surf_textselectonchange(surf_text.value)">
+                                <option value="none">Choose One</option>
+                                <option value="clayey">Clayey</option>
+                                <option value="loamy">Loamy</option>
+                            </select>
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            <label> SubSurface Texture</label>&nbsp; &nbsp;
+                            <select #subsurf_text id="subsurf_text" value="none" (change)="subsurf_textselectonchange(surf_text.value)">
+                                <option value="none">Choose One</option>
+                                <option value="clayey">Clayey</option>
+                                <option value="loamy">Loamy</option>
+                            </select>
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            <label> Gravel</label>&nbsp; &nbsp;
+                            <select #gravel id="gravel" value="none" (change)="gravelselectonchange(surf_text.value)">
+                                <option value="none">Choose One</option>
+                                <option value="less or = 35">less or = 35</option>
+                                <option value="> 35"> > 35 </option>
+                            </select>
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            <label> Rainfall</label>&nbsp; &nbsp;
+                            <select #rainfall id="rainfall" value="none" (change)="rainfallselectonchange(surf_text.value)">
+                                <option value="none">Choose One</option>
+                                <option value="less or = 750"> less or = 750</option>
+                                <option value="750 - 950">750 - 950</option>
+                                <option value="> 950"> > 950 </option>
+                            </select>
                         </span>
                     </div>
                 </div>
