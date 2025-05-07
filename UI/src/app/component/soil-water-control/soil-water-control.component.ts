@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
