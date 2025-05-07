@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-soil-water-control',
@@ -6,7 +9,8 @@ import { Component } from '@angular/core';
   templateUrl: './soil-water-control.component.html',
   styleUrl: './soil-water-control.component.css'
 })
-export class SoilWaterControlComponent {
+export class SoilWaterControlComponent implements OnInit {
+  fileUpload!: UntypedFormGroup;
   predictradiobuttonchangevalue: any;
   input_choice: string ="";
   lccvalue: string ="";
@@ -17,6 +21,16 @@ export class SoilWaterControlComponent {
   subsurf_textvalue: string = "";
   gravelvalue: string = "";
   rainfallvalue: string = "";
+
+  constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
+  
+
+  ngOnInit(): void {
+    this.fileUpload = this.fb.group({
+      file: ['', Validators.required]
+    })
+
+  }
 
   predictradiobuttonchange(event: any) {
     
