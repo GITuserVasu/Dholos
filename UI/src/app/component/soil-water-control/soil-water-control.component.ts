@@ -22,6 +22,8 @@ export class SoilWaterControlComponent implements OnInit {
   subsurf_textvalue: string = "";
   gravelvalue: string = "";
   rainfallvalue: string = "";
+  inputcsv: any;
+  inputcsvName: any;
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
@@ -98,5 +100,19 @@ export class SoilWaterControlComponent implements OnInit {
     alert("request submitted");
   }
 
+  uploadFile(event: any) {
+
+    const numFiles = (event.target.files).length;
+    console.log("num of files", numFiles);
+    
+     for (let i = 0; i < numFiles; i++) {
+      const reader: any = new FileReader();
+      const fileInfo = event.target.files[i];
+      this.inputcsv[i] = event.target.files[i];
+      this.inputcsvName[i] = event.target.files[i].name;
+      reader.readAsText(event.target.files[i]); 
+      
+   }
+  }
 
 }
