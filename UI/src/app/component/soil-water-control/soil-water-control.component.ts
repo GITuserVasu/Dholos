@@ -6,7 +6,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 
 @Component({
   selector: 'app-soil-water-control',
-  imports: [],
+  imports: [ReactiveFormsModule,],
   templateUrl: './soil-water-control.component.html',
   styleUrl: './soil-water-control.component.css'
 })
