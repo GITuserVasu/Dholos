@@ -11,12 +11,12 @@ export class SoilWaterControlComponent {
   input_choice: string ="";
   lccvalue: string ="";
   soilcolorvalue: string ="";
-  slopevalue: string;
-  depthvalue: string;
-  surf_textvalue: string;
-  subsurf_textvalue: string;
-  gravelvalue: string;
-  rainfallvalue: string;
+  slopevalue: string = "";
+  depthvalue: string = "";
+  surf_textvalue: string = "";
+  subsurf_textvalue: string = "";
+  gravelvalue: string = "";
+  rainfallvalue: string = "";
 
   predictradiobuttonchange(event: any) {
     
