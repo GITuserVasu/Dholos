@@ -10,7 +10,7 @@ export class SoilWaterControlComponent {
   predictradiobuttonchangevalue: any;
   input_choice: string ="";
   lccvalue: string ="";
-  soilcolorvalue: string;
+  soilcolorvalue: string ="";
 
   predictradiobuttonchange(event: any) {
     
