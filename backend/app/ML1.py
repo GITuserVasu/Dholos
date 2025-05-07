@@ -47,7 +47,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 @csrf_exempt
 def prednow(predjson):
-    #print("In prednow")
+    print("In prednow")
     """ #reportfile = open_reporting_session("","") """
     ML1_df= read_pkldata("","")
     """predictdf = read_csvdata("","")
@@ -126,6 +126,7 @@ def prednow(predjson):
         abc = result.stdout
     else:
         abc = 0
+    print("abc")
     #abc = y_predict
     print(abc)
     # change back to orig dir
@@ -338,7 +339,7 @@ def setup_data_for_model_training(
         "location",
         "PlantingDate",
         "cultivar",
-        "NitrogenApplied(kg/ha)",
+        #"NitrogenApplied(kg/ha)",
     ]
     initlist.extend(SRADlist)
     initlist.extend(Tmaxlist)
@@ -362,7 +363,7 @@ def setup_data_for_prediction(
         "location",
         "PlantingDate",
         "cultivar",
-        "NitrogenApplied(kg/ha)",
+        #"NitrogenApplied(kg/ha)",
     ]
     initlist.extend(SRADlist)
     initlist.extend(Tmaxlist)
