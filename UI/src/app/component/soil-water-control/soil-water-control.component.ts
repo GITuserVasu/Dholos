@@ -78,7 +78,10 @@ export class SoilWaterControlComponent {
   
   }
 
+  onSubmit() {
 
+    alert("request submitted");
+  }
 
 
 }
