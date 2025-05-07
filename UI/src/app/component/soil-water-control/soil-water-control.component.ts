@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class SoilWaterControlComponent {
   predictradiobuttonchangevalue: any;
-  input_choice: string;
+  input_choice: string ="";
 
   predictradiobuttonchange(event: any) {
     
