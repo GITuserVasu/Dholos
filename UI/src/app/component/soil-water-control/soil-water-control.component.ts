@@ -9,6 +9,8 @@ import { Component } from '@angular/core';
 export class SoilWaterControlComponent {
   predictradiobuttonchangevalue: any;
   input_choice: string ="";
+  lccvalue: string ="";
+  soilcolorvalue: string;
 
   predictradiobuttonchange(event: any) {
     
@@ -21,6 +23,18 @@ export class SoilWaterControlComponent {
     } 
   }
 
+  lccselectonchange(value:string) {
+ 
+    this.lccvalue  = value;
+  
+  }
+
+
+  soilcolorselectonchange(value:string) {
+ 
+    this.soilcolorvalue  = value;
+  
+  }
 
 
 
