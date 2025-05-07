@@ -29,8 +29,7 @@ import { SoilWaterControlComponent } from './soil-water-control/soil-water-contr
         PriceListComponent, 
    //     PaymentSuccessComponent, 
         PaymentFailureComponent, 
-        TestCaseComponent ,
-        SoilWaterControlComponent
+        TestCaseComponent 
  //       ComprehendComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
