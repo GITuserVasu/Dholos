@@ -13,11 +13,11 @@ export class SoilWaterControlComponent {
   predictradiobuttonchange(event: any) {
     
     this.predictradiobuttonchangevalue = event.target.value
-    this.input_choice = "Single";
+    this.input_choice = "single";
     if (event.target.value == "Single") {
-      this.input_choice = "Single";
+      this.input_choice = "single";
     } else if (event.target.value == "Multiple") {
-      this.input_choice = "Multiple";
+      this.input_choice = "multiple";
     } 
   }
 

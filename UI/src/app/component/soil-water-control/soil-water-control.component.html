@@ -44,3 +44,37 @@
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="input_choiced == 'single'">
+  <div class="row">
+    <label> Enter Inputs </label>
+    <div class="col-md-12">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <span class="input-group">
+                            <label> LCC</label>&nbsp; &nbsp;
+                            <select #LCC id="lcc" value="none" (change)="lccselectonchange(lcc.value)">
+                                <option value="none">Choose One</option>
+                                <option value="arable">Arable</option>
+                                <option value="nonarable">Non-Arable</option>
+                            </select>
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            <label> Soil Color</label>&nbsp; &nbsp;
+                            <select #soilcolor id="soilcolor" value="none" (change)="soilcolorselectonchange(soilcolor.value)">
+                                <option value="none">Choose One</option>
+                                <option value="black">Black</option>
+                                <option value="lateritic">Lateritic</option>
+                                <option value="red">Red</option>
+                                <option value="none">None</option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
