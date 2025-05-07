@@ -10,6 +10,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { PaymentFailureComponent } from './payment-failure/payment-failure.component';
 import { ComprehendComponent } from './comprehend/comprehend.component';
 import { AIpredictionmodelsComponent } from './aipredictionmodels/aipredictionmodels.component';
+import { SoilWaterControlComponent } from './soil-water-control/soil-water-control.component';
 
 const routes: Routes = [
     {
@@ -71,6 +72,10 @@ const routes: Routes = [
     {
       path:'aipredictionmodels',
       component:AIpredictionmodelsComponent
+    } ,
+    {
+      path:'soilwatercontrol',
+      component:SoilWaterControlComponent
     } 
     
    

@@ -18,6 +18,7 @@ import { SharedModule } from "../shared/shared.module";
 import { TestCaseComponent } from './test-case/test-case.component';
 //import { ComprehendComponent } from './comprehend/comprehend.component';
 import { AIpredictionmodelsComponent } from './aipredictionmodels/aipredictionmodels.component';
+import { SoilWaterControlComponent } from './soil-water-control/soil-water-control.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { AIpredictionmodelsComponent } from './aipredictionmodels/aipredictionmo
         PriceListComponent, 
    //     PaymentSuccessComponent, 
         PaymentFailureComponent, 
-        TestCaseComponent 
+        TestCaseComponent ,
+        SoilWaterControlComponent
  //       ComprehendComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
