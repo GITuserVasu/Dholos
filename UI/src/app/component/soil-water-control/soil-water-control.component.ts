@@ -24,6 +24,9 @@ export class SoilWaterControlComponent implements OnInit {
   rainfallvalue: string = "";
   inputcsv: any;
   inputcsvName: any;
+  modelradiobutton: any;
+  useRandomForest: boolean;
+  useNN: boolean;
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
@@ -114,5 +117,17 @@ export class SoilWaterControlComponent implements OnInit {
       
    }
   }
+
+  modelradiobuttonchange(event: any) {
+    
+    this.modelradiobutton = event.target.value
+    if (event.target.value == "NeuralNetwork") {
+      this.useNN = true;
+      this.useRandomForest = false;
+    } else if (event.target.value == "RandomForest") {
+      this.useNN = false;
+      this.useRandomForest = true;
+    } 
+  } //end model radio button
 
 }
