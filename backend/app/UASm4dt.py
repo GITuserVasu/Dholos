@@ -121,8 +121,9 @@ def soilwatercontrolpred(inputcsv):
     jsondata = JSONParser().parse(inputcsv)
     # StringIO simulates a file 
     csvheaders = "LCC, Soil_Color, Slope, Depth, Text_Surface, Text_Subsurface, Gravel, Rainfall"
-    csvdata = StringIO(jsondata["data"])  
+    csvdata = jsondata["data"]  
     csvdata = csvheaders +"\n" + csvdata
+    csvdata = StringIO(csvdata)
 # Get the model
     #model = pickle.load(open(filename,'rb'))
     dtmodel = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
