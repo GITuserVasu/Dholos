@@ -157,9 +157,9 @@ def soilwatercontrolpred(inputcsv):
  'Graded trenching' ],inplace=True)
     print(newX)
 # Save prediction in a CSV file
-    newX.to_csv('predicted-values.csv', index=False)
+    newX.to_csv('/home/bitnami/ML/data/UAS/predicted-values.csv', index=False)
 
-    return JsonResponse({"statusCode": 200, "name": "test", "prediction":"newX"})
+    return JsonResponse({"statusCode": 200, "name": "test", "prediction":newX})
 
 
 
