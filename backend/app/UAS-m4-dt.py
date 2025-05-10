@@ -150,7 +150,7 @@ def soilwatercontrolpred(inputcsv):
 # Save prediction in a CSV file
     # newX.to_csv('predicted-values.csv', index=False)
 
-    return JsonResponse({"statusCode": 200, "name": "test", "prediction":newX})
+    return JsonResponse({"statusCode": 200, "name": "test", "prediction":"newX"})
 
 
 
