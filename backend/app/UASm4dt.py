@@ -132,6 +132,8 @@ def soilwatercontrolpred(inputcsv):
 # New input for prediction
     #newX = pd.read_csv('..\\..\\UAS-II\\Xpredict-new.csv')
     newX = pd.read_csv(csvdata)
+    print(newX.columns)
+    print(newX)
 # Convert categorical variables with numerical variables
     newX['LCC'].replace(['Arable', 'Non-Arable'], [1, 2], inplace=True)
     newX['Soil_Color'].replace(['Black','Lateritic', 'Red','-'], [1,2,3,0], inplace=True)
