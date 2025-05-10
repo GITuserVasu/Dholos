@@ -118,7 +118,7 @@ def soilwatercontrolpred(inputcsv):
     print("in soil water pred function")
 # Get the model
     #model = pickle.load(open(filename,'rb'))
-    model = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
+    dtmodel = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
 
 # Predict for user data
 # New input for prediction
@@ -133,7 +133,7 @@ def soilwatercontrolpred(inputcsv):
     newX['Gravel'].replace(['<=35','<=35%', '>35','>35%'], [1,1,2,2], inplace=True)
     newX['Rainfall'].replace(['<=750','<=750.00', '>750.00','>750','>950','750-950'], [1,1,2,3,4,5], inplace=True)
 # Predict
-    y_pred = clf.predict(newX)
+    y_pred = dtmodel.predict(newX)
 # Results
     newX['Treatment'] = y_pred
 # Convert numerical values back to categorical values
