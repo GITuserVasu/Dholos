@@ -107,6 +107,7 @@ X_test['Treatment'].replace([1, 2,3,4,5,6,7,8,9,],['Trench cum contour bund',
 
 @csrf_exempt
 def soilwatercontrolpred(inputcsv):
+    print("in soil water pred function")
 # Get the model
     #model = pickle.load(open(filename,'rb'))
     # model = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
@@ -150,7 +151,7 @@ def soilwatercontrolpred(inputcsv):
 # Save prediction in a CSV file
     # newX.to_csv('predicted-values.csv', index=False)
 
-    return JsonResponse({"statusCode": 200, "name": "test", "prediction":"newX"})
+    #return JsonResponse({"statusCode": 200, "name": "test", "prediction":"newX"})
 
 
 
