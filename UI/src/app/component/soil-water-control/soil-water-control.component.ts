@@ -132,7 +132,7 @@ export class SoilWaterControlComponent implements OnInit {
     this.inputcsv = this.inputcsv + this.surf_textvalue + comma;
     this.inputcsv = this.inputcsv + this.subsurf_textvalue + comma;
     this.inputcsv = this.inputcsv + this.gravelvalue + comma;
-    this.inputcsv = this.inputcsv + this.rainfallvalue + comma;
+    this.inputcsv = this.inputcsv + this.rainfallvalue;
     }
 
 // input validation for multiple prediction , the csv
