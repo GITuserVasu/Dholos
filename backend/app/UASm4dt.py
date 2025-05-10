@@ -116,13 +116,16 @@ X_test['Treatment'].replace([1, 2,3,4,5,6,7,8,9,],['Trench cum contour bund',
 @csrf_exempt
 def soilwatercontrolpred(inputcsv):
     print("in soil water pred function")
+    jsondata = JSONParser().parse(inputcsv)
+    csvdata = jsondata["data"]
 # Get the model
     #model = pickle.load(open(filename,'rb'))
     dtmodel = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
 
 # Predict for user data
 # New input for prediction
-    newX = pd.read_csv('..\\..\\UAS-II\\Xpredict-new.csv')
+    #newX = pd.read_csv('..\\..\\UAS-II\\Xpredict-new.csv')
+    newX = pd.read_csv(csvdata)
 # Convert categorical variables with numerical variables
     newX['LCC'].replace(['Arable', 'Non-Arable'], [1, 2], inplace=True)
     newX['Soil_Color'].replace(['Black','Lateritic', 'Red','-'], [1,2,3,0], inplace=True)
