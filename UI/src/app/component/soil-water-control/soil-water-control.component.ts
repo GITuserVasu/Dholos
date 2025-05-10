@@ -4,6 +4,8 @@ import { OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-soil-water-control',
   imports: [ReactiveFormsModule,],
@@ -22,11 +24,13 @@ export class SoilWaterControlComponent implements OnInit {
   subsurf_textvalue: string = "";
   gravelvalue: string = "";
   rainfallvalue: string = "";
-  inputcsv: any;
+  inputcsv: string = "";
   inputcsvName: any;
   modelradiobutton: any;
   useRandomForest: boolean = true;
   useNN: boolean = false;
+  uploadcsv: any;
+  uploadcsvName: any;
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
@@ -99,8 +103,64 @@ export class SoilWaterControlComponent implements OnInit {
   }
 
   onSubmit() {
-
     alert("request submitted");
+// input validation for single prediction
+    if(this.lccvalue == "none") {alert("Please select valid LCC value");}
+    if(this.soilcolorvalue == "none") {alert("Please select valid soil color");}
+    if(this.slopevalue == "none") {alert("Please select valid slope value");}
+    if(this.depthvalue == "none") {alert("Please select valid depth value");}
+    if(this.surf_textvalue == "none") {alert("Please select valid sufrace texture");}
+    if(this.subsurf_textvalue == "none") {alert("Please select valid subsurface texture");}
+    if(this.gravelvalue == "none") {alert("Please select valid gravel value");}
+    if(this.rainfallvalue == "none") {alert("Please select valid rainfall value");}
+
+    if(this.slopevalue == "lessthanone") { this.slopevalue = "<1"};
+    if(this.depthvalue == "lessthan25") { this.depthvalue = "<25"};
+    if(this.gravelvalue == "lessorequalto35") {this.gravelvalue = "<=25"};
+
+    if(this.rainfallvalue == "lessorequalto750") {this.rainfallvalue = "<=750"};
+    if(this.rainfallvalue == "750to950") {this.rainfallvalue = "750-950"};
+
+// create csv file for single prediction
+    if(this.input_choice == 'single'){
+    var comma = "," ;
+    this.inputcsv = this.lccvalue;
+    this.inputcsv = this.inputcsv + comma ;
+    this.inputcsv = this.inputcsv + this.soilcolorvalue + comma;
+    this.inputcsv = this.inputcsv + this.slopevalue + comma;
+    this.inputcsv = this.inputcsv + this.depthvalue + comma;
+    this.inputcsv = this.inputcsv + this.surf_textvalue + comma;
+    this.inputcsv = this.inputcsv + this.subsurf_textvalue + comma;
+    this.inputcsv = this.inputcsv + this.gravelvalue + comma;
+    this.inputcsv = this.inputcsv + this.rainfallvalue + comma;
+    }
+
+// input validation for multiple prediction , the csv
+    
+
+// Set up JSON for the POST call
+ const predJson = {"data": this.inputcsv}
+
+// Call api and send csv file to backend
+this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe((res: any) => {
+  
+  if (res.statusCode == 200) {
+    console.log(" Prednow Success");
+    console.log(res.name);
+  } else {
+    alert('Error in submission');
+  }
+  if (res.statusCode == 200) {  
+    console.log("Prediction Routine Call was successful")
+    alert("Prediction is now ready...Please click on 'Check Result' ")
+    
+    //alert(res.prediction)
+    
+    console.log(res.prediction)
+    
+  }
+}) 
+
   }
 
   uploadFile(event: any) {
@@ -111,8 +171,9 @@ export class SoilWaterControlComponent implements OnInit {
      for (let i = 0; i < numFiles; i++) {
       const reader: any = new FileReader();
       const fileInfo = event.target.files[i];
-      this.inputcsv[i] = event.target.files[i];
-      this.inputcsvName[i] = event.target.files[i].name;
+      this.uploadcsv[i] = event.target.files[i];
+      this.uploadcsvName[i] = event.target.files[i].name;
+      reader.onload=()=> {this.inputcsv = reader.result as string;};
       reader.readAsText(event.target.files[i]); 
       
    }
