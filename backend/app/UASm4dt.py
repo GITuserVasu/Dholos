@@ -120,7 +120,7 @@ def soilwatercontrolpred(inputcsv):
     print("in soil water pred function")
     jsondata = JSONParser().parse(inputcsv)
     # StringIO simulates a file 
-    csvheaders = "LCC, Soil_Color, Slope, Depth, Text_Surface, Text_Subsurface, Gravel, Rainfall"
+    csvheaders = "LCC,Soil_Color,Slope,Depth,Text_Surface,Text_Subsurface,Gravel,Rainfall"
     csvdata = jsondata["data"]  
     csvdata = csvheaders +"\n" + csvdata
     csvdata = StringIO(csvdata)
