@@ -6,6 +6,8 @@ import json
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime
 
+from io import StringIO
+
 import pandas as pd
 import numpy as np
 
@@ -117,7 +119,8 @@ X_test['Treatment'].replace([1, 2,3,4,5,6,7,8,9,],['Trench cum contour bund',
 def soilwatercontrolpred(inputcsv):
     print("in soil water pred function")
     jsondata = JSONParser().parse(inputcsv)
-    csvdata = jsondata["data"]
+    # StringIO simulates a file 
+    csvdata = StringIO(jsondata["data"])  
 # Get the model
     #model = pickle.load(open(filename,'rb'))
     dtmodel = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
