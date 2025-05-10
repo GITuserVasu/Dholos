@@ -116,7 +116,7 @@ export class SoilWaterControlComponent implements OnInit {
 
     if(this.slopevalue == "lessthanone") { this.slopevalue = "<1"};
     if(this.depthvalue == "lessthan25") { this.depthvalue = "<25"};
-    if(this.gravelvalue == "lessorequalto35") {this.gravelvalue = "<=25"};
+    if(this.gravelvalue == "lessorequalto35") {this.gravelvalue = "<=35"};
 
     if(this.rainfallvalue == "lessorequalto750") {this.rainfallvalue = "<=750"};
     if(this.rainfallvalue == "750to950") {this.rainfallvalue = "750-950"};
