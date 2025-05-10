@@ -142,7 +142,7 @@ export class SoilWaterControlComponent implements OnInit {
  const predJson = {"data": this.inputcsv}
 
 // Call api and send csv file to backend
-/* this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe((res: any) => {
+this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe((res: any) => {
   
   if (res.statusCode == 200) {
     console.log(" Prednow Success");
@@ -159,7 +159,7 @@ export class SoilWaterControlComponent implements OnInit {
     console.log(res.prediction)
     
   }
-})  */
+}) 
 
   }
 

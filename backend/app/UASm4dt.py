@@ -118,35 +118,35 @@ def soilwatercontrolpred(inputcsv):
     print("in soil water pred function")
 # Get the model
     #model = pickle.load(open(filename,'rb'))
-    # model = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
+    model = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
 
 # Predict for user data
 # New input for prediction
-    # newX = pd.read_csv('..\\..\\UAS-II\\Xpredict-new.csv')
+    newX = pd.read_csv('..\\..\\UAS-II\\Xpredict-new.csv')
 # Convert categorical variables with numerical variables
-    """ newX['LCC'].replace(['Arable', 'Non-Arable'], [1, 2], inplace=True)
+    newX['LCC'].replace(['Arable', 'Non-Arable'], [1, 2], inplace=True)
     newX['Soil_Color'].replace(['Black','Lateritic', 'Red','-'], [1,2,3,0], inplace=True)
     newX['Slope'].replace(['<1','1-3', '3-5','5-10','10-15','15-25','25-33','>33','<5','<=5','>5' ], [1,2,3,4,5,6,7,8,9,10,11], inplace=True)
     newX['Depth'].replace(['<25','>150', '>25','>=25','>100','100-150','10-25','25-50','<50','>50','50-75','75-100','50-100'], [1,2,3,4,5,6,7,8,9,10,11,12,13], inplace=True)
     newX['Text_Surface'].replace(['Loamy', 'Clayey'], [1, 2], inplace=True)
     newX['Text_Subsurface'].replace(['Loamy', 'Clayey'], [1, 2], inplace=True)
     newX['Gravel'].replace(['<=35','<=35%', '>35','>35%'], [1,1,2,2], inplace=True)
-    newX['Rainfall'].replace(['<=750','<=750.00', '>750.00','>750','>950','750-950'], [1,1,2,3,4,5], inplace=True) """
+    newX['Rainfall'].replace(['<=750','<=750.00', '>750.00','>750','>950','750-950'], [1,1,2,3,4,5], inplace=True)
 # Predict
-    # y_pred = clf.predict(newX)
+    y_pred = clf.predict(newX)
 # Results
-    # newX['Treatment'] = y_pred
+    newX['Treatment'] = y_pred
 # Convert numerical values back to categorical values
-    """ newX['LCC'].replace([1, 2],['Arable', 'Non-Arable'], inplace=True)
+    newX['LCC'].replace([1, 2],['Arable', 'Non-Arable'], inplace=True)
     newX['Soil_Color'].replace([1,2,3,0], ['Black','Lateritic', 'Red','-'], inplace=True)
     newX['Slope'].replace([1,2,3,4,5,6,7,8,9,10,11],['<1','1-3', '3-5','5-10','10-15','15-25','25-33','>33','<5','<=5','>5' ], inplace=True)
     newX['Depth'].replace([1,2,3,4,5,6,7,8,9,10,11,12,13],['<25','>150', '>25','>=25','>100','100-150','10-25','25-50','<50','>50','50-75','75-100','50-100'],  inplace=True)
     newX['Text_Surface'].replace([1, 2],['Loamy', 'Clayey'],  inplace=True)
     newX['Text_Subsurface'].replace([1, 2],['Loamy', 'Clayey'],  inplace=True)
     newX['Gravel'].replace([1,1,2,2],['<=35','<=35%', '>35','>35%'],  inplace=True)
-    newX['Rainfall'].replace([1,1,2,3,4,5],['<=750','<=750.00', '>750.00','>750','>950','750-950'],  inplace=True) """
+    newX['Rainfall'].replace([1,1,2,3,4,5],['<=750','<=750.00', '>750.00','>750','>950','750-950'],  inplace=True)
 #updateddf['Treatment'].replace(['Contour Bunding', 'Contour bunding/TCB','Contour Trenching','Graded Bunding','Graded bunding','Graded Trenching','Peurtorican terrace','Plantation terrace','Terracing (Sloping inwards/Level terrace)','Terracing (Sloping outward/Level terrace)','Zingg Terraces' ], [1, 2,3,4,4,5,6,7,8,9,10], inplace=True)
-    """ newX['Treatment'].replace([1, 2,3,4,5,6,7,8,9,],['Trench cum contour bund',
+    newX['Treatment'].replace([1, 2,3,4,5,6,7,8,9,],['Trench cum contour bund',
  'Trench cum graded bund',
  'Trench cum contour bund with Zingg terracing',
  'Terracing (Sloping outward/Level terrace)',
@@ -155,11 +155,11 @@ def soilwatercontrolpred(inputcsv):
  'Peurotorican terrace',
  'Contour trenching',
  'Graded trenching' ],inplace=True)
-    print(newX) """
+    print(newX)
 # Save prediction in a CSV file
-    # newX.to_csv('predicted-values.csv', index=False)
+    newX.to_csv('predicted-values.csv', index=False)
 
-    #return JsonResponse({"statusCode": 200, "name": "test", "prediction":"newX"})
+    return JsonResponse({"statusCode": 200, "name": "test", "prediction":"newX"})
 
 
 
