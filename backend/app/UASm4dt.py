@@ -156,6 +156,7 @@ def soilwatercontrolpred(inputcsv):
     abc = abc.rstrip('\n')
     abc = abc.replace("[","")
     abc = abc.replace("]","")
+    abc = abc.replace(" ","")
     #abc = pd.read_csv(StringIO(abc))
 # Results
     newX['Treatment'] = abc
