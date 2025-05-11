@@ -173,6 +173,7 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
       const fileInfo = event.target.files[i];
       this.uploadcsv[i] = event.target.files[i];
       this.uploadcsvName[i] = event.target.files[i].name;
+      console.log("file name", this.uploadcsvName[i]);
       reader.onload=()=> {this.inputcsv = reader.result as string;};
       reader.readAsText(event.target.files[i]); 
       console.log("file data", this.inputcsv);
