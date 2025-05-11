@@ -133,7 +133,7 @@ def soilwatercontrolpred(inputcsv):
 # New input for prediction
     #newX = pd.read_csv('..\\..\\UAS-II\\Xpredict-new.csv')
     newX = pd.read_csv(csvdata)
-    header_list = newX.columns
+    header_list = list(newX.columns)
     checkSLNO = header_list.pop(0)
     if checkSLNO == "SLNO":
         newX = newX.loc[ : , newX.columns != 'SLNO']
