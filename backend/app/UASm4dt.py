@@ -122,11 +122,12 @@ def soilwatercontrolpred(inputcsv):
     # StringIO simulates a file 
     csvheaders = "LCC,Soil_Color,Slope,Depth,Text_Surface,Text_Subsurface,Gravel,Rainfall"
     csvdata = jsondata["data"]  
-    csvdata = csvheaders +"\n" + csvdata
+    if csvdata and csvdata[0] != "L":
+        csvdata = csvheaders +"\n" + csvdata
     csvdata = StringIO(csvdata)
 # Get the model
     #model = pickle.load(open(filename,'rb'))
-    dtmodel = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
+    #dtmodel = pickle.load(open('/home/bitnami/ML/data/UAS/models/UASdtmodel.pkl','rb'))
 
 # Predict for user data
 # New input for prediction
@@ -143,11 +144,14 @@ def soilwatercontrolpred(inputcsv):
     newX['Text_Subsurface'].replace(['Loamy', 'Clayey'], [1, 2], inplace=True)
     newX['Gravel'].replace(['<=35','<=35%', '>35','>35%'], [1,1,2,2], inplace=True)
     newX['Rainfall'].replace(['<=750','<=750.00', '>750.00','>750','>950','750-950'], [1,1,2,3,4,5], inplace=True)
+# Save on server
+    newX.to_csv('/home/bitnami/ML/data/UAS/models/inputvalues.csv', index=False)
 # Predict
     #y_pred = dtmodel.predict(newX)
     result = subprocess.run(['python3', '/home/bitnami/ML/data/UAS/models/test.py'], capture_output=True, text=True)
         ##print(result.stdout)
     abc = result.stdout
+    print("abc", abc)
 # Results
     newX['Treatment'] = abc
 # Convert numerical values back to categorical values
@@ -172,8 +176,9 @@ def soilwatercontrolpred(inputcsv):
     print(newX)
 # Save prediction in a CSV file
     newX.to_csv('/home/bitnami/ML/data/UAS/predicted-values.csv', index=False)
+    newX_string = newX.to_string()
 
-    return JsonResponse({"statusCode": 200, "name": "test", "prediction":newX})
+    return JsonResponse({"statusCode": 200, "name": "test", "prediction":newX_string})
 
 
 
