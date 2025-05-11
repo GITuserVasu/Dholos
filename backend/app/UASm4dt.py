@@ -122,7 +122,7 @@ def soilwatercontrolpred(inputcsv):
     # StringIO simulates a file 
     csvheaders = "LCC,Soil_Color,Slope,Depth,Text_Surface,Text_Subsurface,Gravel,Rainfall"
     csvdata = jsondata["data"]  
-    if csvdata and csvdata[0] != "L":
+    if csvdata and csvdata[0] != "S":
         csvdata = csvheaders +"\n" + csvdata
     csvdata = StringIO(csvdata)
 # Get the model
