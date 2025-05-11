@@ -144,9 +144,12 @@ def soilwatercontrolpred(inputcsv):
     newX['Gravel'].replace(['<=35','<=35%', '>35','>35%'], [1,1,2,2], inplace=True)
     newX['Rainfall'].replace(['<=750','<=750.00', '>750.00','>750','>950','750-950'], [1,1,2,3,4,5], inplace=True)
 # Predict
-    y_pred = dtmodel.predict(newX)
+    #y_pred = dtmodel.predict(newX)
+    result = subprocess.run(['python3', '/home/bitnami/ML/data/UAS/models/test.py'], capture_output=True, text=True)
+        ##print(result.stdout)
+    abc = result.stdout
 # Results
-    newX['Treatment'] = y_pred
+    newX['Treatment'] = abc
 # Convert numerical values back to categorical values
     newX['LCC'].replace([1, 2],['Arable', 'Non-Arable'], inplace=True)
     newX['Soil_Color'].replace([1,2,3,0], ['Black','Lateritic', 'Red','-'], inplace=True)
