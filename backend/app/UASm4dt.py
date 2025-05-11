@@ -149,7 +149,8 @@ def soilwatercontrolpred(inputcsv):
 # Predict
     #y_pred = dtmodel.predict(newX)
     result = subprocess.run(['python3', '/home/bitnami/ML/data/UAS/models/test.py'], capture_output=True, text=True)
-        ##print(result.stdout)
+    print(result)
+    print(result.stdout)
     abc = result.stdout
     print("abc", abc)
 # Results
