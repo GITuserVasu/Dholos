@@ -29,8 +29,8 @@ export class SoilWaterControlComponent implements OnInit {
   modelradiobutton: any;
   useRandomForest: boolean = true;
   useNN: boolean = false;
-  uploadcsv: any;
-  uploadcsvName: any;
+  uploadcsv: any = [];
+  uploadcsvName: any = [];
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
