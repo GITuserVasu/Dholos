@@ -155,17 +155,19 @@ def soilwatercontrolpred(inputcsv):
     print("abc", abc)
 # Results
     newX['Treatment'] = abc
+    print("results")
+    print(newX)
 # Convert numerical values back to categorical values
-    newX['LCC'].replace([1, 2],['Arable', 'Non-Arable'], inplace=True)
+    newX['LCC'].replace([1,2],['Arable', 'Non-Arable'], inplace=True)
     newX['Soil_Color'].replace([1,2,3,0], ['Black','Lateritic', 'Red','-'], inplace=True)
     newX['Slope'].replace([1,2,3,4,5,6,7,8,9,10,11],['<1','1-3', '3-5','5-10','10-15','15-25','25-33','>33','<5','<=5','>5' ], inplace=True)
     newX['Depth'].replace([1,2,3,4,5,6,7,8,9,10,11,12,13],['<25','>150', '>25','>=25','>100','100-150','10-25','25-50','<50','>50','50-75','75-100','50-100'],  inplace=True)
-    newX['Text_Surface'].replace([1, 2],['Loamy', 'Clayey'],  inplace=True)
-    newX['Text_Subsurface'].replace([1, 2],['Loamy', 'Clayey'],  inplace=True)
+    newX['Text_Surface'].replace([1,2],['Loamy', 'Clayey'],  inplace=True)
+    newX['Text_Subsurface'].replace([1,2],['Loamy', 'Clayey'],  inplace=True)
     newX['Gravel'].replace([1,1,2,2],['<=35','<=35%', '>35','>35%'],  inplace=True)
     newX['Rainfall'].replace([1,1,2,3,4,5],['<=750','<=750.00', '>750.00','>750','>950','750-950'],  inplace=True)
 #updateddf['Treatment'].replace(['Contour Bunding', 'Contour bunding/TCB','Contour Trenching','Graded Bunding','Graded bunding','Graded Trenching','Peurtorican terrace','Plantation terrace','Terracing (Sloping inwards/Level terrace)','Terracing (Sloping outward/Level terrace)','Zingg Terraces' ], [1, 2,3,4,4,5,6,7,8,9,10], inplace=True)
-    newX['Treatment'].replace([1, 2,3,4,5,6,7,8,9,],['Trench cum contour bund',
+    newX['Treatment'].replace([1,2,3,4,5,6,7,8,9,],['Trench cum contour bund',
  'Trench cum graded bund',
  'Trench cum contour bund with Zingg terracing',
  'Terracing (Sloping outward/Level terrace)',
@@ -174,6 +176,7 @@ def soilwatercontrolpred(inputcsv):
  'Peurotorican terrace',
  'Contour trenching',
  'Graded trenching' ],inplace=True)
+    print("newX")
     print(newX)
 # Save prediction in a CSV file
     newX.to_csv('/home/bitnami/ML/data/UAS/predicted-values.csv', index=False)
