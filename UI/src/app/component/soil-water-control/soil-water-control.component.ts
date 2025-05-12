@@ -4,6 +4,8 @@ import { OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
+import { CommonModule } from '@angular/common';
+
 import { environment } from 'src/environments/environment';
 
 @Component({
