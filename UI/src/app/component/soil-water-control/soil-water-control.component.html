@@ -327,7 +327,8 @@
               </button> -->
           </div>
           <div class="modal-body">
-               {{predicted_treatment}} 
+            <h6 *ngFor="let row of predicted_treatment"><p>{{row}}</p></h6>
+                
           <br>
           </div>
           <div class="modal-footer">
