@@ -33,7 +33,7 @@ export class SoilWaterControlComponent implements OnInit {
   useNN: boolean = false;
   uploadcsv: any = [];
   uploadcsvName: any = [];
-  predicted_treatment:any;
+  predicted_treatment:any = [];
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
