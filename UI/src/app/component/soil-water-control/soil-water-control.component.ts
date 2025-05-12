@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-soil-water-control',
-  imports: [ReactiveFormsModule,],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './soil-water-control.component.html',
   styleUrl: './soil-water-control.component.css'
 })
