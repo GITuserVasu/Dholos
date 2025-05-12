@@ -158,7 +158,7 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
     //alert(res.prediction)
     
     console.log(res.prediction);
-    this.predicted_treatment = res.prediction;
+    this.predicted_treatment = res.prediction.split("\n");
     
   }
 }) 
