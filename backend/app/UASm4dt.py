@@ -122,8 +122,9 @@ def soilwatercontrolpred(inputcsv):
     # StringIO simulates a file 
     csvheaders = "LCC,Soil_Color,Slope,Depth,Text_Surface,Text_Subsurface,Gravel,Rainfall"
     csvdata = jsondata["data"]  
-    if csvdata and csvdata[0] != "S":
-        csvdata = csvheaders +"\n" + csvdata
+    if csvdata:
+        if csvdata[0] != "S" and csvdata[0] != "L":
+            csvdata = csvheaders +"\n" + csvdata
     csvdata = StringIO(csvdata)
 # Get the model
     #model = pickle.load(open(filename,'rb'))
