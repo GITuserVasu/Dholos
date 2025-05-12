@@ -327,7 +327,7 @@
               </button> -->
           </div>
           <div class="modal-body">
-            <h6 @for(row of predicted_treatment)><p>{{row}}</p></h6>
+            <h6 @for(row of predicted_treatment; track row)><p>{{row}}</p></h6>
                 
           <br>
           </div>
