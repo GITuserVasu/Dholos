@@ -31,6 +31,7 @@ export class SoilWaterControlComponent implements OnInit {
   useNN: boolean = false;
   uploadcsv: any = [];
   uploadcsvName: any = [];
+  predicted_treatment:any;
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
@@ -156,7 +157,8 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
     
     //alert(res.prediction)
     
-    console.log(res.prediction)
+    console.log(res.prediction);
+    this.predicted_treatment = res.prediction;
     
   }
 }) 
