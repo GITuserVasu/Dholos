@@ -11,7 +11,7 @@ import { NotificationService } from '../../../../src/app/shared/services/notific
 
 @Component({
     selector: 'app-login',
-    imports: [ CommonModule, ReactiveFormsModule ] ,
+    imports: [ CommonModule, ReactiveFormsModule,  ActivatedRoute, Router ] ,
 //    imports: [ReactiveFormsModule ] ,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],

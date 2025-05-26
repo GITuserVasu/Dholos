@@ -48,8 +48,29 @@ from sklearn.ensemble import RandomForestRegressor
 @csrf_exempt
 def prednow(predjson):
     print("In prednow")
+    jsondata = JSONParser().parse(predjson)
+    username = jsondata["username"]
+    dataset = jsondata["dataset"]
+    useblockname = jsondata["useblockname"]
+    usemap = jsondata["usemap"]
+    blockname = jsondata["blockname"]
+    stringcoords = jsondata["stringcoords"]
+    plantingdate = jsondata["plantingdate"]
+    useNN = jsondata["useNN"]
+    useRandomForest = jsondata["useRandomForest"]
+    Cultivar = jsondata["cultivar"]
+    orgid = jsondata["orgid"]
+
+    if dataset == "texas":
+        if blockname == "lubbock":
+            dirname = "/homne/bitnami/ML/data/texas/lubbock/WorkingDir/"
+            filename = "ml_data.pkl"
+    if dataset == "coimbatore":
+        dirname = "/homne/bitnami/ML/data/coimbatore-apr25/"
+        filename = "ml_data.pkl"
+
     """ #reportfile = open_reporting_session("","") """
-    ML1_df= read_pkldata("","")
+    ML1_df= read_pkldata(dirname,filename)
     """predictdf = read_csvdata("","")
     print(predictdf)
     SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
@@ -71,18 +92,7 @@ def prednow(predjson):
     print(y_predict)
     #save_model(forest_model, '/home/bitnami/ML/data/coimbatore-apr25/models/rfver1.0')
     #close_reporting_session(reportfile) """
-    jsondata = JSONParser().parse(predjson)
-    username = jsondata["username"]
-    dataset = jsondata["dataset"]
-    useblockname = jsondata["useblockname"]
-    usemap = jsondata["usemap"]
-    blockname = jsondata["blockname"]
-    stringcoords = jsondata["stringcoords"]
-    plantingdate = jsondata["plantingdate"]
-    useNN = jsondata["useNN"]
-    useRandomForest = jsondata["useRandomForest"]
-    Cultivar = jsondata["cultivar"]
-    orgid = jsondata["orgid"]
+    
 
     weatherdf, location = get_predictweatherdata(ML1_df, stringcoords)
 
