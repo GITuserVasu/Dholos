@@ -157,7 +157,7 @@ export class LoginComponent implements OnInit {
     // alert("Success" + value)
     if(value == 'Company'){
       this.router.navigate(['login/registrationPage'])
-      // window.location.reload()
+      window.location.reload()
     }else{
       this.router.navigate(['/empRegistration'])
     }
