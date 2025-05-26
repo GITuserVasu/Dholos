@@ -8,10 +8,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../../../src/app/shared/services/login/login.service';
 import { LogininfoService } from '../../../../src/app/shared/services/logininfo.service';
 import { NotificationService } from '../../../../src/app/shared/services/notification.service';
+import {RouterModule} from '@angular/router';
 
 @Component({
     selector: 'app-login',
-    imports: [ CommonModule, ReactiveFormsModule,  ActivatedRoute, Router ] ,
+    imports: [ CommonModule, ReactiveFormsModule, RouterModule ] ,
 //    imports: [ReactiveFormsModule ] ,
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],
