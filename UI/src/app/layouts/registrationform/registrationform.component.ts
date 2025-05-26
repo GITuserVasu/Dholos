@@ -40,7 +40,8 @@ export class RegistrationformComponent implements OnInit {
   ngOnInit(): void {
     this.password = 'password';
     if (this.count == 0) {
-    window.location.reload()
+    window.location.reload();
+    this.count = this.count + 1 ;
     }
   }
   onSubmit(){
