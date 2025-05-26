@@ -35,7 +35,7 @@ export class RegistrationformComponent implements OnInit {
     })
    }
 
-   const count = 0;
+    count = 0;
 
   ngOnInit(): void {
     this.password = 'password';
