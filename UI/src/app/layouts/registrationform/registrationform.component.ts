@@ -35,9 +35,13 @@ export class RegistrationformComponent implements OnInit {
     })
    }
 
+   const count = 0;
+
   ngOnInit(): void {
     this.password = 'password';
+    if (this.count == 0) {
     window.location.reload()
+    }
   }
   onSubmit(){
       console.log("this.loginData.value",this.loginData.value);
