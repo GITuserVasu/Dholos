@@ -27,6 +27,8 @@ export class RegistrationformComponent implements OnInit {
       bName:['', Validators.required],
       password:['', Validators.required],
       domain:['', Validators.required],
+      bState:['', Validators.required],
+      bCountry:['', Validators.required],
       orgid:[Math.floor(Math.random() * (999999 - 100000)) + 100000],
       packegStatus:['free']
      // phone:['', Validators.required],
