@@ -239,11 +239,11 @@ export class OcrscreenComponent implements OnInit {
     if(this.info.state != null){this.state = this.info.state;} else{this.state = "";}
     if(this.info.country != null){this.country = this.info.country;} else{this.country = "";}
     } else {
-      const countrystate = this.countryvalue.split("|")
-      console.log("before split", countrystate);
+      /* const countrystate = this.countryvalue.split("|")
+      console.log("before split", countrystate); */
       this.city ="";
-      this.state = countrystate[1];
-      this.country = countrystate[0] ;
+      this.state = this.countryvalue;
+      this.country = this.statevalue ;
     }
     console.log("state", this.state);
     console.log("country", this.country);
