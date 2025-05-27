@@ -132,9 +132,9 @@ export class OcrscreenComponent implements OnInit {
   city:string = "";
   state:string = "";
   country:string = "";
-  statevalue: string;
-  countyvalue: string;
-  districtvalue: string;
+  statevalue: string = "";
+  countyvalue: string = "";
+  districtvalue: string = "";
 
   //pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   //constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private http: HttpClient, private notification: NotificationService, private router: Router) {addInteraction(); }
