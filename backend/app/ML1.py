@@ -60,13 +60,13 @@ def prednow(predjson):
     useRandomForest = jsondata["useRandomForest"]
     Cultivar = jsondata["cultivar"]
     orgid = jsondata["orgid"]
+    n2applied = jsondata["n2applied"]
 
-    if dataset == "texas":
-        if blockname == "lubbock":
-            dirname = "/homne/bitnami/ML/data/texas/lubbock/WorkingDir/"
+    if dataset == "lubbock":
+            dirname = "/homne/bitnami/ML/data/texas/lubbock/models/"
             filename = "ml_data.pkl"
     if dataset == "coimbatore":
-        dirname = "/homne/bitnami/ML/data/coimbatore-apr25/"
+        dirname = "/homne/bitnami/ML/data/coimbatore-apr25/models/"
         filename = "ml_data.pkl"
 
     """ #reportfile = open_reporting_session("","") """
@@ -94,7 +94,7 @@ def prednow(predjson):
     #close_reporting_session(reportfile) """
     
 
-    weatherdf, location = get_predictweatherdata(ML1_df, stringcoords)
+    weatherdf, location = get_predictweatherdata(ML1_df, stringcoords, dirname)
 
     #print(plantingdate)
     date_obj = datetime.strptime(plantingdate, '%Y-%m-%d')
@@ -114,7 +114,7 @@ def prednow(predjson):
 
     predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
-                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':152, 'location':location}
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
     predictdf = pd.DataFrame([predict_data])
 
     print(predictdf)
@@ -123,7 +123,7 @@ def prednow(predjson):
 
     predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
 
-    predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/predict-row.csv")
+    #predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/predict-row.csv")
 
     # save current dir
     ##savedir = os.getcwd()
@@ -131,7 +131,13 @@ def prednow(predjson):
     ##os.chdir(dir)
     # Execute a command and capture the output
     if dataset == 'coimbatore':
+        predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
         result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
+        ##print(result.stdout)
+        abc = result.stdout
+    elif dataset == 'lubbock':
+        predictdf.to_csv("/home/bitnami/ML/data/texas/lubbock/models/predict-row.csv")
+        result = subprocess.run(['python3', '/home/bitnami/ML/data/texas/lubbock/models/testrun.py'], capture_output=True, text=True)
         ##print(result.stdout)
         abc = result.stdout
     else:
@@ -144,7 +150,7 @@ def prednow(predjson):
     return JsonResponse({"statusCode": 200, "name": "test", "prediction":abc})
 
 @csrf_exempt
-def get_predictweatherdata(ML1_df, stringcoords):
+def get_predictweatherdata(ML1_df, stringcoords, dirname):
     location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong", "location"]]
     location_lat_long = location_lat_long.drop_duplicates()
     print(location_lat_long)
@@ -159,7 +165,8 @@ def get_predictweatherdata(ML1_df, stringcoords):
     
     location = nearest_row['location']
     
-    weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
+    #weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
+    weatherdir = dirname + nearest_locn + "/"
     weatherfile = "mergedweather.csv"
 
     weatherdf = read_csvdata(weatherdir, weatherfile)
@@ -238,7 +245,8 @@ def read_pkldata(pathname, filename):
         print("filename is the name of the pkl file")
     if pathname == "" and filename == "":
         #pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
-        pathname = "/home/bitnami/ML/data/coimbatore-apr25/"
+        #pathname = "/home/bitnami/ML/data/coimbatore-apr25/models"
+        pathname = "/home/bitnami/ML/data/coimbatore-apr25/models/"
         filename = "ml_data.pkl"
     if filename == "":
         print("Please enter valid filename")

@@ -410,6 +410,9 @@ export class AIpredictionmodelsComponent implements OnInit {
     // this.usemap
     // this.locationvalue
     // this.string_coords
+    var n2appliedinput = document.getElementById("n2applied") as HTMLInputElement;
+    var n2applied = n2appliedinput.value
+    if (n2applied == '-1') {n2applied = '152'}
     var pltgdate = document.getElementById("pdate") as HTMLInputElement;
     var pdate = pltgdate.value ;
     if(pdate == "") {alert("Please enter Planting Date"); location.reload();}
@@ -460,7 +463,8 @@ export class AIpredictionmodelsComponent implements OnInit {
       "useRandomForest": this.useRandomForest,
       "cultivar": this.cultivarvalue,
       "orgid" : localStorage.getItem('org_id'),
-      "username" : this.username
+      "username" : this.username,
+      "n2applied": n2applied
     } 
 
     // alert(this.username);
