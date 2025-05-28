@@ -158,7 +158,16 @@ export class AIpredictionmodelsComponent implements OnInit {
       const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
       this.mapextent = [a[0],a[1],b[0],b[1]];
       }
-
+    
+      if(this.datasetvalue == 'lubbock'){
+      minlon = -100
+      maxlon = -760
+      minlat = 30
+      maxlat = 50
+      const a = fromLonLat([minlon,minlat],'EPSG:3857')
+      const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
+      this.mapextent = [a[0],a[1],b[0],b[1]];
+      }
     
     
     //alert (mapextent);
