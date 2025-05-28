@@ -220,6 +220,8 @@
                                     <select #country id="country" value="NotSelected"
                                         (change)="countryselectonchange(country.value)">
                                         <option value="NotSelected">-- Select Country --</option>
+                                        <option value = "india">India</option>
+                                        <option value = "usa">USA</option>
                                         <!-- <option value = "Afghanistan">Afghanistan</option>
                                         <option value = "Albania">Albania</option>
                                         <option value = "Algeria">Algeria</option>
@@ -316,12 +318,12 @@
                                         <option value = "Hong Kong">Hong Kong</option>
                                         <option value = "Hungary">Hungary</option>
                                         <option value = "Iceland">Iceland</option> -->
-                                        <option value="India|Andhra Pradesh">India-Andhra Pradesh</option>
+                                        <!-- <option value="India|Andhra Pradesh">India-Andhra Pradesh</option>
                                         <option value="India|Karnataka">India-Karnataka</option>
                                         <option value="India|Kerala">India-Kerala</option>
                                         <option value="India|Maharashtra">India-Maharashtra</option>
                                         <option value="India|TamilNadu">India-TamilNadu</option>
-                                        <option value="India|Telengana">India-Telengana</option>
+                                        <option value="India|Telengana">India-Telengana</option> -->
                                         <!-- <option value = "Indonesia">Indonesia</option>
                                         <option value = "Iran (Islamic Republic of)">Iran (Islamic Republic of)</option>
                                         <option value = "Iraq">Iraq</option>
@@ -448,7 +450,7 @@
                                         <option value = "Ukraine">Ukraine</option>
                                         <option value = "United Arab Emirates">United Arab Emirates</option>
                                         <option value = "United Kingdom">United Kingdom</option> -->
-                                        <option value="United States|Alabama">US - Alabama</option>
+                                        <!-- <option value="United States|Alabama">US - Alabama</option>
                                         <option value="United States|Alaska">US - Alaska</option>
                                         <option value="United States|Arizona">US - Arizona</option>
                                         <option value="United States|Arkansas">US - Arkansas</option>
@@ -497,7 +499,7 @@
                                         <option value="United States|Washington">US - Washington</option>
                                         <option value="United States|West Virginia">US - West Virginia</option>
                                         <option value="United States|Wisconsin">US - Wisconsin</option>
-                                        <option value="United States|Wyoming">US - Wyoming</option>
+                                        <option value="United States|Wyoming">US - Wyoming</option> -->
                                         <!-- <option value = "Uruguay">Uruguay</option>
                                         <option value = "Uzbekistan">Uzbekistan</option>
                                         <option value = "Vanuatu">Vanuatu</option>
@@ -512,6 +514,23 @@
                                         <option value = "Zambia">Zambia</option>
                                         <option value = "Zimbabwe">Zimbabwe</option> -->
                                     </select>
+                                    &nbsp; &nbsp;
+                                    <div *ngIf="countryvalue == 'india'">
+                                    <select #state id="state" value="NotSelected"
+                                        (change)="stateselectonchange(state.value)">
+                                        <option value="NotSelected">-- Select State --</option>
+                                        <option value = "karnataka">Karnataka</option>
+                                        <option value = "tamilnadu">Tamilnadu</option>
+                                    </select>
+                                    </div>
+                                    <div *ngIf="countryvalue == 'usa'">
+                                    <select #state id="state" value="NotSelected"
+                                        (change)="stateselectonchange(state.value)">
+                                        <option value="NotSelected">-- Select State --</option>
+                                        <option value = "california">California</option>
+                                        <option value = "texas">Texas</option>
+                                    </select>
+                                    </div>
                                     &nbsp; &nbsp;
                                     <form class="form-inline">
                                         <button (click)="clearMap($event)"> Clear Map </button>

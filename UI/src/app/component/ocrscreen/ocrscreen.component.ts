@@ -132,6 +132,9 @@ export class OcrscreenComponent implements OnInit {
   city:string = "";
   state:string = "";
   country:string = "";
+  statevalue: string = "";
+  countyvalue: string = "";
+  districtvalue: string = "";
 
   //pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   //constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private http: HttpClient, private notification: NotificationService, private router: Router) {addInteraction(); }
@@ -236,11 +239,11 @@ export class OcrscreenComponent implements OnInit {
     if(this.info.state != null){this.state = this.info.state;} else{this.state = "";}
     if(this.info.country != null){this.country = this.info.country;} else{this.country = "";}
     } else {
-      const countrystate = this.countryvalue.split("|")
-      console.log("before split", countrystate);
+      /* const countrystate = this.countryvalue.split("|")
+      console.log("before split", countrystate); */
       this.city ="";
-      this.state = countrystate[1];
-      this.country = countrystate[0] ;
+      this.state = this.countryvalue;
+      this.country = this.statevalue ;
     }
     console.log("state", this.state);
     console.log("country", this.country);
@@ -362,6 +365,30 @@ selectonchange(value:string) {
 countryselectonchange(value:string) {
  
   this.countryvalue  = value;
+  //console.log(this.countryvalue);
+  if (this.mymap){
+  this.mymap.setTarget(null);
+  }
+  this.createNewMap();
+ 
+
+}
+
+stateselectonchange(value:string) {
+ 
+  this.statevalue  = value;
+  //console.log(this.countryvalue);
+  if (this.mymap){
+  this.mymap.setTarget(null);
+  }
+  this.createNewMap();
+ 
+
+}
+
+districtselectonchange(value:string) {
+ 
+  this.districtvalue  = value;
   //console.log(this.countryvalue);
   if (this.mymap){
   this.mymap.setTarget(null);

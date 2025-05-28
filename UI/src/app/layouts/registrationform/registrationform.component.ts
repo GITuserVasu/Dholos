@@ -27,14 +27,22 @@ export class RegistrationformComponent implements OnInit {
       bName:['', Validators.required],
       password:['', Validators.required],
       domain:['', Validators.required],
+      bstate:['', Validators.required],
+      bcountry:['', Validators.required],
       orgid:[Math.floor(Math.random() * (999999 - 100000)) + 100000],
       packegStatus:['free']
      // phone:['', Validators.required],
     })
    }
 
+    // count = 0;
+
   ngOnInit(): void {
     this.password = 'password';
+    // if (this.count == 0) {
+    // window.location.reload();
+    // this.count = this.count + 1 ;
+    // }
   }
   onSubmit(){
       console.log("this.loginData.value",this.loginData.value);
