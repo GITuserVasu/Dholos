@@ -181,6 +181,7 @@
                 <div class="d-flex">
                     <div class="flex-grow-1">
                         <span class="input-group">
+                            <div *ngIf="datasetvalue == 'coimbatore'">
                             <label> Variety</label>&nbsp; &nbsp;
                             <select #cultivar id="cultivar" value="none" (change)="cultivarselectonchange(cultivar.value)">
                                 <option value="none">Choose One</option>
@@ -191,6 +192,7 @@
                                 <option value="ADT36">ADT36</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
+                            </div>
                             <label> Planting Date</label>&nbsp; &nbsp;
                             <input type="date" id="pdate" name="pdate" value="2025-06-15" min="2025-05-15" max="2025-07-15" >
                         </span>
