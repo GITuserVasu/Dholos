@@ -243,8 +243,8 @@ export class OcrscreenComponent implements OnInit {
       /* const countrystate = this.countryvalue.split("|")
       console.log("before split", countrystate); */
       this.county =this.districtvalue;
-      this.state = this.countryvalue;
-      this.country = this.statevalue ;
+      this.state = this.statevalue;
+      this.country = this.countryvalue ;
     }
     console.log("state", this.state);
     console.log("country", this.country);
