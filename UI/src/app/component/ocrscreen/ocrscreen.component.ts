@@ -135,6 +135,7 @@ export class OcrscreenComponent implements OnInit {
   statevalue: string = "";
   countyvalue: string = "";
   districtvalue: string = "";
+  county: any;
 
   //pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   //constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private http: HttpClient, private notification: NotificationService, private router: Router) {addInteraction(); }
@@ -235,20 +236,20 @@ export class OcrscreenComponent implements OnInit {
     var lat:any;
 
     if(this.countryvalue == "NotSelected") {
-    if(this.info.city != null){this.city = this.info.city;} else{this.city = "";}
+    if(this.info.county != null){this.county = this.info.county;} else{this.county = "";}
     if(this.info.state != null){this.state = this.info.state;} else{this.state = "";}
     if(this.info.country != null){this.country = this.info.country;} else{this.country = "";}
     } else {
       /* const countrystate = this.countryvalue.split("|")
       console.log("before split", countrystate); */
-      this.city ="";
+      this.county =this.districtvalue;
       this.state = this.countryvalue;
       this.country = this.statevalue ;
     }
     console.log("state", this.state);
     console.log("country", this.country);
 
-    var myURL = "https://nominatim.openstreetmap.org/search?addressdetails=1&q="+this.city+"+"+this.state+"+"+this.country+"&format=jsonv2&limit=1"
+    var myURL = "https://nominatim.openstreetmap.org/search?addressdetails=1&q="+this.county+"+"+this.state+"+"+this.country+"&format=jsonv2&limit=1"
     //var myURL = "https://nominatim.openstreetmap.org/search?addressdetails=1&q=davis+california&format=jsonv2&limit=1";
     this.http.get(myURL).subscribe((data: any) => {
       if (data.length != 0){
