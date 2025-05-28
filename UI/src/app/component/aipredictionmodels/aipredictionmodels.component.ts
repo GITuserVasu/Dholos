@@ -416,7 +416,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} 
     // this.useNN
     // this.useRandomForest
-    if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
+    if(this.cultivarvalue == "none" && this.datasetvalue == "coimbatore") {alert("Please select a Cultivar"); location.reload();}
     // End Validation 
 
     //if(this.datasetvalue == 'coimbatore'){
