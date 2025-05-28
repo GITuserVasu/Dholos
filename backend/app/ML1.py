@@ -63,10 +63,10 @@ def prednow(predjson):
     n2applied = jsondata["n2applied"]
 
     if dataset == "lubbock":
-            dirname = "/homne/bitnami/ML/data/texas/lubbock/models/"
+            dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
             filename = "ml_data.pkl"
     if dataset == "coimbatore":
-        dirname = "/homne/bitnami/ML/data/coimbatore-apr25/models/"
+        dirname = "/home/bitnami/ML/data/coimbatore-apr25/models/"
         filename = "ml_data.pkl"
 
     """ #reportfile = open_reporting_session("","") """
