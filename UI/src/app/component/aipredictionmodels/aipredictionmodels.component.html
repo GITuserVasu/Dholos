@@ -31,6 +31,7 @@
                                 <option value="none">Choose One</option>
                                 <option value="coimbatore">Coimbatore</option>
                                 <!-- <option value="thanjavur">Thanjavur</option> -->
+                                 <option value="lubbock">Lubbock</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
                             <div *ngIf="dataset.value == 'coimbatore'">
@@ -41,6 +42,10 @@
                             <div *ngIf="dataset.value == 'thanjavur'">
                                 This dataset consists of data from Thanjavur District, TamilNadu. The crop is rice (multiple
                                 varieties)
+                                &nbsp; &nbsp;
+                            </div>
+                            <div *ngIf="dataset.value == 'lubbock'">
+                                This dataset consists of data from Lubbock, Texas. The crop is cotton.
                                 &nbsp; &nbsp;
                             </div>
                         </span>
@@ -59,6 +64,7 @@
                     <div class="flex-grow-1">
 
                         <div class="col-md-6">
+                            <div *ngIf="dataset.value == 'coimbatore'">
                             <input class="form-check-input" type="radio" name="locRadio" id="locRadio1"
                                 value="useblockname" formControlName="blockname"
                                 (change)="locradiobuttonchange($event)" >
@@ -66,6 +72,7 @@
                             <label class="form-check-label" for="locRadio1">
                                 Use District Block Name
                             </label>
+                            </div>
                             <!-- </div> -->
                             <!--<div class="col-md-6"> -->
                             &NonBreakingSpace;&NonBreakingSpace;
