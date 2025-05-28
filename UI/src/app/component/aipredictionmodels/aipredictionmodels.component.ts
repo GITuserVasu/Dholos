@@ -160,8 +160,8 @@ export class AIpredictionmodelsComponent implements OnInit {
       }
     
       if(this.datasetvalue == 'lubbock'){
-      minlon = -99
-      maxlon = -103
+      minlon = -103
+      maxlon = -99
       minlat = 32
       maxlat = 35
       const a = fromLonLat([minlon,minlat],'EPSG:3857')
