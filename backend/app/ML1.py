@@ -159,18 +159,19 @@ def prednow(predjson):
 def get_predictweatherdata(ML1_df, stringcoords, dirname):
     location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong", "location"]]
     location_lat_long = location_lat_long.drop_duplicates()
+    print("In get weather data and location")
     print(location_lat_long)
 
     location_lat_long_list = ML1_df['SubBlockID'].unique().tolist()
     
     for index, row in location_lat_long.iterrows():
         location_lat_long['Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
-        print("index",index, "  distance", location_lat_long['Distance'])
+        #print("index",index, "  distance", location_lat_long['Distance'])
     nearest_row = location_lat_long.loc[location_lat_long['Distance'].idxmin()]
     nearest_locn = nearest_row['SubBlockID']
-    
+    print("Nearest location", nearest_locn)
     location = nearest_row['location']
-    
+    print("Nearest location", location)
     #weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
     weatherdir = dirname + nearest_locn + "/"
     weatherfile = "mergedweather.csv"
