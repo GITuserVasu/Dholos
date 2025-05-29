@@ -63,7 +63,7 @@ def prednow(predjson):
     n2applied = jsondata["n2applied"]
 
     if dataset == "lubbock":
-            #dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
+            dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
             #filename = "ml_data.pkl"
             filename = "finalsummdf-file.csv"
             ML1_df = read_csvdata(dirname, filename)
