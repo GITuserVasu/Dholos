@@ -114,7 +114,7 @@ def prednow(predjson):
     print(cultivardf)
     #cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
     ####cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
-    cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values
+    cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar']
     print("CULTIVAR ID")
     print(cultivarid)
 
