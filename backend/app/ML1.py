@@ -139,12 +139,12 @@ def prednow(predjson):
     if dataset == 'coimbatore':
         predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
         result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
-        ##print(result.stdout)
+        print(result.stdout)
         abc = result.stdout
     elif dataset == 'lubbock':
         predictdf.to_csv("/home/bitnami/ML/data/texas/lubbock/models/predict-row.csv")
         result = subprocess.run(['python3', '/home/bitnami/ML/data/texas/lubbock/models/testrun.py'], capture_output=True, text=True)
-        ##print(result.stdout)
+        print(result.stdout)
         abc = result.stdout
     else:
         abc = 0
