@@ -193,6 +193,18 @@
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
                             </div>
+                            <div *ngIf="datasetvalue == 'lubbock'">
+                            <label> Variety</label>&nbsp; &nbsp;
+                            <select #cultivar id="cultivar" value="none" (change)="cultivarselectonchange(cultivar.value)">
+                                <option value="none">Choose One</option>
+                                <option value="Phytogen 350Ca1">Phytogen 350Ca1</option>
+                                <option value="ADT45">ADT45</option>
+                                <option value="CO51">CO51</option>
+                                <option value="ASD16">ASD16</option>
+                                <option value="ADT36">ADT36</option>
+                            </select>
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            </div>
                             <label> Planting Date</label>&nbsp; &nbsp;
                             <input type="date" id="pdate" name="pdate" value="2025-06-15" min="2025-05-15" max="2025-07-15" >
                             &nbsp; &nbsp;&nbsp; &nbsp;
