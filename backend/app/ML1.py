@@ -63,17 +63,17 @@ def prednow(predjson):
     n2applied = jsondata["n2applied"]
 
     if dataset == "lubbock":
-            dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
-            filename = "ml_data.pkl"
-            #filename = "data-for-ml-file.csv"
-            #ML1_df = read_csvdata(dirname, filename)
+            #dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
+            #filename = "ml_data.pkl"
+            filename = "finalsummdf-file.csv"
+            ML1_df = read_csvdata(dirname, filename)
     if dataset == "coimbatore":
         dirname = "/home/bitnami/ML/data/coimbatore-apr25/models/"
         filename = "ml_data.pkl"
-        #ML1_df= read_pkldata(dirname,filename)
+        ML1_df= read_pkldata(dirname,filename)
 
     """ #reportfile = open_reporting_session("","") """
-    ML1_df= read_pkldata(dirname,filename)
+    #ML1_df= read_pkldata(dirname,filename)
     
     """predictdf = read_csvdata("","")
     print(predictdf)
