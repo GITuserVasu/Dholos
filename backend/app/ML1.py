@@ -168,7 +168,8 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
         location_lat_long['Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
         #print("index:",index, "  distance:", location_lat_long['Distance'])
         #print("--")
-    print(location_lat_long['Distance'].idxmin())    
+    #df.loc[df['col2'].idxmin(), 'col2']
+    print(location_lat_long.loc[location_lat_long['Distance'].idxmin(), index])    
     nearest_row = location_lat_long.loc[location_lat_long['Distance'].idxmin()]
     nearest_locn = nearest_row['SubBlockID']
     print("Nearest location", nearest_locn)
