@@ -118,9 +118,15 @@ def prednow(predjson):
     print("CULTIVAR ID")
     print(cultivarid)
 
-    predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+    if dataset == 'coimbatore':
+        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+    if dataset == 'lubbock':
+        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid,  'location':location}
+        
     predictdf = pd.DataFrame([predict_data])
 
     print(predictdf)
@@ -167,7 +173,7 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
     
     for index, row in location_lat_long.iterrows():
         location_lat_long.loc[index,'Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
-        print(location_lat_long['Distance'])
+        #print(location_lat_long['Distance'])
         #print("--")
     #df.loc[df['col2'].idxmin(), 'col2']
     print("nearest",location_lat_long.loc[location_lat_long['Distance'].idxmin()])    
