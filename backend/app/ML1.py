@@ -159,13 +159,14 @@ def prednow(predjson):
 def get_predictweatherdata(ML1_df, stringcoords, dirname):
     location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong", "location"]]
     location_lat_long = location_lat_long.drop_duplicates()
+    location_lat_long['Distance'] = "" 
     print("In get weather data and location")
     print(location_lat_long)
 
     location_lat_long_list = ML1_df['SubBlockID'].unique().tolist()
     
     for index, row in location_lat_long.iterrows():
-        location_lat_long['Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
+        location_lat_long.loc[index,'Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
         print(location_lat_long['Distance'])
         #print("--")
     #df.loc[df['col2'].idxmin(), 'col2']
