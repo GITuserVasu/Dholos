@@ -164,7 +164,7 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
 
     location_lat_long_list = ML1_df['SubBlockID'].unique().tolist()
     
-    for index, row in location_lat_long.iterrows():
+    for row in location_lat_long.iterrows():
         location_lat_long['Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
         print(location_lat_long['Distance'])
         #print("--")
