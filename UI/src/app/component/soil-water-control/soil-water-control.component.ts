@@ -44,6 +44,7 @@ export class SoilWaterControlComponent implements OnInit {
   rainfall:any = [];
   treatment:any = [];
   temp_array:any = [];
+  predict_array:any = [][];
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
@@ -171,11 +172,14 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
     
     console.log(res.prediction);
     this.predicted_treatment = res.prediction.split("\n");
-    const num_rows = this.predicted_treatment;
-    var j = 0;
+    const num_rows =  this.predicted_treatment.length ;
     for (let i = 0; i < num_rows; i++) {
-      this.temp_array = this.predicted_treatment[0].split(" ") ;
-      this.LCC[j] = this.temp_array[0];
+      this.temp_array = this.predicted_treatment[i].split(" ") ;
+      const temp_array_length = this.temp_array.length ; 
+      for (let j = 0; j < temp_array_length; j++){
+           this.predict_array[i][j] = this.temp_array[j] ;
+      }
+      /* this.LCC[j] = this.temp_array[0];
       this.soil_color[j] = this.temp_array[1];
       this.slope[j] = this.temp_array[2];
       this.depth[j] = this.temp_array[3];
@@ -183,7 +187,7 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
       this.subsurf_text[j] = this.temp_array[5];
       this.gravel[j] = this.temp_array[6];
       this.rainfall[j] = this.temp_array[7];
-      this.treatment[j] = this.temp_array[8];
+      this.treatment[j] = this.temp_array[8]; */
 
 
     }
