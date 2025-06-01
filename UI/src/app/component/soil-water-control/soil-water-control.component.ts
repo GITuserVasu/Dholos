@@ -178,6 +178,7 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
       const temp_array_length = this.temp_array.length ; 
       for (let j = 0; j < temp_array_length; j++){
            this.predict_array[i][j] = this.temp_array[j] ;
+           console.log(this.predict_array[i][j]);
       }
       /* this.LCC[j] = this.temp_array[0];
       this.soil_color[j] = this.temp_array[1];
