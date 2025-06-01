@@ -328,7 +328,7 @@
           </div>
           <div class="modal-body">
             <!-- <h6 *ngFor="let row of predicted_treatment"><p>{{row}}</p></h6>  -->
-            <table>
+            <table class="table">
     <thead>
         <tr>
             <th>LCC</th>
@@ -346,7 +346,7 @@
         <tr *ngFor="let item of predicted_treatment">
             <ng-container *ngFor="let subItem of item.temp_array">
                 <tr>
-                    <td>{{ LCC }}</td>
+                    <td>{{ temp_array[0]}}</td>
                     <td>{{ soil_color }}</td>
                     <td>{{ slope }}</td>
                     <td>{{ depth }}</td>
