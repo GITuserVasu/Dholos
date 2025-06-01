@@ -44,7 +44,7 @@ export class SoilWaterControlComponent implements OnInit {
   rainfall:any = [];
   treatment:any = [];
   temp_array:any = [];
-  predict_array:any = [][];
+  predict_array:string[][] = [];
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
