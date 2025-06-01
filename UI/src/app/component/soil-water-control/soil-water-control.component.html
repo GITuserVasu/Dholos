@@ -327,7 +327,39 @@
               </button> -->
           </div>
           <div class="modal-body">
-            <h6 *ngFor="let row of predicted_treatment"><p>{{row}}</p></h6> 
+            <!-- <h6 *ngFor="let row of predicted_treatment"><p>{{row}}</p></h6>  -->
+            <table>
+    <thead>
+        <tr>
+            <th>LCC</th>
+            <th>Soil Color</th>
+            <th>Slope</th>
+            <th>Depth</th>
+            <th>Soil Texture</th>
+            <th>Sub Soil Texture</th>
+            <th>Gravel</th>
+            <th>Rainfall</th>
+            <th>Treatment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of predicted_treatment">
+            <ng-container *ngFor="let subItem of item.temp_array">
+                <tr>
+                    <td>{{ LCC }}</td>
+                    <td>{{ soil_color }}</td>
+                    <td>{{ slope }}</td>
+                    <td>{{ depth }}</td>
+                    <td>{{ surf_text }}</td>
+                    <td>{{ subsurf_text}}</td>
+                    <td>{{ gravel }}</td>
+                    <td>{{ rainfall }}</td>
+                    <td>{{ treatment }}</td>
+                </tr>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>
                 
           <br>
           </div>

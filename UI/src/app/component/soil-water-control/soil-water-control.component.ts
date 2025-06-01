@@ -34,6 +34,15 @@ export class SoilWaterControlComponent implements OnInit {
   uploadcsv: any = [];
   uploadcsvName: any = [];
   predicted_treatment:any = [];
+  LCC:any = [];
+  soil_color:any = [];
+  slope:any = [];
+  depth:any = [];
+  surf_text:any = [];
+  subsurf_text:any = [];
+  gravel:any = [];
+  rainfall:any = [];
+  treatment:any = [];
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
@@ -161,6 +170,22 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
     
     console.log(res.prediction);
     this.predicted_treatment = res.prediction.split("\n");
+    const num_rows = this.predicted_treatment;
+    var j = 0;
+    for (let i = 0; i < num_rows; i++) {
+      const temp_array = this.predicted_treatment[0].split(" ") ;
+      this.LCC[j] = temp_array[0];
+      this.soil_color[j] = temp_array[1];
+      this.slope[j] = temp_array[2];
+      this.depth[j] = temp_array[3];
+      this.surf_text[j] = temp_array[4];
+      this.subsurf_text[j] = temp_array[5];
+      this.gravel[j] = temp_array[6];
+      this.rainfall[j] = temp_array[7];
+      this.treatment[j] = temp_array[8];
+
+
+    }
     
   }
 }) 
