@@ -172,14 +172,15 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
     
     console.log(res.prediction);
     this.predicted_treatment = res.prediction.split("\n");
-    const num_rows =  this.predicted_treatment.length ;
+    this.predict_array = this.predicted_treatment.map((sentence: string) => sentence.split(' '));
+    /* const num_rows =  this.predicted_treatment.length ;
     for (let i = 0; i < num_rows; i++) {
       this.temp_array = this.predicted_treatment[i].split(" ") ;
       const temp_array_length = this.temp_array.length ; 
       for (let j = 0; j < temp_array_length; j++){
            this.predict_array[i][j] = this.temp_array[j] ;
            console.log(this.predict_array[i][j]);
-      }
+      } */
       /* this.LCC[j] = this.temp_array[0];
       this.soil_color[j] = this.temp_array[1];
       this.slope[j] = this.temp_array[2];
