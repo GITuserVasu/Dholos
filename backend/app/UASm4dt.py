@@ -162,7 +162,7 @@ def soilwatercontrolpred(inputcsv):
     abc = abc.replace("[","")
     abc = abc.replace("]","")
     ghi = abc.split()
-    ghi = ","+ ghi
+
     #abc = abc.replace(" ","")
     #abc = pd.read_csv(StringIO(abc))
 # Results
@@ -179,7 +179,7 @@ def soilwatercontrolpred(inputcsv):
     newX['Gravel'].replace([1,1,2,2],['<=35','<=35%', '>35','>35%'],  inplace=True)
     newX['Rainfall'].replace([1,1,2,3,4,5],['<=750','<=750.00', '>750.00','>750','>950','750-950'],  inplace=True)
 #updateddf['Treatment'].replace(['Contour Bunding', 'Contour bunding/TCB','Contour Trenching','Graded Bunding','Graded bunding','Graded Trenching','Peurtorican terrace','Plantation terrace','Terracing (Sloping inwards/Level terrace)','Terracing (Sloping outward/Level terrace)','Zingg Terraces' ], [1, 2,3,4,4,5,6,7,8,9,10], inplace=True)
-    newX['Treatment'].replace(['1','2','3','4','5','6','7','8','9'],['Trench cum contour bund','Trench cum graded bund', 'Trench cum contour bund with Zingg terracing','Terracing (Sloping outward/Level terrace)', 'Terracing (Sloping inwards/Level terrace)', 'Plantation terrace', 'Peurotorican terrace', 'Contour trenching', 'Graded trenching' ],inplace=True)
+    newX['Treatment'].replace(['1','2','3','4','5','6','7','8','9'],[',Trench cum contour bund',',Trench cum graded bund', ',Trench cum contour bund with Zingg terracing',',Terracing (Sloping outward/Level terrace)', ',Terracing (Sloping inwards/Level terrace)', ',Plantation terrace', ',Peurotorican terrace', ',Contour trenching', ',Graded trenching' ],inplace=True)
     print("newX")
     print(newX)
 # Save prediction in a CSV file
