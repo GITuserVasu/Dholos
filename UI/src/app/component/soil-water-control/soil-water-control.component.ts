@@ -46,6 +46,7 @@ export class SoilWaterControlComponent implements OnInit {
   temp_array:any = [];
   
   predict_array:string[][] = [];
+  temp_prediction: any;
   // predict_array:any = {};
 
 
@@ -181,7 +182,9 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
     var i = 0;
     var j = 0;
     for (i = 1; i < num_rows; i++) {
-      this.temp_array = this.predicted_treatment[i].split(/\s+/,10) ;
+      this.temp_prediction = (this.predicted_treatment[i].split(","))[1] ;
+      this.temp_array = this.predicted_treatment[i].split(/\s+/,9) ;
+      this.temp_array.push(this.temp_prediction);
       console.log(this.predicted_treatment[i]);
       const temp_array_length = this.temp_array.length ; 
       this.predict_array[i-1] = [];
