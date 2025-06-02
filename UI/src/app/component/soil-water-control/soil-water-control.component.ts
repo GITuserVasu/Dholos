@@ -178,7 +178,7 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
     var i = 0;
     var j = 0;
     for (i = 1; i < num_rows; i++) {
-      this.temp_array = this.predicted_treatment[i].split(" ",10) ;
+      this.temp_array = this.predicted_treatment[i].split(/\s+/,10) ;
       console.log(this.predicted_treatment[i]);
       const temp_array_length = this.temp_array.length ; 
       console.log(temp_array_length);
