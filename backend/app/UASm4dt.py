@@ -162,10 +162,11 @@ def soilwatercontrolpred(inputcsv):
     abc = abc.replace("[","")
     abc = abc.replace("]","")
     ghi = abc.split()
+    ghi = ","+ ghi
     #abc = abc.replace(" ","")
     #abc = pd.read_csv(StringIO(abc))
 # Results
-    newX['Treatment'] = ","+ ghi
+    newX['Treatment'] = ghi
     print("results")
     print(newX)
 # Convert numerical values back to categorical values
