@@ -343,9 +343,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let items of predicted_treatment">
-            <td>{{items}}</td>
-             <!-- <td *ngFor="let item of items">{{item}}</td> -->
+        <tr *ngFor="let items of predict_array">
+            <!-- <td>{{items}}</td> -->
+             <td *ngFor="let item of items">{{item}}</td>
         </tr>
         <!-- <tr *ngFor="let item of predicted_treatment">
             <ng-container *ngFor="let subItem of temp_array">
