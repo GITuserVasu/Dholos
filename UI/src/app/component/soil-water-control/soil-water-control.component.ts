@@ -205,7 +205,7 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
 
 
     }
-    console.log(this.predict_array);
+    console.log(this.predict_array[0]);
     
   }
 }) 
