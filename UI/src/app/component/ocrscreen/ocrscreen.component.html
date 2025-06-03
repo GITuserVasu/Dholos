@@ -210,19 +210,11 @@
                                                 <div class="form-group col-md">
                                                     <input type="file" id="upload-doc" class="form-control"
                                                         (change)="uploadFile($event)"
-                                                        [accept]="['.BSX','.BMX','.BHX','.BNX','.BRX','.CBX','.CHX','.CNX','.COX','.CPX','.FAX','.FBX','.FXX','.GBX','.LTX','.NPX','.PNX','.PPX','.PRX','.SFX','.SBX','.SUX','.TMX','.VBX','.WHX','.BAX','.CSX','.MLX','.MZX','.PTX','.RIX','.SCX','.SGX','.SWX','.PIX','.TRX','.TNX','.TFX','.BMX','.BHX','.G0X','.ALX','.RGX']">
+                                                        [accept]="['.SOL']">
                                                 </div>
                                             </form>
                                         </div>
-                                        <div>
-                                            <select class="form-control" *ngIf="Create_existing == true"
-                                                formControlName="Create_existing" id="selectedXfile">
-                                                <!-- formControlName="Create_existing" (change)="getXfilelist($event)"> -->
-                                                <option>- Select Here -</option>
-                                                <option *ngFor="let row of XfileList" [value]="row.filename">
-                                                    {{row.filename}}</option>
-                                            </select>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
