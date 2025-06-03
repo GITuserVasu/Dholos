@@ -304,15 +304,15 @@
                 <div class="d-flex ">
                     <div class="flex-grow-1 ">
                         <div *ngIf="resultReady == false">
-                            <div class="col-md-4 ">
+                            <!-- <div class="col-md-4 "> -->
                             <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()">
-                            </div>
+                            <!-- </div> -->
                             </div>
                             <div *ngIf="resultReady == true">
-                                <div class="col-md-4 ">
+                                <!-- <div class="col-md-4 "> -->
                             <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()">
-                            </div>
-                                <div class="col-md-4 ">
+                            <!-- </div> -->
+                                <!-- <div class="col-md-4 "> -->
                                 <a 
                                      href="/assets/temp/predicted-values.csv"
                                         class="btn text-center"
@@ -321,10 +321,10 @@
                                             >
                                         Download CSV
                                         </a>
-                                        </div>
-                                        <div class="col-md-4 ">
+                                        <!-- </div>
+                                        <div class="col-md-4 "> -->
                             <button type="button" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#resultModal">View Result</button>
-                            </div>
+                            <!-- </div> -->
                             </div>
                         <!-- [disabled]="fileUpload.invalid"> -->
                     </div>
