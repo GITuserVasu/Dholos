@@ -732,7 +732,7 @@ showFarm(value:string) {
     //  Number of sub-blocks * number of planting dates (5) * number of years * number of treatments (get from X file)
     const num_pltg_dates = 5 ;
 
-    const num_sub_blocks = this.myarea/subblocksizevalue ;
+    const num_sub_blocks = this.myarea/Number(subblocksizevalue) ;
 
     const start = this.Xfile_as_string.indexOf('*TREATMENTS');
     const result1 = this.Xfile_as_string.substring(start+1);
@@ -742,7 +742,7 @@ showFarm(value:string) {
     var num_treatments = result3.length;
 
 
-    const num_sim_est = num_pltg_dates * numyearsvalue * num_sub_blocks * num_treatments ;
+    const num_sim_est = num_pltg_dates * Number(numyearsvalue) * num_sub_blocks * num_treatments ;
     
     if (num_sim_est > 5000) {
       alert("Please increase the sub block size for quicker response");
