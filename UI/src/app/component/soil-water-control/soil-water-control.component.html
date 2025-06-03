@@ -303,12 +303,15 @@
             <div class="card-body ">
                 <div class="d-flex ">
                     <div class="flex-grow-1 ">
-                        <!-- <div *ngIf="resultReady == false"> -->
+                        <div *ngIf="resultReady == false">
                             <div class="col-md-4 ">
                             <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()">
                             </div>
-                            <!-- </div> -->
+                            </div>
                             <div *ngIf="resultReady == true">
+                                <div class="col-md-4 ">
+                            <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()">
+                            </div>
                                 <div class="col-md-4 ">
                                 <a 
                                      href="/assets/temp/predicted-values.csv"
