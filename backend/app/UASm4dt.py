@@ -185,7 +185,7 @@ def soilwatercontrolpred(inputcsv):
     newX_string = newX.to_string()
 
 # Update for horizontal vertical intervals 
-    for index, row in newX.iterrows():
+    """ for index, row in newX.iterrows():
         if row['Treatment'] == "Contour bunding/TCB" and row['Slope'] == "<1" :
            newX.loc[index,'Loamy_VI'] = 0.6
            newX.loc[index,'Loamy_HI'] = 60
@@ -225,7 +225,7 @@ def soilwatercontrolpred(inputcsv):
            newX.loc[index,'Loamy_VI'] = 0.6
            newX.loc[index,'Loamy_HI'] = ""
            newX.loc[index,'Clayey_VI'] = 0.75
-           newX.loc[index,'Clayey_HI'] = ""
+           newX.loc[index,'Clayey_HI'] = "" """
 # Update for Cross Section    
 # Save prediction in a CSV file
     newX.to_csv('/home/bitnami/ML/data/UAS/predicted-values.csv', index=False)
