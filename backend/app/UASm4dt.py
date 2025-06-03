@@ -229,7 +229,7 @@ def soilwatercontrolpred(inputcsv):
 # Update for Cross Section    
 # Save prediction in a CSV file
     newX.to_csv('/home/bitnami/ML/data/UAS/predicted-values.csv', index=False)
-    newX.to_csv('/var/www/html/dedvtestholos/assets/temp/predicted-values.csv', index=False)
+    newX.to_csv('/var/www/html/devtestholos/assets/temp/predicted-values.csv', index=False)
     
 
 
