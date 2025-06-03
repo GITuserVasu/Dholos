@@ -182,9 +182,55 @@ def soilwatercontrolpred(inputcsv):
     newX['Treatment'].replace(['1','2','3','4','5','6','7','8','9'],[',Trench cum contour bund',',Trench cum graded bund', ',Trench cum contour bund with Zingg terracing',',Terracing (Sloping outward/Level terrace)', ',Terracing (Sloping inwards/Level terrace)', ',Plantation terrace', ',Peurotorican terrace', ',Contour trenching', ',Graded trenching' ],inplace=True)
     print("newX")
     print(newX)
+    newX_string = newX.to_string()
+
+# Update for horizontal vertical intervals 
+    for index, row in newX.iterrows():
+        if row['Treatment'] == "Contour bunding/TCB" and row['Slope'] == "<1" :
+           newX.loc[index,'Loamy_VI'] = 0.6
+           newX.loc[index,'Loamy_HI'] = 60
+           newX.loc[index,'Clayey_VI'] = 0.9
+           newX.loc[index,'Clayey_HI'] = 90
+        if row['Treatment'] == "Contour bunding/TCB" and row['Slope'] == "1-3" :
+           newX.loc[index,'Loamy_VI'] = 0.6
+           newX.loc[index,'Loamy_HI'] = 39
+           newX.loc[index,'Clayey_VI'] = 1
+           newX.loc[index,'Clayey_HI'] = 55
+        if row['Treatment'] == "Contour bunding/TCB" and row['Slope'] == "3-5" :
+           newX.loc[index,'Loamy_VI'] = 0.9
+           newX.loc[index,'Loamy_HI'] = 21
+           newX.loc[index,'Clayey_VI'] = 1.5
+           newX.loc[index,'Clayey_HI'] = 33
+        if row['Treatment'] == "Contour bunding/TCB" and row['Slope'] == "5-10" :
+           newX.loc[index,'Loamy_VI'] = 1.2
+           newX.loc[index,'Loamy_HI'] = 21
+           newX.loc[index,'Clayey_VI'] = 1.5
+           newX.loc[index,'Clayey_HI'] = 27
+        if row['Treatment'] == "Graded bunding" and row['Slope'] == "<1" :
+           newX.loc[index,'Loamy_VI'] = 0.75
+           newX.loc[index,'Loamy_HI'] = ""
+           newX.loc[index,'Clayey_VI'] = 1
+           newX.loc[index,'Clayey_HI'] = ""
+        if row['Treatment'] == "Graded bunding" and row['Slope'] == "1-3" :
+           newX.loc[index,'Loamy_VI'] = 0.75
+           newX.loc[index,'Loamy_HI'] = ""
+           newX.loc[index,'Clayey_VI'] = 1
+           newX.loc[index,'Clayey_HI'] = ""
+        if row['Treatment'] == "Graded bunding" and row['Slope'] == "3-5" :
+           newX.loc[index,'Loamy_VI'] = 0.75
+           newX.loc[index,'Loamy_HI'] = ""
+           newX.loc[index,'Clayey_VI'] = 1
+           newX.loc[index,'Clayey_HI'] = ""
+        if row['Treatment'] == "Graded bunding" and row['Slope'] == "5-10" :
+           newX.loc[index,'Loamy_VI'] = 0.6
+           newX.loc[index,'Loamy_HI'] = ""
+           newX.loc[index,'Clayey_VI'] = 0.75
+           newX.loc[index,'Clayey_HI'] = ""
+# Update for Cross Section    
 # Save prediction in a CSV file
     newX.to_csv('/home/bitnami/ML/data/UAS/predicted-values.csv', index=False)
-    newX_string = newX.to_string()
+    
+
 
     return JsonResponse({"statusCode": 200, "name": "test", "prediction":newX_string})
 

@@ -29,9 +29,9 @@
                             &nbsp; &nbsp;
                             <select #dataset id="dataset" value="none" (change)="datasetselectonchange(dataset.value)">
                                 <option value="none">Choose One</option>
-                                <option value="coimbatore">Coimbatore</option>
+                                <option value="coimbatore">Rice in Coimbatore</option>
                                 <!-- <option value="thanjavur">Thanjavur</option> -->
-                                 <option value="lubbock">Lubbock</option>
+                                 <option value="lubbock">Cotton in South Plains</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
                             <div *ngIf="dataset.value == 'coimbatore'">
@@ -110,7 +110,7 @@
                         <span class="input-group">
                             <!-- <label> Location </label>
                             &nbsp; &nbsp; -->
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div *ngIf="datasetvalue == 'coimbatore'"> 
                                 <select #location id="location" value="none"
                                     (change)="locationselectonchange(location.value)">
@@ -134,7 +134,7 @@
                                 </div>
                             </div>
                                
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div>
                             <form class="form-inline">
                                 <button (click)="clearMap($event)"> Clear Map </button>

@@ -141,10 +141,10 @@ export class AIpredictionmodelsComponent implements OnInit {
     lat = this.lonlatarray[1]; 
 
     if(this.datasetvalue == 'coimbatore'){
-    minlon = 76
-    maxlon = 78
-    minlat = 10
-    maxlat = 12
+    minlon = 76.7652
+    maxlon = 77.4509
+    minlat = 10.7872
+    maxlat = 11.1221
     const a = fromLonLat([minlon,minlat],'EPSG:3857')
     const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
     this.mapextent = [a[0],a[1],b[0],b[1]];
@@ -160,10 +160,10 @@ export class AIpredictionmodelsComponent implements OnInit {
       }
     
       if(this.datasetvalue == 'lubbock'){
-      minlon = -102
-      maxlon = -100
-      minlat = 33
-      maxlat = 34
+      minlon =  -102.0857
+      maxlon =  -101.5568
+      minlat =  33.3947
+      maxlat =  33.8304
       const a = fromLonLat([minlon,minlat],'EPSG:3857')
       const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
       this.mapextent = [a[0],a[1],b[0],b[1]];
@@ -402,6 +402,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   // } 
 
   onSubmit() {
+    
     alert("Wait for a few seconds...and then click on 'Check Result'  :-)");
     //Validation
     if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
