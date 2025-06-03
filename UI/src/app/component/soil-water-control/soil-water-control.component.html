@@ -306,17 +306,17 @@
                         <!-- <div *ngIf="resultReady == false"> -->
                             <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()">
                             <!-- </div> -->
-                            <!-- <div *ngIf="resultReady == true"> -->
+                            <div *ngIf="resultReady == true">
                                 <a 
                                      href="/assets/temp/predicted-values.csv"
-                                        class="btn"
+                                        class="btn translate-middle-x"
                                         target="_blank"
                                         download="predicted_treatments.csv"
                                             >
                                         Download CSV
                                         </a>
                             <button type="button" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#resultModal">View Result</button>
-                            <!-- </div> -->
+                            </div>
                         <!-- [disabled]="fileUpload.invalid"> -->
                     </div>
                 </div>
