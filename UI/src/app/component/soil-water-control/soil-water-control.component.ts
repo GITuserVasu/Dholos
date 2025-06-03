@@ -48,6 +48,7 @@ export class SoilWaterControlComponent implements OnInit {
   predict_array:string[][] = [];
   temp_prediction: any;
   // predict_array:any = {};
+  resultReady:boolean = false ;
 
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
@@ -122,6 +123,7 @@ export class SoilWaterControlComponent implements OnInit {
 
   onSubmit() {
     alert("request submitted");
+    this.resultReady = false ;
 // input validation for single prediction
     if(this.lccvalue == "none") {alert("Please select valid LCC value");}
     if(this.lccvalue == "Non-Arable" && this.soilcolorvalue != "-") { alert("Choose Soil Color = None for Non-Arable LCC");}
@@ -172,7 +174,7 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
   if (res.statusCode == 200) {  
     console.log("Prediction Routine Call was successful")
     alert("Prediction is now ready...Please click on 'Check Result' ")
-    
+    this.resultReady = true ;
     //alert(res.prediction)
     
     console.log(res.prediction);
