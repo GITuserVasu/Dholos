@@ -303,16 +303,22 @@
             <div class="card-body ">
                 <div class="d-flex ">
                     <div class="flex-grow-1 ">
-                        <div *ngIf="resultReady == false">
+                        <table>
+                            <tr>
+                                <td>
+                        <!-- <div *ngIf="resultReady == false"> -->
                             <!-- <div class="col-md-4 "> -->
                             <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()">
                             <!-- </div> -->
-                            </div>
+                            <!-- </div> -->
+                             </td>
+                             
                             <div *ngIf="resultReady == true">
                                 <!-- <div class="col-md-4 "> -->
-                            <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()">
+                            <!-- <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()"> -->
                             <!-- </div> -->
                                 <!-- <div class="col-md-4 "> -->
+                                    <td>>
                                 <a 
                                      href="/assets/temp/predicted-values.csv"
                                         class="btn text-center"
@@ -321,11 +327,16 @@
                                             >
                                         Download CSV
                                         </a>
+                                        </td>
                                         <!-- </div>
                                         <div class="col-md-4 "> -->
+                                            <td>
                             <button type="button" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#resultModal">View Result</button>
                             <!-- </div> -->
+                             </td>
                             </div>
+                            </tr>
+                            </table>
                         <!-- [disabled]="fileUpload.invalid"> -->
                     </div>
                 </div>
