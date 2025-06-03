@@ -124,6 +124,7 @@ export class SoilWaterControlComponent implements OnInit {
     alert("request submitted");
 // input validation for single prediction
     if(this.lccvalue == "none") {alert("Please select valid LCC value");}
+    if(this.lccvalue == "Non-Arable" && this.soilcolorvalue != "-") { alert("Choose Soil Color = None for Non-Arable LCC");}
     if(this.soilcolorvalue == "none") {alert("Please select valid soil color");}
     if(this.slopevalue == "none") {alert("Please select valid slope value");}
     if(this.depthvalue == "none") {alert("Please select valid depth value");}
