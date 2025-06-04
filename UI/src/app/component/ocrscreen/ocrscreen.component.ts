@@ -136,6 +136,7 @@ export class OcrscreenComponent implements OnInit {
   countyvalue: string = "";
   districtvalue: string = "";
   county: any;
+  soilradiobuttonchangevalue: any;
 
   //pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   //constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private http: HttpClient, private notification: NotificationService, private router: Router) {addInteraction(); }
@@ -919,6 +920,25 @@ showFarm(value:string) {
       this.Create_default = false;
     } else if (event.target.value == "Existing") {
       this.getXfilelist(event);
+      this.Create_existing = true;
+      this.Create_new = false;
+      this.Create_default = false;
+    } else {
+      this.Create_existing = false;
+      this.Create_new = false;
+      this.Create_default = true;
+    }
+ 
+  }
+  soilradiobuttonchange(event: any) {
+   
+    this.soilradiobuttonchangevalue = event.target.value
+
+    if (event.target.value == "New") {
+      this.Create_existing = false;
+      this.Create_new = true;
+      this.Create_default = false;
+    } else if (event.target.value == "Existing") {
       this.Create_existing = true;
       this.Create_new = false;
       this.Create_default = false;
