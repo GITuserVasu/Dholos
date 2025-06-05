@@ -274,7 +274,7 @@ def soilwatercontrolpred(inputcsv):
     for index1, row in newX.iterrows():
        # read Treatment, Texture, Gravel and Depth
        # obtain rows from the cross section df
-       resultdf = Xsectiondf[Xsectiondf['Treatment'] == row['Treatment'] & Xsectiondf['Texture'] == row['Text_Surface'] & Xsectiondf['Gravel'] == row['Gravel'] & Xsectiondf['Depth'] == row['Depth']]
+       resultdf = Xsectiondf[(Xsectiondf['Treatment'] == row['Treatment']) & (Xsectiondf['Texture'] == row['Text_Surface']) & (Xsectiondf['Gravel'] == row['Gravel']) & (Xsectiondf['Depth'] == row['Depth'])]
        row_count = len(resultdf)
        if row_count > 0 :
            for index2, xrow in resultdf.iterrows():
