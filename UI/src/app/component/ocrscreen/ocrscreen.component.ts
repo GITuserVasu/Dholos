@@ -744,10 +744,21 @@ showFarm(value:string) {
 
 
     const num_sim_est = num_pltg_dates * Number(numyearsvalue) * num_sub_blocks * num_treatments ;
+    console.log("num treatments",num_treatments);
+    console.log("num sims", num_sim_est);
     
     if (num_sim_est > 5000) {
       alert("Please increase the sub block size for quicker response");
       this.erroranywhere = 1 ;
+    }
+    
+    var Regional = false ;
+    var ReducedZipSize = false ;
+    var TreatmentChange = true;
+    if (num_sim_est > 5000){
+      Regional = true;
+      ReducedZipSize = true ;
+      TreatmentChange = true ;
     }
 
     
@@ -783,7 +794,10 @@ showFarm(value:string) {
     "ccatmco2":ccatmco2value,
     "city":this.city,
     "state":this.state,
-    "country":this.country
+    "country":this.country,
+    "regional":Regional,
+    "reducedzipsize":ReducedZipSize,
+    "treatmentchange":TreatmentChange
     }
     console.log("CCATMCO2",exptJson["ccatmco2"]);
     this.http.post(environment.apiUrl + 'make_json', exptJson).subscribe((jsondata: any) => {
