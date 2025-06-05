@@ -234,13 +234,13 @@ def make_json(exptJson):
     json_string = json_string + '"'+companyID+'"' + comma + nuline
 
     json_string = json_string + '"Regional"' +":"
-    json_string = json_string + '"'+regional+'"' + comma + nuline
+    json_string = json_string + '"'+str(regional)+'"' + comma + nuline
 
     json_string = json_string + '"ReducedZipSize"' +":"
-    json_string = json_string + '"'+reducedzipsize+'"' + comma + nuline
+    json_string = json_string + '"'+str(reducedzipsize)+'"' + comma + nuline
 
     json_string = json_string + '"TreatmentChange"' +":"
-    json_string = json_string + '"'+treatmentchange+'"' + comma + nuline
+    json_string = json_string + '"'+str(treatmentchange)+'"' + comma + nuline
 
     json_string = json_string + '"ProjectName"' +":"
     json_string = json_string + '"'+projectname+'"' + comma + nuline
