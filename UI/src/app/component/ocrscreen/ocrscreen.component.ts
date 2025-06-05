@@ -732,7 +732,9 @@ showFarm(value:string) {
     // Calculate estimated number of simulations as
     //  Number of sub-blocks * number of planting dates (5) * number of years * number of treatments (get from X file)
     const num_pltg_dates = 5 ;
-
+    var sub_block_size = Number(subblocksizevalue);
+    console.log("sub block size", subblocksizevalue);
+    console.log("area", this.myarea);
     const num_sub_blocks = this.myarea/Number(subblocksizevalue) ;
 
     const start = this.Xfile_as_string.indexOf('*TREATMENTS');
