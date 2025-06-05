@@ -267,6 +267,28 @@ def soilwatercontrolpred(inputcsv):
            newX.loc[index,'Clayey_VI'] = ""
            newX.loc[index,'Clayey_HI'] = 5
 # Update for Cross Section    
+    # read the cross section csv into a df
+    Xsectiondf = pd.read_csv('C:\\Users\\sudha\\OneDrive\\Desktop\\vasu\\UAS\\UAS-II\Cross-Section-SoilWaterConservationTreatment.csv')
+    # for each row in new X
+    for index1, row in newX.iterrows():
+       # read Treatment, Texture, Gravel and Depth
+       # obtain rows from the cross section df
+       resultdf = Xsectiondf[Xsectiondf['Treatment'] == row['Treatment'] and Xsectiondf['Texture'] == row['Text_Surface'] and Xsectiondf['Gravel'] == row['Gravel'] and Xsectiondf['Depth'] == row['Depth']]
+       row_count = len(resultdf)
+       if row_count > 0 :
+           for index2, xrow in resultdf.iterrows():
+              row.loc[index1,'Crop Category'] = xrow[index2,'Crop Category']
+              row.loc[index1,'Top_width'] = xrow[index2,'Top_width']
+              row.loc[index1,'Base_width'] = xrow[index2,'Base_width']
+              row.loc[index1,'Height'] = xrow[index2,'Height']
+              row.loc[index1,'Side_slope'] = xrow[index2,'Side_slope']
+              row.loc[index1,'Cross_section'] = xrow[index2,'Cross_section']
+       # if one row 
+           # then add that row's values for Crop Category, Top_width, Base_width, Height, Side_slope, Cross_section to the NewX row
+       # if two rows
+           # Do the one row thing
+           # Add a new row for the second row by copying the first row and changing the Crop Category
+
 
 # Save prediction in a CSV file
     newX.to_csv('/home/bitnami/ML/data/UAS/predicted-values.csv', index=False)
