@@ -372,7 +372,7 @@ def make_json(exptJson):
 
     url = "https://05mmdxz7gd.execute-api.us-east-2.amazonaws.com/v1/uploadspatialspecs"
     
-    response = requests.post(url, data=json_string, headers=headers)
+    # response = requests.post(url, data=json_string, headers=headers)
 
     if response.status_code == 200:
         print(response.json())

@@ -744,6 +744,9 @@ showFarm(value:string) {
 
 
     const num_sim_est = num_pltg_dates * Number(numyearsvalue) * num_sub_blocks * num_treatments ;
+    console.log("num sub blocks",Number(num_sub_blocks));
+    console.log("num years",Number(numyearsvalue));
+    console.log("num pltg dates",num_pltg_dates);
     console.log("num treatments",num_treatments);
     console.log("num sims", num_sim_est);
     
