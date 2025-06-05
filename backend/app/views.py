@@ -491,6 +491,7 @@ def createFarm(req):
         userid = data["UserID"]
         farmname = data["farmname"]
         coords_string = data["Coordinates"]
+        farmarea = data["farmarea]"]
         out = ''
         for x in coords_string:
             for y in x:
@@ -510,6 +511,7 @@ def createFarm(req):
             userid = userid,
             farmname = farmname,
             polygon_coords = coords_string,
+            farmarea = farmarea,
             )
         farm_details_record.save()  
         return JsonResponse(
