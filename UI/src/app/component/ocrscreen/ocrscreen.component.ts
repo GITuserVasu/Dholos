@@ -440,6 +440,9 @@ showFarm(value:string) {
     console.log("farmname",this.farmname);
 
     console.log("farmarea", b['farmarea']);
+    if(this.myarea == ""){
+      this.myarea = b['farmarea'] ;
+    }
 
     console.log("b",b['polygon_coords']);
     var final_coords: any = '';
