@@ -491,7 +491,7 @@ def createFarm(req):
         userid = data["UserID"]
         farmname = data["farmname"]
         coords_string = data["Coordinates"]
-        farmarea = data["farmarea]"]
+        farmarea = data["farmarea"]
         out = ''
         for x in coords_string:
             for y in x:
