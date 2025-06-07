@@ -515,6 +515,9 @@ showFarm(value:string) {
     console.log("roiname", roinamevalue);
     if (roinamevalue == "") {alert("Please enter the name of the farm/ROI");}
     if (roinamevalue == null) {roinamevalue = "None"};
+    const timestampInSeconds: number = Date.now() / 1000;
+    roinamevalue = roinamevalue+timestampInSeconds ;
+    
     this.farmname = roinamevalue ;
    const farmInfo = {
     "companyID":this.info.orgid,
