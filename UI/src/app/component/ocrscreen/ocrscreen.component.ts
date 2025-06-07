@@ -522,7 +522,7 @@ showFarm(value:string) {
     "farmarea":this.myarea,
     "country":this.country,
     "state":this.state,
-    "county":this.state
+    "county":this.county
     //"farmdesc":farmdesc
     }
    console.log(farmInfo["UserID"]);

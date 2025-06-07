@@ -264,7 +264,7 @@ def make_json(exptJson):
     json_string = json_string + '"ROIName"'+":"
     json_string = json_string + '"'+roiname+'"' + comma + nuline
     json_string = json_string + '"ROIConfiguration"'+": {"
-    json_string = json_string + '"_comment"'+":"+ '"Sample geoJSON - Coimbatore"'+comma + nuline
+    json_string = json_string + '"_comment"'+":"+ '" geoJSON "'+comma + nuline
     json_string = json_string + '"geoJSON"'+": {"
     json_string = json_string + '"type"'+":"+ '"FeatureCollection"'+comma
     json_string = json_string + '"features"'+": [{"
@@ -287,7 +287,7 @@ def make_json(exptJson):
     json_string = json_string + "["+ '"' + coord_array[7][0] + '"' +  comma + '"'+ coord_array[7][1]+'"'  +"]" """ 
     json_string = json_string + "]]}" + comma
     json_string = json_string + '"properties"' + ":" + '"null"'+comma + nuline
-    json_string = json_string + '"id"'+":" +  '"Coimbatore,TamilNadu"' 
+    json_string = json_string + '"id"'+":" +  '"null"' 
     json_string = json_string + "}]}," + nuline
     json_string = json_string + '"SubBlockSize"' +":"
     json_string = json_string +  subblocksize  
