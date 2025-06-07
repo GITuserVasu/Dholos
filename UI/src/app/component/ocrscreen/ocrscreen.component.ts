@@ -512,6 +512,7 @@ showFarm(value:string) {
    this.farmsavedflag = 0;
    const roiname = document.getElementById('roiname') as HTMLInputElement | null;
     let roinamevalue = roiname?.value;
+    console.log("roiname", roinamevalue);
     if (roinamevalue == "") {alert("Please enter the name of the farm/ROI");}
     if (roinamevalue == null) {roinamevalue = "None"};
     this.farmname = roinamevalue ;
