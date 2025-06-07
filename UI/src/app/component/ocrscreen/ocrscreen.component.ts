@@ -442,7 +442,9 @@ showFarm(value:string) {
     console.log("farmarea", b['farmarea']);
     
     this.myarea = b['farmarea'] ;
-    
+    this.country = b["country"] ;
+    this.state = b["state"] ;
+    this.county = b["county"] ;
 
     console.log("b",b['polygon_coords']);
     var final_coords: any = '';
@@ -517,7 +519,10 @@ showFarm(value:string) {
     "UserID": this.info.id,
     "Coordinates": this.string_coords,
     "farmname":roinamevalue,
-    "farmarea":this.myarea
+    "farmarea":this.myarea,
+    "country":this.country,
+    "state":this.state,
+    "county":this.state
     //"farmdesc":farmdesc
     }
    console.log(farmInfo["UserID"]);
@@ -803,7 +808,7 @@ showFarm(value:string) {
     "city":this.city,
     "state":this.state,
     "country":this.country,
-    "county":this.districtvalue,
+    "county":this.county,
     "regional":Regional,
     "reducedzipsize":ReducedZipSize,
     "treatmentchange":TreatmentChange
