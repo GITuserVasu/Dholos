@@ -130,6 +130,7 @@ def make_json(exptJson):
     city = jsondata["city"]
     state = jsondata["state"]
     country = jsondata["country"]
+    county = jsondata["county"]
     regional = jsondata["regional"]
     reducedzipsize = jsondata["reducedzipsize"]
     treatmentchange = jsondata["treatmentchange"]
@@ -251,6 +252,10 @@ def make_json(exptJson):
     json_string = json_string + '"'+country+'"' + comma + nuline
     json_string = json_string + '"State"' +":"
     json_string = json_string + '"'+state+'"' + comma + nuline
+
+    json_string = json_string + '"County"' +":"
+    json_string = json_string + '"'+county+'"' + comma + nuline
+
     json_string = json_string + '"SelectedHolosProducts"'+":"
     json_string = json_string + "["+'"'+selectedholosproduct+'"'+"]" + comma + nuline
     json_string = json_string + '"_comment"'+":"+ '"*NEW* Array of ROIs, each ROI contains Holos prod info, config of ROI, farming practices, grouping of ROIs (optional), mapping of ROIs or ROI groups to farming practices"'+comma+ nuline

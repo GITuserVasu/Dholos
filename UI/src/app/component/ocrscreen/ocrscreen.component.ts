@@ -803,6 +803,7 @@ showFarm(value:string) {
     "city":this.city,
     "state":this.state,
     "country":this.country,
+    "county":this.districtvalue,
     "regional":Regional,
     "reducedzipsize":ReducedZipSize,
     "treatmentchange":TreatmentChange
