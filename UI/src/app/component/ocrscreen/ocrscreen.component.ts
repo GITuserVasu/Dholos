@@ -814,6 +814,7 @@ showFarm(value:string) {
     "treatmentchange":TreatmentChange
     }
     console.log("CCATMCO2",exptJson["ccatmco2"]);
+    if(this.erroranywhere == 0){
     this.http.post(environment.apiUrl + 'make_json', exptJson).subscribe((jsondata: any) => {
       console.log('resstatusCodestatusCode in Submit make json', jsondata.statusCode);
       if (jsondata.statusCode == 200) {
@@ -821,10 +822,11 @@ showFarm(value:string) {
         console.log("JSON Success");
         console.log(jsondata.name);
       } else {
-        alert('Error in submission. Did you forget to enter the Planting Date?');
+        alert('Error in submission');
         this.erroranywhere = 1;
         location.reload();
       }
+    
     //  })
       
    
@@ -927,6 +929,7 @@ showFarm(value:string) {
       }
     })
   })  // end JSON submit to AWS
+}
   if( this.erroranywhere == 0){
   this.notification.showSuccess("Successfully Submitted, Check back in a while for results ", "Submit Another or go to Dashboard to check on Status");
         //this.router.navigate(['/'])
