@@ -513,8 +513,8 @@ showFarm(value:string) {
    const roiname = document.getElementById('roiname') as HTMLInputElement | null;
     let roinamevalue = roiname?.value;
     console.log("roiname", roinamevalue);
-    if (roinamevalue == "") {alert("Please enter the name of the farm/ROI");}
-    if (roinamevalue == null) {roinamevalue = "None"};
+    /* if (roinamevalue == "") {alert("Please enter the name of the farm/ROI");}
+    if (roinamevalue == null) {roinamevalue = "None"}; */
     const timestampInSeconds: number = Date.now() / 1000;
     roinamevalue = roinamevalue+"_a"+timestampInSeconds ;
 
