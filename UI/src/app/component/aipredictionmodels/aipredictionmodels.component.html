@@ -94,6 +94,16 @@
                             </label>
                             </div> -->
                         </div>
+                        <div class="col-md-6">
+                            <label>Predict...</label>
+                            <div *ngIf="dataset.value == 'coimbatore'">
+                              <select #whichmodel id="whichmodel" value="yield"
+                                    (change)="modelselectonchange(whichmodel.value)">
+                                    <option value="yield">Yield</option>
+                                    <option value="yield_and_water">Yield and Water Used</option>
+                                </select>
+                                </div>
+                        </div>
                       
                     </div>
                 </div>

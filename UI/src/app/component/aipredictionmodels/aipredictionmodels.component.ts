@@ -85,6 +85,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   resultReady: boolean = false;
   prediction_value:any ;
+  modelvalue: string;
 
   
 
@@ -497,6 +498,10 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   } 
   
+  modelselectonchange(value:string) {
+    this.modelvalue  = value;
+    //alert(this.cultivarvalue);
+  } // end cultivar select
 
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;
