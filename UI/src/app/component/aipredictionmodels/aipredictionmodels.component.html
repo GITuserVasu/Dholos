@@ -95,8 +95,9 @@
                             </div> -->
                         
                             &NonBreakingSpace;&NonBreakingSpace; &NonBreakingSpace;&NonBreakingSpace;
-                            <label>Predict...</label>
+                            
                             <div *ngIf="dataset.value == 'coimbatore'">
+                              <label>Predict...</label>  
                               <select #whichmodel id="whichmodel" value="yield"
                                     (change)="modelselectonchange(whichmodel.value)">
                                     <option value="yield">Yield</option>
