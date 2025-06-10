@@ -103,7 +103,7 @@
                                     <option value="yield">Yield</option>
                                     <option value="yield_and_water">Yield and Water Used</option>
                                 </select>
-                                </div>
+                            </div>
                         
                       
                     </div>
@@ -342,7 +342,11 @@
         <div class="modal-body">
             Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
         <br>
+            <div *ngIf="datasetvalue == 'coimbatore'"> 
+                <div *ngif="whichmodel.value == 'yield_and_water'">
             Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
