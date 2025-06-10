@@ -58,7 +58,7 @@
 </div>
 <div class="row">
     <label> Choose Location </label>
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="card mini-stats-wid">
             <div class="card-body">
                 <div class="d-flex">
@@ -91,9 +91,19 @@
                                 Use Map
                             </label>
                             </div> -->
-                        
-                            &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
-                            
+                            </span>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <label> Choose what to predict </label>
+    <div class="col-md-6">
+        <div class="card mini-stats-wid">
+            <div class="card-body">
+                <div class="d-flex">
+                    <div class="flex-grow-1">    
+                        <span class="input-group">
                             <div class="col-md-6" *ngIf="dataset.value == 'coimbatore'">
                               <label>Factors to Predict...</label>  
                               <select #whichmodel id="whichmodel" value="yield"
