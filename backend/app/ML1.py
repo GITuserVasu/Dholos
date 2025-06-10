@@ -61,6 +61,7 @@ def prednow(predjson):
     Cultivar = jsondata["cultivar"]
     orgid = jsondata["orgid"]
     n2applied = jsondata["n2applied"]
+    what_to_predict = jsondata["what_to_predict"]
 
     if dataset == "lubbock":
             dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
@@ -148,8 +149,13 @@ def prednow(predjson):
     ##os.chdir(dir)
     # Execute a command and capture the output
     if dataset == 'coimbatore':
-        predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
-        result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
+        if what_to_predict == 'yield' :
+            predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
+            result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
+        elif what_to_predict == 'yield_and_water':
+             predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
+             result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test_run_yield_and_water.py'], capture_output=True, text=True)
+     
         print(result.stdout)
         abc = result.stdout
     elif dataset == 'lubbock':

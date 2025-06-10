@@ -466,7 +466,8 @@ export class AIpredictionmodelsComponent implements OnInit {
       "cultivar": this.cultivarvalue,
       "orgid" : localStorage.getItem('org_id'),
       "username" : this.username,
-      "n2applied": n2applied
+      "n2applied": n2applied,
+      "what_to_predict": this.modelvalue
     } 
 
     // alert(this.username);
