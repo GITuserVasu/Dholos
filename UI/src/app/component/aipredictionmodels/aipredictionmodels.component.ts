@@ -85,7 +85,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   resultReady: boolean = false;
   prediction_value:any ;
-  modelvalue: string;
+  modelvalue: string ="yield";
 
   
 
