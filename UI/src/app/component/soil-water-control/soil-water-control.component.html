@@ -46,7 +46,7 @@
     </div>
 </div>
 <div>
-
+<hr>
 @if(input_choice == 'single'){
   <div class="row">
     <label> <strong>Inputs</strong>  </label>
@@ -240,6 +240,7 @@
                 <!-- </div> -->
             <!-- </form> -->
         </div>
+        <br>
     }
 </div>
 
@@ -340,9 +341,39 @@
                 </div>
             </div>
         </div>
-     </div>
-    
+     </div>    
 </div>
+<hr>
+<div class="row">
+            <!-- <form [formGroup]="UploadX" enctype="multipart/form-data"> -->
+                <!-- <div class="row"> -->
+                    <div class="col-md-12">
+                        <div class="card mini-stats-wid border-0">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <div class="text-muted fw-medium"><strong>Corrected CSV file</strong>  
+                                            &nbsp;&nbsp;(format is: SLNO, LCC, Soil Color, Slope, Depth, Surface Texture, SubSurface Texture, Gravel, Rainfall, Treatment)</div>
+                                        <div class="col-md-6">
+                                            <form [formGroup]="fileUpload" enctype="multipart/form-data">
+                                                <br>
+                                                <div class="form-group col-md">
+                                                    <input type="file" id="upload-doc" class="form-control"
+                                                        (change)="uploadFile($event)"
+                                                        [accept]="['.CSV','.csv']">
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            <!-- </form> -->
+        </div>
+
 <div class="modal fade" id="resultModal" tabindex="-1" role="dialog"  >
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
