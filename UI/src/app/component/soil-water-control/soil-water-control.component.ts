@@ -49,6 +49,7 @@ export class SoilWaterControlComponent implements OnInit {
   temp_prediction: any;
   // predict_array:any = {};
   resultReady:boolean = false ;
+  correctcsv: string = "";
 
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
@@ -233,6 +234,23 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
       reader.onload=()=> {this.inputcsv = reader.result as string;};
       reader.readAsText(event.target.files[i]); 
       console.log("file data", this.inputcsv);
+   }
+  }
+
+    uploadFile2(event: any) {
+
+    const numFiles = (event.target.files).length;
+    console.log("num of files", numFiles);
+    
+     for (let i = 0; i < numFiles; i++) {
+      const reader: any = new FileReader();
+      const fileInfo = event.target.files[i];
+      this.uploadcsv[i] = event.target.files[i];
+      this.uploadcsvName[i] = event.target.files[i].name;
+      console.log("file name", this.uploadcsvName[i]);
+      reader.onload=()=> {this.correctcsv = reader.result as string;};
+      reader.readAsText(event.target.files[i]); 
+      console.log("file data", this.correctcsv);
    }
   }
 
