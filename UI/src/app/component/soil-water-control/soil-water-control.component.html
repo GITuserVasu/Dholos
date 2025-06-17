@@ -344,7 +344,8 @@
      </div>    
 </div>
 <hr>
-<div class="row">
+<div *ngIf="resultReady == true && input_choice == 'multiple'">
+    <div class="row">
             <!-- <form [formGroup]="UploadX" enctype="multipart/form-data"> -->
                 <!-- <div class="row"> -->
                     <div class="col-md-12">
@@ -352,9 +353,11 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
+
+
                                         <div class="text-muted fw-medium"><strong>Corrected CSV file</strong>  
                                             &nbsp;&nbsp;(format is: SLNO, LCC, Soil Color, Slope, Depth, Surface Texture, SubSurface Texture, Gravel, Rainfall, Treatment)</div>
-                                        <div class="col-md-6">
+                                         <div class="col-md-6">
                                             <form [formGroup]="fileUpload" enctype="multipart/form-data">
                                                 <br>
                                                 <div class="form-group col-md">
@@ -364,15 +367,18 @@
                                                 </div>
                                             </form>
 
+                                          </div>
                                         </div>
-                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 <!-- </div> -->
             <!-- </form> -->
-        </div>
+     </div>
+</div>
 
 <div class="modal fade" id="resultModal" tabindex="-1" role="dialog"  >
     <div class="modal-dialog modal-xl" role="document">
