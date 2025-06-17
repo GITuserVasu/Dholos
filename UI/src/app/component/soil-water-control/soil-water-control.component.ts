@@ -123,11 +123,11 @@ export class SoilWaterControlComponent implements OnInit {
   }
 
   save_ctreatment() {
-    
+    alert("Treatment Saved");
   }
 
   onSubmit() {
-    alert("request submitted");
+    
     this.resultReady = false ;
 // input validation for single prediction
     if(this.lccvalue == "none") {alert("Please select valid LCC value");}
@@ -139,6 +139,8 @@ export class SoilWaterControlComponent implements OnInit {
     if(this.subsurf_textvalue == "none") {alert("Please select valid subsurface texture");}
     if(this.gravelvalue == "none") {alert("Please select valid gravel value");}
     if(this.rainfallvalue == "none") {alert("Please select valid rainfall value");}
+
+    alert("request submitted");
 
     if(this.slopevalue == "lessthanone") { this.slopevalue = "<1"};
     if(this.depthvalue == "lessthan25") { this.depthvalue = "<25"};
