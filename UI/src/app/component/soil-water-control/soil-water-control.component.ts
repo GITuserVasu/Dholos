@@ -18,14 +18,14 @@ export class SoilWaterControlComponent implements OnInit {
   fileUpload!: UntypedFormGroup;
   predictradiobuttonchangevalue: any;
   input_choice: string ="";
-  lccvalue: string ="";
-  soilcolorvalue: string ="";
-  slopevalue: string = "";
-  depthvalue: string = "";
-  surf_textvalue: string = "";
-  subsurf_textvalue: string = "";
-  gravelvalue: string = "";
-  rainfallvalue: string = "";
+  lccvalue: string ="none";
+  soilcolorvalue: string ="none";
+  slopevalue: string = "none";
+  depthvalue: string = "none";
+  surf_textvalue: string = "none";
+  subsurf_textvalue: string = "none";
+  gravelvalue: string = "none";
+  rainfallvalue: string = "none";
   inputcsv: string = "";
   inputcsvName: any;
   modelradiobutton: any;
@@ -130,7 +130,7 @@ export class SoilWaterControlComponent implements OnInit {
     
     this.resultReady = false ;
 // input validation for single prediction
-    alert(this.lccvalue);
+    // alert(this.lccvalue);
     if(this.lccvalue == "none") {alert("Please select valid LCC value");}
     if(this.lccvalue == "Non-Arable" && this.soilcolorvalue != "-") { alert("Choose Soil Color = None for Non-Arable LCC");}
     if(this.soilcolorvalue == "none") {alert("Please select valid soil color");}
