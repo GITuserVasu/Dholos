@@ -130,6 +130,7 @@ export class SoilWaterControlComponent implements OnInit {
     
     this.resultReady = false ;
 // input validation for single prediction
+    alert(this.lccvalue);
     if(this.lccvalue == "none") {alert("Please select valid LCC value");}
     if(this.lccvalue == "Non-Arable" && this.soilcolorvalue != "-") { alert("Choose Soil Color = None for Non-Arable LCC");}
     if(this.soilcolorvalue == "none") {alert("Please select valid soil color");}
