@@ -122,6 +122,10 @@ export class SoilWaterControlComponent implements OnInit {
   
   }
 
+  save_ctreatment() {
+    
+  }
+
   onSubmit() {
     alert("request submitted");
     this.resultReady = false ;
