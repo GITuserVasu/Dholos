@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-soil-water-control',
-  imports: [ReactiveFormsModule,CommonModule, NgxSpinnerService],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './soil-water-control.component.html',
   styleUrl: './soil-water-control.component.css'
 })
