@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 
 import { environment } from 'src/environments/environment';
 
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-soil-water-control',
   imports: [ReactiveFormsModule,CommonModule],
@@ -54,7 +56,7 @@ export class SoilWaterControlComponent implements OnInit {
   inputerror:boolean = false;
 
 
-  constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
+  constructor(private spinner: NgxSpinnerService, private fb: UntypedFormBuilder, private http: HttpClient) { }
   
 
   ngOnInit(): void {
@@ -62,6 +64,13 @@ export class SoilWaterControlComponent implements OnInit {
       file: ['', Validators.required]
     })
 
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1000);
+    
   }
 
   predictradiobuttonchange(event: any) {
