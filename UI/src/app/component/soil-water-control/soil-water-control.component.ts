@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-soil-water-control',
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule, NgxSpinnerService],
   templateUrl: './soil-water-control.component.html',
   styleUrl: './soil-water-control.component.css'
 })
@@ -70,7 +70,7 @@ export class SoilWaterControlComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 1000);
-    
+
   }
 
   predictradiobuttonchange(event: any) {
