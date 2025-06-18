@@ -144,7 +144,7 @@ export class SoilWaterControlComponent implements OnInit {
     if(this.gravelvalue == "none") {this.inputerror = true; alert("Please select valid gravel value");}
     if(this.rainfallvalue == "none") {this.inputerror = true; alert("Please select valid rainfall value");}
 
-    
+     if(this.inputerror == false) {
 
     if(this.slopevalue == "lessthanone") { this.slopevalue = "<1"};
     if(this.depthvalue == "lessthan25") { this.depthvalue = "<25"};
@@ -165,11 +165,17 @@ export class SoilWaterControlComponent implements OnInit {
     this.inputcsv = this.inputcsv + this.subsurf_textvalue + comma;
     this.inputcsv = this.inputcsv + this.gravelvalue + comma;
     this.inputcsv = this.inputcsv + this.rainfallvalue;
+     }
     }
 
 // input validation for multiple prediction , the csv
-    
+if(this.input_choice == 'multiple'){
+   if(this.inputcsv == "") {this.inputerror = true; alert("Empty CSV file");}
+ 
+}
 
+    
+if(this.inputerror == false) {
 // Set up JSON for the POST call
  const predJson = {"data": this.inputcsv}
 
@@ -228,9 +234,9 @@ this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe(
     console.log(this.predict_array[0]);
     
   }
-}) 
-
-  }
+}) // end of http post call
+} // end of if no input error
+  } // end of OnSubmit
 
   uploadFile(event: any) {
 
