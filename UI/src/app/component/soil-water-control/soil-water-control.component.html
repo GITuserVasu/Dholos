@@ -355,7 +355,7 @@
                                     <div class="flex-grow-1">
 
 
-                                        <div class="text-muted fw-medium"><strong>Corrected CSV file</strong>  
+                                        <div class="text-muted fw-medium"><strong>Upload Corrected CSV file</strong>  
                                             &nbsp;&nbsp;(format is: SLNO, LCC, Soil Color, Slope, Depth, Surface Texture, SubSurface Texture, Gravel, Rainfall, Treatment)</div>
                                          <div class="col-md-6">
                                             <form [formGroup]="fileUpload" enctype="multipart/form-data">
@@ -431,12 +431,14 @@
           <br>
           </div>
           <div class="modal-footer">
+            <div *ngIf="input_choice == 'single'">
             <label> Correct Treatment </label>
                                     &nbsp; &nbsp;
                                     <input type="text" id="ctreatment" name="ctreatment" >
                                     &nbsp; &nbsp; &nbsp; &nbsp;
                <button type="button" class="btn btn-info" data-bs-dismiss="modal" (click)="save_ctreatment()">Save Treatment</button>                     
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <!-- <button type="button" class="btn btn-primary">Done</button> -->
           </div>
       </div>
