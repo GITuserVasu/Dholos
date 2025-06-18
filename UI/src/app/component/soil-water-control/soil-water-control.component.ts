@@ -179,7 +179,7 @@ if(this.inputerror == false) {
 // Set up JSON for the POST call
  const predJson = {"data": this.inputcsv}
 
- alert("request submitted");
+ alert("Request Submitted and is beiong Processed");
 
 // Call api and send csv file to backend
 this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe((res: any) => {
