@@ -51,6 +51,8 @@ export class SoilWaterControlComponent implements OnInit {
   resultReady:boolean = false ;
   correctcsv: string = "";
 
+  inputerror:boolean = false;
+
 
   constructor(private fb: UntypedFormBuilder, private http: HttpClient) { }
   
@@ -131,17 +133,18 @@ export class SoilWaterControlComponent implements OnInit {
     this.resultReady = false ;
 // input validation for single prediction
     // alert(this.lccvalue);
-    if(this.lccvalue == "none") {alert("Please select valid LCC value");}
-    if(this.lccvalue == "Non-Arable" && this.soilcolorvalue != "-") { alert("Choose Soil Color = None for Non-Arable LCC");}
-    if(this.soilcolorvalue == "none") {alert("Please select valid soil color");}
-    if(this.slopevalue == "none") {alert("Please select valid slope value");}
-    if(this.depthvalue == "none") {alert("Please select valid depth value");}
-    if(this.surf_textvalue == "none") {alert("Please select valid sufrace texture");}
-    if(this.subsurf_textvalue == "none") {alert("Please select valid subsurface texture");}
-    if(this.gravelvalue == "none") {alert("Please select valid gravel value");}
-    if(this.rainfallvalue == "none") {alert("Please select valid rainfall value");}
+    if(this.input_choice == 'single'){
+    if(this.lccvalue == "none") {this.inputerror = true; alert("Please select valid LCC value");}
+    if(this.lccvalue == "Non-Arable" && this.soilcolorvalue != "-") {this.inputerror = true;  alert("Choose Soil Color = None for Non-Arable LCC");}
+    if(this.soilcolorvalue == "none") {this.inputerror = true; alert("Please select valid soil color");}
+    if(this.slopevalue == "none") {this.inputerror = true; alert("Please select valid slope value");}
+    if(this.depthvalue == "none") {this.inputerror = true; alert("Please select valid depth value");}
+    if(this.surf_textvalue == "none") {this.inputerror = true; alert("Please select valid sufrace texture");}
+    if(this.subsurf_textvalue == "none") {this.inputerror = true; alert("Please select valid subsurface texture");}
+    if(this.gravelvalue == "none") {this.inputerror = true; alert("Please select valid gravel value");}
+    if(this.rainfallvalue == "none") {this.inputerror = true; alert("Please select valid rainfall value");}
 
-    alert("request submitted");
+    
 
     if(this.slopevalue == "lessthanone") { this.slopevalue = "<1"};
     if(this.depthvalue == "lessthan25") { this.depthvalue = "<25"};
@@ -151,7 +154,7 @@ export class SoilWaterControlComponent implements OnInit {
     if(this.rainfallvalue == "750to950") {this.rainfallvalue = "750-950"};
 
 // create csv file for single prediction
-    if(this.input_choice == 'single'){
+    
     var comma = "," ;
     this.inputcsv = this.lccvalue;
     this.inputcsv = this.inputcsv + comma ;
@@ -169,6 +172,8 @@ export class SoilWaterControlComponent implements OnInit {
 
 // Set up JSON for the POST call
  const predJson = {"data": this.inputcsv}
+
+ alert("request submitted");
 
 // Call api and send csv file to backend
 this.http.post(environment.apiUrl + 'soilwatercontrolpred', predJson).subscribe((res: any) => {
