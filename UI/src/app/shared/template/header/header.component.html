@@ -60,7 +60,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" >
                     <!-- item-->
-                       <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span
+                       <a class="dropdown-item" href="#profileModal"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span
                             key="t-profile">Profile</span></a>
 
 
@@ -75,4 +75,28 @@
             
         </div>
     </div>
+<!-- Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog"  >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" >
+                <span aria-hidden="true">&times;</span>
+            </button> -->
+        </div>
+        <div class="modal-body">
+            Name &nbsp; = &nbsp; &nbsp; {{profile_name}} &nbsp; kg/ha
+            <br>
+            
+            Email &nbsp; = &nbsp; &nbsp; {{profile_email}} &nbsp; mm
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Done</button> -->
+        </div>
+    </div>
+  </div>
+</div>
 </header>

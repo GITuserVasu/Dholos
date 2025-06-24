@@ -13,6 +13,10 @@ export class HeaderComponent implements OnInit {
   expireDate: any;
   currentDate: any;
   packagestatus:boolean = true;
+
+  profile_name:any;
+  profile_email:any;
+
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
@@ -20,6 +24,11 @@ export class HeaderComponent implements OnInit {
 
     this.info = JSON.parse(this.info)
     console.log("info", this.info)
+
+    this.profile_name = this.info.name;
+    this.profile_email = this.info.email;
+
+
     console.log("this.info", this.info.CreatedDate.split("T")[0]);
     var date = new Date(this.info.CreatedDate.split("T")[0]);
     // alert(this.info.CreatedDate.split("T")[0])
