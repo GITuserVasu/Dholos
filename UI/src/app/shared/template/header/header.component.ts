@@ -16,6 +16,9 @@ export class HeaderComponent implements OnInit {
 
   profile_name:any;
   profile_email:any;
+  profile_orgid:any;
+  profile_bname:any;
+  profile_domain:any;
 
   constructor(private auth: AuthService) { }
 
@@ -27,6 +30,9 @@ export class HeaderComponent implements OnInit {
 
     this.profile_name = this.info.name;
     this.profile_email = this.info.email;
+    this.profile_orgid = this.info.orgid;
+    this.profile_bname = this.info.bName;
+    this.profile_domain = this.info.domain;
 
 
     console.log("this.info", this.info.CreatedDate.split("T")[0]);
