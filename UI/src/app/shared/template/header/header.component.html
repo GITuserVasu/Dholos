@@ -87,11 +87,20 @@
             </button> -->
         </div>
         <div class="modal-body">
-            Name &nbsp; = &nbsp; &nbsp; {{profile_name}} &nbsp;
-            <br>
-            
-            Email &nbsp; = &nbsp; &nbsp; {{profile_email}} &nbsp; 
-            
+            <table>
+                <tr>
+            <td>Name:</td> <td>{{profile_name}}</td>> 
+            </tr>
+            <tr>
+            <td>Email:</td> <td>{{profile_email}}</td> 
+            </tr><tr>
+            <td>Org Id:</td> <td>{{profile_orgid}}</td>  
+            </tr><tr>
+            <td>Business Name:</td> <td>{{profile_bname}}</td>
+            </tr><tr>
+            <td>Domain:</td> <td>{{profile_domain}}</td>
+            </tr>
+            </table>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
