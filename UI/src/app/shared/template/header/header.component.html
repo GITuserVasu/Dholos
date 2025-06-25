@@ -60,12 +60,12 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" >
                     <!-- item-->
-                       <!-- <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span
-                            key="t-profile">Profile</span></a> -->
+                       <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span
+                            key="t-profile">Profile</span></a>
 
 
 
-                    <!-- <div class="dropdown-divider"></div> -->
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="#" (click)="logout()"><i
                             class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
 			    <span key="t-logout">Logout</span></a>
@@ -76,3 +76,37 @@
         </div>
     </div>
 </header>
+<!-- Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" role="dialog"  >
+  <div class="modal-dialog" >
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" >
+                <span aria-hidden="true">&times;</span>
+            </button> -->
+        </div>
+        <div class="modal-body">
+            <table>
+                <tr>
+            <td>Name:</td> <td>&nbsp;&nbsp;{{profile_name}}</td>
+            </tr>
+            <tr>
+            <td>Email:</td> <td>&nbsp;&nbsp;{{profile_email}}</td> 
+            </tr><tr>
+            <td>Org Id:</td> <td>&nbsp;&nbsp;{{profile_orgid}}</td>  
+            </tr><tr>
+            <td>Business Name:</td> <td>&nbsp;&nbsp;{{profile_bname}}</td>
+            </tr><tr>
+            <td>Domain:</td> <td>&nbsp;&nbsp;{{profile_domain}}</td>
+            </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Done</button> -->
+        </div>
+    </div>
+  </div>
+</div>
+

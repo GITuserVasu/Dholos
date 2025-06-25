@@ -84,7 +84,11 @@ export class AIpredictionmodelsComponent implements OnInit {
   modelradiobutton: any;
 
   resultReady: boolean = false;
-  prediction_value:any ;
+  prediction_string:string = "";
+  modelvalue: string ="yield";
+
+  predicted_yield:string = "";
+  predicted_water_used:string = "";
 
   
 
@@ -141,10 +145,10 @@ export class AIpredictionmodelsComponent implements OnInit {
     lat = this.lonlatarray[1]; 
 
     if(this.datasetvalue == 'coimbatore'){
-    minlon = 76
-    maxlon = 78
-    minlat = 10
-    maxlat = 12
+    minlon = 76.7652
+    maxlon = 77.4509
+    minlat = 10.7872
+    maxlat = 11.1221
     const a = fromLonLat([minlon,minlat],'EPSG:3857')
     const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
     this.mapextent = [a[0],a[1],b[0],b[1]];
@@ -158,7 +162,16 @@ export class AIpredictionmodelsComponent implements OnInit {
       const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
       this.mapextent = [a[0],a[1],b[0],b[1]];
       }
-
+    
+      if(this.datasetvalue == 'lubbock'){
+      minlon =  -102.5
+      maxlon =  -101.5
+      minlat =  33.3947
+      maxlat =  33.8304
+      const a = fromLonLat([minlon,minlat],'EPSG:3857')
+      const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
+      this.mapextent = [a[0],a[1],b[0],b[1]];
+      }
     
     
     //alert (mapextent);
@@ -393,6 +406,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   // } 
 
   onSubmit() {
+    
     alert("Wait for a few seconds...and then click on 'Check Result'  :-)");
     //Validation
     if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
@@ -401,13 +415,16 @@ export class AIpredictionmodelsComponent implements OnInit {
     // this.usemap
     // this.locationvalue
     // this.string_coords
+    var n2appliedinput = document.getElementById("n2applied") as HTMLInputElement;
+    var n2applied = n2appliedinput.value
+    if (n2applied == '-1') {n2applied = '152'}
     var pltgdate = document.getElementById("pdate") as HTMLInputElement;
     var pdate = pltgdate.value ;
     if(pdate == "") {alert("Please enter Planting Date"); location.reload();}
     if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} 
     // this.useNN
     // this.useRandomForest
-    if(this.cultivarvalue == "none") {alert("Please select a Cultivar"); location.reload();}
+    if(this.cultivarvalue == "none" && this.datasetvalue == "coimbatore") {alert("Please select a Cultivar"); location.reload();}
     // End Validation 
 
     //if(this.datasetvalue == 'coimbatore'){
@@ -451,7 +468,9 @@ export class AIpredictionmodelsComponent implements OnInit {
       "useRandomForest": this.useRandomForest,
       "cultivar": this.cultivarvalue,
       "orgid" : localStorage.getItem('org_id'),
-      "username" : this.username
+      "username" : this.username,
+      "n2applied": n2applied,
+      "what_to_predict": this.modelvalue
     } 
 
     // alert(this.username);
@@ -471,18 +490,35 @@ export class AIpredictionmodelsComponent implements OnInit {
         console.log("Prediction Routine Call was successful")
         alert("Prediction is now ready...Please click on 'Check Result' ")
         this.resultReady = true;
-        this.prediction_value = res.prediction ;
+        this.prediction_string = res.prediction ;
         //alert(res.prediction)
-        this.prediction_value = this.prediction_value.replaceAll(" ", "");
-        this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 2);
+  
+        /* this.prediction_value = this.prediction_value.replaceAll(" ", "");
+        this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 2); */
         console.log(res.prediction)
-        console.log(this.prediction_value)
+        console.log(this.prediction_string)
+
+        this.prediction_string = this.prediction_string.replaceAll("[", "");
+        this.prediction_string = this.prediction_string.replaceAll("]", "");
+
+        const prediction_array = this.prediction_string.trim().split(/\s+/);
+
+        this.predicted_yield = prediction_array[0];
+        this.predicted_water_used = prediction_array[1];
+
+
+
+
       }
     }) 
 
 
   } 
   
+  modelselectonchange(value:string) {
+    this.modelvalue  = value;
+    //alert(this.cultivarvalue);
+  } // end cultivar select
 
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;

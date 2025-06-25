@@ -135,6 +135,8 @@ export class OcrscreenComponent implements OnInit {
   statevalue: string = "";
   countyvalue: string = "";
   districtvalue: string = "";
+  county: any;
+  soilradiobuttonchangevalue: any;
 
   //pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   //constructor(private spinner: NgxSpinnerService, private fb: FormBuilder, private http: HttpClient, private notification: NotificationService, private router: Router) {addInteraction(); }
@@ -235,20 +237,20 @@ export class OcrscreenComponent implements OnInit {
     var lat:any;
 
     if(this.countryvalue == "NotSelected") {
-    if(this.info.city != null){this.city = this.info.city;} else{this.city = "";}
+    if(this.info.county != null){this.county = this.info.county;} else{this.county = "";}
     if(this.info.state != null){this.state = this.info.state;} else{this.state = "";}
     if(this.info.country != null){this.country = this.info.country;} else{this.country = "";}
     } else {
       /* const countrystate = this.countryvalue.split("|")
       console.log("before split", countrystate); */
-      this.city ="";
-      this.state = this.countryvalue;
-      this.country = this.statevalue ;
+      this.county =this.districtvalue;
+      this.state = this.statevalue;
+      this.country = this.countryvalue ;
     }
     console.log("state", this.state);
     console.log("country", this.country);
 
-    var myURL = "https://nominatim.openstreetmap.org/search?addressdetails=1&q="+this.city+"+"+this.state+"+"+this.country+"&format=jsonv2&limit=1"
+    var myURL = "https://nominatim.openstreetmap.org/search?addressdetails=1&q="+this.county+"+"+this.state+"+"+this.country+"&format=jsonv2&limit=1"
     //var myURL = "https://nominatim.openstreetmap.org/search?addressdetails=1&q=davis+california&format=jsonv2&limit=1";
     this.http.get(myURL).subscribe((data: any) => {
       if (data.length != 0){
@@ -438,6 +440,11 @@ showFarm(value:string) {
     console.log("farmname",this.farmname);
 
     console.log("farmarea", b['farmarea']);
+    
+    this.myarea = b['farmarea'] ;
+    this.country = b["country"] ;
+    this.state = b["state"] ;
+    this.county = b["county"] ;
 
     console.log("b",b['polygon_coords']);
     var final_coords: any = '';
@@ -505,14 +512,22 @@ showFarm(value:string) {
    this.farmsavedflag = 0;
    const roiname = document.getElementById('roiname') as HTMLInputElement | null;
     let roinamevalue = roiname?.value;
-    if (roinamevalue == null) {roinamevalue = "None"};
+    console.log("roiname", roinamevalue);
+    /* if (roinamevalue == "") {alert("Please enter the name of the farm/ROI");}
+    if (roinamevalue == null) {roinamevalue = "None"}; */
+    const timestampInSeconds: number = Date.now() / 1000;
+    roinamevalue = roinamevalue+"_a"+timestampInSeconds ;
+
     this.farmname = roinamevalue ;
    const farmInfo = {
     "companyID":this.info.orgid,
     "UserID": this.info.id,
     "Coordinates": this.string_coords,
     "farmname":roinamevalue,
-    "farmarea":this.myarea
+    "farmarea":this.myarea,
+    "country":this.country,
+    "state":this.state,
+    "county":this.county
     //"farmdesc":farmdesc
     }
    console.log(farmInfo["UserID"]);
@@ -726,6 +741,44 @@ showFarm(value:string) {
     }
     
     const simulationname = this.setProjectform.controls['projectName'].value;
+
+    // Calculate estimated number of simulations as
+    //  Number of sub-blocks * number of planting dates (5) * number of years * number of treatments (get from X file)
+    const num_pltg_dates = 5 ;
+    var sub_block_size = Number(subblocksizevalue);
+    console.log("sub block size", subblocksizevalue);
+    console.log("area", this.myarea);
+    const num_sub_blocks = this.myarea/Number(subblocksizevalue) ;
+
+    const start = this.Xfile_as_string.indexOf('*TREATMENTS');
+    const result1 = this.Xfile_as_string.substring(start+1);
+    const end = result1.indexOf('*');
+    const result2 = result1.substring(0,end);
+    var result3 = result2.split("\n");
+    var num_treatments = result3.length;
+
+
+    const num_sim_est = num_pltg_dates * Number(numyearsvalue) * num_sub_blocks * num_treatments ;
+    console.log("num sub blocks",Number(num_sub_blocks));
+    console.log("num years",Number(numyearsvalue));
+    console.log("num pltg dates",num_pltg_dates);
+    console.log("num treatments",num_treatments);
+    console.log("num sims", num_sim_est);
+    
+    if (num_sim_est > 5000) {
+      alert("Please increase the sub block size for quicker response");
+      this.erroranywhere = 1 ;
+    }
+    
+    var Regional = false ;
+    var ReducedZipSize = false ;
+    var TreatmentChange = true;
+    if (num_sim_est > 5000){
+      Regional = true;
+      ReducedZipSize = true ;
+      TreatmentChange = true ;
+    }
+
     
     const exptJson = {
     "companyID":this.info.orgid,
@@ -759,9 +812,14 @@ showFarm(value:string) {
     "ccatmco2":ccatmco2value,
     "city":this.city,
     "state":this.state,
-    "country":this.country
+    "country":this.country,
+    "county":this.county,
+    "regional":Regional,
+    "reducedzipsize":ReducedZipSize,
+    "treatmentchange":TreatmentChange
     }
     console.log("CCATMCO2",exptJson["ccatmco2"]);
+    if(this.erroranywhere == 0){
     this.http.post(environment.apiUrl + 'make_json', exptJson).subscribe((jsondata: any) => {
       console.log('resstatusCodestatusCode in Submit make json', jsondata.statusCode);
       if (jsondata.statusCode == 200) {
@@ -769,10 +827,11 @@ showFarm(value:string) {
         console.log("JSON Success");
         console.log(jsondata.name);
       } else {
-        alert('Error in submission. Did you forget to enter the Planting Date?');
+        alert('Error in submission');
         this.erroranywhere = 1;
         location.reload();
       }
+    
     //  })
       
    
@@ -875,6 +934,7 @@ showFarm(value:string) {
       }
     })
   })  // end JSON submit to AWS
+}
   if( this.erroranywhere == 0){
   this.notification.showSuccess("Successfully Submitted, Check back in a while for results ", "Submit Another or go to Dashboard to check on Status");
         //this.router.navigate(['/'])
@@ -896,6 +956,25 @@ showFarm(value:string) {
       this.Create_default = false;
     } else if (event.target.value == "Existing") {
       this.getXfilelist(event);
+      this.Create_existing = true;
+      this.Create_new = false;
+      this.Create_default = false;
+    } else {
+      this.Create_existing = false;
+      this.Create_new = false;
+      this.Create_default = true;
+    }
+ 
+  }
+  soilradiobuttonchange(event: any) {
+   
+    this.soilradiobuttonchangevalue = event.target.value
+
+    if (event.target.value == "New") {
+      this.Create_existing = false;
+      this.Create_new = true;
+      this.Create_default = false;
+    } else if (event.target.value == "Existing") {
       this.Create_existing = true;
       this.Create_new = false;
       this.Create_default = false;

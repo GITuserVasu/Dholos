@@ -60,17 +60,22 @@ def prednow(predjson):
     useRandomForest = jsondata["useRandomForest"]
     Cultivar = jsondata["cultivar"]
     orgid = jsondata["orgid"]
+    n2applied = jsondata["n2applied"]
+    what_to_predict = jsondata["what_to_predict"]
 
-    if dataset == "texas":
-        if blockname == "lubbock":
-            dirname = "/homne/bitnami/ML/data/texas/lubbock/WorkingDir/"
-            filename = "ml_data.pkl"
+    if dataset == "lubbock":
+            dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
+            #filename = "ml_data.pkl"
+            filename = "finalsummdf-file.csv"
+            ML1_df = read_csvdata(dirname, filename)
     if dataset == "coimbatore":
-        dirname = "/homne/bitnami/ML/data/coimbatore-apr25/"
+        dirname = "/home/bitnami/ML/data/coimbatore-apr25/models/"
         filename = "ml_data.pkl"
+        ML1_df= read_pkldata(dirname,filename)
 
     """ #reportfile = open_reporting_session("","") """
-    ML1_df= read_pkldata(dirname,filename)
+    #ML1_df= read_pkldata(dirname,filename)
+    
     """predictdf = read_csvdata("","")
     print(predictdf)
     SRADlist, Tmaxlist, Tminlist, Rainlist= create_empty_param_cols()
@@ -94,7 +99,7 @@ def prednow(predjson):
     #close_reporting_session(reportfile) """
     
 
-    weatherdf, location = get_predictweatherdata(ML1_df, stringcoords)
+    weatherdf, location = get_predictweatherdata(ML1_df, stringcoords, dirname)
 
     #print(plantingdate)
     date_obj = datetime.strptime(plantingdate, '%Y-%m-%d')
@@ -110,11 +115,24 @@ def prednow(predjson):
     print(cultivardf)
     #cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
     cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
+    
+    print("CULTIVAR ID")
     print(cultivarid)
 
-    predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+    if dataset == 'coimbatore':
+        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
-                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':152, 'location':location}
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+    """ if dataset == 'lubbock':
+        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid,  'location':location} """
+        
+    if dataset == 'lubbock':
+        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+        
     predictdf = pd.DataFrame([predict_data])
 
     print(predictdf)
@@ -123,7 +141,7 @@ def prednow(predjson):
 
     predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
 
-    predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/predict-row.csv")
+    #predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/predict-row.csv")
 
     # save current dir
     ##savedir = os.getcwd()
@@ -131,8 +149,19 @@ def prednow(predjson):
     ##os.chdir(dir)
     # Execute a command and capture the output
     if dataset == 'coimbatore':
-        result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
-        ##print(result.stdout)
+        if what_to_predict == 'yield' :
+            predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
+            result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
+        elif what_to_predict == 'yield_and_water':
+             predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
+             result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test_run_yield_and_water.py'], capture_output=True, text=True)
+     
+        print(result.stdout)
+        abc = result.stdout
+    elif dataset == 'lubbock':
+        predictdf.to_csv("/home/bitnami/ML/data/texas/lubbock/models/predict-row.csv")
+        result = subprocess.run(['python3', '/home/bitnami/ML/data/texas/lubbock/models/testrun.py'], capture_output=True, text=True)
+        print(result.stdout)
         abc = result.stdout
     else:
         abc = 0
@@ -144,22 +173,28 @@ def prednow(predjson):
     return JsonResponse({"statusCode": 200, "name": "test", "prediction":abc})
 
 @csrf_exempt
-def get_predictweatherdata(ML1_df, stringcoords):
+def get_predictweatherdata(ML1_df, stringcoords, dirname):
     location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong", "location"]]
     location_lat_long = location_lat_long.drop_duplicates()
+    location_lat_long['Distance'] = "" 
+    print("In get weather data and location")
     print(location_lat_long)
 
     location_lat_long_list = ML1_df['SubBlockID'].unique().tolist()
     
     for index, row in location_lat_long.iterrows():
-        location_lat_long['Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
-
+        location_lat_long.loc[index,'Distance'] = gethaversinedistance(row['CenterLat'], row['CenterLong'], stringcoords)
+        #print(location_lat_long['Distance'])
+        #print("--")
+    #df.loc[df['col2'].idxmin(), 'col2']
+    print("nearest",location_lat_long.loc[location_lat_long['Distance'].idxmin()])    
     nearest_row = location_lat_long.loc[location_lat_long['Distance'].idxmin()]
     nearest_locn = nearest_row['SubBlockID']
-    
+    print("Nearest location", nearest_locn)
     location = nearest_row['location']
-    
-    weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
+    print("Nearest location", location)
+    #weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
+    weatherdir = dirname + nearest_locn + "/"
     weatherfile = "mergedweather.csv"
 
     weatherdf = read_csvdata(weatherdir, weatherfile)
@@ -238,7 +273,8 @@ def read_pkldata(pathname, filename):
         print("filename is the name of the pkl file")
     if pathname == "" and filename == "":
         #pathname = "C:\\Users\\ganes\\Desktop\\vasu\\eProbito\\Gaiadhi\\python-code\\"
-        pathname = "/home/bitnami/ML/data/coimbatore-apr25/"
+        #pathname = "/home/bitnami/ML/data/coimbatore-apr25/models"
+        pathname = "/home/bitnami/ML/data/coimbatore-apr25/models/"
         filename = "ml_data.pkl"
     if filename == "":
         print("Please enter valid filename")

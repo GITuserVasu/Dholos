@@ -65,12 +65,15 @@
 
                                 <div class="row">
                                     <div class="mt-4 col-lg-6 text-center">
-                                        <a routerLink="forgot-password" class="text-muted">
+                                        <!-- <a routerLink="forgot-password" class="text-muted"> -->
+                                            <a routerLink="forgot-password" class="badge bg-info" style="width: 10rem;">
                                             <i class="mdi mdi-lock me-1"></i> Forgot password?</a>
                                     </div>
                                     <div class="mt-4 col-lg-6 text-center">
                                         <!-- routerLink="registrationPage" -->
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"  class="text-muted"><i class="mdi mdi-lock me-1"></i> New Registration</a>
+                                        <!-- <a data-bs-toggle="modal" data-bs-target="#exampleModal"  class="text-muted"><i class="mdi mdi-lock me-1"></i> New Registration</a> -->
+                                       <a data-bs-toggle="modal" data-bs-target="#exampleModal"  class="badge bg-info" style="width: 10rem;"><i class="mdi mdi-lock me-1"></i> New Registration</a>
+
                                     </div>
 
                                     
@@ -104,9 +107,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="custom-control custom-radio">
+                    <!-- <div > -->
                         <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"
-                            (click)="redirectUrl('Company')" data-bs-dismiss="modal" checked >&nbsp;&nbsp;
-                        <label class="custom-control-label" for="customRadio1"><strong> Manager Registration</strong></label>
+                        (click)="redirectUrl('Company')" data-bs-dismiss="modal" checked >&nbsp;&nbsp;
+                        <!-- <button class="btn btn-primary" data-bs-toggle="button" id="customRadio1" name="customRadio" 
+                            (click)="redirectUrl('Company')" > Click Here For Manager Registration </button> -->
+                        <!-- <label class="custom-control-label" for="customRadio1"><strong> Manager Registration</strong></label> -->
+                        <label class="badge bg-info" style="width: 16rem;" for="customRadio1"><strong> Click Here for Manager Registration</strong></label>
                     </div>
                 <br>
                     <!-- <div class="custom-control custom-radio">
@@ -116,6 +123,7 @@
                     </div> -->
                 </div>
                 <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button> -->
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <!-- <button type="button" class="btn btn-primary">Done</button> -->
                 </div>

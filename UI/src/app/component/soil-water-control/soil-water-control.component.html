@@ -3,12 +3,12 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0 font-size-18"> Water Catchment  </h4>
+            <h4 class="mb-sm-0 font-size-18"> Soil & Water Conservation  </h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Water Catchment</li>
+                    <li class="breadcrumb-item active">Soil & Water Conservation</li>
                 </ol>
             </div>
 
@@ -46,7 +46,7 @@
     </div>
 </div>
 <div>
-<br>
+<hr>
 @if(input_choice == 'single'){
   <div class="row">
     <label> <strong>Inputs</strong>  </label>
@@ -127,7 +127,7 @@
         </div>
     </div>
   </div>
-<br>
+
   <div class="row">
     <!-- <label> Enter Inputs </label> -->
     <div class="col-md-10">
@@ -207,25 +207,20 @@
         </div>
     </div>
   </div>
-
-
-
-
 }
 </div>
-<br>
 <div>
     @if(input_choice == 'multiple'){
         <div class="row">
             <!-- <form [formGroup]="UploadX" enctype="multipart/form-data"> -->
                 <!-- <div class="row"> -->
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card mini-stats-wid border-0">
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
-                                        <p class="text-muted fw-medium"><strong>Input CSV file</strong>  
-                                            <br>(format is: SLNO, LCC, Soil Color, Slope, Depth, Surface Texture, SubSurface Texture, Gravel, Rainfall)</p>
+                                        <div class="text-muted fw-medium"><strong>Input CSV file</strong>  
+                                            &nbsp;&nbsp;(format is: SLNO, LCC, Soil Color, Slope, Depth, Surface Texture, SubSurface Texture, Gravel, Rainfall)</div>
                                         <div class="col-md-6">
                                             <form [formGroup]="fileUpload" enctype="multipart/form-data">
                                                 <br>
@@ -245,22 +240,19 @@
                 <!-- </div> -->
             <!-- </form> -->
         </div>
-
-    
-
+        <br>
     }
 </div>
 
-<br>
 <div class="row">
-    <label> Choose Model </label>
+    <!-- <label> Choose Model </label> -->
     <div class="col-md-12">
         <div class="card mini-stats-wid">
             <div class="card-body">
                 <div class="d-flex">
                     <div class="flex-grow-1">
 
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <!-- <input class="form-check-input" type="radio" name="NNRadio" id="NNRadio1"
                                 value="NeuralNetwork" formControlName="neuralnetwork"
                                 (change)="modelradiobuttonchange($event)" checked>
@@ -276,8 +268,10 @@
                                 (change)="modelradiobuttonchange($event)" checked>
                             &NonBreakingSpace;&NonBreakingSpace;
                             <label class="form-check-label" for="NNRadio2">
-                                Water Catchment AI model
+                                Soil & Water Conservation AI model
                             </label>
+                            &NonBreakingSpace;&NonBreakingSpace;
+                            - Random Forest: Accuracy (Rsquared) = 97 %
                         </div>
                         <!-- <span class="input-group">
                             <label> Neural Network Model </label>
@@ -295,7 +289,7 @@
         </div>
     </div>
 </div>
-<br>
+
 <div class="row">
     <hr>
      <div class="col-md-12 ">
@@ -303,22 +297,91 @@
             <div class="card-body ">
                 <div class="d-flex ">
                     <div class="flex-grow-1 ">
+                        <table class="table">
+                            <tr>
+                                <td>
                         <!-- <div *ngIf="resultReady == false"> -->
+                            <!-- <div class="col-md-4 "> -->
                             <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()">
                             <!-- </div> -->
-                            <!-- <div *ngIf="resultReady == true"> -->
+                            <!-- </div> -->
+                             </td>
+                             <td>
+                            <div *ngIf="resultReady == true">
+                                <!-- <div class="col-md-4 "> -->
+                            <!-- <input type="button" class="btn btn-primary" value="Suggest Treatment" (click)="onSubmit()"> -->
+                            <!-- </div> -->
+                                <!-- <div class="col-md-4 "> -->
+                                    
+                                <a 
+                                     href="/assets/temp/predicted-values.csv"
+                                        class="btn text-center"
+                                        target="_blank"
+                                        download="predicted_treatments.csv"
+                                            >
+                                        Download CSV
+                                        </a>
+                                        
+                                        <!-- </div>
+                                        <div class="col-md-4 "> -->
+                                            </div>
+                                            </td>
+                                            <td>
+                                            <div *ngIf="resultReady == true">
+                                            
                             <button type="button" class="btn btn-info float-end" data-bs-toggle="modal" data-bs-target="#resultModal">View Result</button>
                             <!-- </div> -->
+                             
+                            </div>
+                            </td>
+                            </tr>
+                            </table>
                         <!-- [disabled]="fileUpload.invalid"> -->
                     </div>
                 </div>
             </div>
         </div>
-     </div>
-    
+     </div>    
 </div>
+<hr>
+<div *ngIf="resultReady == true && input_choice == 'multiple'">
+    <div class="row">
+            <!-- <form [formGroup]="UploadX" enctype="multipart/form-data"> -->
+                <!-- <div class="row"> -->
+                    <div class="col-md-12">
+                        <div class="card mini-stats-wid border-1 text-dark bg-info mb-3">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+
+
+                                        <div class="text-muted fw-medium"><strong>Upload Corrected CSV file (if any)</strong>  
+                                            &nbsp;&nbsp;(format is: SLNO, LCC, Soil Color, Slope, Depth, Surface Texture, SubSurface Texture, Gravel, Rainfall, Treatment)</div>
+                                         <div class="col-md-6">
+                                            <form [formGroup]="fileUpload" enctype="multipart/form-data">
+                                                <br>
+                                                <div class="form-group col-md">
+                                                    <input type="file" id="upload-doc" class="form-control"
+                                                        (change)="uploadFile2($event)"
+                                                        [accept]="['.CSV','.csv']">
+                                                </div>
+                                            </form>
+
+                                          </div>
+                                        </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            <!-- </form> -->
+     </div>
+</div>
+
 <div class="modal fade" id="resultModal" tabindex="-1" role="dialog"  >
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Result</h5>
@@ -327,15 +390,61 @@
               </button> -->
           </div>
           <div class="modal-body">
-            <h6 *ngFor="let row of predicted_treatment"><p>{{row}}</p></h6> 
+            <!-- <h6 *ngFor="let row of predicted_treatment"><p>{{row}}</p></h6>  -->
+            <table class="table">
+    <thead>
+        <tr>
+            <th>LCC</th>
+            <th>Soil Color</th>
+            <th>Slope</th>
+            <th>Depth</th>
+            <th>Soil Texture</th>
+            <th>Sub Soil Texture</th>
+            <th>Gravel</th>
+            <th>Rainfall</th>
+            <th>Treatment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let items of predict_array">
+            <!-- <td>{{items}}</td> -->
+             <td *ngFor="let item of items">{{item}}</td>
+        </tr>
+        <!-- <tr *ngFor="let item of predicted_treatment">
+            <ng-container *ngFor="let subItem of temp_array">
+                <tr>
+                    <td>{{ temp_array[0]}}</td>
+                    <td>{{ soil_color }}</td>
+                    <td>{{ slope }}</td>
+                    <td>{{ depth }}</td>
+                    <td>{{ surf_text }}</td>
+                    <td>{{ subsurf_text}}</td>
+                    <td>{{ gravel }}</td>
+                    <td>{{ rainfall }}</td>
+                    <td>{{ treatment }}</td>
+                </tr>
+            </ng-container>
+        </tr> -->
+    </tbody>
+</table>
                 
           <br>
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div *ngIf="input_choice == 'single'">
+            <label> Correct Treatment </label>
+                                    &nbsp; &nbsp;
+                                    <input type="text" id="ctreatment" name="ctreatment" >
+                                    &nbsp; &nbsp; &nbsp; &nbsp;
+               <button type="button" class="btn btn-info" data-bs-dismiss="modal" (click)="save_ctreatment()">Save Treatment</button>                     
+              </div>
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <!-- <button type="button" class="btn btn-primary">Done</button> -->
           </div>
       </div>
     </div>
 </div>
 
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+        <p style="color: white"> Processinhg... </p>
+    </ngx-spinner> -->
