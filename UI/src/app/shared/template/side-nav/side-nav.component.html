@@ -9,6 +9,7 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Menu</li>
                 <ng-container *ngIf="Role=='admin'">
+                    <div *ngif="bname!='UAS'">
                     <li>
                         <a href="#" class="waves-effect" routerLink="/">
                             <i class="bx bx-home-circle"></i>
@@ -33,12 +34,15 @@
                             <span key="t-dashboards"> AI Predictive Models</span>
                         </a>
                     </li>
+                    </div>
+                    <div *ngif="bname=='UAS'">
                     <li>
                         <a href="javascript: void(0);" class="waves-effect" routerLink="/soilwatercontrol">
                             <i class="bx bx-tone"></i><span class="badge rounded-pill bg-info float-end"></span>
                             <span key="t-dashboards">Soil & Water Conservation </span>
                         </a>
                     </li>
+                    </div>
                     <!--     <li>
                             <a href="javascript: void(0);" class="waves-effect" routerLink="/menu/submenulist">
                                 <i class="bx bx-tone"></i><span class="badge rounded-pill bg-info float-end"></span>
