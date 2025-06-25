@@ -28,6 +28,7 @@ export class SideNavComponent implements OnInit {
     this.org_id = window.localStorage.getItem('org_id');
     this.bname = window.localStorage.getItem('bName');
     console.log("bname", this.bname);
+    alert("This is a test");
 
 
    
