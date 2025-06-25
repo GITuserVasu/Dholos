@@ -26,9 +26,7 @@ export class SideNavComponent implements OnInit {
   ngOnInit(): void {
     this.Role = window.localStorage.getItem('role');
     this.org_id = window.localStorage.getItem('org_id');
-    this.bname = window.localStorage.getItem('bName');
-    console.log("bname", this.bname);
-    alert("This is a test");
+    
 
 
    
@@ -47,6 +45,11 @@ export class SideNavComponent implements OnInit {
         0 < $("#sidebar-menu").length && 0 < $("#sidebar-menu .mm-active .active").length && (300 < (e = $("#sidebar-menu .mm-active .active").offset().top) && (e -= 300, $(".vertical-menu .simplebar-content-wrapper").animate({ scrollTop: e }, "slow")))
     })
       
+    this.bname = window.localStorage.getItem('bName');
+    console.log("bname", this.bname);
+    alert("This is a test");
+
+
     }
     
 getMenuData(){
