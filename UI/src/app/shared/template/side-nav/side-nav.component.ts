@@ -15,6 +15,7 @@ declare var $ : any;
 export class SideNavComponent implements OnInit {
   Role: any;
   org_id:any
+  bname:any;
   menudataList:any;
   menuModuleList:any;
   mainMenu:any;
@@ -25,7 +26,8 @@ export class SideNavComponent implements OnInit {
   ngOnInit(): void {
     this.Role = window.localStorage.getItem('role');
     this.org_id = window.localStorage.getItem('org_id');
-    
+    this.bname = window.localStorage.getItem('bName');
+    console.log("bname", this.bname);
 
 
    
