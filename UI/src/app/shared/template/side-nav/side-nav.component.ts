@@ -15,7 +15,7 @@ declare var $ : any;
 export class SideNavComponent implements OnInit {
   Role: any;
   org_id:any
-  bname:any;
+  bname:any = "None";
   menudataList:any;
   menuModuleList:any;
   mainMenu:any;
@@ -26,7 +26,10 @@ export class SideNavComponent implements OnInit {
   ngOnInit(): void {
     this.Role = window.localStorage.getItem('role');
     this.org_id = window.localStorage.getItem('org_id');
-    
+    console.log("Role", this.Role);
+    console.log("Orgid", this.org_id);
+    this.bname = window.localStorage.getItem('bName');
+    console.log("bname", this.bname);
 
 
    
@@ -45,9 +48,8 @@ export class SideNavComponent implements OnInit {
         0 < $("#sidebar-menu").length && 0 < $("#sidebar-menu .mm-active .active").length && (300 < (e = $("#sidebar-menu .mm-active .active").offset().top) && (e -= 300, $(".vertical-menu .simplebar-content-wrapper").animate({ scrollTop: e }, "slow")))
     })
       
-    this.bname = window.localStorage.getItem('bName');
-    console.log("bname", this.bname);
-    alert("This is a test");
+    
+    
 
 
     }
