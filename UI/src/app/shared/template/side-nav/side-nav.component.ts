@@ -16,7 +16,7 @@ export class SideNavComponent implements OnInit {
   info: any;
   Role: any;
   org_id:any;
-  bname:any = "None";
+  bname:string = "None";
   menudataList:any;
   menuModuleList:any;
   mainMenu:any;
