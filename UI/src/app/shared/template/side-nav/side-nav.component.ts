@@ -13,8 +13,9 @@ declare var $ : any;
     standalone: true
 })
 export class SideNavComponent implements OnInit {
+  info: any;
   Role: any;
-  org_id:any
+  org_id:any;
   bname:any = "None";
   menudataList:any;
   menuModuleList:any;
@@ -24,6 +25,11 @@ export class SideNavComponent implements OnInit {
   constructor(private orgService:OrganizationService, private menuService:MenuModulesService) { }
 
   ngOnInit(): void {
+
+  this.info = localStorage.getItem("info")
+  this.info = JSON.parse(this.info)
+  console.log("this.info", this.info);
+
     this.Role = window.localStorage.getItem('role');
     this.org_id = window.localStorage.getItem('org_id');
     console.log("Role", this.Role);
