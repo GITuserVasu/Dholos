@@ -103,12 +103,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     console.log("this.info", this.info);
     this.createNewMap();
 
-    this.spinner.show();
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 1000);
+    
   }
 
   createNewMap(){  
@@ -481,6 +476,15 @@ export class AIpredictionmodelsComponent implements OnInit {
     } 
 
     // alert(this.username);
+
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1000);
+
+
     this.resultReady = false;
 
     this.http.post(environment.apiUrl + 'prednow', predjson).subscribe((res: any) => {
