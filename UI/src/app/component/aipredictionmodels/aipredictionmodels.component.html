@@ -329,7 +329,7 @@
             <div class="card-body">
                 <div class="d-flex">
                     <div class="flex-grow-1">
-                        <!-- <input type="button" class="btn btn-primary float-end" value="checkResult" (click)="checkResult()"> -->
+                         <input type="button" class="btn btn-primary float-end" value="checkResult" (click)="checkResult()"> -->
                         <!-- <div class="mt-4 col-lg-6 float-end"> 
                             <a data-toggle="modal" data-target="#resultModal"  class="text-muted"> Check Result</a>
                         </div>
@@ -339,6 +339,11 @@
         </div>
     </div> --> 
 </div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+        <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+
 <!-- Modal -->
 <div class="modal fade" id="resultModal" tabindex="-1" role="dialog"  >
   <div class="modal-dialog" role="document">
