@@ -482,7 +482,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
-    }, 1000);
+    }, 5000);
 
 
     this.resultReady = false;
