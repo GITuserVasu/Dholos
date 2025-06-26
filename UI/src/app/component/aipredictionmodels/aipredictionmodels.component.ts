@@ -407,7 +407,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   onSubmit() {
     
-    alert("Wait for a few seconds...and then click on 'Check Result'  :-)");
+    alert("Working on it...it will take a few seconds  :-)");
     //Validation
     if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
     if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
