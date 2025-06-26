@@ -102,6 +102,13 @@ export class AIpredictionmodelsComponent implements OnInit {
     this.info = JSON.parse(this.info)
     console.log("this.info", this.info);
     this.createNewMap();
+
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1000);
   }
 
   createNewMap(){  
