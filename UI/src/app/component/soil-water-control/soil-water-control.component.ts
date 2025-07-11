@@ -54,6 +54,8 @@ export class SoilWaterControlComponent implements OnInit {
   correctcsv: string = "";
 
   inputerror: boolean = false;
+  predictcorrectbuttonchangevalue: any;
+  predictcorrect: string="predict";
 
 
   constructor(private spinner: NgxSpinnerService, private fb: UntypedFormBuilder, private http: HttpClient) { }
@@ -74,7 +76,7 @@ export class SoilWaterControlComponent implements OnInit {
   }
 
   predictradiobuttonchange(event: any) {
-
+    this.resultReady = false;
     this.predictradiobuttonchangevalue = event.target.value
     this.input_choice = "single";
     if (event.target.value == "Single") {
@@ -82,6 +84,18 @@ export class SoilWaterControlComponent implements OnInit {
     } else if (event.target.value == "Multiple") {
       this.input_choice = "multiple";
     }
+  }
+
+  predictcorrectradiobuttonchange(event:any){
+
+    this.predictcorrectbuttonchangevalue = event.target.value;
+    if(this.predictcorrectbuttonchangevalue == "predict") {
+      this.predictcorrect = "predict" ;
+    }
+    if(this.predictcorrectbuttonchangevalue == "correct") {
+      this.predictcorrect = "correct" ;
+    }
+
   }
 
   lccselectonchange(value: string) {
