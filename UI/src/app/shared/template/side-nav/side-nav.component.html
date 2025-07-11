@@ -33,11 +33,11 @@
                     <li>
                         <a href="javascript: void(0);" class="waves-effect" routerLink="/aipredictionmodels">
                             <i class="bx bx-tone"></i><span class="badge rounded-pill bg-info float-end"></span>
-                            <span key="t-dashboards"> AI Predictive Models {{info?.bName}}</span>
+                            <span key="t-dashboards"> AI Predictive Models </span>
                         </a>
                     </li>
                     </div>
-                    <div *ngif="info?.bName=='UAS'">
+                    <div @if="info?.bName=='UAS'">
                     <li>
                         <a href="javascript: void(0);" class="waves-effect" routerLink="/soilwatercontrol">
                             <i class="bx bx-tone"></i><span class="badge rounded-pill bg-info float-end"></span>
