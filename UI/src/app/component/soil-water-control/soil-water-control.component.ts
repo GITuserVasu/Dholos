@@ -55,7 +55,7 @@ export class SoilWaterControlComponent implements OnInit {
 
   inputerror: boolean = false;
   predictcorrectbuttonchangevalue: any;
-  predictcorrect: string="predict";
+  predictcorrect: string="";
 
 
   constructor(private spinner: NgxSpinnerService, private fb: UntypedFormBuilder, private http: HttpClient) { }
