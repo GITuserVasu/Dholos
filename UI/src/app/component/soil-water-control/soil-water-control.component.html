@@ -72,6 +72,7 @@
     </div>
     }
 </div>
+@if(predictcorrect == 'predict'){
 <div>
 <hr>
 @if(input_choice == 'single'){
@@ -236,6 +237,7 @@
   </div>
 }
 </div>
+}
 <div>
     @if(input_choice == 'multiple'){
         <div class="row">
@@ -317,6 +319,7 @@
     </div>
 </div>
  -->
+@if(predictcorrect == 'predict'){
 <div class="row">
     <hr>
      <div class="col-md-12 ">
@@ -371,6 +374,7 @@
      </div>    
 </div>
 <hr>
+}
 <!-- <div *ngIf="resultReady == true && input_choice == 'multiple'"> -->
 <div *ngIf="predictcorrect == 'correct'">   
     <div class="row">
