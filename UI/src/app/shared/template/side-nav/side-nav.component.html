@@ -37,14 +37,14 @@
                         </a>
                     </li>
                     </div>
-                    <div *ngif="show.UAS">
+                     @if(show.UAS){
                     <li>
                         <a href="javascript: void(0);" class="waves-effect" routerLink="/soilwatercontrol">
                             <i class="bx bx-tone"></i><span class="badge rounded-pill bg-info float-end"></span>
                             <span key="t-dashboards">Soil & Water Conservation </span>
                         </a>
                     </li>
-                    </div>
+                }
                     <!--     <li>
                             <a href="javascript: void(0);" class="waves-effect" routerLink="/menu/submenulist">
                                 <i class="bx bx-tone"></i><span class="badge rounded-pill bg-info float-end"></span>
