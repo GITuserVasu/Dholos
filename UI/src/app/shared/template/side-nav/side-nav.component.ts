@@ -21,6 +21,7 @@ export class SideNavComponent implements OnInit {
   menuModuleList:any;
   mainMenu:any;
   FinalMenuList:any;
+  showUAS:boolean=false;
   
   constructor(private orgService:OrganizationService, private menuService:MenuModulesService) { }
 
@@ -36,6 +37,7 @@ export class SideNavComponent implements OnInit {
     console.log("Orgid", this.org_id);
     this.bname = this.info.bName;
     console.log("bname", this.bname);
+    if(this.bname == "UAS") {this.showUAS = true; }
 
 
    
