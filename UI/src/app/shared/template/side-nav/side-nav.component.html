@@ -37,11 +37,11 @@
                         </a>
                     </li>
                     </div>
-                    <div *ngif="{{bname}}=='UAS'">
+                    <div *ngif="bname=='UAS'">
                     <li>
                         <a href="javascript: void(0);" class="waves-effect" routerLink="/soilwatercontrol">
                             <i class="bx bx-tone"></i><span class="badge rounded-pill bg-info float-end"></span>
-                            <span key="t-dashboards">Soil & Water Conservation {{bname}}</span>
+                            <span key="t-dashboards">Soil & Water Conservation {{info?.name}}</span>
                         </a>
                     </li>
                     </div>
