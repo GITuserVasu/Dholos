@@ -89,6 +89,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   predicted_yield:string = "";
   predicted_water_used:string = "";
+  aidata: any;
 
   
 
@@ -517,10 +518,46 @@ export class AIpredictionmodelsComponent implements OnInit {
         this.predicted_yield = prediction_array[0];
         this.predicted_water_used = prediction_array[1];
 
+        const CreatedDate = new Date() ;
 
+        var casedetials = {
+              status: "Verified",
+              fileName: "not used",
+              
+              XfileName: "not used",
+              CULfileName: "not used",
+              orgid: localStorage.getItem("org_id"),
+              projectType: "AI/ML",
+              projectName: localStorage.getItem("org_id") + this.info.name + CreatedDate ,
+              folderType: "Not Used",
+              folderName: "Not Used",
+              // ocrType: this.ocrtarget_value,
+              ocrType: "Various",
+              targetfiles: "Not Used",
+              empOrgid: localStorage.getItem("empOrgid") != '' ? localStorage.getItem("empOrgid") : null,
+              searchtextwords: "Not Used",
+              username:this.info.name,
+              CreatedDate: CreatedDate,
+              selectedholosproduct: "AI",
+              nyers: 0,
+              subblocksize: 0,
+              analogyear: 0,
+              plantdensity: 0,
+              plantingmethod:"not used",
+              farmid:0,
+              farmname: "not used",
+              plantingdate: "not used"
+            }
+        
+            console.log("AI casedetials...", casedetials);
+        
+            this.http.post(environment.apiUrl + "Case_Detiles/", casedetials).subscribe((res: any) => {
+              console.log("myresres");
+              console.log('res');
+              this.aidata = res.data
 
-
-      }
+            })
+      } 
     }) 
 
 

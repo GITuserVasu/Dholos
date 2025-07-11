@@ -868,7 +868,7 @@ showFarm(value:string) {
       XfileName: this.Xfilename,
       CULfileName: this.CULfilename,
       orgid: localStorage.getItem("org_id"),
-      projectType: "New",
+      projectType: "CSM",
       projectName: this.setProjectform.controls['projectName'].value ,
       folderType: "Not Used",
       folderName: "Not Used",
