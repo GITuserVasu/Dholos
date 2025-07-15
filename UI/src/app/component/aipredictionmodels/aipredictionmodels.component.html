@@ -32,6 +32,7 @@
                                 <option value="coimbatore">Rice in Coimbatore</option>
                                 <!-- <option value="thanjavur">Thanjavur</option> -->
                                  <option value="lubbock">Cotton in South Plains</option>
+                                 <option value="kern">Alfalfa in California - Kern County</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
                             <div *ngIf="dataset.value == 'coimbatore'">
@@ -47,6 +48,11 @@
                             <div *ngIf="dataset.value == 'lubbock'">
                                 <strong>Treatments:</strong> 1 cultivar, 1 planting date, 5 irrigation practices, 4 fertilization practices<br>
                                 <strong>Cities:</strong> Lubbock, Wolfforth, Shallowater, Abernathy (mostly in Hale), several unincorporated towns.
+                                &nbsp; &nbsp;
+                            </div>
+                            <div *ngIf="dataset.value == 'kern'">
+                                <strong>Treatments:</strong> 1 cultivar, 1 planting date, 5 irrigation practices, 4 fertilization practices<br>
+                                <strong>Cities:</strong> SB0, SB1, SB2, SB4
                                 &nbsp; &nbsp;
                             </div>
                         </span>
@@ -177,6 +183,16 @@
                                         <option value="none">Choose One</option>
                                         <option value="budalur LAT 10.78177658687713 LONG 78.94168368107934">Budalur</option>
                                         <option value="thanjavur LAT 10.745497932699427 LONG 79.11916595973786">Thanjavur</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="datasetvalue == 'kern'"> 
+                                    <select #location id="location" value="none"
+                                        (change)="locationselectonchange(location.value)">
+                                        <option value="none">Choose One</option>
+                                        <option value="sb0 LAT 34.92 LONG -119.1819">SB0</option>
+                                        <option value="sb1 LAT 34.9165 LONG -118.5818">SB1</option>
+                                        <option value="sb2 LAT 34.9311 LONG -117.9413">SB2</option>
+                                        <option value="sb4 LAT 35.17 LONG -119.2334">SB4</option>
                                     </select>
                                 </div>
                             </div>
