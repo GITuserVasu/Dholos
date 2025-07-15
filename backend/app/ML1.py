@@ -119,6 +119,12 @@ def prednow(predjson):
     cultivardf = ML1_df[["Cultivar", "cultivar"]]
     cultivardf = cultivardf.drop_duplicates()
     print(cultivardf)
+
+    if len(cultivardf) > 0:
+       print(cultivardf[0])
+    else:
+       print("Array is empty, cannot access index 0.")
+
     #cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
     cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
     
