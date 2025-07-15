@@ -586,7 +586,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   cultivarselectonchange(value:string) {
     this.cultivarvalue  = value;
-    //alert(this.cultivarvalue);
+    alert(this.cultivarvalue);
   } // end cultivar select
 
   locationselectonchange(value:string) {

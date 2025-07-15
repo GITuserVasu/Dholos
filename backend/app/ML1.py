@@ -121,7 +121,7 @@ def prednow(predjson):
     print(cultivardf)
 
     if len(cultivardf) > 0:
-       print(cultivardf[0])
+       print(cultivardf)
     else:
        print("Array is empty, cannot access index 0.")
 
