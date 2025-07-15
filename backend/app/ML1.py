@@ -72,6 +72,10 @@ def prednow(predjson):
         dirname = "/home/bitnami/ML/data/coimbatore-apr25/models/"
         filename = "ml_data.pkl"
         ML1_df= read_pkldata(dirname,filename)
+    if dataset == "kern":
+        dirname = "/home/bitnami/ML/data/ca-kern/COMBINED/"
+        filename = "ml_data.pkl"
+        ML1_df= read_pkldata(dirname,filename)
 
     """ #reportfile = open_reporting_session("","") """
     #ML1_df= read_pkldata(dirname,filename)
@@ -132,7 +136,12 @@ def prednow(predjson):
         predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
-        
+
+    if dataset == 'kern':
+        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+
     predictdf = pd.DataFrame([predict_data])
 
     print(predictdf)
@@ -161,6 +170,11 @@ def prednow(predjson):
     elif dataset == 'lubbock':
         predictdf.to_csv("/home/bitnami/ML/data/texas/lubbock/models/predict-row.csv")
         result = subprocess.run(['python3', '/home/bitnami/ML/data/texas/lubbock/models/testrun.py'], capture_output=True, text=True)
+        print(result.stdout)
+        abc = result.stdout
+    elif dataset == 'kern':
+        predictdf.to_csv("/home/bitnami/ML/data/ca-kern/COMBINED/predict-row.csv")
+        result = subprocess.run(['python3', '/home/bitnami/ML/data/ca-kern/COMBINED/testrun.py'], capture_output=True, text=True)
         print(result.stdout)
         abc = result.stdout
     else:
@@ -194,7 +208,16 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
     location = nearest_row['location']
     print("Nearest location", location)
     #weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
-    weatherdir = dirname + nearest_locn + "/"
+
+    if(nearest_locn[0] == "S"):
+        kern_prestring = "/home/bitnami/ML/data/ca-kern/Kern_"
+        kern_poststring = "_Alfalfa_AutoMow_14T_1sqkm_2019/"
+        parts = nearest_locn.split("_", 1)
+        weatherdir = kern_prestring + parts[0] + kern_poststring + parts[1] + "/"
+        print("weatherdir", weatherdir)
+    else:
+        weatherdir = dirname + nearest_locn + "/"
+    
     weatherfile = "mergedweather.csv"
 
     weatherdf = read_csvdata(weatherdir, weatherfile)
