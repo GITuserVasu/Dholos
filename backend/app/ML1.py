@@ -215,7 +215,7 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
         kern_prestring = "/home/bitnami/ML/data/ca-kern/Kern_"
         kern_poststring = "_Alfalfa_AutoMow_14T_1sqkm_2019/"
         parts = nearest_locn.split("_", 1)
-        weatherdir = kern_prestring + parts[0] + kern_poststring + parts[1] + "/"
+        weatherdir = kern_prestring + parts[0] + kern_poststring + "/" +"WorkingDir/" + parts[1] 
         print("weatherdir", weatherdir)
     else:
         weatherdir = dirname + nearest_locn + "/"
