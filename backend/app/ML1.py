@@ -74,8 +74,10 @@ def prednow(predjson):
         ML1_df= read_pkldata(dirname,filename)
     if dataset == "kern":
         dirname = "/home/bitnami/ML/data/ca-kern/COMBINED/"
-        filename = "ml_data.pkl"
-        ML1_df= read_pkldata(dirname,filename)
+        #filename = "ml_data.pkl"
+        #ML1_df= read_pkldata(dirname,filename)
+        filename = "finalsummdf-file.csv"
+        ML1_df = read_csvdata(dirname, filename)
 
     """ #reportfile = open_reporting_session("","") """
     #ML1_df= read_pkldata(dirname,filename)
