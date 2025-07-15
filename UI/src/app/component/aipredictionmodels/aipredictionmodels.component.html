@@ -381,10 +381,16 @@
             </button> -->
         </div>
         <div class="modal-body">
+            <div *ngIf="datasetvalue == 'coimbatore' ||  datasetvalue == 'lubbock'">
             Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
             <br>
+            </div>
             <div *ngIf="datasetvalue == 'coimbatore' &&  modelvalue == 'yield_and_water'"> 
             Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm
+            </div>
+            <div *ngIf="datasetvalue == 'kern'">
+                Water Efficiency &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm)
+
             </div>
         </div>
         <div class="modal-footer">
