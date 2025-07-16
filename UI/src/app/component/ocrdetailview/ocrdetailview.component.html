@@ -58,7 +58,7 @@
            Planting Method: {{plantingmethod}} <br>
            Plants per sq m: {{plantdensity}} <br>
            </p>
-           <p>
+           <p *ngIf = "selectedholosproduct == 'New'">
             <strong>Files:</strong> <br>
             X File:   {{Xfilename}} <br>
             CUL File: {{CULfilename}} <br>
@@ -104,7 +104,7 @@
             <a href="#tabs-meta-14" class="nav-link active" data-bs-toggle="tab" aria-selected="true" tabindex="-1"
               role="tab">Recommendations</a>
           </li>
-          @if(selectedholosproduct == "New"){
+          <span *ngIf = "selectedholosproduct == 'New'">
           <li class="nav-item" role="presentation">
               <a href="#tabs-home-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab">Yield/Cultivar</a>
             </li>
@@ -132,7 +132,7 @@
                     <a href="#tabs-maplayers-14" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                         role="tab">Maps</a><br>
                 </li>
-              }
+              </span>
 
         </ul>
 
