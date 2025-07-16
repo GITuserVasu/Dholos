@@ -114,6 +114,7 @@ export class OcrdetailviewComponent implements OnInit {
   m : any = 0;
   p : any = 0;
   q : any = 0;
+  predicted_yield: any;
 
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
@@ -153,6 +154,7 @@ export class OcrdetailviewComponent implements OnInit {
             this.farmid = res.response[0].farmid;
             this.farmname = res.response[0].farmname;
             this.plantingdate = res.response[0].plantingdate;
+            this.predicted_yield = res.response[0].searchtextwords;
               
             
             if(this.exptstatus == "Verified"){

@@ -173,14 +173,18 @@
             
  
           <!-- </div> -->
- 
+          
           <div class="tab-pane " id="tabs-meta-14" role="tabpanel">
             <!-- <h6 *ngFor="let row of page_summary">{{row}}</h6> -->
-            
+             <span *ngIf = "selectedholosproduct == 'New'">
              <br>
              <strong>Holos Recommendations</strong><br><br>
              <h6 *ngFor="let row of reco"><p>{{row}}</p></h6> 
- 
+             </span>
+             <span *ngIf = "selectedholosproduct == 'AI/ML'">
+             <br>
+             Water Efficiency &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm)
+             </span>
               <!-- <div>{{reco}}</div>  -->
  
           </div>

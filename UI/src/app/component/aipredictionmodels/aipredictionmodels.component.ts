@@ -547,7 +547,7 @@ export class AIpredictionmodelsComponent implements OnInit {
               ocrType: "Various",
               targetfiles: "Not Used",
               empOrgid: localStorage.getItem("empOrgid") != '' ? localStorage.getItem("empOrgid") : null,
-              searchtextwords: "Not Used",
+              searchtextwords: this.predicted_yield,
               username:this.info.name,
               CreatedDate: CreatedDate,
               selectedholosproduct: "AI/ML",
