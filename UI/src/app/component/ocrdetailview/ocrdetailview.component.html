@@ -46,8 +46,8 @@
            Farm Name: {{farmname}} <br>
            Status: {{exptstatus}} <br>
            </p>
-           @if(selectedholosproduct != "AI/ML"){
-            <p @ngif = "selectedholosproduct == "New">
+           
+            <p @ngif = "selectedholosproduct == 'New'">
            <strong>Run Parameters:</strong> <br>
            Sub Block Size: {{subblocksize}} <br>
            <!-- num years and analogous year only for pre season-->
@@ -63,7 +63,7 @@
             X File:   {{Xfilename}} <br>
             CUL File: {{CULfilename}} <br>
             </p> 
-          }
+          
             <!-- <p>
             <strong>Constraints:</strong> <br>
             Maximize Unadjusted Yield (kg/ha) for <br>
