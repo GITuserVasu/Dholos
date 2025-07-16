@@ -47,7 +47,7 @@
            Status: {{exptstatus}} <br>
            </p>
            @if(selectedholosproduct != "AI/ML"){
-            <p>
+            <p @ngif = "selectedholosproduct == "New">
            <strong>Run Parameters:</strong> <br>
            Sub Block Size: {{subblocksize}} <br>
            <!-- num years and analogous year only for pre season-->
