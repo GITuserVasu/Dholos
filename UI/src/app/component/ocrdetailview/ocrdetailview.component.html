@@ -91,6 +91,7 @@
      </div>
     </div>
  </div>
+ <span *ngIf = "selectedholosproduct == 'PRSEASON'">
  <div class="col-md-9" style="height: 600px">
   <div class="card mini-stats-wid">
      <!-- <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>  -->
@@ -104,7 +105,7 @@
             <a href="#tabs-meta-14" class="nav-link active" data-bs-toggle="tab" aria-selected="true" tabindex="-1"
               role="tab">Recommendations</a>
           </li>
-          <span *ngIf = "selectedholosproduct == 'PRSEASON'">
+          
           <li class="nav-item" role="presentation">
               <a href="#tabs-home-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab">Yield/Cultivar</a>
             </li>
@@ -132,9 +133,10 @@
                     <a href="#tabs-maplayers-14" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                         role="tab">Maps</a><br>
                 </li>
-              </span>
+              
 
         </ul>
+        </span>
 
         <div class="tab-content">
           <!-- <div class="tab-pane active show" id="tabs-document-14" role="tabpanel"> -->
