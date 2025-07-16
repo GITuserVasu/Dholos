@@ -583,12 +583,12 @@ export class AIpredictionmodelsComponent implements OnInit {
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;
     //this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
-    alert(this.datasetvalue);
+    //alert(this.datasetvalue);
   } // end dataset select
 
   cultivarselectonchange(value:string) {
     this.cultivarvalue  = value;
-    alert(this.cultivarvalue);
+    //alert(this.cultivarvalue);
   } // end cultivar select
 
   locationselectonchange(value:string) {

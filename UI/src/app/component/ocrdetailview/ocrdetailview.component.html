@@ -58,7 +58,7 @@
            Planting Method: {{plantingmethod}} <br>
            Plants per sq m: {{plantdensity}} <br>
            </p>
-           <p *ngIf = "selectedholosproduct == 'New'">
+           <p *ngIf = "selectedholosproduct == 'PRSEASON'">
             <strong>Files:</strong> <br>
             X File:   {{Xfilename}} <br>
             CUL File: {{CULfilename}} <br>
@@ -104,7 +104,7 @@
             <a href="#tabs-meta-14" class="nav-link active" data-bs-toggle="tab" aria-selected="true" tabindex="-1"
               role="tab">Recommendations</a>
           </li>
-          <span *ngIf = "selectedholosproduct == 'New'">
+          <span *ngIf = "selectedholosproduct == 'PRSEASON'">
           <li class="nav-item" role="presentation">
               <a href="#tabs-home-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab">Yield/Cultivar</a>
             </li>
@@ -176,7 +176,7 @@
           
           <div class="tab-pane " id="tabs-meta-14" role="tabpanel">
             <!-- <h6 *ngFor="let row of page_summary">{{row}}</h6> -->
-             <span *ngIf = "selectedholosproduct == 'New'">
+             <span *ngIf = "selectedholosproduct == 'PRSEASON'">
              <br>
              <strong>Holos Recommendations</strong><br><br>
              <h6 *ngFor="let row of reco"><p>{{row}}</p></h6> 
