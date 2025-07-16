@@ -557,7 +557,7 @@ export class AIpredictionmodelsComponent implements OnInit {
               plantdensity: 0,
               plantingmethod:"not used",
               farmid:0,
-              farmname: "not used",
+              farmname: this.datasetvalue,
               plantingdate: "not used"
             }
         

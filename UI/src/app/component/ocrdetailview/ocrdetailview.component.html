@@ -183,9 +183,19 @@
              <strong>Holos Recommendations</strong><br><br>
              <h6 *ngFor="let row of reco"><p>{{row}}</p></h6> 
              </span>
-             <span *ngIf = "selectedholosproduct == 'AI/ML'">
+             <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'kern'">
              <br>
-             Water Efficiency &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm)
+             Water Efficiency Index &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm)
+             </span>
+             <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'lubbock'">
+             <br>
+             Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
+             </span>
+             <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'coimbatore'">
+             <br>
+             Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
+             <br>
+             Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm
              </span>
               <!-- <div>{{reco}}</div>  -->
  
