@@ -530,6 +530,8 @@ export class AIpredictionmodelsComponent implements OnInit {
 
         const CreatedDate = new Date() ;
 
+        const timestamp: number = CreatedDate.getTime();
+
         var casedetials = {
               status: "Verified",
               fileName: "not used",
@@ -538,7 +540,7 @@ export class AIpredictionmodelsComponent implements OnInit {
               CULfileName: "not used",
               orgid: localStorage.getItem("org_id"),
               projectType: "AI/ML",
-              projectName: localStorage.getItem("org_id") + this.info.name + CreatedDate ,
+              projectName: localStorage.getItem("org_id") + "_" + timestamp ,
               folderType: "Not Used",
               folderName: "Not Used",
               // ocrType: this.ocrtarget_value,
@@ -548,7 +550,7 @@ export class AIpredictionmodelsComponent implements OnInit {
               searchtextwords: "Not Used",
               username:this.info.name,
               CreatedDate: CreatedDate,
-              selectedholosproduct: "AI",
+              selectedholosproduct: "AI/ML",
               nyers: 0,
               subblocksize: 0,
               analogyear: 0,

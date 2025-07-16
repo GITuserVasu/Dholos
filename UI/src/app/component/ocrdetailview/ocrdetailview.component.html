@@ -46,7 +46,8 @@
            Farm Name: {{farmname}} <br>
            Status: {{exptstatus}} <br>
            </p>
-           <p>
+           @if(selectedholosproduct != "AI/ML"){
+            <p>
            <strong>Run Parameters:</strong> <br>
            Sub Block Size: {{subblocksize}} <br>
            <!-- num years and analogous year only for pre season-->
@@ -62,6 +63,7 @@
             X File:   {{Xfilename}} <br>
             CUL File: {{CULfilename}} <br>
             </p> 
+          }
             <!-- <p>
             <strong>Constraints:</strong> <br>
             Maximize Unadjusted Yield (kg/ha) for <br>
@@ -102,6 +104,7 @@
             <a href="#tabs-meta-14" class="nav-link active" data-bs-toggle="tab" aria-selected="true" tabindex="-1"
               role="tab">Recommendations</a>
           </li>
+          @if(selectedholosproduct != "AI/ML"){
           <li class="nav-item" role="presentation">
               <a href="#tabs-home-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab">Yield/Cultivar</a>
             </li>
@@ -129,6 +132,7 @@
                     <a href="#tabs-maplayers-14" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                         role="tab">Maps</a><br>
                 </li>
+              }
 
         </ul>
 
