@@ -151,6 +151,16 @@ export class SoilWaterControlComponent implements OnInit {
     alert("Treatment Saved");
     this.correctcsv = this.lccvalue + "," + this.soilcolorvalue + "," + this.slopevalue + "," + this.depthvalue + "," + this.surf_textvalue + "," + this.subsurf_textvalue + "," + this.gravelvalue + "," + this.rainfallvalue
     // save_string_as_file_on_server()
+    const correctJson = { "data": this.correctcsv }
+      this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
+        if (res.statusCode == 200) {
+          console.log(" String Save Success Single");
+          console.log(res.name);
+        } else {
+          alert('Error in saving correction string single');
+        }
+
+      })
   }
 
   onSubmit() {
@@ -295,6 +305,16 @@ export class SoilWaterControlComponent implements OnInit {
       reader.readAsText(event.target.files[i]);
       console.log("file data", this.correctcsv);
       // save_string_as_file_on_server()
+      const correctJson = { "data": this.correctcsv }
+      this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
+        if (res.statusCode == 200) {
+          console.log(" String Save Success File");
+          console.log(res.name);
+        } else {
+          alert('Error in saving correction string file');
+        }
+
+      })
     }
   }
 
