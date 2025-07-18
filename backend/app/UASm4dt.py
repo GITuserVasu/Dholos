@@ -305,7 +305,7 @@ def savestringasfile(correctcsv):
    correctcsvdata = jsondata["data"]
 
    # Get the current date and time
-   now = datetime.datetime.now()
+   now = datetime.now()
 
    # Convert the datetime object to a Unix timestamp (float)
    timestamp_float = now.timestamp()
