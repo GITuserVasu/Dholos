@@ -310,6 +310,7 @@ export class SoilWaterControlComponent implements OnInit {
       this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
         if (res.StatusCode == 200) {
           console.log(" String Save Success File");
+          alert('new training file uploaded');
         } else {
           alert('Error in saving correction string file');
         }
