@@ -155,7 +155,7 @@ export class SoilWaterControlComponent implements OnInit {
     // save_string_as_file_on_server()
     const correctJson = { "data": this.correctcsv }
       this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
-        if (res.statusCode == 200) {
+        if (res.StatusCode == 200) {
           console.log(" String Save Success Single");
         } else {
           alert('Error in saving correction string single');
@@ -308,7 +308,7 @@ export class SoilWaterControlComponent implements OnInit {
       // save_string_as_file_on_server()
       const correctJson = { "data": this.correctcsv }
       this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
-        if (res.statusCode == 200) {
+        if (res.StatusCode == 200) {
           console.log(" String Save Success File");
         } else {
           alert('Error in saving correction string file');
