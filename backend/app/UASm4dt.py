@@ -299,6 +299,7 @@ def soilwatercontrolpred(inputcsv):
 
     return JsonResponse({"statusCode": 200, "name": "test", "prediction":newX_string})
 
+@csrf_exempt
 def savestringasfile(correctcsv):
    jsondata = JSONParser().parse(correctcsv) 
    correctcsvdata = jsondata["data"]
