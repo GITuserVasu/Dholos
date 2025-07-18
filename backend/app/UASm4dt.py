@@ -323,7 +323,7 @@ def savestringasfile(correctcsv):
    except IOError as e:
         print(f"Error saving to file: {e}")
 
-   return JsonResponse({"StatusCode": 200})
+   return JsonResponse({"statusCode": 200})
 
 
 

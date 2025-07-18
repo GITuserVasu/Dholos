@@ -147,9 +147,9 @@ export class SoilWaterControlComponent implements OnInit {
 
   }
 
-  save_ctreatment() {
+  save_ctreatment(treatment:any) {
     alert("Treatment Saved");
-    this.correctcsv = this.lccvalue + "," + this.soilcolorvalue + "," + this.slopevalue + "," + this.depthvalue + "," + this.surf_textvalue + "," + this.subsurf_textvalue + "," + this.gravelvalue + "," + this.rainfallvalue
+    this.correctcsv = this.lccvalue + "," + this.soilcolorvalue + "," + this.slopevalue + "," + this.depthvalue + "," + this.surf_textvalue + "," + this.subsurf_textvalue + "," + this.gravelvalue + "," + this.rainfallvalue + "," + treatment
     // save_string_as_file_on_server()
     const correctJson = { "data": this.correctcsv }
       this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
