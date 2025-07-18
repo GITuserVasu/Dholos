@@ -155,7 +155,6 @@ export class SoilWaterControlComponent implements OnInit {
       this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
         if (res.statusCode == 200) {
           console.log(" String Save Success Single");
-          console.log(res.name);
         } else {
           alert('Error in saving correction string single');
         }
@@ -309,7 +308,6 @@ export class SoilWaterControlComponent implements OnInit {
       this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
         if (res.statusCode == 200) {
           console.log(" String Save Success File");
-          console.log(res.name);
         } else {
           alert('Error in saving correction string file');
         }
