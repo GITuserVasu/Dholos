@@ -314,7 +314,7 @@ def savestringasfile(correctcsv):
    timestamp_integer = int(timestamp_float)
 
    filename = timestamp_integer
-   file_path = "/home/bitnami/ML/data/UAS/add_trg_data/" + filename + ".csv"
+   file_path = "/home/bitnami/ML/data/UAS/add_trg_data/" + str(filename) + ".csv"
 
    try:
         with open(file_path, 'w') as f:
