@@ -12,6 +12,7 @@
                 <!-- <ng-container *ngIf="Role=='admin'"> -->
                     <div >
                     <!-- <div *ngif="bname != 'UAS'"> -->
+                    @if(!showUAS){    
                     <li>
                         <a href="#" class="waves-effect" routerLink="/">
                             <i class="bx bx-home-circle"></i>
@@ -36,6 +37,7 @@
                             <span key="t-dashboards"> AI Predictive Models </span>
                         </a>
                     </li>
+                }
                     </div>
                      @if(showUAS){
                     <li>
