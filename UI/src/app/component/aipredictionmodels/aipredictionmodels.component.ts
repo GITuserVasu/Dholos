@@ -530,7 +530,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         this.predicted_water_used = prediction_array[1];
 
         if(Number(this.predicted_yield) > 0){
-          this.water_efficiency = Number(this.predicted_water_used)/Number(this.predicted_yield)
+          this.water_efficiency = Number(this.predicted_yield)/Number(this.predicted_water_used)
 
         }
 

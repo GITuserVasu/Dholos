@@ -389,14 +389,19 @@
             Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm
             </div>
             <div *ngIf="datasetvalue == 'kern'">
-                Recommended Cultivar &nbsp; = &nbsp;{{cultivarvalue}}
+                <!-- Recommended Cultivar &nbsp; = &nbsp;{{cultivarvalue}}
                 <br>
                 Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm
                 <br>
                 Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
                 <br>
-                Water Efficiency &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm)
-
+                Water Efficiency &nbsp; = &nbsp; &nbsp; {{water_efficiency}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm) -->
+                <table>
+                <tr><td>Recommended Cultivar</td><td>{{cultivarvalue}}</td></tr>
+                <tr><td>Predicted Water Used </td><td> {{predicted_water_used}} &nbsp; mm </td></tr>
+                <tr><td></td>Predicted Yield </td><td> {{predicted_yield}} &nbsp; kg/ha </td></tr>
+                <tr><td></td>Water Efficiency </td><td> {{water_efficiency}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm) </td></tr>
+                </table>
             </div>
         </div>
         <div class="modal-footer">
