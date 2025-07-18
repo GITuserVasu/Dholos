@@ -90,6 +90,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   predicted_yield:string = "";
   predicted_water_used:string = "";
   aidata: any;
+  water_efficiency: number = 0;
 
   
 
@@ -527,6 +528,11 @@ export class AIpredictionmodelsComponent implements OnInit {
 
         this.predicted_yield = prediction_array[0];
         this.predicted_water_used = prediction_array[1];
+
+        if(Number(this.predicted_yield) > 0){
+          this.water_efficiency = Number(this.predicted_water_used)/Number(this.predicted_yield)
+
+        }
 
         const CreatedDate = new Date() ;
 
