@@ -161,7 +161,7 @@ def prednow(predjson):
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
         predictdf2 = pd.DataFrame([predict_data2])
-    if dataset = 'kern':
+    if dataset == 'kern':
         predictdf = pd.concat([predictdf0, predictdf1], axis=0, ignore_index=True)
         predictdf = pd.concat([predictdf, predictdf2], axis=0, ignore_index=True)
     else:
