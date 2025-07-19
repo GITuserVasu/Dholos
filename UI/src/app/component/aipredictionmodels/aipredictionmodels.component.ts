@@ -539,7 +539,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         const pred_array_len = prediction_array.length;
         var j = 0;
         for (let i = 0; i<pred_array_len; i++){
-             pred_yield_array[i] = prediction_array[i];
+             pred_yield_array[j] = prediction_array[i];
              i = i +1 ;
              pred_water_array[j] = prediction_array[i];
              if(Number(pred_water_array[j]) > 0){
