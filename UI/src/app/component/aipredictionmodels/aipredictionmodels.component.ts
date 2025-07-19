@@ -98,7 +98,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       yield: string;
       waterefficiency:Number;
     };
-  var FinalPred :finalpred[] ;
+  FinalPred :finalpred[] ;
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
