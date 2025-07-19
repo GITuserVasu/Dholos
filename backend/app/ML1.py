@@ -146,15 +146,28 @@ def prednow(predjson):
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
 
     if dataset == 'kern':
-        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+        cultivarid = 0 
+        predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
-
-    predictdf = pd.DataFrame([predict_data])
+        predictdf0 = pd.DataFrame([predict_data0])
+        cultivarid = 1
+        predict_data1 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+        predictdf1 = pd.DataFrame([predict_data1])
+        cultivarid = 2
+        predict_data2 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+        predictdf2 = pd.DataFrame([predict_data2])
+    if dataset = 'kern':
+        predictdf = pd.concat([predictdf0, predictdf1], axis=0, ignore_index=True)
+        predictdf = pd.concat([predictdf, predictdf2], axis=0, ignore_index=True)
+    else:
+        predictdf = pd.DataFrame([predict_data])
 
     print(predictdf)
-
-    
 
     predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
 
