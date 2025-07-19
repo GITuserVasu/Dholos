@@ -124,6 +124,10 @@ def prednow(predjson):
        print(cultivardf)
     else:
        print("Array is empty, cannot access index 0.")
+    
+    cultivar_string = cultivardf.to_string()
+
+    print(cultivar_string)
 
     #cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
     cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
@@ -205,7 +209,7 @@ def prednow(predjson):
     print(abc)
     # change back to orig dir
     ##os.chdir(savedir)
-    return JsonResponse({"statusCode": 200, "name": "test", "prediction":abc})
+    return JsonResponse({"statusCode": 200, "c_string": cultivar_string, "prediction":abc})
 
 @csrf_exempt
 def get_predictweatherdata(ML1_df, stringcoords, dirname):

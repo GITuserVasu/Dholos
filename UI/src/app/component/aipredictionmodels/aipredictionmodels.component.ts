@@ -100,6 +100,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     };
   FinalPred: finalpred = [] ; */
   FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
+  cultivar_string: any = "";
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
@@ -512,7 +513,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       //this.preddata = res.data
       if (res.statusCode == 200) {
         console.log(" Prednow Success");
-        console.log(res.name);
+        console.log(res.c_string);
       } else {
         alert('Error in submission');
       }
@@ -521,12 +522,14 @@ export class AIpredictionmodelsComponent implements OnInit {
         alert("Prediction is now ready...Please click on 'Check Result' ")
         this.resultReady = true;
         this.prediction_string = res.prediction ;
+        this.cultivar_string = res.c_string;
         //alert(res.prediction)
   
         /* this.prediction_value = this.prediction_value.replaceAll(" ", "");
         this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 2); */
         console.log(res.prediction)
         console.log(this.prediction_string)
+        console.log(this.cultivar_string)
 
         this.prediction_string = this.prediction_string.replaceAll("[", "");
         this.prediction_string = this.prediction_string.replaceAll("]", "");
