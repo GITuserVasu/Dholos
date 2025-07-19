@@ -98,6 +98,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       yield: string;
       waterefficiency:Number;
     };
+  var FinalPred :finalpred[] ;
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
@@ -563,18 +564,21 @@ export class AIpredictionmodelsComponent implements OnInit {
           cultivar_array[3] = "ASD16"
           cultivar_array[4] = "ADT36"
         }
-        var FinalPred :finalpred[] ;
+        
         for (let i = 0; i < (pred_array_len/2); i ++) {
             FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[j] }
 
         }
            
         
+        if(this.datasetvalue == 'coimbatore' || this.datasetvalue == 'lubbock') {
+          this.predicted_yield = prediction_array[0];
+          this.predicted_water_used = prediction_array[1];
 
-        /* this.predicted_yield = prediction_array[0];
-        this.predicted_water_used = prediction_array[1];
+        }
+        
 
-        if(Number(this.predicted_yield) > 0){
+        /* if(Number(this.predicted_yield) > 0){
           this.water_efficiency = Number(this.predicted_yield)/Number(this.predicted_water_used)
 
         } */

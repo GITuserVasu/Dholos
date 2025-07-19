@@ -396,12 +396,32 @@
                 Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
                 <br>
                 Water Efficiency &nbsp; = &nbsp; &nbsp; {{water_efficiency}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm) -->
-                <table>
+                <!-- <table>
                 <tr><td>Recommended Cultivar</td><td>&nbsp;:&nbsp;</td><td>&nbsp;{{cultivarvalue}}</td></tr>
                 <tr><td>Predicted Water Used </td><td>&nbsp;:&nbsp;</td><td> &nbsp;{{predicted_water_used}} &nbsp; mm </td></tr>
                 <tr><td>Predicted Yield </td><td>&nbsp;:&nbsp;</td><td> &nbsp;{{predicted_yield}} &nbsp; kg/ha </td></tr>
                 <tr><td>Water Efficiency </td><td>&nbsp;:&nbsp;</td><td> &nbsp;{{water_efficiency}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm) </td></tr>
+                </table> -->
+                <table>
+                   <thead>
+                         <tr>
+                              <th>Cultivar</th>
+                              <th>Water Used</th>
+                              <th>Yield</th>
+                              <th>Water Efficiency</th>
+                         </tr>
+                   </thead>
+                   <tbody>
+                      <tr *ngFor="let pred of FinalPred">
+                          <td>{{ pred.cultivar }}</td>
+                          <td>{{ pred.waterused }}</td>
+                          <td>{{ pred.yield }}</td>
+                          <td>{{ pred.waterefficiency }}</td>
+                      </tr>
+                   </tbody>
                 </table>
+
+
                 <br><br>
                 Contact us at info&#64;gaiadhi.com for details on irrigation procedure/schedule
             </div>
