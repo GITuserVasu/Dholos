@@ -532,14 +532,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         console.log(this.cultivar_string)
         const test_cultivar_array = this.cultivar_string.trim().split(/\s+/);
         console.log(test_cultivar_array)
-        console.log(test_cultivar_array[0])
-        console.log(test_cultivar_array[1])
-        console.log(test_cultivar_array[2])
-
-
-
-
-
+        
         this.prediction_string = this.prediction_string.replaceAll("[", "");
         this.prediction_string = this.prediction_string.replaceAll("]", "");
 
