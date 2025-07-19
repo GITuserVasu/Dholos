@@ -98,7 +98,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       yield: string;
       waterefficiency:Number;
     };
-  FinalPred :finalpred[] ;
+  // FinalPred: finalpred[] = [] ;
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
@@ -566,7 +566,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         }
         
         for (let i = 0; i < (pred_array_len/2); i ++) {
-            FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[j] }
+            // FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[j] }
 
         }
            
