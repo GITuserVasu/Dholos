@@ -555,6 +555,13 @@ export class AIpredictionmodelsComponent implements OnInit {
              j = j +1 ;
         }
         var cultivar_array:string[] = [];
+        var j = 0;
+        for (let i = 0; i < test_cultivar_array.length; i++) {
+            cultivar_array[j] = test_cultivar_array[i];
+            i = i + 1;
+            j = j + 1;
+          
+        }
         if(this.datasetvalue == 'kern'){
           cultivar_array[0] = "Ara-FD7"
           cultivar_array[1] = "CFIA-FD4"

@@ -125,7 +125,7 @@ def prednow(predjson):
     else:
        print("Array is empty, cannot access index 0.")
     
-    cultivardf_modified = cultivardf.iloc[1:, 1:]
+    cultivardf_modified = cultivardf.iloc[:, 1:]
 
     cultivar_string = cultivardf_modified.to_string()
 
