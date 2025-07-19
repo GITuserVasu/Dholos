@@ -525,7 +525,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         this.prediction_string = this.prediction_string.replaceAll("]", "");
 
         const prediction_array = this.prediction_string.trim().split(/\s+/);
-
+        console.log(prediction_array)
         this.predicted_yield = prediction_array[0];
         this.predicted_water_used = prediction_array[1];
 
