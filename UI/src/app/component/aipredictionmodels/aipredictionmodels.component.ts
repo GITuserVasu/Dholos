@@ -92,13 +92,14 @@ export class AIpredictionmodelsComponent implements OnInit {
   aidata: any;
   water_efficiency: number = 0;
 
-  type finalpred = {
+  /* type finalpred = {
       cultivar: string;
       waterused: string;
       yield: string;
       waterefficiency:Number;
     };
-  FinalPred: finalpred = [] ;
+  FinalPred: finalpred = [] ; */
+  FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
