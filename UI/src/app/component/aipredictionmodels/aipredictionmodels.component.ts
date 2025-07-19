@@ -567,7 +567,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         }
         
         for (let i = 0; i < (pred_array_len/2); i ++) {
-            FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[i] }
+            this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[i] }
 
         }
            
