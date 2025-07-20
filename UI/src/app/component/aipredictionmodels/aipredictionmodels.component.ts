@@ -562,7 +562,7 @@ export class AIpredictionmodelsComponent implements OnInit {
             j = j + 1;
           
         }
-        if(this.datasetvalue == 'kern'){
+        /* if(this.datasetvalue == 'kern'){
           cultivar_array[0] = "Ara-FD7"
           cultivar_array[1] = "CFIA-FD4"
           cultivar_array[2] = "CUF-FD9"
@@ -576,7 +576,7 @@ export class AIpredictionmodelsComponent implements OnInit {
           cultivar_array[2] = "CO51"
           cultivar_array[3] = "ASD16"
           cultivar_array[4] = "ADT36"
-        }
+        } */
         
         for (let i = 0; i < (pred_array_len/2); i ++) {
             this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[i] }
