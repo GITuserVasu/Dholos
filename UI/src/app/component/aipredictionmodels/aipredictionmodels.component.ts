@@ -583,7 +583,9 @@ export class AIpredictionmodelsComponent implements OnInit {
 
         }
            
-        
+        console.log("FInal Pred");
+        console.log(this.FinalPred);
+
         if(this.datasetvalue == 'coimbatore' || this.datasetvalue == 'lubbock') {
           this.predicted_yield = prediction_array[0];
           this.predicted_water_used = prediction_array[1];
