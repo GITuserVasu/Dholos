@@ -576,6 +576,7 @@ def insertion(req):
         serializer = Case_Detiles_serializers(data=data)
         if serializer.is_valid():
             serializer.save()
+            print("CASE ID", serializer.id)
             return JsonResponse(
                 {"response": serializer.data, "errorCode": 200, "errorMsg": "success"},
                 status=201,

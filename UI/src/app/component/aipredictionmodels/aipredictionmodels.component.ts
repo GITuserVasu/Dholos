@@ -603,7 +603,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         const timestamp: number = CreatedDate.getTime();
 
         var casedetials = {
-              status: "Verified",
+              status: "Inprogress",
               fileName: "not used",
               
               XfileName: "not used",
