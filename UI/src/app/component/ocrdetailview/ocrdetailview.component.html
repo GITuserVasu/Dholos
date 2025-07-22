@@ -185,6 +185,8 @@
              </span>
              <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'kern'">
              <br>
+             <h6 *ngFor="let row of reco"><p>{{row}}</p></h6>
+             <br>
              Water Efficiency Index &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm)
              </span>
              <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'lubbock'">

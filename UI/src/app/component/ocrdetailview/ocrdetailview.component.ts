@@ -115,6 +115,7 @@ export class OcrdetailviewComponent implements OnInit {
   p : any = 0;
   q : any = 0;
   predicted_yield: any;
+  projecttype: any;
 
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
@@ -139,6 +140,7 @@ export class OcrdetailviewComponent implements OnInit {
             console.log('expt status', this.exptstatus);
             this.orgid = res.response[0].orgid ;
             this.projectname = res.response[0].projectName ;
+            this.projecttype = res.response[0].projectType ;
             this.username = res.response[0].username ;
             this.username = this.username.replaceAll(" ","");
             this.caseid = res.response[0].id;
@@ -162,8 +164,16 @@ export class OcrdetailviewComponent implements OnInit {
               this.india_mapimage = "https://www.gaiadhi.net/assets/images/india-heatmap.jpg_large";
               this.http.get(environment.apiUrl + 'getexptresults' + '?caseid=' + this.caseid ).subscribe((result: any) => {
                 console.log('from results table',result.response);
+                
                 const b = result.response;
                 console.log("b length",b.length);
+                if(this.projecttype == "AI/ML" ){
+                  for (var i=0; i<b.length;i++){
+                    var c = b[i];
+                    this.reco = c['reco'].split(/\r?\n/);
+                    console.log("reco",this.reco);
+                  }
+                }
 
                 for (var i=0; i<b.length;i++){
                    var c = b[i];
