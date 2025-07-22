@@ -541,7 +541,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "username" : this.username,
       "n2applied": n2applied,
       "what_to_predict": this.modelvalue,
-      "new_caseid": this.new_caseid
+      "new_caseid": this.new_caseid,
     } 
 
     // alert(this.username);
