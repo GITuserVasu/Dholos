@@ -57,8 +57,11 @@ from app.serilizer import (
 @csrf_exempt
 def prednow(predjson):
     print("In prednow")
-    
+
     jsondata = JSONParser().parse(predjson)
+
+    print(jsondata)
+
     username = jsondata["username"]
     dataset = jsondata["dataset"]
     useblockname = jsondata["useblockname"]
@@ -72,7 +75,7 @@ def prednow(predjson):
     orgid = jsondata["orgid"]
     n2applied = jsondata["n2applied"]
     what_to_predict = jsondata["what_to_predict"]
-    new_caseid = jsondata["new_caseid"]
+    # new_caseid = jsondata["new_caseid"]
 
     if dataset == "lubbock":
             dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
