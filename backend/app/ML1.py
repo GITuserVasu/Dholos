@@ -229,7 +229,7 @@ def prednow(predjson):
     try:
         snippet = all_results.objects.get(caseid=new_caseid)
     except all_results.DoesNotExist:
-        return HttpResponse('status=404')
+        return HttpResponse("status":404)
     
     resultsupdate = {"reco": abc}
     serializer = all_results_serializers(snippet, data=resultsupdate)
@@ -240,7 +240,7 @@ def prednow(predjson):
     try:
         snippet = Case_Detiles.objects.get(id=new_caseid)
     except Case_Detiles.DoesNotExist:
-        return HttpResponse('status=404')
+        return HttpResponse("status":404)
     
     casedetailasupdate = {"status": "Verified"}
     serializer = Case_Detiles_serializers(snippet, data=casedetailasupdate)
