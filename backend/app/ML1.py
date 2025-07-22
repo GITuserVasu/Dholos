@@ -44,6 +44,15 @@ warnings.filterwarnings("ignore")
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestRegressor
 
+from app.models import (
+    all_results,
+    Case_Detiles,
+)
+from app.serilizer import (
+    all_results_serializers,
+    Case_Detiles_serializers
+)
+
 
 @csrf_exempt
 def prednow(predjson):
@@ -62,6 +71,7 @@ def prednow(predjson):
     orgid = jsondata["orgid"]
     n2applied = jsondata["n2applied"]
     what_to_predict = jsondata["what_to_predict"]
+    new_caseid = jsondata["new_caseid"]
 
     if dataset == "lubbock":
             dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
@@ -209,6 +219,29 @@ def prednow(predjson):
     print("abc")
     #abc = y_predict
     print(abc)
+
+    # Update all_results table
+    try:
+        snippet = all_results.objects.get(caseid=new_caseid)
+    except all_results.DoesNotExist:
+        return HTTPResponse(status=404)
+    
+    resultsupdate = {"reco": abc}
+    serializer = all_results_serializers(snippet, data=resultsupdate)
+    if serializer.is_valid():
+        serializer.save()
+
+    # update case details status field
+    try:
+        snippet = Case_Detiles.objects.get(id=new_caseid)
+    except Case_Detiles.DoesNotExist:
+        return HTTPResponse(status=404)
+    
+    casedetailasupdate = {"status": "Verified"}
+    serializer = Case_Detiles_serializers(snippet, data=casedetailasupdate)
+    if serializer.is_valid():
+        serializer.save()
+
     # change back to orig dir
     ##os.chdir(savedir)
     return JsonResponse({"statusCode": 200, "c_string": cultivar_string, "prediction":abc})

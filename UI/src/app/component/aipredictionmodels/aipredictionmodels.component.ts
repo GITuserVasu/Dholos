@@ -101,6 +101,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   FinalPred: finalpred = [] ; */
   FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
   cultivar_string: any = "";
+  new_caseid: any;
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
@@ -478,6 +479,52 @@ export class AIpredictionmodelsComponent implements OnInit {
     this.username = this.info.name;
     this.username = this.username.replaceAll(" ","");
 
+
+    // Create case details record and get the case id for the new record
+        const CreatedDate = new Date() ;
+
+        const timestamp: number = CreatedDate.getTime();
+
+        var casedetials = {
+              status: "Inprogress",
+              fileName: "not used",
+              
+              XfileName: "not used",
+              CULfileName: "not used",
+              orgid: localStorage.getItem("org_id"),
+              projectType: "AI/ML",
+              projectName: localStorage.getItem("org_id") + "_" + timestamp ,
+              folderType: "Not Used",
+              folderName: "Not Used",
+              // ocrType: this.ocrtarget_value,
+              ocrType: "Various",
+              targetfiles: "Not Used",
+              empOrgid: localStorage.getItem("empOrgid") != '' ? localStorage.getItem("empOrgid") : null,
+              searchtextwords: this.predicted_yield,
+              username:this.info.name,
+              CreatedDate: CreatedDate,
+              selectedholosproduct: "AI/ML",
+              nyers: 0,
+              subblocksize: 0,
+              analogyear: 0,
+              plantdensity: 0,
+              plantingmethod:"not used",
+              farmid:0,
+              farmname: this.datasetvalue,
+              plantingdate: "not used"
+            }
+        
+            console.log("AI casedetials...", casedetials);
+        
+            this.http.post(environment.apiUrl + "Case_Detiles/", casedetials).subscribe((res: any) => {
+              console.log("myresres");
+              console.log('res');
+              this.aidata = res.data;
+              this.new_caseid = res.new_caseid;
+
+            })
+
+
     // Call the predict python code
     const predjson ={
       "dataset" : this.datasetvalue ,
@@ -492,7 +539,8 @@ export class AIpredictionmodelsComponent implements OnInit {
       "orgid" : localStorage.getItem('org_id'),
       "username" : this.username,
       "n2applied": n2applied,
-      "what_to_predict": this.modelvalue
+      "what_to_predict": this.modelvalue,
+      "new_caseid": this.new_caseid
     } 
 
     // alert(this.username);
@@ -598,47 +646,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
         } */
 
-        const CreatedDate = new Date() ;
 
-        const timestamp: number = CreatedDate.getTime();
-
-        var casedetials = {
-              status: "Inprogress",
-              fileName: "not used",
-              
-              XfileName: "not used",
-              CULfileName: "not used",
-              orgid: localStorage.getItem("org_id"),
-              projectType: "AI/ML",
-              projectName: localStorage.getItem("org_id") + "_" + timestamp ,
-              folderType: "Not Used",
-              folderName: "Not Used",
-              // ocrType: this.ocrtarget_value,
-              ocrType: "Various",
-              targetfiles: "Not Used",
-              empOrgid: localStorage.getItem("empOrgid") != '' ? localStorage.getItem("empOrgid") : null,
-              searchtextwords: this.predicted_yield,
-              username:this.info.name,
-              CreatedDate: CreatedDate,
-              selectedholosproduct: "AI/ML",
-              nyers: 0,
-              subblocksize: 0,
-              analogyear: 0,
-              plantdensity: 0,
-              plantingmethod:"not used",
-              farmid:0,
-              farmname: this.datasetvalue,
-              plantingdate: "not used"
-            }
-        
-            console.log("AI casedetials...", casedetials);
-        
-            this.http.post(environment.apiUrl + "Case_Detiles/", casedetials).subscribe((res: any) => {
-              console.log("myresres");
-              console.log('res');
-              this.aidata = res.data
-
-            })
       }
        
     }) 
