@@ -521,6 +521,7 @@ export class AIpredictionmodelsComponent implements OnInit {
               console.log('res');
               this.aidata = res.data;
               this.new_caseid = res.new_caseid;
+              alert(this.new_caseid);
 
             })
 

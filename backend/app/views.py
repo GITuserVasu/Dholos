@@ -577,7 +577,7 @@ def insertion(req):
         if serializer.is_valid():
             new_record = serializer.save()
             new_caseid = new_record.id
-            # print("CASE ID", new_caseid)
+            print("CASE ID", new_caseid)
             return JsonResponse(
                 {"response": serializer.data, "new_caseid":new_caseid,"errorCode": 200, "errorMsg": "success"},
                 status=201,
