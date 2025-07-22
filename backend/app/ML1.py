@@ -76,7 +76,7 @@ def prednow(predjson):
     n2applied = jsondata["n2applied"]
     what_to_predict = jsondata["what_to_predict"]
     # new_caseid = jsondata["new_caseid"]
-    new_caseid = 308
+    new_caseid = 309
 
     if dataset == "lubbock":
             dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
