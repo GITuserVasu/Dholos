@@ -57,6 +57,7 @@ from app.serilizer import (
 @csrf_exempt
 def prednow(predjson):
     print("In prednow")
+    
     jsondata = JSONParser().parse(predjson)
     username = jsondata["username"]
     dataset = jsondata["dataset"]
