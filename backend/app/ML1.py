@@ -75,8 +75,9 @@ def prednow(predjson):
     orgid = jsondata["orgid"]
     n2applied = jsondata["n2applied"]
     what_to_predict = jsondata["what_to_predict"]
-    # new_caseid = jsondata["new_caseid"]
-    new_caseid = 309
+    new_caseid = jsondata["new_caseid"]
+    projectname = jsondata["projectname"]
+    # new_caseid = 309
 
     if dataset == "lubbock":
             dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
@@ -225,8 +226,22 @@ def prednow(predjson):
     #abc = y_predict
     print(abc)
 
-    # Update all_results table
-    try:
+    # Create record in all_results table
+    result_data = {
+        "orgid": orgid,
+        "username": username,
+        "projectname": projectname,
+        "caseid": new_caseid,
+        "reco": abc
+    }
+    serializer = all_results_serializers(data=result_data)
+    if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(
+                {"response": serializer.data, "errorCode": 200, "errorMsg": "success"},
+                status=201,
+            )
+    """ try:
         snippet = all_results.objects.get(caseid=new_caseid)
     except all_results.DoesNotExist:
         return JsonResponse({"statusCode": 404})
@@ -234,7 +249,7 @@ def prednow(predjson):
     resultsupdate = {"reco": abc}
     serializer = all_results_serializers(snippet, data=resultsupdate)
     if serializer.is_valid():
-        serializer.save()
+        serializer.save() """
 
     # update case details status field
     try:
