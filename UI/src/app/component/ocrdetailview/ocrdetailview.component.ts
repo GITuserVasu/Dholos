@@ -118,7 +118,7 @@ export class OcrdetailviewComponent implements OnInit {
   projecttype: any;
   cultivar_string: any;
   prediction_string: any;
-  FinalPred: any;
+  FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
 
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
