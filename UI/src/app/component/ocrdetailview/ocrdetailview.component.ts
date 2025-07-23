@@ -118,7 +118,7 @@ export class OcrdetailviewComponent implements OnInit {
   projecttype: any;
   cultivar_string: any;
   prediction_string: any;
-  FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
+  FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:string}> = [];
 
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
@@ -193,7 +193,7 @@ export class OcrdetailviewComponent implements OnInit {
                   
                   var pred_yield_array:string[] = [];
                   var pred_water_array:string[] = [];
-                  var water_efficiency_array:Number[] = [];
+                  var water_efficiency_array:string[] = [];
                   const pred_array_len = prediction_array.length;
                   var j = 0;
                   for (let i = 0; i<pred_array_len; i++){
@@ -202,13 +202,15 @@ export class OcrdetailviewComponent implements OnInit {
                       pred_water_array[j] = prediction_array[i];
                       if(Number(pred_water_array[j]) > 0){
                            water_efficiency_array[j] = Number(pred_yield_array[j])/Number(pred_water_array[j]);
+                           water_efficiency_array[j].toString;
                         } else {
                                  water_efficiency_array[j] = 0 ;
+                                 water_efficiency_array[j].toString;
                         }
                       j = j +1 ;
                      }
                      for (let i = 0; i < (pred_array_len/2); i ++) {
-                         this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:Number(pred_yield_array[i]).toFixed(2) , waterefficiency:Number(water_efficiency_array[i]).toFixed(2) }
+                         this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:parseFloat(pred_yield_array[i]).toFixed(2) , waterefficiency:(parseFloat(water_efficiency_array[i])).toFixed(2) }
 
                       }
 
