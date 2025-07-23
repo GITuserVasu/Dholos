@@ -522,10 +522,10 @@ export class AIpredictionmodelsComponent implements OnInit {
               console.log('res');
               this.aidata = res.data;
               this.new_caseid = res.new_caseid;
-              alert(this.new_caseid);
-              }              
+              
+/*               }              
 
-            })
+            }) */
 
     alert(this.new_caseid);
     // Call the predict python code
@@ -656,8 +656,11 @@ export class AIpredictionmodelsComponent implements OnInit {
        
     }) 
 
+  }
+})
 
-  } 
+
+} 
   
   modelselectonchange(value:string) {
     this.modelvalue  = value;
