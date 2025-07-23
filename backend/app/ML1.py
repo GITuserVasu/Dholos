@@ -227,7 +227,16 @@ def prednow(predjson):
     print(abc)
 
     # Create record in all_results table
-    result_data = {
+    all_results_record = all_results.objects.create(
+        orgid = orgid,
+        username = username,
+        projectname = projectname,
+        caseid = new_caseid,
+        reco = abc
+    )
+    all_results_record.save()
+
+    """ result_data = {
         "orgid": orgid,
         "username": username,
         "projectname": projectname,
@@ -240,7 +249,7 @@ def prednow(predjson):
             return JsonResponse(
                 {"response": serializer.data, "errorCode": 200, "errorMsg": "success"},
                 status=201,
-            )
+            ) """
     """ try:
         snippet = all_results.objects.get(caseid=new_caseid)
     except all_results.DoesNotExist:

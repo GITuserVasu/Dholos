@@ -101,7 +101,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   FinalPred: finalpred = [] ; */
   FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
   cultivar_string: any = "";
-  new_caseid: any;
+  new_caseid: any = "";
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
