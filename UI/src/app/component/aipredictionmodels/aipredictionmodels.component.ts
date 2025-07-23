@@ -517,11 +517,12 @@ export class AIpredictionmodelsComponent implements OnInit {
             console.log("AI casedetials...", casedetials);
         
             this.http.post(environment.apiUrl + "Case_Detiles/", casedetials).subscribe((res: any) => {
+              if (res.errorCode == 200) {
               console.log("myresres");
               console.log('res');
               this.aidata = res.data;
               this.new_caseid = res.new_caseid;
-              
+              }              
 
             })
 
