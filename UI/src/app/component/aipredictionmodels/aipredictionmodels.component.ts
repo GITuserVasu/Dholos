@@ -545,6 +545,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "projectname": localStorage.getItem("org_id") + "_" + timestamp ,
     } 
 
+    console.log(predjson);
     // alert(this.username);
 
     this.spinner.show();
