@@ -43,6 +43,7 @@
            Company ID: {{orgid}} <br>
            ProjectName: {{projectname}} <br>
            Holos Product: {{selectedholosproduct}} <br>
+           Project Type: {{projecttype}}<br>
            Farm Name: {{farmname}} <br>
            Status: {{exptstatus}} <br>
            </p>
@@ -95,7 +96,9 @@
  <div class="col-md-9" style="height: 600px">
   <div class="card mini-stats-wid">
      <!-- <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>  -->
-     <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>
+      <span *ngIf = "selectedholosproduct == 'PRSEASON'">
+         <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>
+     </span>
     <div class="card-body">
       <div class="scrollable" style="overflow-y: auto; max-height: 500px;">
         <h3 class="card-title">Results</h3>
@@ -109,6 +112,7 @@
           <li class="nav-item" role="presentation">
               <a href="#tabs-home-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab">Yield/Cultivar</a>
             </li>
+        <span *ngIf = "selectedholosproduct == 'PRSEASON'">
           <li class="nav-item" role="presentation">
             <a href="#tabs-plantingdate-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" tabindex="-1"
               role="tab">Yield/Planting Date</a>
@@ -121,10 +125,12 @@
             <a href="#tabs-activity-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" tabindex="-1"
               role="tab">N2</a>
           </li>
+        </span>
           <li class="nav-item" role="presentation">
             <a href="#tabs-tables-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" tabindex="-1"
               role="tab">Water</a>
           </li>
+        <span *ngIf = "selectedholosproduct == 'PRSEASON'">
           <li class="nav-item" role="presentation">
                       <a href="#tabs-statcharts-14" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                           role="tab">Stat Charts</a><br>
@@ -133,7 +139,7 @@
                     <a href="#tabs-maplayers-14" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                         role="tab">Maps</a><br>
                 </li>
-              
+        </span>
 
         </ul>
         <!-- </span> -->
