@@ -208,7 +208,7 @@ export class OcrdetailviewComponent implements OnInit {
                       j = j +1 ;
                      }
                      for (let i = 0; i < (pred_array_len/2); i ++) {
-                         this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[i] }
+                         this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:Number(pred_yield_array[i]).toFixed(2) , waterefficiency:Number(water_efficiency_array[i]).toFixed(2) }
 
                       }
 
