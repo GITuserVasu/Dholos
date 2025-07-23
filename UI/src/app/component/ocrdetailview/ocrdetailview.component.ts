@@ -193,7 +193,8 @@ export class OcrdetailviewComponent implements OnInit {
                   
                   var pred_yield_array:string[] = [];
                   var pred_water_array:string[] = [];
-                  var water_efficiency_array:string[] = [];
+                  var water_efficiency_strarray:string[] = [];
+                  var water_efficiency_numarray:Number[] = [];
                   const pred_array_len = prediction_array.length;
                   var j = 0;
                   for (let i = 0; i<pred_array_len; i++){
@@ -201,16 +202,16 @@ export class OcrdetailviewComponent implements OnInit {
                       i = i +1 ;
                       pred_water_array[j] = prediction_array[i];
                       if(Number(pred_water_array[j]) > 0){
-                           water_efficiency_array[j] = Number(pred_yield_array[j])/Number(pred_water_array[j]);
-                           water_efficiency_array[j].toString;
+                           water_efficiency_numarray[j] = Number(pred_yield_array[j])/Number(pred_water_array[j]);
+                           water_efficiency_strarray[j] = water_efficiency_numarray[j] as unknown as string;
                         } else {
-                                 water_efficiency_array[j] = 0 ;
-                                 water_efficiency_array[j].toString;
+                                 water_efficiency_numarray[j] = 0 ;
+                                 water_efficiency_strarray[j] = water_efficiency_numarray[j] as unknown as string;
                         }
                       j = j +1 ;
                      }
                      for (let i = 0; i < (pred_array_len/2); i ++) {
-                         this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:parseFloat(pred_yield_array[i]).toFixed(2) , waterefficiency:(parseFloat(water_efficiency_array[i])).toFixed(2) }
+                         this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:parseFloat(pred_yield_array[i]).toFixed(2) , waterefficiency:(parseFloat(water_efficiency_strarray[i])).toFixed(2) }
 
                       }
 
