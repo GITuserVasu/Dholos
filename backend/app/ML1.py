@@ -232,7 +232,7 @@ def prednow(predjson):
         username = username,
         projectname = projectname,
         caseid = new_caseid,
-        reco = abc
+        reco = cultivar_string + "|" + abc
     )
     all_results_record.save()
 

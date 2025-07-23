@@ -187,6 +187,24 @@
              <br>
              <h6 *ngFor="let row of reco"><p>{{row}}</p></h6>
              <br>
+             <table class = "table">
+                   <thead>
+                         <tr>
+                              <th>Cultivar</th>
+                              <th>Water Used</th>
+                              <th>Yield</th>
+                              <th>Water Efficiency</th>
+                         </tr>
+                   </thead>
+                   <tbody>
+                      <tr *ngFor="let pred of FinalPred">
+                          <td>{{ pred.cultivar }}</td>
+                          <td>{{ pred.waterused }}</td>
+                          <td>{{ pred.yield }}</td>
+                          <td>{{ pred.waterefficiency }}</td>
+                      </tr>
+                   </tbody>
+                </table>
              Water Efficiency Index &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm)
              </span>
              <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'lubbock'">

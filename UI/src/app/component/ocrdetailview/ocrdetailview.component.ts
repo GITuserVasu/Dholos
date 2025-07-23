@@ -116,6 +116,9 @@ export class OcrdetailviewComponent implements OnInit {
   q : any = 0;
   predicted_yield: any;
   projecttype: any;
+  cultivar_string: any;
+  prediction_string: any;
+  FinalPred: any;
 
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
@@ -170,11 +173,50 @@ export class OcrdetailviewComponent implements OnInit {
                 if(this.projecttype == "AI/ML" ){
                   for (var i=0; i<b.length;i++){
                     var c = b[i];
-                    this.reco = c['reco'].split(/\r?\n/);
-                    console.log("reco",this.reco);
+                    this.cultivar_string = c['reco'].split("|")[0];
+                    this.prediction_string = c['reco'].split("|")[1];
+                // Manipulate to get the cultivars and ids in order
+                  const test_cultivar_array = this.cultivar_string.trim().split(/\s+/);
+                  var cultivar_array:string[] = [];
+                  var j = 0;
+                  for (let i = 0; i < test_cultivar_array.length; i++) {
+                      cultivar_array[j] = test_cultivar_array[i];
+                      i = i + 1;
+                      j = j + 1;
+          
+                     }
+                // Manipulate the predictiopn string
+                  this.prediction_string = this.prediction_string.replaceAll("[", "");
+                  this.prediction_string = this.prediction_string.replaceAll("]", "");
+
+                  const prediction_array = this.prediction_string.trim().split(/\s+/);  
+                  
+                  var pred_yield_array:string[] = [];
+                  var pred_water_array:string[] = [];
+                  var water_efficiency_array:Number[] = [];
+                  const pred_array_len = prediction_array.length;
+                  var j = 0;
+                  for (let i = 0; i<pred_array_len; i++){
+                      pred_yield_array[j] = prediction_array[i];
+                      i = i +1 ;
+                      pred_water_array[j] = prediction_array[i];
+                      if(Number(pred_water_array[j]) > 0){
+                           water_efficiency_array[j] = Number(pred_yield_array[j])/Number(pred_water_array[j]);
+                        } else {
+                                 water_efficiency_array[j] = 0 ;
+                        }
+                      j = j +1 ;
+                     }
+                     for (let i = 0; i < (pred_array_len/2); i ++) {
+                         this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[i] }
+
+                      }
+
+                    /* this.reco = c['reco'].split(/\r?\n/);
+                    console.log("reco",this.reco); */
                   }
                 }
-
+                if(this.projecttype == "CSM" ){
                 for (var i=0; i<b.length;i++){
                    var c = b[i];
                    console.log("c",c['files3loc']);
@@ -265,9 +307,10 @@ export class OcrdetailviewComponent implements OnInit {
 
                    }
                   }
-                }
-              })
-            }
+                } // for loop for CSM 
+              } // if CSM project
+              }) // http gert results
+            } // if expt status is Verified
             //this.downloadFile(res.response)
             //this.downloadFilecsv(res.response)
             //this.downloadFilecsv_1(res.response)
