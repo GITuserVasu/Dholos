@@ -140,6 +140,7 @@ def prednow(predjson):
        print(cultivardf)
     else:
        print("Array is empty, cannot access index 0.")
+    num_cultivars = len(cultivardf)
     
     # cultivardf_modified = cultivardf.iloc[:, 1:]
 
@@ -148,24 +149,31 @@ def prednow(predjson):
     print(cultivar_string)
 
     #cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
-    cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
+    ###cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
     
     print("CULTIVAR ID")
-    print(cultivarid)
-
+    # print(cultivarid)
+    predictdf = pd.DataFrame()
     if dataset == 'coimbatore':
-        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+        for cultivarid in range(num_cultivars): 
+            predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+            predictdf0 = pd.DataFrame([predict_data0])
+            predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
+
     """ if dataset == 'lubbock':
         predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid,  'location':location} """
         
     if dataset == 'lubbock':
-        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+        for cultivarid in range(num_cultivars):
+            predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+            predictdf0 = pd.DataFrame([predict_data0])
+            predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
 
     if dataset == 'kern':
         cultivarid = 0 

@@ -103,9 +103,6 @@ export class AIpredictionmodelsComponent implements OnInit {
   cultivar_string: any = "";
   new_caseid: any = "";
 
-  min_date:string = "" ;
-  max_date:string = "" ;
-
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
   constructor(private spinner: NgxSpinnerService, private http: HttpClient, private router: Router) { };
