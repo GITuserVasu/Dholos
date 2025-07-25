@@ -542,7 +542,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "orgid" : localStorage.getItem('org_id'),
       "username" : this.username,
       "n2applied": n2applied,
-      "what_to_predict": this.modelvalue,
+      "what_to_predict": "yield_and_water",
       "new_caseid": this.new_caseid,
       "projectname": localStorage.getItem("org_id") + "_" + timestamp ,
     } 
