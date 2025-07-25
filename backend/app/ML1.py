@@ -208,6 +208,7 @@ def prednow(predjson):
     ##os.chdir(dir)
     # Execute a command and capture the output
     if dataset == 'coimbatore':
+        what_to_predict == 'yield_and_water'
         if what_to_predict == 'yield' :
             predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
             result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
