@@ -103,6 +103,9 @@ export class AIpredictionmodelsComponent implements OnInit {
   cultivar_string: any = "";
   new_caseid: any = "";
 
+  min_date:string = "" ;
+  max_date:string = "" ;
+
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
   constructor(private spinner: NgxSpinnerService, private http: HttpClient, private router: Router) { };
@@ -527,7 +530,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
             }) */
 
-    alert(this.new_caseid);
+    //alert(this.new_caseid);
     // Call the predict python code
     const predjson ={
       "dataset" : this.datasetvalue ,
