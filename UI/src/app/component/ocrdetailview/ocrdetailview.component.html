@@ -189,7 +189,8 @@
              <strong>Holos Recommendations</strong><br><br>
              <h6 *ngFor="let row of reco"><p>{{row}}</p></h6> 
              </span>
-             <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'kern'">
+             <!-- <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'kern'"> -->
+              <span *ngIf = "selectedholosproduct == 'AI/ML'"></span>
              <br>
              <!-- <h6 *ngFor="let row of reco"><p>{{row}}</p></h6>
              <br> -->
@@ -220,16 +221,16 @@
              <br>
                 Contact us at info&#64;gaiadhi.com for details on irrigation procedure/schedule
              </span>
-             <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'lubbock'">
+             <!-- <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'lubbock'">
              <br>
              Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
              </span>
              <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'coimbatore'">
              <br>
              Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
-             <br>
+             <br> -->
              <!-- Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm -->
-             </span>
+             <!-- </span> -->
               <!-- <div>{{reco}}</div>  -->
  
           </div>
