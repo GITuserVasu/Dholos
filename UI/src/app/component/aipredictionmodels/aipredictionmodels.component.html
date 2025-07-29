@@ -32,6 +32,7 @@
                                 <option value="coimbatore">Rice in Coimbatore</option>
                                 <!-- <option value="thanjavur">Thanjavur</option> -->
                                  <option value="lubbock">Cotton in South Plains</option>
+                                 <option value="kern">Alfalfa in California - Kern County</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
                             <div *ngIf="dataset.value == 'coimbatore'">
@@ -47,6 +48,11 @@
                             <div *ngIf="dataset.value == 'lubbock'">
                                 <strong>Treatments:</strong> 1 cultivar, 1 planting date, 5 irrigation practices, 4 fertilization practices<br>
                                 <strong>Cities:</strong> Lubbock, Wolfforth, Shallowater, Abernathy (mostly in Hale), several unincorporated towns.
+                                &nbsp; &nbsp;
+                            </div>
+                            <div *ngIf="dataset.value == 'kern'">
+                                <strong>Treatments:</strong> 1 cultivar, 1 planting date, 5 irrigation practices, 4 fertilization practices<br>
+                                <strong>Cities:</strong> SB0, SB1, SB2, SB4
                                 &nbsp; &nbsp;
                             </div>
                         </span>
@@ -99,21 +105,21 @@
         </div>
     </div>
     
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="dataset.value == 'coimbatore'">
         <div class="card mini-stats-wid">
             <div class="card-body">
                 <div class="d-flex">
                     <div class="flex-grow-1">    
                         <!-- <p class="text-muted fw-medium"> Choose what to predict </p> -->
                         <span class="input-group">
-                            <div class="col-md-6" *ngIf="dataset.value == 'coimbatore'">
+                            <!-- <div class="col-md-6" *ngIf="dataset.value == 'coimbatore'"> -->
                               <label>Factors to Predict...</label>  
                               <select #whichmodel id="whichmodel" value="yield"
                                     (change)="modelselectonchange(whichmodel.value)">
                                     <option value="yield">Yield</option>
                                     <option value="yield_and_water">Yield and Water Used</option>
                                 </select>
-                            </div>
+                            <!-- </div> -->
                         
                       </span>
                     </div>
@@ -179,6 +185,16 @@
                                         <option value="thanjavur LAT 10.745497932699427 LONG 79.11916595973786">Thanjavur</option>
                                     </select>
                                 </div>
+                                <div *ngIf="datasetvalue == 'kern'"> 
+                                    <select #location id="location" value="none"
+                                        (change)="locationselectonchange(location.value)">
+                                        <option value="none">Choose One</option>
+                                        <option value="sb0 LAT 34.92 LONG -119.1819">SB0</option>
+                                        <option value="sb1 LAT 34.9165 LONG -118.5818">SB1</option>
+                                        <option value="sb2 LAT 34.9311 LONG -117.9413">SB2</option>
+                                        <option value="sb4 LAT 35.17 LONG -119.2334">SB4</option>
+                                    </select>
+                                </div>
                             </div>
                                
                     <div class="col-md-9">
@@ -228,7 +244,7 @@
                 <div class="d-flex">
                     <div class="flex-grow-1">
                         <span class="input-group">
-                            <div *ngIf="datasetvalue == 'coimbatore'">
+                          <!--   <div *ngIf="datasetvalue == 'coimbatore'">
                             <label> Variety</label>&nbsp; &nbsp;
                             <select #cultivar id="cultivar" value="none" (change)="cultivarselectonchange(cultivar.value)">
                                 <option value="none">Choose One</option>
@@ -239,22 +255,36 @@
                                 <option value="ADT36">ADT36</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
-                            </div>
-                            <div *ngIf="datasetvalue == 'lubbock'">
+                            </div> -->
+                          <!--   <div *ngIf="datasetvalue == 'lubbock'">
                             <label> Variety</label>&nbsp; &nbsp;
                             <select #cultivar id="cultivar" value="none" (change)="cultivarselectonchange(cultivar.value)">
                                 <option value="none">Choose One</option>
                                 <option value="Phytogen 350Ca1">Phytogen 350Ca1</option>
                             </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
-                            </div>
-                            <label> Planting Date</label>&nbsp; &nbsp;
-                            <input type="date" id="pdate" name="pdate" value="2025-06-15" min="2025-05-15" max="2025-07-15" >
+                            </div> -->
+                            <!-- <div *ngIf="datasetvalue == 'kern'">
+                            <label> Variety</label>&nbsp; &nbsp;
+                            <select #cultivar id="cultivar" value="Ara-FD7" (change)="cultivarselectonchange(cultivar.value)">
+                                <option value="none">Choose One</option>
+                                <option value="Ara-FD7">Ara-FD7</option>
+                                <option value="CFIA-FD4">CFIA-FD4</option>
+                                <option value="CUF-FD9">CUF-FD9</option>
+                            </select>
                             &nbsp; &nbsp;&nbsp; &nbsp;
+                            </div> -->
+                            <label> Planting Date</label>&nbsp; &nbsp;
+                            <!-- Lubbock and Kern approx pltg date is 05/15-->
+                             <!-- Coimbatore approx pltg date is 05/22-->
+                            <input type="date"  onkeydown="return false" id="pdate" name="pdate" value="2025-05-15" min="2025-04-15" max="2025-07-15" >
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            
                             <label> Nitrogen Applied (default = 152 kg/ha)</label>
                                 &nbsp; &nbsp;
                                 <input type="number" id="n2applied" name="n2applied" value="152" min="-1" max="500">
                                 &nbsp; &nbsp;&nbsp; &nbsp;
+                                
                         </span>
                     </div>
                 </div>
@@ -346,7 +376,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="resultModal" tabindex="-1" role="dialog"  >
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Prediction Results</h5>
@@ -355,10 +385,49 @@
             </button> -->
         </div>
         <div class="modal-body">
+            <div *ngIf="datasetvalue == 'coimbatore' ||  datasetvalue == 'lubbock'">
             Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
             <br>
+            </div>
             <div *ngIf="datasetvalue == 'coimbatore' &&  modelvalue == 'yield_and_water'"> 
             Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm
+            </div>
+            <div *ngIf="datasetvalue == 'kern'">
+                <!-- Recommended Cultivar &nbsp; = &nbsp;{{cultivarvalue}}
+                <br>
+                Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm
+                <br>
+                Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
+                <br>
+                Water Efficiency &nbsp; = &nbsp; &nbsp; {{water_efficiency}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm) -->
+                <!-- <table>
+                <tr><td>Recommended Cultivar</td><td>&nbsp;:&nbsp;</td><td>&nbsp;{{cultivarvalue}}</td></tr>
+                <tr><td>Predicted Water Used </td><td>&nbsp;:&nbsp;</td><td> &nbsp;{{predicted_water_used}} &nbsp; mm </td></tr>
+                <tr><td>Predicted Yield </td><td>&nbsp;:&nbsp;</td><td> &nbsp;{{predicted_yield}} &nbsp; kg/ha </td></tr>
+                <tr><td>Water Efficiency </td><td>&nbsp;:&nbsp;</td><td> &nbsp;{{water_efficiency}} &nbsp; Yield/App Irrigation Prod(kg/ha/mm) </td></tr>
+                </table> -->
+                <table class = "table">
+                   <thead>
+                         <tr>
+                              <th>Cultivar</th>
+                              <th>Water Used</th>
+                              <th>Yield</th>
+                              <th>Water Efficiency</th>
+                         </tr>
+                   </thead>
+                   <tbody>
+                      <tr *ngFor="let pred of FinalPred">
+                          <td>{{ pred.cultivar }}</td>
+                          <td>{{ pred.waterused }}</td>
+                          <td>{{ pred.yield }}</td>
+                          <td>{{ pred.waterefficiency }}</td>
+                      </tr>
+                   </tbody>
+                </table>
+
+
+                <br><br>
+                Contact us at info&#64;gaiadhi.com for details on irrigation procedure/schedule
             </div>
         </div>
         <div class="modal-footer">

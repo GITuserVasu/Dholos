@@ -44,11 +44,24 @@ warnings.filterwarnings("ignore")
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.ensemble import RandomForestRegressor
 
+from app.models import (
+    all_results,
+    Case_Detiles,
+)
+from app.serilizer import (
+    all_results_serializers,
+    Case_Detiles_serializers
+)
+
 
 @csrf_exempt
 def prednow(predjson):
     print("In prednow")
+
     jsondata = JSONParser().parse(predjson)
+
+    print(jsondata)
+
     username = jsondata["username"]
     dataset = jsondata["dataset"]
     useblockname = jsondata["useblockname"]
@@ -62,6 +75,9 @@ def prednow(predjson):
     orgid = jsondata["orgid"]
     n2applied = jsondata["n2applied"]
     what_to_predict = jsondata["what_to_predict"]
+    new_caseid = jsondata["new_caseid"]
+    projectname = jsondata["projectname"]
+    # new_caseid = 309
 
     if dataset == "lubbock":
             dirname = "/home/bitnami/ML/data/texas/lubbock/models/"
@@ -72,6 +88,12 @@ def prednow(predjson):
         dirname = "/home/bitnami/ML/data/coimbatore-apr25/models/"
         filename = "ml_data.pkl"
         ML1_df= read_pkldata(dirname,filename)
+    if dataset == "kern":
+        dirname = "/home/bitnami/ML/data/ca-kern/COMBINED/"
+        #filename = "ml_data.pkl"
+        #ML1_df= read_pkldata(dirname,filename)
+        filename = "finalsummdf-file.csv"
+        ML1_df = read_csvdata(dirname, filename)
 
     """ #reportfile = open_reporting_session("","") """
     #ML1_df= read_pkldata(dirname,filename)
@@ -113,31 +135,68 @@ def prednow(predjson):
     cultivardf = ML1_df[["Cultivar", "cultivar"]]
     cultivardf = cultivardf.drop_duplicates()
     print(cultivardf)
+
+    if len(cultivardf) > 0:
+       print(cultivardf)
+    else:
+       print("Array is empty, cannot access index 0.")
+    num_cultivars = len(cultivardf)
+    
+    # cultivardf_modified = cultivardf.iloc[:, 1:]
+
+    cultivar_string = cultivardf.to_string(index=False, header=False)
+
+    print(cultivar_string)
+
     #cultivarid = cultivardf.loc[cultivardf['Cultivar']==Cultivar, 'cultivar']
-    cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
+    ###cultivarid = cultivardf[cultivardf['Cultivar']==Cultivar]['cultivar'].values[0]
     
     print("CULTIVAR ID")
-    print(cultivarid)
-
+    # print(cultivarid)
+    predictdf = pd.DataFrame()
     if dataset == 'coimbatore':
-        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+        for cultivarid in range(num_cultivars): 
+            predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+            predictdf0 = pd.DataFrame([predict_data0])
+            predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
+
     """ if dataset == 'lubbock':
         predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid,  'location':location} """
         
     if dataset == 'lubbock':
-        predict_data = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+        for cultivarid in range(num_cultivars):
+            predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
-        
-    predictdf = pd.DataFrame([predict_data])
+            predictdf0 = pd.DataFrame([predict_data0])
+            predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
+
+    if dataset == 'kern':
+        cultivarid = 0 
+        predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+        predictdf0 = pd.DataFrame([predict_data0])
+        cultivarid = 1
+        predict_data1 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+        predictdf1 = pd.DataFrame([predict_data1])
+        cultivarid = 2
+        predict_data2 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+                    'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
+        predictdf2 = pd.DataFrame([predict_data2])
+    
+        predictdf = pd.concat([predictdf0, predictdf1], axis=0, ignore_index=True)
+        predictdf = pd.concat([predictdf, predictdf2], axis=0, ignore_index=True)
+    
 
     print(predictdf)
-
-    
 
     predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
 
@@ -149,6 +208,7 @@ def prednow(predjson):
     ##os.chdir(dir)
     # Execute a command and capture the output
     if dataset == 'coimbatore':
+        what_to_predict == 'yield_and_water'
         if what_to_predict == 'yield' :
             predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/models/predict-row.csv")
             result = subprocess.run(['python3', '/home/bitnami/ML/data/coimbatore-apr25/models/test.py'], capture_output=True, text=True)
@@ -163,14 +223,65 @@ def prednow(predjson):
         result = subprocess.run(['python3', '/home/bitnami/ML/data/texas/lubbock/models/testrun.py'], capture_output=True, text=True)
         print(result.stdout)
         abc = result.stdout
+    elif dataset == 'kern':
+        predictdf.to_csv("/home/bitnami/ML/data/ca-kern/COMBINED/predict-row.csv")
+        result = subprocess.run(['python3', '/home/bitnami/ML/data/ca-kern/COMBINED/testrun.py'], capture_output=True, text=True)
+        print(result.stdout)
+        abc = result.stdout
     else:
         abc = 0
     print("abc")
     #abc = y_predict
     print(abc)
+
+    # Create record in all_results table
+    all_results_record = all_results.objects.create(
+        orgid = orgid,
+        username = username,
+        projectname = projectname,
+        caseid = new_caseid,
+        reco = cultivar_string + "|" + abc
+    )
+    all_results_record.save()
+
+    """ result_data = {
+        "orgid": orgid,
+        "username": username,
+        "projectname": projectname,
+        "caseid": new_caseid,
+        "reco": abc
+    }
+    serializer = all_results_serializers(data=result_data)
+    if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(
+                {"response": serializer.data, "errorCode": 200, "errorMsg": "success"},
+                status=201,
+            ) """
+    """ try:
+        snippet = all_results.objects.get(caseid=new_caseid)
+    except all_results.DoesNotExist:
+        return JsonResponse({"statusCode": 404})
+    
+    resultsupdate = {"reco": abc}
+    serializer = all_results_serializers(snippet, data=resultsupdate)
+    if serializer.is_valid():
+        serializer.save() """
+
+    # update case details status field
+    try:
+        snippet = Case_Detiles.objects.get(id=new_caseid)
+    except Case_Detiles.DoesNotExist:
+        return JsonResponse({"statusCode": 404})
+    
+    casedetailasupdate = {"status": "Verified"}
+    serializer = Case_Detiles_serializers(snippet, data=casedetailasupdate)
+    if serializer.is_valid():
+        serializer.save()
+
     # change back to orig dir
     ##os.chdir(savedir)
-    return JsonResponse({"statusCode": 200, "name": "test", "prediction":abc})
+    return JsonResponse({"statusCode": 200, "c_string": cultivar_string, "prediction":abc})
 
 @csrf_exempt
 def get_predictweatherdata(ML1_df, stringcoords, dirname):
@@ -194,7 +305,16 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
     location = nearest_row['location']
     print("Nearest location", location)
     #weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
-    weatherdir = dirname + nearest_locn + "/"
+
+    if(nearest_locn[0] == "S"):
+        kern_prestring = "/home/bitnami/ML/data/ca-kern/Kern_"
+        kern_poststring = "_Alfalfa_AutoMow_14T_1sqkm_2019/"
+        parts = nearest_locn.split("_", 1)
+        weatherdir = kern_prestring + parts[0] + kern_poststring + "/" +"WorkingDir/" + parts[1] +"/"
+        print("weatherdir", weatherdir)
+    else:
+        weatherdir = dirname + nearest_locn + "/"
+    
     weatherfile = "mergedweather.csv"
 
     weatherdf = read_csvdata(weatherdir, weatherfile)

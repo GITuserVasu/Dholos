@@ -299,5 +299,31 @@ def soilwatercontrolpred(inputcsv):
 
     return JsonResponse({"statusCode": 200, "name": "test", "prediction":newX_string})
 
+@csrf_exempt
+def savestringasfile(correctcsv):
+   jsondata = JSONParser().parse(correctcsv) 
+   correctcsvdata = jsondata["data"]
+
+   # Get the current date and time
+   now = datetime.now()
+
+   # Convert the datetime object to a Unix timestamp (float)
+   timestamp_float = now.timestamp()
+
+   # Convert the float timestamp to an integer
+   timestamp_integer = int(timestamp_float)
+
+   filename = timestamp_integer
+   file_path = "/home/bitnami/ML/data/UAS/add_trg_data/" + str(filename) + ".csv"
+
+   try:
+        with open(file_path, 'w') as f:
+            f.write(correctcsvdata)
+        print(f"String successfully saved to {file_path}")
+   except IOError as e:
+        print(f"Error saving to file: {e}")
+
+   return JsonResponse({"statusCode": 200})
+
 
 

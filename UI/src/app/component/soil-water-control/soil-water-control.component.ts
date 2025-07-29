@@ -54,6 +54,8 @@ export class SoilWaterControlComponent implements OnInit {
   correctcsv: string = "";
 
   inputerror: boolean = false;
+  predictcorrectbuttonchangevalue: any;
+  predictcorrect: string="";
 
 
   constructor(private spinner: NgxSpinnerService, private fb: UntypedFormBuilder, private http: HttpClient) { }
@@ -74,7 +76,7 @@ export class SoilWaterControlComponent implements OnInit {
   }
 
   predictradiobuttonchange(event: any) {
-
+    this.resultReady = false;
     this.predictradiobuttonchangevalue = event.target.value
     this.input_choice = "single";
     if (event.target.value == "Single") {
@@ -82,6 +84,18 @@ export class SoilWaterControlComponent implements OnInit {
     } else if (event.target.value == "Multiple") {
       this.input_choice = "multiple";
     }
+  }
+
+  predictcorrectradiobuttonchange(event:any){
+
+    this.predictcorrectbuttonchangevalue = event.target.value;
+    if(this.predictcorrectbuttonchangevalue == "predict") {
+      this.predictcorrect = "predict" ;
+    }
+    if(this.predictcorrectbuttonchangevalue == "correct") {
+      this.predictcorrect = "correct" ;
+    }
+
   }
 
   lccselectonchange(value: string) {
@@ -135,8 +149,19 @@ export class SoilWaterControlComponent implements OnInit {
 
   save_ctreatment() {
     alert("Treatment Saved");
-    this.correctcsv = this.lccvalue + "," + this.soilcolorvalue + "," + this.slopevalue + "," + this.depthvalue + "," + this.surf_textvalue + "," + this.subsurf_textvalue + "," + this.gravelvalue + "," + this.rainfallvalue
+    const ctreatment = document.getElementById('ctreatment') as HTMLInputElement;
+    const ctreatmentValue: string = ctreatment.value;
+    this.correctcsv = this.lccvalue + "," + this.soilcolorvalue + "," + this.slopevalue + "," + this.depthvalue + "," + this.surf_textvalue + "," + this.subsurf_textvalue + "," + this.gravelvalue + "," + this.rainfallvalue + "," + ctreatmentValue ;
     // save_string_as_file_on_server()
+    const correctJson = { "data": this.correctcsv }
+      this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
+        if (res.StatusCode == 200) {
+          console.log(" String Save Success Single");
+        } else {
+          alert('Error in saving correction string single');
+        }
+
+      })
   }
 
   onSubmit() {
@@ -281,6 +306,16 @@ export class SoilWaterControlComponent implements OnInit {
       reader.readAsText(event.target.files[i]);
       console.log("file data", this.correctcsv);
       // save_string_as_file_on_server()
+      const correctJson = { "data": this.correctcsv }
+      this.http.post(environment.apiUrl + 'savestringasfile', correctJson).subscribe((res: any) => {
+        if (res.StatusCode == 200) {
+          console.log(" String Save Success File");
+          alert('new training file uploaded');
+        } else {
+          alert('Error in saving correction string file');
+        }
+
+      })
     }
   }
 

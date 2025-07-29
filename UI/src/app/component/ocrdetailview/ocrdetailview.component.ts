@@ -114,6 +114,11 @@ export class OcrdetailviewComponent implements OnInit {
   m : any = 0;
   p : any = 0;
   q : any = 0;
+  predicted_yield: any;
+  projecttype: any;
+  cultivar_string: any;
+  prediction_string: any;
+  FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:string}> = [];
 
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
@@ -138,6 +143,7 @@ export class OcrdetailviewComponent implements OnInit {
             console.log('expt status', this.exptstatus);
             this.orgid = res.response[0].orgid ;
             this.projectname = res.response[0].projectName ;
+            this.projecttype = res.response[0].projectType ;
             this.username = res.response[0].username ;
             this.username = this.username.replaceAll(" ","");
             this.caseid = res.response[0].id;
@@ -153,6 +159,7 @@ export class OcrdetailviewComponent implements OnInit {
             this.farmid = res.response[0].farmid;
             this.farmname = res.response[0].farmname;
             this.plantingdate = res.response[0].plantingdate;
+            this.predicted_yield = res.response[0].searchtextwords;
               
             
             if(this.exptstatus == "Verified"){
@@ -160,9 +167,59 @@ export class OcrdetailviewComponent implements OnInit {
               this.india_mapimage = "https://www.gaiadhi.net/assets/images/india-heatmap.jpg_large";
               this.http.get(environment.apiUrl + 'getexptresults' + '?caseid=' + this.caseid ).subscribe((result: any) => {
                 console.log('from results table',result.response);
+                
                 const b = result.response;
                 console.log("b length",b.length);
+                if(this.projecttype == "AI/ML" ){
+                  for (var i=0; i<b.length;i++){
+                    var c = b[i];
+                    this.cultivar_string = c['reco'].split("|")[0];
+                    this.prediction_string = c['reco'].split("|")[1];
+                // Manipulate to get the cultivars and ids in order
+                  const test_cultivar_array = this.cultivar_string.trim().split(/\s+/);
+                  var cultivar_array:string[] = [];
+                  var j = 0;
+                  for (let i = 0; i < test_cultivar_array.length; i++) {
+                      cultivar_array[j] = test_cultivar_array[i];
+                      i = i + 1;
+                      j = j + 1;
+          
+                     }
+                // Manipulate the predictiopn string
+                  this.prediction_string = this.prediction_string.replaceAll("[", "");
+                  this.prediction_string = this.prediction_string.replaceAll("]", "");
 
+                  const prediction_array = this.prediction_string.trim().split(/\s+/);  
+                  
+                  var pred_yield_array:string[] = [];
+                  var pred_water_array:string[] = [];
+                  var water_efficiency_strarray:string[] = [];
+                  var water_efficiency_numarray:Number[] = [];
+                  const pred_array_len = prediction_array.length;
+                  var j = 0;
+                  for (let i = 0; i<pred_array_len; i++){
+                      pred_yield_array[j] = prediction_array[i];
+                      i = i +1 ;
+                      pred_water_array[j] = prediction_array[i];
+                      if(Number(pred_water_array[j]) > 0){
+                           water_efficiency_numarray[j] = Number(pred_yield_array[j])/Number(pred_water_array[j]);
+                           water_efficiency_strarray[j] = water_efficiency_numarray[j] as unknown as string;
+                        } else {
+                                 water_efficiency_numarray[j] = 0 ;
+                                 water_efficiency_strarray[j] = water_efficiency_numarray[j] as unknown as string;
+                        }
+                      j = j +1 ;
+                     }
+                     for (let i = 0; i < (pred_array_len/2); i ++) {
+                         this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:parseFloat(pred_yield_array[i]).toFixed(2) , waterefficiency:(parseFloat(water_efficiency_strarray[i])).toFixed(2) }
+
+                      }
+
+                    /* this.reco = c['reco'].split(/\r?\n/);
+                    console.log("reco",this.reco); */
+                  }
+                }
+                if(this.projecttype == "CSM" ){
                 for (var i=0; i<b.length;i++){
                    var c = b[i];
                    console.log("c",c['files3loc']);
@@ -253,9 +310,10 @@ export class OcrdetailviewComponent implements OnInit {
 
                    }
                   }
-                }
-              })
-            }
+                } // for loop for CSM 
+              } // if CSM project
+              }) // http gert results
+            } // if expt status is Verified
             //this.downloadFile(res.response)
             //this.downloadFilecsv(res.response)
             //this.downloadFilecsv_1(res.response)

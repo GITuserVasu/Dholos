@@ -43,10 +43,12 @@
            Company ID: {{orgid}} <br>
            ProjectName: {{projectname}} <br>
            Holos Product: {{selectedholosproduct}} <br>
+           Project Type: {{projecttype}}<br>
            Farm Name: {{farmname}} <br>
            Status: {{exptstatus}} <br>
            </p>
-           <p>
+           
+            <p *ngIf = "selectedholosproduct == 'PRSEASON'">
            <strong>Run Parameters:</strong> <br>
            Sub Block Size: {{subblocksize}} <br>
            <!-- num years and analogous year only for pre season-->
@@ -57,11 +59,12 @@
            Planting Method: {{plantingmethod}} <br>
            Plants per sq m: {{plantdensity}} <br>
            </p>
-           <p>
+           <p *ngIf = "selectedholosproduct == 'PRSEASON'">
             <strong>Files:</strong> <br>
             X File:   {{Xfilename}} <br>
             CUL File: {{CULfilename}} <br>
             </p> 
+          
             <!-- <p>
             <strong>Constraints:</strong> <br>
             Maximize Unadjusted Yield (kg/ha) for <br>
@@ -89,10 +92,13 @@
      </div>
     </div>
  </div>
+ <!-- <span *ngIf = "selectedholosproduct == 'PRSEASON'"> -->
  <div class="col-md-9" style="height: 600px">
   <div class="card mini-stats-wid">
      <!-- <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>  -->
-     <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>
+      <span *ngIf = "selectedholosproduct == 'PRSEASON'">
+         <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>
+     </span>
     <div class="card-body">
       <div class="scrollable" style="overflow-y: auto; max-height: 500px;">
         <h3 class="card-title">Results</h3>
@@ -102,9 +108,11 @@
             <a href="#tabs-meta-14" class="nav-link active" data-bs-toggle="tab" aria-selected="true" tabindex="-1"
               role="tab">Recommendations</a>
           </li>
+          
           <li class="nav-item" role="presentation">
               <a href="#tabs-home-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab">Yield/Cultivar</a>
             </li>
+        <span *ngIf = "selectedholosproduct == 'PRSEASON'">
           <li class="nav-item" role="presentation">
             <a href="#tabs-plantingdate-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" tabindex="-1"
               role="tab">Yield/Planting Date</a>
@@ -117,10 +125,12 @@
             <a href="#tabs-activity-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" tabindex="-1"
               role="tab">N2</a>
           </li>
+        </span>
           <li class="nav-item" role="presentation">
             <a href="#tabs-tables-14" class="nav-link" data-bs-toggle="tab" aria-selected="false" tabindex="-1"
               role="tab">Water</a>
           </li>
+        <span *ngIf = "selectedholosproduct == 'PRSEASON'">
           <li class="nav-item" role="presentation">
                       <a href="#tabs-statcharts-14" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                           role="tab">Stat Charts</a><br>
@@ -129,8 +139,10 @@
                     <a href="#tabs-maplayers-14" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                         role="tab">Maps</a><br>
                 </li>
+        </span>
 
         </ul>
+        <!-- </span> -->
 
         <div class="tab-content">
           <!-- <div class="tab-pane active show" id="tabs-document-14" role="tabpanel"> -->
@@ -169,14 +181,56 @@
             
  
           <!-- </div> -->
- 
+          
           <div class="tab-pane " id="tabs-meta-14" role="tabpanel">
             <!-- <h6 *ngFor="let row of page_summary">{{row}}</h6> -->
-            
+             <span *ngIf = "selectedholosproduct == 'PRSEASON'">
              <br>
              <strong>Holos Recommendations</strong><br><br>
              <h6 *ngFor="let row of reco"><p>{{row}}</p></h6> 
- 
+             </span>
+             <!-- <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'kern'"> -->
+              <span *ngIf = "selectedholosproduct == 'AI/ML'">
+             <br>
+             <!-- <h6 *ngFor="let row of reco"><p>{{row}}</p></h6>
+             <br> -->
+             <table style="width: 100%" class = "table table-striped table-borderless" style ="table-layout:fixed">
+                <colgroup>
+                   <col span="1" style="width: 20%;">
+                   <col span="1" style="width: 20%;">
+                   <col span="1" style="width: 20%;">
+                   <col span="1" style="width: 40%;">
+                </colgroup>
+                   <thead>
+                         <tr>
+                              <th style="text-align: center; vertical-align: middle;">Cultivar</th>
+                              <th style="text-align: center; vertical-align: middle;" >Water Used (mm)</th>
+                              <th style="text-align: center; vertical-align: middle;">Yield (kg/ha)</th>
+                              <th style="text-align: center; vertical-align: middle;">Water Efficiency Index (kg/ha/mm)</th>
+                         </tr>
+                   </thead>
+                   <tbody class="table-group-divider">
+                      <tr *ngFor="let pred of FinalPred">
+                          <td style="text-align: center; vertical-align: middle;">{{ pred.cultivar }}</td>
+                          <td style="text-align: center; vertical-align: middle;">{{ pred.waterused }}</td>
+                          <td style="text-align: center; vertical-align: middle;">{{ pred.yield }}</td>
+                          <td style="text-align: center; vertical-align: middle;">{{ pred.waterefficiency }}</td>
+                      </tr>
+                   </tbody>
+                </table>
+             <br>
+                Contact us at info&#64;gaiadhi.com for details on irrigation procedure/schedule
+             </span>
+             <!-- <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'lubbock'">
+             <br>
+             Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
+             </span>
+             <span *ngIf = "selectedholosproduct == 'AI/ML' && farmname == 'coimbatore'">
+             <br>
+             Predicted Yield &nbsp; = &nbsp; &nbsp; {{predicted_yield}} &nbsp; kg/ha
+             <br> -->
+             <!-- Predicted Water Used &nbsp; = &nbsp; &nbsp; {{predicted_water_used}} &nbsp; mm -->
+             <!-- </span> -->
               <!-- <div>{{reco}}</div>  -->
  
           </div>

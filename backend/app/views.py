@@ -575,9 +575,11 @@ def insertion(req):
         data = JSONParser().parse(req)
         serializer = Case_Detiles_serializers(data=data)
         if serializer.is_valid():
-            serializer.save()
+            new_record = serializer.save()
+            new_caseid = new_record.id
+            print("CASE ID", new_caseid)
             return JsonResponse(
-                {"response": serializer.data, "errorCode": 200, "errorMsg": "success"},
+                {"response": serializer.data, "new_caseid":new_caseid,"errorCode": 200, "errorMsg": "success"},
                 status=201,
             )
         return JsonResponse(

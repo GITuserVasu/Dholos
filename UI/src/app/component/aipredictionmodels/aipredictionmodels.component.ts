@@ -89,8 +89,19 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   predicted_yield:string = "";
   predicted_water_used:string = "";
+  aidata: any;
+  water_efficiency: number = 0;
 
-  
+  /* type finalpred = {
+      cultivar: string;
+      waterused: string;
+      yield: string;
+      waterefficiency:Number;
+    };
+  FinalPred: finalpred = [] ; */
+  FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
+  cultivar_string: any = "";
+  new_caseid: any = "";
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
@@ -170,6 +181,16 @@ export class AIpredictionmodelsComponent implements OnInit {
       maxlon =  -101.5
       minlat =  33.3947
       maxlat =  33.8304
+      const a = fromLonLat([minlon,minlat],'EPSG:3857')
+      const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
+      this.mapextent = [a[0],a[1],b[0],b[1]];
+      }
+
+      if(this.datasetvalue == 'kern'){
+      minlon =  -119.24
+      maxlon =  -117.92
+      minlat =  34.91
+      maxlat =  35.2
       const a = fromLonLat([minlon,minlat],'EPSG:3857')
       const b = fromLonLat([maxlon,maxlat],'EPSG:3857')
       this.mapextent = [a[0],a[1],b[0],b[1]];
@@ -426,7 +447,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} 
     // this.useNN
     // this.useRandomForest
-    if(this.cultivarvalue == "none" && this.datasetvalue == "coimbatore") {alert("Please select a Cultivar"); location.reload();}
+    ////if(this.cultivarvalue == "none" && this.datasetvalue == "coimbatore") {alert("Please select a Cultivar"); location.reload();}
     // End Validation 
 
     //if(this.datasetvalue == 'coimbatore'){
@@ -439,7 +460,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         //alert(this.userlat)
         //alert(this.userlon)
 
-      }
+      } // useblockname
       else if(this.usemap == true){
         [this.userlat, this.userlon] = this.getLatLngCenter(this.coordinates)
         //this.userlat = coords[1]
@@ -448,7 +469,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         console.log(this.userlat)
         this.string_coords = this.userlat+" "+this.userlon
 
-      }
+      } // use map
 
       
    // }
@@ -458,6 +479,55 @@ export class AIpredictionmodelsComponent implements OnInit {
     this.username = this.info.name;
     this.username = this.username.replaceAll(" ","");
 
+
+    // Create case details record and get the case id for the new record
+        const CreatedDate = new Date() ;
+
+        const timestamp: number = CreatedDate.getTime();
+
+        var casedetials = {
+              status: "Inprogress",
+              fileName: "not used",
+              
+              XfileName: "not used",
+              CULfileName: "not used",
+              orgid: localStorage.getItem("org_id"),
+              projectType: "AI/ML",
+              projectName: localStorage.getItem("org_id") + "_" + timestamp ,
+              folderType: "Not Used",
+              folderName: "Not Used",
+              // ocrType: this.ocrtarget_value,
+              ocrType: "Various",
+              targetfiles: "Not Used",
+              empOrgid: localStorage.getItem("empOrgid") != '' ? localStorage.getItem("empOrgid") : null,
+              searchtextwords: this.predicted_yield,
+              username:this.info.name,
+              CreatedDate: CreatedDate,
+              selectedholosproduct: "AI/ML",
+              nyers: 0,
+              subblocksize: 0,
+              analogyear: 0,
+              plantdensity: 0,
+              plantingmethod:"not used",
+              farmid:0,
+              farmname: this.datasetvalue,
+              plantingdate: "not used"
+            }
+        
+            console.log("AI casedetials...", casedetials);
+        
+            this.http.post(environment.apiUrl + "Case_Detiles/", casedetials).subscribe((res: any) => {
+              if (res.errorCode == 200) {
+              console.log("myresres");
+              console.log('res');
+              this.aidata = res.data;
+              this.new_caseid = res.new_caseid;
+              
+/*               }              
+
+            }) */
+
+    //alert(this.new_caseid);
     // Call the predict python code
     const predjson ={
       "dataset" : this.datasetvalue ,
@@ -472,9 +542,12 @@ export class AIpredictionmodelsComponent implements OnInit {
       "orgid" : localStorage.getItem('org_id'),
       "username" : this.username,
       "n2applied": n2applied,
-      "what_to_predict": this.modelvalue
+      "what_to_predict": "yield_and_water",
+      "new_caseid": this.new_caseid,
+      "projectname": localStorage.getItem("org_id") + "_" + timestamp ,
     } 
 
+    console.log(predjson);
     // alert(this.username);
 
     this.spinner.show();
@@ -493,7 +566,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       //this.preddata = res.data
       if (res.statusCode == 200) {
         console.log(" Prednow Success");
-        console.log(res.name);
+        console.log(res.c_string);
       } else {
         alert('Error in submission');
       }
@@ -502,29 +575,92 @@ export class AIpredictionmodelsComponent implements OnInit {
         alert("Prediction is now ready...Please click on 'Check Result' ")
         this.resultReady = true;
         this.prediction_string = res.prediction ;
+        this.cultivar_string = res.c_string;
         //alert(res.prediction)
   
         /* this.prediction_value = this.prediction_value.replaceAll(" ", "");
         this.prediction_value = this.prediction_value.substring(1, this.prediction_value.length - 2); */
         console.log(res.prediction)
         console.log(this.prediction_string)
-
+        console.log(this.cultivar_string)
+        const test_cultivar_array = this.cultivar_string.trim().split(/\s+/);
+        console.log(test_cultivar_array)
+        
         this.prediction_string = this.prediction_string.replaceAll("[", "");
         this.prediction_string = this.prediction_string.replaceAll("]", "");
 
         const prediction_array = this.prediction_string.trim().split(/\s+/);
+        console.log(prediction_array)
+        var pred_yield_array:string[] = [];
+        var pred_water_array:string[] = [];
+        var water_efficiency_array:Number[] = [];
+        const pred_array_len = prediction_array.length;
+        var j = 0;
+        for (let i = 0; i<pred_array_len; i++){
+             pred_yield_array[j] = prediction_array[i];
+             i = i +1 ;
+             pred_water_array[j] = prediction_array[i];
+             if(Number(pred_water_array[j]) > 0){
+             water_efficiency_array[j] = Number(pred_yield_array[j])/Number(pred_water_array[j]);
+             } else {
+                 water_efficiency_array[j] = 0 ;
+             }
+             j = j +1 ;
+        }
+        var cultivar_array:string[] = [];
+        var j = 0;
+        for (let i = 0; i < test_cultivar_array.length; i++) {
+            cultivar_array[j] = test_cultivar_array[i];
+            i = i + 1;
+            j = j + 1;
+          
+        }
+        /* if(this.datasetvalue == 'kern'){
+          cultivar_array[0] = "Ara-FD7"
+          cultivar_array[1] = "CFIA-FD4"
+          cultivar_array[2] = "CUF-FD9"
+        }
+        if(this.datasetvalue == 'lubbock'){
+          cultivar_array[0] = "Phytogen 350Ca1"
+        }
+        if(this.datasetvalue == 'coimbatore'){
+          cultivar_array[0] = "ADT43"
+          cultivar_array[1] = "ADT45"
+          cultivar_array[2] = "CO51"
+          cultivar_array[3] = "ASD16"
+          cultivar_array[4] = "ADT36"
+        } */
+        
+        for (let i = 0; i < (pred_array_len/2); i ++) {
+            this.FinalPred[i] = {cultivar: cultivar_array[i] , waterused:pred_water_array[i] , yield:pred_yield_array[i] , waterefficiency:water_efficiency_array[i] }
 
-        this.predicted_yield = prediction_array[0];
-        this.predicted_water_used = prediction_array[1];
+        }
+           
+        console.log("FInal Pred");
+        console.log(this.FinalPred);
 
+        if(this.datasetvalue == 'coimbatore' || this.datasetvalue == 'lubbock') {
+          this.predicted_yield = prediction_array[0];
+          this.predicted_water_used = prediction_array[1];
 
+        }
+        
+
+        /* if(Number(this.predicted_yield) > 0){
+          this.water_efficiency = Number(this.predicted_yield)/Number(this.predicted_water_used)
+
+        } */
 
 
       }
+       
     }) 
 
+  }
+})
 
-  } 
+
+} 
   
   modelselectonchange(value:string) {
     this.modelvalue  = value;

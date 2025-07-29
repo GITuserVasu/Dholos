@@ -109,3 +109,8 @@ class SearchWords_serializers(ModelSerializer):
     class Meta:
         model = SearchWords
         fields = "__all__"
+
+class allResults_serializers(ModelSerializer):
+    class Meta:
+        model = all_results
+        fields = "__all__"
