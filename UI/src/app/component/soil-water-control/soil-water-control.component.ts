@@ -312,6 +312,7 @@ export class SoilWaterControlComponent implements OnInit {
           console.log(" String Save Success File");
           alert('new training file uploaded');
         } else {
+          console.log("res", res);
           alert('Error in saving correction string file');
         }
 
