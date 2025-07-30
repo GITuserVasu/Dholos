@@ -330,6 +330,8 @@ export class SoilWaterControlComponent implements OnInit {
 
       const handleUpload = async (event:any) => {
       const file = event.target.files[i];
+      this.uploadcsvName[i] = event.target.files[i].name;
+      console.log("file name", this.uploadcsvName[i]);
 
        try {
           console.log("in try");
