@@ -305,7 +305,7 @@ export class SoilWaterControlComponent implements OnInit {
       console.log("file name", this.uploadcsvName[i]);
       reader.onload = () => { this.correctcsv = reader.result as string; };
       reader.readAsText(event.target.files[i]);
-      while(this.correctcsv == ""){}
+      // while(this.correctcsv == ""){}
       console.log("file data", this.correctcsv);
       // save_string_as_file_on_server()
       const correctJson = { "data": this.correctcsv }
