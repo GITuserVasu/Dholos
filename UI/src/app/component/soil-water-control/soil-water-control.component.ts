@@ -310,6 +310,7 @@ export class SoilWaterControlComponent implements OnInit {
       console.log("inputfile", inputFile) */
 
       const readUploadedFileAsText = (inputFile: any) => {
+        console.log("in readuploadedfile");
       const temporaryFileReader = new FileReader();
 
       return new Promise((resolve, reject) => {
@@ -330,10 +331,11 @@ export class SoilWaterControlComponent implements OnInit {
       const file = event.target.files[i];
 
        try {
-          const fileContents = await readUploadedFileAsText(file)  
+          console.log("in try");
+          const fileContents = await readUploadedFileAsText(file);  
           console.log("filecontents", fileContents);
        } catch (e) {
-           console.warn("error1234")
+           console.warn("error1234");
        }
       }
       
