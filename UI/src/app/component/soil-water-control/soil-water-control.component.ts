@@ -319,14 +319,12 @@ export class SoilWaterControlComponent implements OnInit {
         };
 
         temporaryFileReader.onload = () => {
-         resolve(temporaryFileReader.result);
+         resolve(this.correctcsv = temporaryFileReader.result as string);
          };
          temporaryFileReader.readAsText(inputFile);
         });
       // };
-      if(temporaryFileReader.result){
-      this.correctcsv = temporaryFileReader.result as string
-      }
+      
       console.log("file data", this.correctcsv);
       // save_string_as_file_on_server()
       const correctJson = { "data": this.correctcsv }
