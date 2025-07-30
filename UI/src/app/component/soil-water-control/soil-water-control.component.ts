@@ -341,6 +341,8 @@ export class SoilWaterControlComponent implements OnInit {
            console.warn("error1234");
        }
       }
+
+      handleUpload(event);
       
       console.log("file data", this.correctcsv);
       // save_string_as_file_on_server()
