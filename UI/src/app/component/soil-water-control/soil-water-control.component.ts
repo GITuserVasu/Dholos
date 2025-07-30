@@ -319,7 +319,7 @@ export class SoilWaterControlComponent implements OnInit {
         };
 
         temporaryFileReader.onload = () => {
-         resolve(this.correctcsv = temporaryFileReader.result as string);
+         resolve(temporaryFileReader.result);
          };
          temporaryFileReader.readAsText(inputFile);
         });
@@ -331,7 +331,7 @@ export class SoilWaterControlComponent implements OnInit {
 
        try {
           const fileContents = await readUploadedFileAsText(file)  
-          console.log(fileContents);
+          console.log("filecontents", fileContents);
        } catch (e) {
            console.warn("error1234")
        }
