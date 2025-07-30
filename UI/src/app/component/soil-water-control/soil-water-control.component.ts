@@ -277,6 +277,7 @@ export class SoilWaterControlComponent implements OnInit {
   uploadFile(event: any) {
 
     const numFiles = (event.target.files).length;
+    console.log("in upload file");
     console.log("num of files", numFiles);
 
     for (let i = 0; i < numFiles; i++) {
@@ -292,18 +293,57 @@ export class SoilWaterControlComponent implements OnInit {
   }
 
   uploadFile2(event: any) {
-
+    console.log("in upload2");
     const numFiles = (event.target.files).length;
     console.log("num of files", numFiles);
 
     for (let i = 0; i < numFiles; i++) {
-      const reader: any = new FileReader();
+      // this.correctcsv = "" ;
+      /* const reader: any = new FileReader();
       const fileInfo = event.target.files[i];
       this.uploadcsv[i] = event.target.files[i];
       this.uploadcsvName[i] = event.target.files[i].name;
       console.log("file name", this.uploadcsvName[i]);
       reader.onload = () => { this.correctcsv = reader.result as string; };
       reader.readAsText(event.target.files[i]);
+      // while(this.correctcsv == ""){}
+      const inputFile: any = event.target.files[i];
+      console.log("inputfile", inputFile) */
+
+      const readUploadedFileAsText = (inputFile: any) => {
+        console.log("in readuploadedfile");
+      const temporaryFileReader = new FileReader();
+
+      return new Promise((resolve, reject) => {
+           temporaryFileReader.onerror = () => {
+           temporaryFileReader.abort();
+       reject(new DOMException("Problem parsing input file."));
+        };
+
+        temporaryFileReader.onload = () => {
+         resolve(temporaryFileReader.result);
+         };
+         temporaryFileReader.readAsText(inputFile);
+        });
+      };
+
+
+      const handleUpload = async (event:any) => {
+      const file = event.target.files[i];
+      this.uploadcsvName[i] = event.target.files[i].name;
+      console.log("file name", this.uploadcsvName[i]);
+
+       try {
+          console.log("in try");
+          const fileContents = await readUploadedFileAsText(file);  
+          console.log("filecontents", fileContents);
+       } catch (e) {
+           console.warn("error1234");
+       }
+      }
+
+      handleUpload(event);
+      
       console.log("file data", this.correctcsv);
       // save_string_as_file_on_server()
       const correctJson = { "data": this.correctcsv }
