@@ -277,6 +277,7 @@ export class SoilWaterControlComponent implements OnInit {
   uploadFile(event: any) {
 
     const numFiles = (event.target.files).length;
+    console.log("in upload file");
     console.log("num of files", numFiles);
 
     for (let i = 0; i < numFiles; i++) {
@@ -292,7 +293,7 @@ export class SoilWaterControlComponent implements OnInit {
   }
 
   uploadFile2(event: any) {
-
+    console.log("in upload2");
     const numFiles = (event.target.files).length;
     console.log("num of files", numFiles);
 
