@@ -333,7 +333,7 @@ export class SoilWaterControlComponent implements OnInit {
           const fileContents = await readUploadedFileAsText(file)  
           console.log(fileContents);
        } catch (e) {
-           console.warn(e.message)
+           console.warn("error1234")
        }
       }
       
