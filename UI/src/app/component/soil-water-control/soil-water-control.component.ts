@@ -306,6 +306,25 @@ export class SoilWaterControlComponent implements OnInit {
       reader.onload = () => { this.correctcsv = reader.result as string; };
       reader.readAsText(event.target.files[i]);
       // while(this.correctcsv == ""){}
+      const inputFile: any = event.target.files[i];
+
+      const readUploadedFileAsText = (inputFile: any) => {
+      const temporaryFileReader = new FileReader();
+
+      return new Promise((resolve, reject) => {
+           temporaryFileReader.onerror = () => {
+           temporaryFileReader.abort();
+       reject(new DOMException("Problem parsing input file."));
+        };
+
+        temporaryFileReader.onload = () => {
+         resolve(this.correctcsv = temporaryFileReader.result as string);
+         };
+         temporaryFileReader.readAsText(inputFile);
+        });
+      };
+
+
       console.log("file data", this.correctcsv);
       // save_string_as_file_on_server()
       const correctJson = { "data": this.correctcsv }
