@@ -309,7 +309,7 @@ export class SoilWaterControlComponent implements OnInit {
       const inputFile: any = event.target.files[i];
       console.log("inputfile", inputFile)
 
-      // const readUploadedFileAsText = (inputFile: any) => {
+      const readUploadedFileAsText = (inputFile: any) => {
       const temporaryFileReader = new FileReader();
 
       return new Promise((resolve, reject) => {
@@ -323,7 +323,19 @@ export class SoilWaterControlComponent implements OnInit {
          };
          temporaryFileReader.readAsText(inputFile);
         });
-      // };
+      };
+
+
+      const handleUpload = async (event:any) => {
+      const file = event.target.files[i];
+
+       try {
+          const fileContents = await readUploadedFileAsText(file)  
+          console.log(fileContents);
+       } catch (e) {
+           console.warn(e.message)
+       }
+      }
       
       console.log("file data", this.correctcsv);
       // save_string_as_file_on_server()
