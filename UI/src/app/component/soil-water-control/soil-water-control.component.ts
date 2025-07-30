@@ -298,7 +298,7 @@ export class SoilWaterControlComponent implements OnInit {
 
     for (let i = 0; i < numFiles; i++) {
       // this.correctcsv = "" ;
-      const reader: any = new FileReader();
+      /* const reader: any = new FileReader();
       const fileInfo = event.target.files[i];
       this.uploadcsv[i] = event.target.files[i];
       this.uploadcsvName[i] = event.target.files[i].name;
@@ -307,7 +307,7 @@ export class SoilWaterControlComponent implements OnInit {
       reader.readAsText(event.target.files[i]);
       // while(this.correctcsv == ""){}
       const inputFile: any = event.target.files[i];
-      console.log("inputfile", inputFile)
+      console.log("inputfile", inputFile) */
 
       const readUploadedFileAsText = (inputFile: any) => {
       const temporaryFileReader = new FileReader();
