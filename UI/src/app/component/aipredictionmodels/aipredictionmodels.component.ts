@@ -447,6 +447,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     if(pdate == "") {alert("Please enter Planting Date"); location.reload();}
     if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} 
     var treatmentvalue = document.getElementById("treatment") as HTMLInputElement;
+    alert(treatmentvalue);
     // this.useNN
     // this.useRandomForest
     ////if(this.cultivarvalue == "none" && this.datasetvalue == "coimbatore") {alert("Please select a Cultivar"); location.reload();}
