@@ -102,6 +102,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
   cultivar_string: any = "";
   new_caseid: any = "";
+  treatmentvalue: string;
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
@@ -665,7 +666,12 @@ export class AIpredictionmodelsComponent implements OnInit {
   modelselectonchange(value:string) {
     this.modelvalue  = value;
     //alert(this.cultivarvalue);
-  } // end cultivar select
+  } // end model select
+
+  treatmentselectonchange(value:string) {
+    this.treatmentvalue  = value;
+    //alert(this.cultivarvalue);
+  } // end treatment select
 
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;

@@ -279,12 +279,25 @@
                              <!-- Coimbatore approx pltg date is 05/22-->
                             <input type="date"  onkeydown="return false" id="pdate" name="pdate" value="2025-05-15" min="2025-04-15" max="2025-07-15" >
                             &nbsp; &nbsp;&nbsp; &nbsp;
-                            
+                            <span *ngIf="datasetvalue != 'kern'">
                             <label> Nitrogen Applied (default = 152 kg/ha)</label>
                                 &nbsp; &nbsp;
                                 <input type="number" id="n2applied" name="n2applied" value="152" min="-1" max="500">
                                 &nbsp; &nbsp;&nbsp; &nbsp;
-                                
+                                </span>
+                                <span *ngIf="datasetvalue == 'kern'">
+                                    <label> Treatment</label>&nbsp; &nbsp;
+                                    <select #treatment id="treatment" value="none" (change)="treatmentselectonchange(treatment.value)">
+                                       <option value="none">Choose One</option>
+                                       <option value="treat1">Treatment 1</option>
+                                       <option value="treat2">Treatment 2</option>
+                                       <option value="treat3">Treatment 3</option>
+                                       <option value="treat4">Treatment 4 </option>
+                                       <option value="treat5">Treatment 5</option>
+                            </select>
+
+
+                                </span>
                         </span>
                     </div>
                 </div>
