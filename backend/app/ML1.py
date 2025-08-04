@@ -184,12 +184,15 @@ def prednow(predjson):
             predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
 
     if dataset == 'kern':
-        cultivarid = 0 
-        predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
+        for index, row in treatmentdf.iterrows():
+           cultivarid = row['cultivar']
+           treatmentname = row['TreatmentName']
+           predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
-                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
-        predictdf0 = pd.DataFrame([predict_data0])
-        cultivarid = 1
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location,'treatmentname':treatmentname}
+           predictdf0 = pd.DataFrame([predict_data0])
+           predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
+        """ cultivarid = 1
         predict_data1 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
@@ -201,7 +204,7 @@ def prednow(predjson):
         predictdf2 = pd.DataFrame([predict_data2])
     
         predictdf = pd.concat([predictdf0, predictdf1], axis=0, ignore_index=True)
-        predictdf = pd.concat([predictdf, predictdf2], axis=0, ignore_index=True)
+        predictdf = pd.concat([predictdf, predictdf2], axis=0, ignore_index=True) """
     
 
     print(predictdf)
