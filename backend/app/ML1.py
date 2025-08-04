@@ -131,6 +131,14 @@ def prednow(predjson):
     print(year)
     nuplantingdate = str(year)+str(dayofyear)
 
+    # Get Treatment numeric id
+    treatmentdf = ML1_df[["TreatmentID", "TreatmentName","Cultivar", "cultivar"]]
+    treatmentdf = treatmentdf.drop_duplicates()
+    print(treatmentdf)
+    treatmentlist = treatmentdf["TreatmentName"]
+    print(treatmentlist)
+
+
     # Get Cultivar numeric id
     cultivardf = ML1_df[["Cultivar", "cultivar"]]
     cultivardf = cultivardf.drop_duplicates()
