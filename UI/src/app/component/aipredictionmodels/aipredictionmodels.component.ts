@@ -446,8 +446,8 @@ export class AIpredictionmodelsComponent implements OnInit {
     var pdate = pltgdate.value ;
     if(pdate == "") {alert("Please enter Planting Date"); location.reload();}
     if (this.useNN == false  && this.useRandomForest == false){alert("Please select a model"); location.reload();} 
-    var treatmentvalueinput = document.getElementById("treatment") as HTMLInputElement;
-    this.treatmentvalue = treatmentvalueinput.value;
+    /* var treatmentvalueinput = document.getElementById("treatment") as HTMLInputElement;
+    this.treatmentvalue = treatmentvalueinput.value; */
     
     // this.useNN
     // this.useRandomForest
@@ -531,7 +531,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
             }) */
 
-    //alert(this.new_caseid);
+    alert(this.treatmentvalue);
     // Call the predict python code
     const predjson ={
       "dataset" : this.datasetvalue ,
