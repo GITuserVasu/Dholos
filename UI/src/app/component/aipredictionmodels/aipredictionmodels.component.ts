@@ -546,7 +546,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "what_to_predict": "yield_and_water",
       "new_caseid": this.new_caseid,
       "projectname": localStorage.getItem("org_id") + "_" + timestamp ,
-      "treatmentname": this.treatmentvalue,
+      // "treatmentname": this.treatmentvalue,
     } 
 
     console.log(predjson);
