@@ -534,7 +534,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
             }) */
 
-    alert(this.treatmentvalue);
+    // alert(this.treatmentvalue);
     // Call the predict python code
     const predjson ={
       "dataset" : this.datasetvalue ,
