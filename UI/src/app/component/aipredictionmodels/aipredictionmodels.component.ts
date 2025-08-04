@@ -671,7 +671,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   treatmentselectonchange(value:string) {
     this.treatmentvalue  = value;
-    //alert(this.cultivarvalue);
+    alert(this.treatmentvalue);
   } // end treatment select
 
   datasetselectonchange(value:string) {
