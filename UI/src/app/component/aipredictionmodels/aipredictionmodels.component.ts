@@ -103,6 +103,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   cultivar_string: any = "";
   new_caseid: any = "";
   treatmentvalue: string = "";
+  n2applied:string = "" ;
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
@@ -439,9 +440,11 @@ export class AIpredictionmodelsComponent implements OnInit {
     // this.usemap
     // this.locationvalue
     // this.string_coords
+    if (this.datasetvalue != "kern") {
     var n2appliedinput = document.getElementById("n2applied") as HTMLInputElement;
-    var n2applied = n2appliedinput.value
-    if (n2applied == '-1') {n2applied = '152'}
+    this.n2applied = n2appliedinput.value;
+    if (this.n2applied == '-1') {this.n2applied = '152';}
+    } else { this.n2applied = '152' ;}
     var pltgdate = document.getElementById("pdate") as HTMLInputElement;
     var pdate = pltgdate.value ;
     if(pdate == "") {alert("Please enter Planting Date"); location.reload();}
@@ -478,7 +481,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       
    // }
     
-    
+    console.log("One");
     
     this.username = this.info.name;
     this.username = this.username.replaceAll(" ","");
@@ -545,7 +548,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "cultivar": this.cultivarvalue,
       "orgid" : localStorage.getItem('org_id'),
       "username" : this.username,
-      "n2applied": n2applied,
+      "n2applied": this.n2applied,
       "what_to_predict": "yield_and_water",
       "new_caseid": this.new_caseid,
       "projectname": localStorage.getItem("org_id") + "_" + timestamp ,
