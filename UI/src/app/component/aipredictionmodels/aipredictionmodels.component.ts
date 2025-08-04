@@ -102,7 +102,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
   cultivar_string: any = "";
   new_caseid: any = "";
-  treatmentvalue: string;
+  treatmentvalue: string = "";
 
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
@@ -546,6 +546,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       "what_to_predict": "yield_and_water",
       "new_caseid": this.new_caseid,
       "projectname": localStorage.getItem("org_id") + "_" + timestamp ,
+      "treatmentname": this.treatmentvalue,
     } 
 
     console.log(predjson);
