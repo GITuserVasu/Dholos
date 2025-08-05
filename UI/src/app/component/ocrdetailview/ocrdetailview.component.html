@@ -243,11 +243,11 @@
   </div> -->
           <div class="tab-pane" id="tabs-home-14" role="tabpanel">
             <google-chart
-      [title]="title"
-      [type]="type"
-      [data]="data"
-      [columnNames]="columnNames"
-      [options]="options"
+      [title]={{title}}
+      [type]={{type}}
+      [data]={{mydata}}
+      [columnNames]={{columnNames}}
+      [options]={{options}}
       style="width: 700px; height: 400px;"
     ></google-chart>
             <img src={{cultivarplot}} alt="Yield-Cultivar box plot" style="width:400px;height:400px;">
