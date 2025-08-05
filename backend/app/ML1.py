@@ -135,8 +135,13 @@ def prednow(predjson):
     treatmentdf = ML1_df[["TreatmentID", "TreatmentName","Cultivar", "cultivar"]]
     treatmentdf = treatmentdf.drop_duplicates()
     print(treatmentdf)
-    treatmentlist = treatmentdf["TreatmentName"]
+    """ treatmentlist = treatmentdf["TreatmentName"].tolist()
     print(treatmentlist)
+    treatmentlist_string = " ".join(treatmentlist) """
+    # for Results
+    Rtreatmentdf = ML1_df[["TreatmentName", "TreatmentID"]]
+    Rtreatmentdf = treatmentdf.drop_duplicates()
+    treatmentlist_string = Rtreatmentdf.to_string(index=False, header=False)
 
 
     # Get Cultivar numeric id
@@ -242,6 +247,7 @@ def prednow(predjson):
         result = subprocess.run(['python3', '/home/bitnami/ML/data/ca-kern/COMBINED/testrun.py'], capture_output=True, text=True)
         print(result.stdout)
         abc = result.stdout
+        cultivar_string = treatmentlist_string
     else:
         abc = 0
     print("abc")
