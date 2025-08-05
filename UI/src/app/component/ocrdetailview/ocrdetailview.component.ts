@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../src/environments/environment';
+import { GoogleChartsModule } from 'angular-google-charts'; // Import the module
 
 
 @Component({
