@@ -96,13 +96,13 @@
   <div class="col-md-9" style="height: 600px">
    <div class="card mini-stats-wid">
      <!-- <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>  -->
-      
+      <span *ngIf = "selectedholosproduct == 'PRSEASON'">
          <button class="btn btn-primary float-end" (click)="downloadzipfile()">Download Zip file</button>
      
     <div class="card-body">
       <div class="scrollable" style="overflow-y: auto; max-height: 500px;">
         <h3 class="card-title">Results</h3>
-         <span *ngIf = "selectedholosproduct == 'PRSEASON'">
+         
         <ul class="nav nav-tabs nav-fill" data-bs-toggle="tabs" role="tablist">
           <li class="nav-item" role="presentation">
             <a href="#tabs-meta-14" class="nav-link active" data-bs-toggle="tab" aria-selected="true" tabindex="-1"
