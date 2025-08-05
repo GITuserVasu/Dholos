@@ -64,7 +64,8 @@ import { GoogleChartsModule } from 'angular-google-charts'; // Import the module
         NgxSpinnerModule,
         AgGridModule,
         AgGridAngular,
-        SharedModule
+        SharedModule,
+        GoogleChartsModule
     ], 
 	providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
