@@ -191,7 +191,7 @@ def prednow(predjson):
            treatmentname = row['TreatmentName']
            predict_data0 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
-                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location,'treatmentname':treatmentname}
+                    'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location,'TreatmentName':treatmentname}
            predictdf0 = pd.DataFrame([predict_data0])
            predictdf0 = pd.concat([predictdf0, weatherdf], axis=1, ignore_index=False)
            predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
