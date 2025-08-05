@@ -212,7 +212,7 @@ def prednow(predjson):
 
     print(predictdf)
 
-    predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
+    # predictdf = pd.concat([predictdf, weatherdf], axis=1, ignore_index=False)
 
     #predictdf.to_csv("/home/bitnami/ML/data/coimbatore-apr25/predict-row.csv")
 
