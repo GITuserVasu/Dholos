@@ -141,7 +141,9 @@ def prednow(predjson):
     # for Results
     Rtreatmentdf = ML1_df[["TreatmentName", "TreatmentID"]]
     Rtreatmentdf = treatmentdf.drop_duplicates()
+    Rtreatmentdf['TreatmentName'] = df['TreatmentName'].str.replace(' ', '')
     treatmentlist_string = Rtreatmentdf.to_string(index=False, header=False)
+    print(treatmentlist_string)
 
 
     # Get Cultivar numeric id
