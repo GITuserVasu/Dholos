@@ -140,8 +140,8 @@ def prednow(predjson):
     treatmentlist_string = " ".join(treatmentlist) """
     # for Results
     Rtreatmentdf = ML1_df[["TreatmentName", "TreatmentID"]]
-    Rtreatmentdf = treatmentdf.drop_duplicates()
-    Rtreatmentdf['TreatmentName'] = df['TreatmentName'].str.replace(' ', '')
+    Rtreatmentdf = Rtreatmentdf.drop_duplicates()
+    Rtreatmentdf['TreatmentName'] = Rtreatmentdf['TreatmentName'].str.replace(' ', '')
     treatmentlist_string = Rtreatmentdf.to_string(index=False, header=False)
     print(treatmentlist_string)
 
