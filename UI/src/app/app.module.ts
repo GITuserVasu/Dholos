@@ -26,6 +26,7 @@ import { SharedModule } from './shared/shared.module';
 import { EmpRegistrationComponent } from './layouts/emp-registration/emp-registration.component';
 import {RecaptchaModule} from 'ng-recaptcha' ;
 import { RouterModule } from '@angular/router' ;
+import { GoogleChartsModule } from 'angular-google-charts'; // Import the module
 
 
 @NgModule({ declarations: [
