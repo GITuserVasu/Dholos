@@ -26,7 +26,7 @@ import { SharedModule } from './shared/shared.module';
 import { EmpRegistrationComponent } from './layouts/emp-registration/emp-registration.component';
 import {RecaptchaModule} from 'ng-recaptcha' ;
 import { RouterModule } from '@angular/router' ;
-import { GoogleChartsModule } from 'angular-google-charts'; // Import the module
+
 
 
 @NgModule({ declarations: [
@@ -64,8 +64,7 @@ import { GoogleChartsModule } from 'angular-google-charts'; // Import the module
         NgxSpinnerModule,
         AgGridModule,
         AgGridAngular,
-        SharedModule,
-        GoogleChartsModule
+        SharedModule
     ], 
 	providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

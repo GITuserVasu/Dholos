@@ -643,20 +643,6 @@ downloadFilecsv(response:any) {
 //   fs.saveAs(blob, 'test.zip');
 // }
 
-title = 'My Daily Activities';
-      type = 'PieChart'; // Specify the chart type
-      mydata = [
-        ['Task', 'Hours per Day'],
-        ['Work', 11],
-        ['Eat', 2],
-        ['Commute', 2],
-        ['Watch TV', 2],
-        ['Sleep', 7]
-      ];
-      columnNames = ['Task', 'Hours per Day'];
-      options = {
-        title: 'My Daily Activities',
-        pieHole: 0.4,
-      };
+
 
 }
