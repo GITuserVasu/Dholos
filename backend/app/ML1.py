@@ -168,6 +168,7 @@ def prednow(predjson):
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
             predictdf0 = pd.DataFrame([predict_data0])
+            predictdf0 = pd.concat([predictdf0, weatherdf], axis=1, ignore_index=False)
             predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
 
     """ if dataset == 'lubbock':
@@ -181,6 +182,7 @@ def prednow(predjson):
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location}
             predictdf0 = pd.DataFrame([predict_data0])
+            predictdf0 = pd.concat([predictdf0, weatherdf], axis=1, ignore_index=False)
             predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
 
     if dataset == 'kern':
@@ -191,6 +193,7 @@ def prednow(predjson):
                     'stringcoords':stringcoords, 'PlantingDate':nuplantingdate, 'useNN':useNN, 'useRandomForest':useRandomForest,
                     'cultivar': cultivarid, 'orgid':orgid, 'NitrogenApplied(kg/ha)':n2applied, 'location':location,'treatmentname':treatmentname}
            predictdf0 = pd.DataFrame([predict_data0])
+           predictdf0 = pd.concat([predictdf0, weatherdf], axis=1, ignore_index=False)
            predictdf = pd.concat([predictdf, predictdf0], axis=0, ignore_index=True)
         """ cultivarid = 1
         predict_data1 = {'username':username, 'dataset':dataset, 'useblockname':useblockname, 'usemap':usemap, 'blockname':blockname,
