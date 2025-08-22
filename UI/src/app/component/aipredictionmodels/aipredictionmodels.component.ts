@@ -99,7 +99,7 @@ export class AIpredictionmodelsComponent implements OnInit {
       waterefficiency:Number;
     };
   FinalPred: finalpred = [] ; */
-  FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:Number}> = [];
+  FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:string}> = [];
   cultivar_string: any = "";
   new_caseid: any = "";
   treatmentvalue: string = "";
@@ -601,7 +601,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         console.log(prediction_array)
         var pred_yield_array:string[] = [];
         var pred_water_array:string[] = [];
-        var water_efficiency_array:Number[] = [];
+        var water_efficiency_array:string[] = [];
         const pred_array_len = prediction_array.length;
         var j = 0;
         for (let i = 0; i<pred_array_len; i++){
@@ -609,9 +609,9 @@ export class AIpredictionmodelsComponent implements OnInit {
              i = i +1 ;
              pred_water_array[j] = prediction_array[i];
              if(Number(pred_water_array[j]) > 0){
-             water_efficiency_array[j] = Number(pred_yield_array[j])/Number(pred_water_array[j],2);
+             water_efficiency_array[j] = (Number(pred_yield_array[j])/Number(pred_water_array[j])).toFixed(2);
              } else {
-                 water_efficiency_array[j] = 0 ;
+                 water_efficiency_array[j] = "0" ;
              }
              j = j +1 ;
         }
