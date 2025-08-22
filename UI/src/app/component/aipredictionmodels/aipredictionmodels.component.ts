@@ -609,7 +609,7 @@ export class AIpredictionmodelsComponent implements OnInit {
              i = i +1 ;
              pred_water_array[j] = prediction_array[i];
              if(Number(pred_water_array[j]) > 0){
-             water_efficiency_array[j] = Number(pred_yield_array[j])/Number(pred_water_array[j]);
+             water_efficiency_array[j] = Number(pred_yield_array[j])/Number(pred_water_array[j],2);
              } else {
                  water_efficiency_array[j] = 0 ;
              }
