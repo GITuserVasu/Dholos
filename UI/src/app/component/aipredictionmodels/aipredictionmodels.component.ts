@@ -772,6 +772,7 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
         this.vector.getSource()?.clear();
         }
     this.createNewMap(); */
+    this.createESRImap();
        
   } // end location selection
 
@@ -792,6 +793,7 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
       this.mymap.setTarget(null);
       }
       this.createNewMap();    */
+      this.createESRImap();
   } // end location radio button
 
   modelradiobuttonchange(event: any) {
