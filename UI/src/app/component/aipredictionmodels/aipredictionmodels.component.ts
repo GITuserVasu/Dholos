@@ -13,29 +13,29 @@ import { environment } from 'src/environments/environment';
 import fetch from 'node-fetch';
 
 // for OpenLayers
-import Style from 'ol/style/Style' ;
+////import Style from 'ol/style/Style' ;
 //import Draw, { createBox, createRegularPolygon } from 'ol/interaction/Draw';
-import Draw from 'ol/interaction/Draw';
+////import Draw from 'ol/interaction/Draw';
 
-import {createBox} from 'ol/interaction/Draw';
+/* import {createBox} from 'ol/interaction/Draw';
 import {createRegularPolygon}  from 'ol/interaction/Draw';
 import Map from 'ol/Map';
 import Polygon from 'ol/geom/Polygon';
 import View from 'ol/View';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
-import Vector from "ol/layer/Vector";
+import Vector from "ol/layer/Vector"; */
 //import  "ol/geom/Geometry";
-import {transform} from 'ol/proj';
+/* import {transform} from 'ol/proj';
 import Feature from 'ol/Feature';
 import Geometry from 'ol/geom/Geometry';
 import * as proj from 'ol/proj';
 import Source from 'ol/source/Source';
-import Layer from 'ol/layer/Layer';
+import Layer from 'ol/layer/Layer'; */
 // import Point from 'ol/geom/Point';
-import * as Coordinate from 'ol/coordinate';
+/* import * as Coordinate from 'ol/coordinate';
 import {fromLonLat} from 'ol/proj';
-import {useGeographic} from 'ol/proj.js';
+import {useGeographic} from 'ol/proj.js'; */
 
 /* import "@arcgis/map-components/components/arcgis-map";
 import "@arcgis/map-components/components/arcgis-zoom";
@@ -49,7 +49,7 @@ import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
 
 import Map from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
-ifmport Basemap from '@arcgis/core/Basemap'; // For custom basemap
+import Basemap from '@arcgis/core/Basemap'; // For custom basemap
 import ImageryLayer from '@arcgis/core/layers/ImageryLayer'; // For custom imagery layer
 
 @Component({
@@ -78,11 +78,11 @@ export class AIpredictionmodelsComponent implements OnInit {
   
   //geometry = feature.getGeometry();
 
-  raster = new TileLayer({
+  /* raster = new TileLayer({
     source: new OSM(),
   });
   source = new VectorSource({ wrapX: false });
-  vector:any ;
+  vector:any ; */
   /* vector = new VectorLayer({
     source: this.source,
   }); */
@@ -130,7 +130,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     this.info = localStorage.getItem("info")
     this.info = JSON.parse(this.info)
     console.log("this.info", this.info);
-    this.createNewMap();
+    ////this.createNewMap();
     this.createESRImap();
     
   }
@@ -148,7 +148,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         });
       }
 
-  createNewMap(){  
+  /* createNewMap(){  
     
     var lon:any;
     var lat:any;
@@ -231,8 +231,8 @@ export class AIpredictionmodelsComponent implements OnInit {
     //alert (mapextent);
     //console.log(mapextent)
 
-    if(this.useblockname == true){
-       /* place = [lon,lat]
+    if(this.useblockname == true){ 
+        place = [lon,lat]
        const point = new Point(place);
        var feature1 = new Feature(new Point(place))
        
@@ -243,7 +243,7 @@ export class AIpredictionmodelsComponent implements OnInit {
           'circle-radius': 5,
           'circle-fill-color': 'red',
         },
-      }); */
+      }); 
       
     } else {
       this.vector = new VectorLayer({
@@ -304,7 +304,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   }); 
 
-   }  // end createInteraction
+   }  // end createInteraction */
 
 
    arcgisViewReadyChange(event: CustomEvent): void {
@@ -336,7 +336,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   }
 
 
-/*   createNewMap(){
+/* Don't use  createNewMap(){
     var lon:any;
     var lat:any;
     var place: any;
@@ -491,7 +491,7 @@ export class AIpredictionmodelsComponent implements OnInit {
     //Validation
     if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
     if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
-    if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} 
+    //// if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} 
     // this.usemap
     // this.locationvalue
     // this.string_coords
@@ -523,7 +523,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         //alert(this.userlon)
 
       } // useblockname
-      else if(this.usemap == true){
+      /* else if(this.usemap == true){
         [this.userlat, this.userlon] = this.getLatLngCenter(this.coordinates)
         //this.userlat = coords[1]
         //this.userlon = coords[0]
@@ -532,7 +532,7 @@ export class AIpredictionmodelsComponent implements OnInit {
         this.string_coords = this.userlat+" "+this.userlon
 
       } // use map
-
+ */
       
    // }
     
@@ -749,13 +749,13 @@ export class AIpredictionmodelsComponent implements OnInit {
   locationselectonchange(value:string) {
     this.locationvalue  = value;
     //alert(this.locationvalue);
-    if (this.mymap){
+    /* if (this.mymap){
       this.mymap.setTarget(null);
       }
     if(this.vector != null){
         this.vector.getSource()?.clear();
         }
-    this.createNewMap();
+    this.createNewMap(); */
        
   } // end location selection
 
@@ -772,10 +772,10 @@ export class AIpredictionmodelsComponent implements OnInit {
       this.useblockname = false;
     } 
     //alert(this.usemap)
-    if (this.mymap){
+    /* if (this.mymap){
       this.mymap.setTarget(null);
       }
-      this.createNewMap();   
+      this.createNewMap();    */
   } // end location radio button
 
   modelradiobuttonchange(event: any) {
@@ -791,7 +791,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   } //end model radio button
 
 
-  clearMap(event:any){
+  /* clearMap(event:any){
     if(this.vector != null){
     this.vector.getSource()?.clear();
     }
@@ -800,7 +800,7 @@ export class AIpredictionmodelsComponent implements OnInit {
 
   undolastpoint(event:any) {
       this.mydraw.removeLastPoint();   
-    }  // end undolastpoint
+    }  // end undolastpoint */
 
   checkResult() {
     /*   var popup = document.getElementById("yieldPopup");
