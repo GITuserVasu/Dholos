@@ -791,16 +791,16 @@ export class AIpredictionmodelsComponent implements OnInit {
   } //end model radio button
 
 
-  /* clearMap(event:any){
-    if(this.vector != null){
+  clearMap(event:any){
+    /* if(this.vector != null){
     this.vector.getSource()?.clear();
-    }
+    } */
     
     } // end clearMap
 
   undolastpoint(event:any) {
-      this.mydraw.removeLastPoint();   
-    }  // end undolastpoint */
+      //// this.mydraw.removeLastPoint();   
+    }  // end undolastpoint
 
   checkResult() {
     /*   var popup = document.getElementById("yieldPopup");
