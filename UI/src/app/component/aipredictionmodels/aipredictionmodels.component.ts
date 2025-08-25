@@ -1,6 +1,6 @@
 import { HttpClient as HttpClient} from '@angular/common/http';
 import { CommonModule } from '@angular/common' ;
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,OnDestroy, ViewChild, ElementRef} from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 //import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -51,6 +51,7 @@ import Map from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
 import Basemap from '@arcgis/core/Basemap'; // For custom basemap
 import ImageryLayer from '@arcgis/core/layers/ImageryLayer'; // For custom imagery layer
+import esriConfig from '@arcgis/core/config';
 
 @Component({
   selector: 'app-aipredictionmodels',
@@ -60,7 +61,7 @@ import ImageryLayer from '@arcgis/core/layers/ImageryLayer'; // For custom image
   standalone:false
 })
 
-export class AIpredictionmodelsComponent implements OnInit {
+export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
   datasetvalue: string = "none";
   mymap: any;
   mydraw:any;
@@ -120,28 +121,43 @@ export class AIpredictionmodelsComponent implements OnInit {
   treatmentvalue: string = "";
   n2applied:string = "" ;
 
+  //ESRI stuff
+  @ViewChild('mapViewNode', { static: true })
+  private mapViewEl!: ElementRef;
+  private view!: MapView;
+
   
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
   constructor(private spinner: NgxSpinnerService, private http: HttpClient, private router: Router) { };
 
 
+  ngOnDestroy(): void {
+    if (this.view) {
+      // destroy the map view
+      this.view.destroy();
+    }
+  }
+
   ngOnInit(): void {
     this.info = localStorage.getItem("info")
     this.info = JSON.parse(this.info)
     console.log("this.info", this.info);
     ////this.createNewMap();
+    
     this.createESRImap();
     
   }
 
   createESRImap(): void {
+    esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurCJDtVr4E7TnIeHMb1zKfqj222WiBT2tTl9bX-MjlbtbuIxvWkI9_FTznRVUtJ7OPPj9iuW1Wx4jm7lwfP21b-SICA-BHRobV8bC3Kt0y7Z40T6M89ISadEGCrTuzAdumYbEO-HZ7G8AUv_Dv69XDtmKLcErdMUo2Bt01-Xogm8TffHtnRx5DsK8lu-mmtFZgm4eeUpLM4LitKJg3r15M1k.AT1_dOw06i33"; // Replace with your actual API key
+
         const map = new Map({
           basemap: 'arcgis/imagery' // Sets the Esri World Imagery basemap
         });
 
         const view = new MapView({
-          // container: this.mapViewEl.nativeElement,
+          container: this.mapViewEl.nativeElement,
           map: map,
           center: [-118.805, 34.027], // Example center coordinates
           zoom: 13 // Example zoom level
