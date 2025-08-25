@@ -32,7 +32,7 @@ import Geometry from 'ol/geom/Geometry';
 import * as proj from 'ol/proj';
 import Source from 'ol/source/Source';
 import Layer from 'ol/layer/Layer';
-import Point from 'ol/geom/Point';
+// import Point from 'ol/geom/Point';
 import * as Coordinate from 'ol/coordinate';
 import {fromLonLat} from 'ol/proj';
 import {useGeographic} from 'ol/proj.js';
@@ -213,13 +213,10 @@ export class AIpredictionmodelsComponent implements OnInit {
     //console.log(mapextent)
 
     if(this.useblockname == true){
-       place = [lon,lat]
+       /* place = [lon,lat]
        const point = new Point(place);
        var feature1 = new Feature(new Point(place))
-       /* var Feature1 = new Feature({
-          name: "Points",
-          geometry: feature1 
-  }); */
+       
        this.source.addFeature(feature1);
        this.vector = new VectorLayer({
         source: this.source,
@@ -227,7 +224,7 @@ export class AIpredictionmodelsComponent implements OnInit {
           'circle-radius': 5,
           'circle-fill-color': 'red',
         },
-      });
+      }); */
       
     } else {
       this.vector = new VectorLayer({
