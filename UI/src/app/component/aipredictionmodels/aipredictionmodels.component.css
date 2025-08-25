@@ -10,3 +10,8 @@
 arcgis-map {
   display: block;
 }
+
+.map-container {
+      height: 100vh; /* Example: full viewport height */
+      width: 100vw;  /* Example: full viewport width */
+    }

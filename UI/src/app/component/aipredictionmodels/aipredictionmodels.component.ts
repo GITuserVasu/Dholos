@@ -47,6 +47,11 @@ import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
 import Point from "@arcgis/core/geometry/Point.js";
 import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
 
+import Map from '@arcgis/core/Map';
+import MapView from '@arcgis/core/views/MapView';
+ifmport Basemap from '@arcgis/core/Basemap'; // For custom basemap
+import ImageryLayer from '@arcgis/core/layers/ImageryLayer'; // For custom imagery layer
+
 @Component({
   selector: 'app-aipredictionmodels',
 //  imports: [ CommonModule ],
@@ -115,6 +120,7 @@ export class AIpredictionmodelsComponent implements OnInit {
   treatmentvalue: string = "";
   n2applied:string = "" ;
 
+  
 
 //  constructor(private spinner: NgxSpinnerService, private http: HttpClient, private notification: NotificationService, private router: Router) { };
   constructor(private spinner: NgxSpinnerService, private http: HttpClient, private router: Router) { };
@@ -125,9 +131,22 @@ export class AIpredictionmodelsComponent implements OnInit {
     this.info = JSON.parse(this.info)
     console.log("this.info", this.info);
     this.createNewMap();
-
+    this.createESRImap();
     
   }
+
+  createESRImap(): void {
+        const map = new Map({
+          basemap: 'arcgis/imagery' // Sets the Esri World Imagery basemap
+        });
+
+        const view = new MapView({
+          // container: this.mapViewEl.nativeElement,
+          map: map,
+          center: [-118.805, 34.027], // Example center coordinates
+          zoom: 13 // Example zoom level
+        });
+      }
 
   createNewMap(){  
     
