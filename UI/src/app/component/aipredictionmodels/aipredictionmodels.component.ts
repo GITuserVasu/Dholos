@@ -37,10 +37,10 @@ import * as Coordinate from 'ol/coordinate';
 import {fromLonLat} from 'ol/proj';
 import {useGeographic} from 'ol/proj.js';
 
-import "@arcgis/map-components/components/arcgis-map";
+/* import "@arcgis/map-components/components/arcgis-map";
 import "@arcgis/map-components/components/arcgis-zoom";
 import "@arcgis/map-components/components/arcgis-search";
-import "@arcgis/map-components/components/arcgis-legend";
+import "@arcgis/map-components/components/arcgis-legend"; */
 
 import Graphic from "@arcgis/core/Graphic.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
