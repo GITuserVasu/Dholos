@@ -12,6 +12,6 @@ arcgis-map {
 }
 
 .map-container {
-      height: 100vh; /* Example: full viewport height */
+      height: 60vh; /* Example: full viewport height */
       width: 100vw;  /* Example: full viewport width */
     }
