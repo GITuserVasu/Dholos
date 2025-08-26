@@ -197,13 +197,14 @@ createESRIInteraction(){
 
     sketchViewModel.create("polygon"); // Starts drawing a polygon
 
-    sketchViewModel.on("create-complete", function(event) {
-        if (event.state === "complete") {
-            const polygonGeometry = event.graphic.geometry;
-            console.log("Polygon created:", polygonGeometry.toJSON());
-            // You can now use this geometry, e.g., save it or perform analysis.
-        }
-    });
+    sketchViewModel.on("create", function(event:any) {
+  // Check if the drawing is complete
+    if (event.state === "complete") {
+    // Logic to handle the finished graphic
+        const graphic = event.graphic;
+        graphicsLayer.add(graphic);
+  }
+});
 
 
 
