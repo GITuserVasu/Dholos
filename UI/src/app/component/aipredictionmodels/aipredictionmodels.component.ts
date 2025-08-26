@@ -170,7 +170,7 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
           container: this.mapViewEl.nativeElement,
           map: this.map,
           // center: [-118.805, 34.027], // Example center coordinates
-          center: [this.place[0], this.place[1]], // Example center coordinates
+          center: [this.place[1], this.place[0]], // Example center coordinates
           zoom: 13, // Example zoom level
           constraints: {
     geometry: this.restrictedExtent, // Set the restricted extent
