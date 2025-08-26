@@ -174,8 +174,8 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
           zoom: 13, // Example zoom level
           constraints: {
     geometry: this.restrictedExtent, // Set the restricted extent
-    minZoom: 2, // Optional: Minimum zoom level allowed
-    maxZoom: 10 // Optional: Maximum zoom level allowed
+    ////minZoom: 2, // Optional: Minimum zoom level allowed
+    ////maxZoom: 10 // Optional: Maximum zoom level allowed
   }
         });
 
@@ -892,7 +892,7 @@ getlonlat(){
 
   locationselectonchange(value:string) {
     this.locationvalue  = value;
-    //alert(this.locationvalue);
+    alert(this.locationvalue);
     /* if (this.mymap){
       this.mymap.setTarget(null);
       }
