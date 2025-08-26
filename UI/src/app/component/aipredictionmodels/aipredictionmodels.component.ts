@@ -178,7 +178,7 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
     geometry: this.restrictedExtent, // Set the restricted extent */
     ////minZoom: 2, // Optional: Minimum zoom level allowed
     ////maxZoom: 10 // Optional: Maximum zoom level allowed
-  }
+ // }
         });
 
         if(this.usemap == true)  {
