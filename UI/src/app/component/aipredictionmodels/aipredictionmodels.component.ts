@@ -144,12 +144,12 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
     this.info = JSON.parse(this.info)
     console.log("this.info", this.info);
     ////this.createNewMap();
-    
-    this.createESRImap();
+    const place = this.getlonlat() ;
+    this.createESRImap(place);
     
   }
 
-  createESRImap(): void {
+  createESRImap(place): void {
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurCJDtVr4E7TnIeHMb1zKfqj222WiBT2tTl9bX-MjlbtbuIxvWkI9_FTznRVUtJ7OPPj9iuW1Wx4jm7lwfP21b-SICA-BHRobV8bC3Kt0y7Z40T6M89ISadEGCrTuzAdumYbEO-HZ7G8AUv_Dv69XDtmKLcErdMUo2Bt01-Xogm8TffHtnRx5DsK8lu-mmtFZgm4eeUpLM4LitKJg3r15M1k.AT1_dOw06i33"; // Replace with your actual API key
 
         const map = new Map({
@@ -159,10 +159,44 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
         const view = new MapView({
           container: this.mapViewEl.nativeElement,
           map: map,
-          center: [-118.805, 34.027], // Example center coordinates
+          // center: [-118.805, 34.027], // Example center coordinates
+          center: [place[1], place[0]], // Example center coordinates
           zoom: 13 // Example zoom level
         });
       }
+
+  getlonlat(){
+    var lon:any;
+    var lat:any;
+    
+    var templon:any;
+    var templat:any;
+    
+    var minlon, maxlon, minlat, maxlat;
+
+    var place: any;
+    var latlonstr = this.locationvalue;
+
+    if (latlonstr == null)
+      latlonstr = "none";
+    var comp_str = "none";
+    if(latlonstr === comp_str){
+   // Default
+      lat = 10.95
+      lon = 77.1
+      place = [lat, lon]
+   } else {
+      var latlonarr = latlonstr.split(" ");
+      lat = latlonarr[2]
+      lon = latlonarr[4]
+      place = [lon, lat]
+   }
+
+   return place;
+
+
+  }    
+
 
   /* createNewMap(){  
     
@@ -813,7 +847,9 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
     /* if(this.vector != null){
     this.vector.getSource()?.clear();
     } */
-    
+    map.removeAll(); // This removes all operational layers and graphics
+    this.createESRImap();
+
     } // end clearMap
 
   undolastpoint(event:any) {
