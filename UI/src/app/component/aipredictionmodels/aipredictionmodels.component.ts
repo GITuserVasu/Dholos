@@ -43,6 +43,7 @@ import "@arcgis/map-components/components/arcgis-search";
 import "@arcgis/map-components/components/arcgis-legend";
 
 import Graphic from "@arcgis/core/Graphic.js";
+import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
 import Point from "@arcgis/core/geometry/Point.js";
 import type { ArcgisMap } from "@arcgis/map-components/components/arcgis-map";
@@ -52,6 +53,9 @@ import MapView from '@arcgis/core/views/MapView';
 import Basemap from '@arcgis/core/Basemap'; // For custom basemap
 import ImageryLayer from '@arcgis/core/layers/ImageryLayer'; // For custom imagery layer
 import esriConfig from '@arcgis/core/config';
+import SketchViewModel from "@arcgis/core/widgets/Sketch/SketchViewModel.js";
+
+
 
 @Component({
   selector: 'app-aipredictionmodels',
@@ -124,7 +128,13 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
   //ESRI stuff
   @ViewChild('mapViewNode', { static: true })
   private mapViewEl!: ElementRef;
-  private view!: MapView;
+  ////private view!: MapView;
+  view!: MapView;
+  place: any;
+  map = new Map({
+          basemap: 'arcgis/imagery' // Sets the Esri World Imagery basemap
+        });
+  
 
   
 
@@ -145,27 +155,62 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
     console.log("this.info", this.info);
     ////this.createNewMap();
     const place = this.getlonlat() ;
-    this.createESRImap(place);
+    this.createESRImap();
     
   }
 
-  createESRImap(place:any): void {
+  createESRImap(): void {
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurCJDtVr4E7TnIeHMb1zKfqj222WiBT2tTl9bX-MjlbtbuIxvWkI9_FTznRVUtJ7OPPj9iuW1Wx4jm7lwfP21b-SICA-BHRobV8bC3Kt0y7Z40T6M89ISadEGCrTuzAdumYbEO-HZ7G8AUv_Dv69XDtmKLcErdMUo2Bt01-Xogm8TffHtnRx5DsK8lu-mmtFZgm4eeUpLM4LitKJg3r15M1k.AT1_dOw06i33"; // Replace with your actual API key
 
-        const map = new Map({
-          basemap: 'arcgis/imagery' // Sets the Esri World Imagery basemap
-        });
+        
 
-        const view = new MapView({
+        this.view = new MapView({
           container: this.mapViewEl.nativeElement,
-          map: map,
+          map: this.map,
           // center: [-118.805, 34.027], // Example center coordinates
-          center: [place[1], place[0]], // Example center coordinates
+          center: [this.place[1], this.place[0]], // Example center coordinates
           zoom: 13 // Example zoom level
         });
-      }
 
-  getlonlat(){
+        if(this.usemap == true)  {
+           this.createESRIInteraction();
+    }
+        
+}
+
+createESRIInteraction(){
+    const graphicsLayer = new GraphicsLayer();
+    this.map.add(graphicsLayer);
+
+        const sketchViewModel = new SketchViewModel({
+        view: this.view,
+        layer: graphicsLayer,
+        polygonSymbol: { // Define the symbol for the drawn polygon
+            type: "simple-fill",
+            color: [138, 43, 226, 0.5], // RGBA color with transparency
+            outline: {
+                color: "white",
+                width: 1
+            }
+        }
+    });
+
+    sketchViewModel.create("polygon"); // Starts drawing a polygon
+
+    sketchViewModel.on("create-complete", function(event) {
+        if (event.state === "complete") {
+            const polygonGeometry = event.graphic.geometry;
+            console.log("Polygon created:", polygonGeometry.toJSON());
+            // You can now use this geometry, e.g., save it or perform analysis.
+        }
+    });
+
+
+
+}
+
+
+getlonlat(){
     var lon:any;
     var lat:any;
     
@@ -174,7 +219,7 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
     
     var minlon, maxlon, minlat, maxlat;
 
-    var place: any;
+    
     var latlonstr = this.locationvalue;
 
     if (latlonstr == null)
@@ -184,15 +229,13 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
    // Default
       lat = 10.95
       lon = 77.1
-      place = [lat, lon]
+      this.place = [lat, lon]
    } else {
       var latlonarr = latlonstr.split(" ");
       lat = latlonarr[2]
       lon = latlonarr[4]
-      place = [lon, lat]
+      this.place = [lon, lat]
    }
-
-   return place;
 
 
   }    
@@ -847,7 +890,7 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
     /* if(this.vector != null){
     this.vector.getSource()?.clear();
     } */
-    map.removeAll(); // This removes all operational layers and graphics
+    this.map.removeAll(); // This removes all operational layers and graphics
     this.createESRImap();
 
     } // end clearMap
