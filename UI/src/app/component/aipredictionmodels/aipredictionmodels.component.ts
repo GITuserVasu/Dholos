@@ -174,8 +174,8 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
           // center: [-118.805, 34.027], // Example center coordinates
           center: [this.place[0], this.place[1]], // Example center coordinates
           zoom: 10, // Example zoom level
-          constraints: {
-    geometry: this.restrictedExtent, // Set the restricted extent
+          /* constraints: {
+    geometry: this.restrictedExtent, // Set the restricted extent */
     ////minZoom: 2, // Optional: Minimum zoom level allowed
     ////maxZoom: 10 // Optional: Maximum zoom level allowed
   }
