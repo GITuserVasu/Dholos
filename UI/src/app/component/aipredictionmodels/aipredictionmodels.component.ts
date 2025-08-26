@@ -54,6 +54,7 @@ import Basemap from '@arcgis/core/Basemap'; // For custom basemap
 import ImageryLayer from '@arcgis/core/layers/ImageryLayer'; // For custom imagery layer
 import esriConfig from '@arcgis/core/config';
 import SketchViewModel from "@arcgis/core/widgets/Sketch/SketchViewModel.js";
+import Extent from "@arcgis/core/geometry/Extent";
 
 
 
@@ -134,6 +135,7 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
   map = new Map({
           basemap: 'arcgis/imagery' // Sets the Esri World Imagery basemap
         });
+  restrictedExtent: any;
   
 
   
@@ -169,7 +171,12 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
           map: this.map,
           // center: [-118.805, 34.027], // Example center coordinates
           center: [this.place[1], this.place[0]], // Example center coordinates
-          zoom: 13 // Example zoom level
+          zoom: 13, // Example zoom level
+          constraints: {
+    geometry: this.restrictedExtent, // Set the restricted extent
+    minZoom: 2, // Optional: Minimum zoom level allowed
+    maxZoom: 10 // Optional: Maximum zoom level allowed
+  }
         });
 
         if(this.usemap == true)  {
@@ -218,7 +225,7 @@ getlonlat(){
     var templon:any;
     var templat:any;
     
-    var minlon, maxlon, minlat, maxlat;
+    var ymin, ymax, xmin, xmax;
 
     
     var latlonstr = this.locationvalue;
@@ -237,6 +244,49 @@ getlonlat(){
       lon = latlonarr[4]
       this.place = [lon, lat]
    }
+
+   if(this.datasetvalue == 'coimbatore'){
+    this.restrictedExtent = new Extent({
+    ymin : 76.7652,
+    ymax : 77.4509,
+    xmin : 10.7872,
+    xmax : 11.1221,
+    spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
+      });
+    
+    }
+    if(this.datasetvalue == 'thanjavur'){
+      this.restrictedExtent = new Extent({
+    ymin : 78,
+    ymax : 80,
+    xmin : 10,
+    xmax : 11,
+    spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
+      });
+      
+      }
+    
+      if(this.datasetvalue == 'lubbock'){
+        this.restrictedExtent = new Extent({
+    ymin : -102.5,
+    ymax : -101.5,
+    xmin : 33.3947,
+    xmax : 33.8304,
+    spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
+      });
+      
+      }
+
+      if(this.datasetvalue == 'kern'){
+        this.restrictedExtent = new Extent({
+    ymin : -119.24,
+    ymax : -117.92,
+    xmin : 34.91,
+    xmax : 35.2,
+    spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
+      });
+      
+      }
 
 
   }    
