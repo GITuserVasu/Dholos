@@ -239,7 +239,7 @@ getlonlat(){
    // Default
       lat = 10.95
       lon = 77.1
-      this.place = [lat, lon]
+      this.place = [lon, lat]
    } else {
       var latlonarr = latlonstr.split(" ");
       lat = latlonarr[2]
