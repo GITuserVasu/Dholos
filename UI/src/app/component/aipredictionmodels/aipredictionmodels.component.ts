@@ -173,12 +173,12 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
           map: this.map,
           // center: [-118.805, 34.027], // Example center coordinates
           center: [this.place[0], this.place[1]], // Example center coordinates
-          zoom: 13 // Example zoom level
-          /* constraints: {
-    geometry: this.restrictedExtent, // Set the restricted extent */
+          zoom: 13, // Example zoom level
+          constraints: {
+    geometry: this.restrictedExtent, // Set the restricted extent
     ////minZoom: 2, // Optional: Minimum zoom level allowed
     ////maxZoom: 10 // Optional: Maximum zoom level allowed
- // }
+  }
         });
 
         if(this.usemap == true)  {
@@ -253,7 +253,7 @@ getlonlat(){
     ymax : 77.4509,
     xmin : 10.7872,
     xmax : 11.1221,
-    spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
+   // spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
       });
     
     }
@@ -263,7 +263,7 @@ getlonlat(){
     ymax : 80,
     xmin : 10,
     xmax : 11,
-    spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
+    //spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
       });
       
       }
@@ -274,7 +274,7 @@ getlonlat(){
     ymax : -101.5,
     xmin : 33.3947,
     xmax : 33.8304,
-    spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
+    //spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
       });
       
       }
@@ -285,7 +285,7 @@ getlonlat(){
     ymax : -117.92,
     xmin : 34.91,
     xmax : 35.2,
-    spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
+    //spatialReference: { wkid: 4326 } // WGS84 geographic coordinate system
       });
       
       }
