@@ -669,7 +669,7 @@ getlonlat(){
         //alert(this.userlon)
 
       } // useblockname
-      /* else if(this.usemap == true){
+      else if(this.usemap == true){
         [this.userlat, this.userlon] = this.getLatLngCenter(this.coordinates)
         //this.userlat = coords[1]
         //this.userlon = coords[0]
@@ -678,7 +678,7 @@ getlonlat(){
         this.string_coords = this.userlat+" "+this.userlon
 
       } // use map
- */
+
       
    // }
     
