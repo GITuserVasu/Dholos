@@ -164,8 +164,8 @@ export class AIpredictionmodelsComponent implements OnInit, OnDestroy  {
   createESRImap(): void {
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurCJDtVr4E7TnIeHMb1zKfqj222WiBT2tTl9bX-MjlbtbuIxvWkI9_FTznRVUtJ7OPPj9iuW1Wx4jm7lwfP21b-SICA-BHRobV8bC3Kt0y7Z40T6M89ISadEGCrTuzAdumYbEO-HZ7G8AUv_Dv69XDtmKLcErdMUo2Bt01-Xogm8TffHtnRx5DsK8lu-mmtFZgm4eeUpLM4LitKJg3r15M1k.AT1_dOw06i33"; // Replace with your actual API key
         const place = this.getlonlat() ;
-        alert(this.place[1]);
-        alert(this.place[0]);
+        /* alert(this.place[1]);
+        alert(this.place[0]); */
 
 
         this.view = new MapView({
@@ -231,6 +231,7 @@ getlonlat(){
 
     
     var latlonstr = this.locationvalue;
+    alert(latlonstr);
 
     if (latlonstr == null)
       latlonstr = "none";
