@@ -637,7 +637,7 @@ getlonlat(){
     //Validation
     if (this.datasetvalue == "none"){alert(" You must select one valid data set");location.reload();}
     if(this.useblockname == true && this.locationvalue == "none") {alert("You must select a block"); location.reload();}
-    //// if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} 
+    if(this.usemap == true && this.string_coords == "") {alert("You must draw a farm"); location.reload();} 
     // this.usemap
     // this.locationvalue
     // this.string_coords
