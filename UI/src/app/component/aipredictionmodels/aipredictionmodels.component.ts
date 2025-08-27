@@ -883,6 +883,7 @@ getlonlat(){
 
   datasetselectonchange(value:string) {
     this.datasetvalue  = value;
+    this.createESRImap();
     //this:this.datasetvalue = (document.getElementById("dataset") as HTMLInputElement).value
     //alert(this.datasetvalue);
   } // end dataset select
