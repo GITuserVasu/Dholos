@@ -231,7 +231,7 @@ getlonlat(){
 
     
     var latlonstr = this.locationvalue;
-    alert(latlonstr);
+    //alert(latlonstr);
 
     if (latlonstr == null)
       latlonstr = "none";
