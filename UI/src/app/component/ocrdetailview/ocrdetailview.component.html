@@ -434,10 +434,10 @@
             You can ask me questions about {{farmname}}</p>
             
   <div class="mb-3">
-    <!-- <label for="username">Question:</label>&NonBreakingSpace;&NonBreakingSpace;
-    <textarea id="question" name="question" placeholder="Enter your question"></textarea> -->
-    <label for="exampleFormControlTextarea1" class="form-label">Question</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    
+    <!-- <label for="exampleFormControlTextarea1" class="form-label">Question</label> -->
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+  <br>
     <input type="button" class="btn btn-primary" value="Submit" (click)="ask_question()">
 </div>
 
@@ -454,6 +454,7 @@
         <div class="d-flex">
           <div class="flex-grow-1">
             <p class="text-muted fw-medium">The Answer </p>
+            {{answer}}
           </div>
         </div>
         </div>

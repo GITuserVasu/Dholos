@@ -122,6 +122,8 @@ export class OcrdetailviewComponent implements OnInit {
   prediction_string: any;
   FinalPred: Array<{cultivar: string, waterused: string, yield: string,waterefficiency:string}> = [];
 
+  answer:any;
+
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
@@ -645,7 +647,8 @@ downloadFilecsv(response:any) {
 // }
 
 ask_question() {
-  alert("in ask question");
+ // alert("in ask question");
+ this.answer = "right";
 }
 
 }
