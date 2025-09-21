@@ -422,7 +422,8 @@
   <hr>
 </div>
 <!-- Querying the data -->
-<!-- <div class="row">
+ <span *ngIf = "selectedholosproduct == 'AI/ML'">
+<div class="row">
   <div class="col-md-6">
     <div class="card mini-stats-wid">
       <div class="card-body">
@@ -445,8 +446,8 @@
       </div>
     </div>
   </div>
-</div> -->
-
+</div>
+</span>
 <!-- Query Ends-->
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
   <p style="color: white"> Loading... </p>
