@@ -433,13 +433,13 @@
             <p class="text-muted fw-medium">Hi {{origusername}},  
             You can ask me questions about {{farmname}}</p>
             
-  <div>
-    <label for="username">Question:</label>&NonBreakingSpace;&NonBreakingSpace;
-    <textarea id="question" name="question" placeholder="Enter your question"></textarea>
-  </div>
-  <div>
+  <div class="mb-3">
+    <!-- <label for="username">Question:</label>&NonBreakingSpace;&NonBreakingSpace;
+    <textarea id="question" name="question" placeholder="Enter your question"></textarea> -->
+    <label for="exampleFormControlTextarea1" class="form-label">Question</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     <input type="button" class="btn btn-primary" value="Submit" (click)="ask_question()">
-  </div>
+</div>
 
           </div>
         </div>
