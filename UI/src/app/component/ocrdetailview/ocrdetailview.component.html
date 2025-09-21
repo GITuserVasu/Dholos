@@ -432,6 +432,15 @@
           <div class="flex-grow-1">
             <p class="text-muted fw-medium">Hi {{origusername}},  
             You can ask me questions about {{farmname}}</p>
+            <form action="ask_question" method="post">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="question" name="question" placeholder="Enter your question">
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>
           </div>
         </div>
         </div>
@@ -444,7 +453,7 @@
         <div class="scrollable" style="overflow-y: auto; max-height: 500px;"></div>
         <div class="d-flex">
           <div class="flex-grow-1">
-            <p class="text-muted fw-medium">The Answer (Coming Soon)</p>
+            <p class="text-muted fw-medium">The Answer </p>
           </div>
         </div>
         </div>

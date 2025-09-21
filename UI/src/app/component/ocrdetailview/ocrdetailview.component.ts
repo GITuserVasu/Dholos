@@ -644,6 +644,8 @@ downloadFilecsv(response:any) {
 //   fs.saveAs(blob, 'test.zip');
 // }
 
-
+ask_question() {
+  alert("in ask question");
+}
 
 }
