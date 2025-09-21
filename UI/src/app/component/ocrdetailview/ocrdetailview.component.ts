@@ -84,6 +84,7 @@ export class OcrdetailviewComponent implements OnInit {
   plantingmethod: any;
   farmid: any;
   farmname: any;
+  fullfarmname:any;
   plantingdate: any;
   reco: any;
   bases3loc: any = "https://s3-us-east-2.amazonaws.com/docker-holos-spatial-dssat-trigger-bucket/" ;
@@ -165,6 +166,9 @@ export class OcrdetailviewComponent implements OnInit {
             this.plantingdate = res.response[0].plantingdate;
             this.predicted_yield = res.response[0].searchtextwords;
               
+            if(this.farmname == "coimbatore"){this.fullfarmname = "Rice in Coimbatore";}
+            if(this.farmname == "lubbock"){this.fullfarmname = "Cotton in South Plains";}
+            if(this.farmname == "kern"){this.fullfarmname = "Alfalfa in Kern County, CA";}
             
             if(this.exptstatus == "Verified"){
               this.usa_mapimage = "https://www.gaiadhi.net/assets/images/usa-heatmap.jpg";
