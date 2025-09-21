@@ -67,6 +67,7 @@ export class OcrdetailviewComponent implements OnInit {
   exptstatus: any
   projectname: any
   orgid: any
+  origusername: any
   username: any
   caseid: any
 
@@ -145,8 +146,8 @@ export class OcrdetailviewComponent implements OnInit {
             this.orgid = res.response[0].orgid ;
             this.projectname = res.response[0].projectName ;
             this.projecttype = res.response[0].projectType ;
-            this.username = res.response[0].username ;
-            this.username = this.username.replaceAll(" ","");
+            this.origusername = res.response[0].username ;
+            this.username = this.origusername.replaceAll(" ","");
             this.caseid = res.response[0].id;
             this.Xfilename = res.response[0].XfileName;
             this.CULfilename = res.response[0].CULfileName;
