@@ -432,15 +432,15 @@
           <div class="flex-grow-1">
             <p class="text-muted fw-medium">Hi {{origusername}},  
             You can ask me questions about {{farmname}}</p>
-            <form action="ask_question" method="post">
+            
   <div>
-    <label for="username">Username:</label>
+    <label for="username">Question:</label>&NonBreakingSpace;&NonBreakingSpace;
     <input type="text" id="question" name="question" placeholder="Enter your question">
   </div>
   <div>
-    <button type="submit">Submit</button>
+    <input type="button" class="btn btn-primary" value="askquestion" (click)="ask_question()">
   </div>
-</form>
+
           </div>
         </div>
         </div>
