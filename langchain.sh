@@ -1,0 +1,3 @@
+export LANGSMITH_TRACING="true"
+export LANGSMITH_API_KEY="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"
+export OPENAI_API_KEY="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"

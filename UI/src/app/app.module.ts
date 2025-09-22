@@ -27,6 +27,8 @@ import { EmpRegistrationComponent } from './layouts/emp-registration/emp-registr
 import {RecaptchaModule} from 'ng-recaptcha' ;
 import { RouterModule } from '@angular/router' ;
 
+import { NgChartsModule } from 'ng2-charts'; // Import NgChartsModule
+
 
 
 @NgModule({ declarations: [
@@ -64,7 +66,8 @@ import { RouterModule } from '@angular/router' ;
         NgxSpinnerModule,
         AgGridModule,
         AgGridAngular,
-        SharedModule
+        SharedModule,
+        NgChartsModule // Add NgChartsModule here
     ], 
 	providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

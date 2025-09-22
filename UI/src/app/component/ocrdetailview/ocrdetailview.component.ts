@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../src/environments/environment';
 import { GoogleChartsModule } from 'angular-google-charts'; // Import the module
+import { ChartData, ChartType } from 'chart.js';
 
 
 @Component({
@@ -126,6 +127,24 @@ export class OcrdetailviewComponent implements OnInit {
   answer:any;
 
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
+
+  //Charts
+  public barChartOptions = {
+        responsive: true,
+      };
+      public barChartLabels: string[] = ['2021', '2022', '2023', '2024', '2025'];
+      public barChartType: ChartType = 'bar';
+      public barChartLegend = true;
+      public barChartPlugins = [];
+
+      public barChartData: ChartData<'bar'> = {
+        labels: this.barChartLabels,
+        datasets: [
+          { data: [65, 59, 80, 81, 56], label: 'Series A' },
+          { data: [28, 48, 40, 19, 86], label: 'Series B' }
+        ]
+      };
+  // end Charts
 
   ngOnInit(): void {
 
