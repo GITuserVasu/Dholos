@@ -33,6 +33,7 @@ from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 import subprocess
 import boto3
+import io
 
 # sns.set_theme(color_codes=True)
 
@@ -307,6 +308,7 @@ def prednow(predjson):
 
 @csrf_exempt
 def get_predictweatherdata(ML1_df, stringcoords, dirname):
+    
     location_lat_long = ML1_df[["SubBlockID", "CenterLat", "CenterLong", "location"]]
     location_lat_long = location_lat_long.drop_duplicates()
     location_lat_long['Distance'] = "" 
@@ -328,6 +330,7 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
     print("Nearest location", location)
     #weatherdir = "/home/bitnami/ML/data/coimbatore-apr25/models/" + nearest_locn + "/"
 
+    # For accessing the merged weather file locally on the server
     if(nearest_locn[0] == "S"):
         kern_prestring = "/home/bitnami/ML/data/ca-kern/Kern_"
         kern_poststring = "_Alfalfa_AutoMow_14T_1sqkm_2019/"
@@ -341,7 +344,32 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
 
     weatherdf = read_csvdata(weatherdir, weatherfile)
 
-    return weatherdf, location
+    # For accessing the merged weather file from S3
+    
+    # Create an S3 client
+    s3 = boto3.client("s3")
+
+    if(nearest_locn[0] == "S"):
+        s3_prestring = "s3://holos-spatial-dssat-all-data-bucket/MLDataSets/Alfalfa/US/Kern/1sqkm/Kern_SB0_Alfalfa_AutoMow_14T_1sqkm_2019/WorkingDir/"
+        parts = nearest_locn.split("_", 1)
+        weatherdir =  parts[1] +"/"
+        print("weatherdir from s3", weatherdir)
+    else:
+        weatherdir = dirname + nearest_locn + "/"
+
+    bucket_name = s3_prestring + weatherdir
+    file_key = "mergedweather.csv"
+
+    # Get the object from S3
+    obj = s3.get_object(Bucket=bucket_name, Key=file_key)
+
+    # Read the content and decode it
+    csv_content = obj["Body"].read().decode("utf-8")
+
+    # Use io.StringIO to treat the string as a file-like object for pandas
+    s3weatherdf = pd.read_csv(io.StringIO(csv_content))
+
+    return s3weatherdf, location
 
 
 @csrf_exempt
