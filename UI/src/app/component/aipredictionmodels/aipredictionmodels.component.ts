@@ -896,7 +896,7 @@ getlonlat(){
 
   locationselectonchange(value:string) {
     this.locationvalue  = value;
-    alert(this.locationvalue);
+    //alert(this.locationvalue);
     /* if (this.mymap){
       this.mymap.setTarget(null);
       }

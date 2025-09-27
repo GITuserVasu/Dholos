@@ -350,15 +350,15 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
     s3 = boto3.client("s3")
 
     if(nearest_locn[0] == "S"):
-        s3_prestring = "holos-spatial-dssat-all-data-bucket/MLDataSets/Alfalfa/US/Kern/1sqkm/Kern_SB0_Alfalfa_AutoMow_14T_1sqkm_2019/WorkingDir/"
+        s3_filekey_1 = "MLDataSets/Alfalfa/US/Kern/1sqkm/Kern_SB0_Alfalfa_AutoMow_14T_1sqkm_2019/WorkingDir/"
         parts = nearest_locn.split("_", 1)
         weatherdir =  parts[1] +"/"
         print("weatherdir from s3", weatherdir)
     else:
         weatherdir = dirname + nearest_locn + "/"
 
-    bucket_name = s3_prestring + weatherdir
-    file_key = "mergedweather.csv"
+    bucket_name = "holos-spatial-dssat-all-data-bucket"
+    file_key = s3_filekey_1 + weatherdir + "mergedweather.csv"
 
     # Get the object from S3
     obj = s3.get_object(Bucket=bucket_name, Key=file_key)
