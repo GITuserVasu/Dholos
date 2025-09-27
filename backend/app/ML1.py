@@ -350,7 +350,7 @@ def get_predictweatherdata(ML1_df, stringcoords, dirname):
     s3 = boto3.client("s3")
 
     if(nearest_locn[0] == "S"):
-        s3_prestring = "s3://holos-spatial-dssat-all-data-bucket/MLDataSets/Alfalfa/US/Kern/1sqkm/Kern_SB0_Alfalfa_AutoMow_14T_1sqkm_2019/WorkingDir/"
+        s3_prestring = "holos-spatial-dssat-all-data-bucket/MLDataSets/Alfalfa/US/Kern/1sqkm/Kern_SB0_Alfalfa_AutoMow_14T_1sqkm_2019/WorkingDir/"
         parts = nearest_locn.split("_", 1)
         weatherdir =  parts[1] +"/"
         print("weatherdir from s3", weatherdir)
