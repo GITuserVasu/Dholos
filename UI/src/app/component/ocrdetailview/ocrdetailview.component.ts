@@ -129,7 +129,7 @@ export class OcrdetailviewComponent implements OnInit {
   constructor(private activateroute:ActivatedRoute,private http:HttpClient,private sanitizer: DomSanitizer) { }
 
   //Charts
-  public barChartOptions = {
+  /* public barChartOptions = {
         responsive: true,
       };
       public barChartLabels: string[] = ['2021', '2022', '2023', '2024', '2025'];
@@ -143,7 +143,7 @@ export class OcrdetailviewComponent implements OnInit {
           { data: [65, 59, 80, 81, 56], label: 'Series A' },
           { data: [28, 48, 40, 19, 86], label: 'Series B' }
         ]
-      };
+      }; */
   // end Charts
 
   ngOnInit(): void {
