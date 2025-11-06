@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../src/environments/environment';
 import { GoogleChartsModule } from 'angular-google-charts'; // Import the module
-import { ChartData, ChartType } from 'chart.js';
+import { Chart, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
