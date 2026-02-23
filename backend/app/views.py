@@ -158,9 +158,10 @@ def make_json(exptJson):
             #print( "Xfile without the \r\n", Xfile_content4)
             Xfile_content5 = Xfile_content4.replace("\n","\\n")
             Xfile_content6 = Xfile_content5.replace("\\x1a","\\u001a")
+            Xfile_content7 = Xfile_content6.replace('"'," ")
             #print( "Xfile without the \x1a", Xfile_content6)
             #print(Xfile_content0)
-            Xfile_as_string = Xfile_content6
+            Xfile_as_string = Xfile_content7
         except Exception as e:
            # Handle any exceptions that may occur during the download
            print("Error in downloading file")
@@ -183,8 +184,9 @@ def make_json(exptJson):
             CULfile_content3 = CULfile_content2.rstrip("'")
             CULfile_content4 = CULfile_content3.replace("\\r", "")
             CULfile_content5 = CULfile_content4.replace("\n","\\n")
+            CULfile_content6 = CULfile_content5.replace('"'," ")
             """print(CULfile_content3) """
-            CULfile_as_string = CULfile_content5
+            CULfile_as_string = CULfile_content6
         except Exception as e:
            # Handle any exceptions that may occur during the download
            print("Error in downloading file")
@@ -229,7 +231,7 @@ def make_json(exptJson):
     Xfile_as_string = body
     body = CULfile_as_string.encode('utf-8')
     CULfile_as_string = body
-    if type(Xfile_as_string) is str:
+    """ if type(Xfile_as_string) is str:
     #    Xfile_as_string = Xfile_as_string.split('"').join(' ')
         result = Xfile_as_string.replace('"', ' ')
         Xfile_as_string = result
@@ -242,7 +244,7 @@ def make_json(exptJson):
         CULfile_as_string = result
     elif type(CULfile_as_string) is list:
         result = ' '.join(CULfile_as_string)
-        CULfile_as_string = result
+        CULfile_as_string = result """
 
     json_string = ""
     json_string = json_string + "{"
