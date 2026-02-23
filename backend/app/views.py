@@ -225,8 +225,16 @@ def make_json(exptJson):
 
     print("In make json")
     print(name, useremail,simulationname, selectedholosproduct)
-    Xfile_as_string = Xfile_as_string.split('"').join(' ')
-    CULfile_as_string = CULfile_as_string.split('"').join(' ')
+    if type(Xfile_as_string) is str:
+       Xfile_as_string = Xfile_as_string.split('"').join(' ')
+    elif type(Xfile_as_string) is list:
+        result = ' '.join(Xfile_as_string)
+        Xfile_as_string = result
+    if type(CULfile_as_string) is str:
+       CULfile_as_string = CULfile_as_string.split('"').join(' ')
+    elif type(CULfile_as_string) is list:
+        result = ' '.join(CULfile_as_string)
+        CULfile_as_string = result
 
     json_string = ""
     json_string = json_string + "{"
