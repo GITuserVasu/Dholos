@@ -572,7 +572,7 @@ showFarm(value:string) {
           //this.Create_folder_new = false;
           }
         reader.readAsText(event.target.files[i]); 
-        //console.log("reader result", this.Xfile_as_string);
+        console.log("reader result", this.Xfile_as_string);
      }
     
   }
