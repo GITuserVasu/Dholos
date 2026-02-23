@@ -227,10 +227,10 @@ def make_json(exptJson):
 
     print("In make json")
     print(name, useremail,simulationname, selectedholosproduct)
-    body = Xfile_as_string.encode('utf-8')
+    """ body = Xfile_as_string.encode('utf-8')
     Xfile_as_string = body
     body = CULfile_as_string.encode('utf-8')
-    CULfile_as_string = body
+    CULfile_as_string = body """
     """ if type(Xfile_as_string) is str:
     #    Xfile_as_string = Xfile_as_string.split('"').join(' ')
         result = Xfile_as_string.replace('"', ' ')
